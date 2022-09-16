@@ -16,4 +16,10 @@ public class IndexController {
 		return "index";
 	}
 	
+	@GetMapping("/header")
+	public String header() {
+		log.debug("called header");
+		return "header";
+	}
+	
 }
