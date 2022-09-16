@@ -1,100 +1,135 @@
 <!DOCTYPE html>
+<html lang="en">
 
-<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
+	<meta name="author" content="AdminKit">
+	<meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
+
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
+
+	<link rel="canonical" href="https://demo-basic.adminkit.io/pages-blank.html" />
+
+	<title>Blank Page | AdminKit Demo</title>
+
+	<link href="css/app.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
 
 <body>
-	<div th:fragment="topmenu_test">
-	<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-		<div class="container-fluid">
-			<img th:src="@{/images/logo1.png}" alt="logotest1" id="logoTest1">
-			<a class="navbar-brand" th:href="@{/}">&nbsp;&nbsp;Prolingo</a>
-			<button class="navbar-toggler" type="button"
-				data-bs-toggle="collapse" data-bs-target="#mynavbar">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="mynavbar">
-				<ul class="navbar-nav me-auto">
-					<li class="nav-item"><a class="nav-link"
-						th:href="@{/courseTest}">코스</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="">소셜</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="">커뮤니티</a></li>
+	<div class="wrapper">
+		<nav id="sidebar" class="sidebar js-sidebar">
+			<div class="sidebar-content js-simplebar">
+				<a class="sidebar-brand" href="index.html">
+          <span class="align-middle">AdminKit</span>
+        </a>
+
+				<ul class="sidebar-nav">
+					<li class="sidebar-header">
+						Pages
+					</li>
+
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="index.html">
+              <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
+            </a>
+					</li>
+
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="pages-profile.html">
+              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
+            </a>
+					</li>
+
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="pages-sign-in.html">
+              <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Sign In</span>
+            </a>
+					</li>
+
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="pages-sign-up.html">
+              <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Sign Up</span>
+            </a>
+					</li>
+
+					<li class="sidebar-item active">
+						<a class="sidebar-link" href="pages-blank.html">
+              <i class="align-middle" data-feather="book"></i> <span class="align-middle">Blank</span>
+            </a>
+					</li>
+
+					<li class="sidebar-header">
+						Tools & Components
+					</li>
+
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="ui-buttons.html">
+              <i class="align-middle" data-feather="square"></i> <span class="align-middle">Buttons</span>
+            </a>
+					</li>
+
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="ui-forms.html">
+              <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Forms</span>
+            </a>
+					</li>
+
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="ui-cards.html">
+              <i class="align-middle" data-feather="grid"></i> <span class="align-middle">Cards</span>
+            </a>
+					</li>
+
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="ui-typography.html">
+              <i class="align-middle" data-feather="align-left"></i> <span class="align-middle">Typography</span>
+            </a>
+					</li>
+
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="icons-feather.html">
+              <i class="align-middle" data-feather="coffee"></i> <span class="align-middle">Icons</span>
+            </a>
+					</li>
+
+					<li class="sidebar-header">
+						Plugins & Addons
+					</li>
+
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="charts-chartjs.html">
+              <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Charts</span>
+            </a>
+					</li>
+
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="maps-google.html">
+              <i class="align-middle" data-feather="map"></i> <span class="align-middle">Maps</span>
+            </a>
+					</li>
 				</ul>
-				<form class="d-flex">
-					<input class="form-control me-2" type="text" placeholder="Search">
-					<button class="btn btn-primary" type="button">Search</button>
-				</form>
-			</div>
-		</div>
-	</nav>
-	</div>
-	
-	<div th:fragment="topmenu">
-	<header class="p-3">
-		<div class="container">
-			<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-				<!-- a태그의 이동페이지 주소는 해당 페이지의 제작자가 입력 요망 -->
-				
-				<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-					
-					<!-- 현 시점에서는 홈으로 이동하도록 되어있으나 변경여지있음 -->
-					<li><a th:href="@{/}" class="px-5 nav-link" style="font-weight:bold">PROLINGO</a></li>
-					<!-- 학습코스 페이지와 연결 -->
-					<li><a href="#" class="nav-link">학습코스</a></li>
-					<!-- 랭킹 페이지와 연결 -->
-					<li><a href="#" class="nav-link">랭킹</a></li>
-					<!-- 게시판 페이지와 연결 -->
-					<li><a href="#" class="nav-link">게시판</a></li>
-				</ul>
-				
-				<!-- 다국어 지원 기능 구현시 사용 (미구현시에는 삭제)-->
-				
-				<div class="dropdown text-end">
-					
-					<a href="#" class="d-block link-light text-decoration-none text-light dropdown-toggle"
-						data-bs-toggle="dropdown" aria-expanded="false">언어 설정
-					</a>
-					<ul class="dropdown-menu text-small text-light">
-						<!-- 프로필 페이지와 연결 -->
-						<li><a class="dropdown-item" href="#">
-							<img th:src="@{/icons/korea_icon.png}" alt="korea_icon" class="icon">&nbsp;한국어</a>
-						</li>
-						<!-- 결제 페이지로 이동 -->
-						<li><a class="dropdown-item" href="#">
-							<img th:src="@{/icons/japan_icon.png}" alt="korea_icon" class="icon">&nbsp;日本語</a>
-						</li>
-					</ul>
-				</div>
-				
-				<!-- 로그인한 계정페이지로의 연결과 프로필 사진 출력 필요 (개인페이지 구현 및 사진 저장경로 구현 후 상세히 작성예정) -->
-				
-				<div class="px-5 dropdown text-end">
-					
-					<a href="#" class="d-block link-light text-decoration-none dropdown-toggle"
-						data-bs-toggle="dropdown" aria-expanded="false"> 
-						<img src="https://github.com/mdo.png" alt="profile" width="32" height="32"
-						class="rounded-circle">
-					</a>
-					<ul class="dropdown-menu text-small text-light">
-						<!-- 프로필 페이지와 연결 -->
-						<li><a class="dropdown-item" href="#">프로필</a></li>
-						<!-- 결제 페이지로 이동 -->
-						<li><a class="dropdown-item" href="#">결제</a></li>
-						<!-- 설정 페이지로 이동 -->
-						<li><a class="dropdown-item" href="#">설정</a></li>
-						<li><hr class="dropdown-divider"></li>
-						<!-- 로그아웃 하면서 시작페이지로 이동 -->
-           				<li><a class="dropdown-item" href="@{/}">로그아웃</a></li>
-					</ul>
+
+				<div class="sidebar-cta">
+					<div class="sidebar-cta-content">
+						<strong class="d-inline-block mb-2">Upgrade to Pro</strong>
+						<div class="mb-3 text-sm">
+							Are you looking for more components? Check out our premium version.
+						</div>
+						<div class="d-grid">
+							<a href="upgrade-to-pro.html" class="btn btn-primary">Upgrade to Pro</a>
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
-	</header>
-	</div>
-	
-	<div th:fragment="new_header">
-	<nav class="navbar navbar-expand navbar-light navbar-bg">
+		</nav>
+
+		<div class="main">
+			<nav class="navbar navbar-expand navbar-light navbar-bg">
 				<a class="sidebar-toggle js-sidebar-toggle">
           <i class="hamburger align-self-center"></i>
         </a>
@@ -254,7 +289,59 @@
 					</ul>
 				</div>
 			</nav>
+
+			<main class="content">
+				<div class="container-fluid p-0">
+
+					<h1 class="h3 mb-3">Blank Page</h1>
+
+					<div class="row">
+						<div class="col-12">
+							<div class="card">
+								<div class="card-header">
+									<h5 class="card-title mb-0">Empty card</h5>
+								</div>
+								<div class="card-body">
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</main>
+
+			<footer class="footer">
+				<div class="container-fluid">
+					<div class="row text-muted">
+						<div class="col-6 text-start">
+							<p class="mb-0">
+								<a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>AdminKit</strong></a> &copy;
+							</p>
+						</div>
+						<div class="col-6 text-end">
+							<ul class="list-inline">
+								<li class="list-inline-item">
+									<a class="text-muted" href="https://adminkit.io/" target="_blank">Support</a>
+								</li>
+								<li class="list-inline-item">
+									<a class="text-muted" href="https://adminkit.io/" target="_blank">Help Center</a>
+								</li>
+								<li class="list-inline-item">
+									<a class="text-muted" href="https://adminkit.io/" target="_blank">Privacy</a>
+								</li>
+								<li class="list-inline-item">
+									<a class="text-muted" href="https://adminkit.io/" target="_blank">Terms</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</footer>
+		</div>
 	</div>
+
+	<script src="js/app.js"></script>
+
 </body>
-  
+
 </html>
