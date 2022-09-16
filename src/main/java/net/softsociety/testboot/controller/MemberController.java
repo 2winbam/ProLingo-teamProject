@@ -11,9 +11,9 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("member")
 public class MemberController {
 	
-	@GetMapping("/pages-sign-in")
+	@GetMapping("/sign_in")
 	public String sign_in() {
-		log.debug("called Sign_In");
-		return "pages-sign-in";
+		log.debug("called sign_in");
+		return "sign_in";
 	}
 }
