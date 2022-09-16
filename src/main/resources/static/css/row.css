@@ -1,0 +1,11 @@
+@charset "UTF-8";
+.row {
+	margin: 0 auto;
+	width: 800px;
+	height: 320px;
+	display: felx;
+	text-align: center;
+}
+.card-img-top {
+	margin: 0 auto;
+}

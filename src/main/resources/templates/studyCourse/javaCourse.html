@@ -17,12 +17,15 @@
 
 <!-- 아이콘 사용 -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+<link rel="shortcut icon" th:href="@{/img/icons/icon-48x48.png}">
 <!-- main css -->
 <link th:href="@{/css/app.css}" rel="stylesheet">
 
+<!-- 학습 코스 container css -->
+<link th:href="@{/css/row.css}" rel="stylesheet">
 
 </head>
-
+<body>
 <header class="p-3">
 	<div class="container">
 		<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -107,7 +110,7 @@
 	</div>
 </header>
 
-<body>
+
 	<div class="container-fluid p-0">
 
 					<div class="mb-3">
@@ -116,10 +119,10 @@
       자바를 공부해봅시다!
   </a>
 					</div>
-					<div class="row" style="display: flex">
+					<div class="row">
 						<div class="col-12 col-md-6">
 							<div class="card">
-									<img class="card-img-top" th:src="@{/img/icons/java_icon.png}" alt="java_icon" style="width: 128px">
+									<img class="card-img-top" th:src="@{/img/icons/java_icon2.svg}" alt="java_icon" style="width: 128px">
 									<div class="card-header">
 										<h5 class="card-title mb-0">Java 입문편</h5>
 									</div>
@@ -131,7 +134,7 @@
 							</div>
 							<div class="col-12 col-md-6">
 							<div class="card">
-									<img class="card-img-top" th:src="@{/img/icons/java_icon.png}" alt="java_icon" style="width: 128px">
+									<img class="card-img-top" th:src="@{/img/icons/java_icon2.svg}" alt="java_icon" style="width: 128px">
 									<div class="card-header">
 										<h5 class="card-title mb-0">Java 초급편</h5>
 									</div>
@@ -141,8 +144,9 @@
 									</div>
 							</div>
 							</div>
-						</div>
+							
 	</div>
+
 
 </body>
 </html>
