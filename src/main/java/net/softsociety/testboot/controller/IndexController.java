@@ -22,4 +22,10 @@ public class IndexController {
 		return "header";
 	}
 	
+	@GetMapping("/compilerForm")
+	public String compilerForm() {
+		log.debug("call compilerForm");
+		return "compilerForm";
+	}
+	
 }
