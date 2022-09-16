@@ -14,4 +14,9 @@ public class HomeController {
 		return "home";
 	}
 	
+	@GetMapping("blankpage")
+	public String blankpage() {
+		return "blankpage";
+	};
+	
 }
