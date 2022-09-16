@@ -18,7 +18,7 @@ public class IndexController {
 	
 	@GetMapping("/header")
 	public String header() {
-		log.debug("called header");
+		log.debug("call header");
 		return "header";
 	}
 	

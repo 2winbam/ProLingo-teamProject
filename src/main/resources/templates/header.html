@@ -19,92 +19,92 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 
 </head>
-<body>
 
-	<header class="p-3">
-		<div class="container">
-			<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+<header class="p-3">
+	<div class="container">
+		<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
 				<!-- a태그의 이동페이지 주소는 해당 페이지의 제작자가 입력 요망 -->
 				
-				<div id="logo">
-						<img th:src="@{/icons/swallow_icon.png}" alt="logo_icon" id="logo_icon">
-				</div>
+			<div id="logo">
+						<a th:href="@{/}"><img th:src="@{/icons/swallow_icon.png}" alt="logo_icon" id="logo_icon"></a>
+			</div>
+			<div>
+				<a th:href="@{/}" class="px-5 nav-link text-start" id="prolingo" style="font-weight:bold">PROLINGO</a>
+			</div>
 				
-				<div>
-					<a th:href="@{/}" class="px-5 nav-link text-start" id="prolingo" style="font-weight:bold">PROLINGO</a>
-				</div>
-				
-				<div class="dropdown text-center">
+			<div class="dropdown text-center">
 					
-					<a href="#" class="d-block link-light text-decoration-none text-light dropdown-toggle"
-						data-bs-toggle="dropdown" aria-expanded="false" id="dropdown"><i class="bi bi-book" id="icon"></i>학습
-					</a>
-					<ul class="dropdown-menu text-small text-light">
-						<!-- 자바 학습페이지와 연결 -->
-						<li><a class="dropdown-item" href="#">
-							<img th:src="@{/icons/java_icon.png}" alt="java_icon" class="icon">&nbsp;자바</a>
-						</li>
-						<!-- C 학습 페이지와 연결 -->
-						<li><a class="dropdown-item" href="#">
-							<img th:src="@{/icons/c_icon.png}" alt="c_icon" class="icon">&nbsp;C</a>
-						</li>
-					</ul>
-				</div>
-				
-				<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-					
-					<!-- 현 시점에서는 홈으로 이동하도록 되어있으나 변경여지있음 -->
-						
-					<!-- 랭킹 페이지와 연결 -->
-					<li><a href="#" class="nav-link" id="dropdown">랭킹</a></li>
-					<!-- 게시판 페이지와 연결 -->
-					<li><a href="#" class="nav-link" id="dropdown">게시판</a></li>
+				<a href="#" class="menu d-block dropdown-toggle text-decoration-none"
+					data-bs-toggle="dropdown" aria-expanded="false" id="dropdown"><i class="bi bi-book" id="icon"></i>학습
+				</a>
+				<ul class="dropdown-menu text-small text-light">
+					<!-- 자바 학습페이지와 연결 -->
+					<li><a class="dropdown-item text-decoration-none" href="#">
+						<img th:src="@{/icons/java_icon.png}" alt="java_icon" class="icon">&nbsp;자바</a>
+					</li>
+					<!-- C 학습 페이지와 연결 -->
+					<li><a class="dropdown-item text-decoration-none" href="#">
+						<img th:src="@{/icons/c_icon.png}" alt="c_icon" class="icon">&nbsp;C</a>
+					</li>
 				</ul>
+			</div>
 				
-				<!-- 다국어 지원 기능 구현시 사용 (미구현시에는 삭제)-->
-				
-				<div class="dropdown text-end">
+			<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
 					
-					<a href="#" class="d-block link-light text-decoration-none text-light dropdown-toggle"
-						data-bs-toggle="dropdown" aria-expanded="false" id="dropdown">언어 설정
-					</a>
-					<ul class="dropdown-menu text-small text-light">
-						<!-- 프로필 페이지와 연결 -->
-						<li><a class="dropdown-item" href="#">
-							<img th:src="@{/icons/korea_icon.png}" alt="korea_icon" class="icon">&nbsp;한국어</a>
-						</li>
-						<!-- 결제 페이지로 이동 -->
-						<li><a class="dropdown-item" href="#">
-							<img th:src="@{/icons/japan_icon.png}" alt="korea_icon" class="icon">&nbsp;日本語</a>
-						</li>
-					</ul>
-				</div>
+				<!-- 현 시점에서는 홈으로 이동하도록 되어있으나 변경여지있음 -->
+						
+				<!-- 랭킹 페이지와 연결 -->
+				<li><a href="#" class="nav-link" id="dropdown"><i class="bi bi-award" id="icon"></i>랭킹</a></li>
+				<!-- 게시판 페이지와 연결 -->
+				<li><a href="#" class="nav-link" id="dropdown"><i class="bi bi-file-text" id="icon"></i>게시판</a></li>
+			</ul>
 				
-				<!-- 로그인한 계정페이지로의 연결과 프로필 사진 출력 필요 (개인페이지 구현 및 사진 저장경로 구현 후 상세히 작성예정) -->
+			<!-- 다국어 지원 기능 구현시 사용 (미구현시에는 삭제)-->
 				
-				<div class="px-5 dropdown text-end">
+			<div class="dropdown text-center">
+					
+				<a href="#" class="menu d-block dropdown-toggle text-decoration-none"
+						data-bs-toggle="dropdown" aria-expanded="false">언어 설정
+				</a>
+				<ul class="dropdown-menu text-small text-light">
+					<!-- 프로필 페이지와 연결 -->
+					<li><a class="dropdown-item" href="#">
+						<img th:src="@{/icons/korea_icon.png}" alt="korea_icon" class="icon">&nbsp;한국어</a>
+					</li>
+					<!-- 결제 페이지로 이동 -->
+					<li><a class="dropdown-item" href="#">
+						<img th:src="@{/icons/japan_icon.png}" alt="japan_icon" class="icon">&nbsp;日本語</a>
+					</li>
+				</ul>
+			</div>
+			
+			
+			<!-- 로그인한 계정페이지로의 연결과 프로필 사진 출력 필요 (개인페이지 구현 및 사진 저장경로 구현 후 상세히 작성예정) -->
 				
-						<a href="#" class="d-block link-light text-decoration-none dropdown-toggle"
+			<div class="px-5 dropdown text-end">
+					<a href="#" class="menu d-block dropdown-toggle text-decoration-none"
 							data-bs-toggle="dropdown" aria-expanded="false">
-						<img src="https://github.com/mdo.png" alt="profile" width="32" height="32"
+					<img src="https://github.com/mdo.png" alt="profile" width="32" height="32"
 							class="rounded-circle">
-						</a>
+					</a>
 				
-					<ul class="dropdown-menu text-small text-light">
-						<!-- 프로필 페이지와 연결 -->
-						<li><a class="dropdown-item" href="#">프로필</a></li>
-						<!-- 결제 페이지로 이동 -->
-						<li><a class="dropdown-item" href="#">결제</a></li>
-						<!-- 설정 페이지로 이동 -->
-						<li><a class="dropdown-item" href="#">설정</a></li>
-						<li><hr class="dropdown-divider"></li>
-						<!-- 로그아웃 하면서 시작페이지로 이동 -->
-           				<li><a class="dropdown-item" href="@{/}">로그아웃</a></li>
-					</ul>
-				</div>
+				<ul class="dropdown-menu text-small text-light">
+					<!-- 프로필 페이지와 연결 -->
+					<li><a class="dropdown-item" href="#"><i class="bi bi-person-circle"></i>&nbsp;&nbsp;프로필</a></li>
+					<!-- 결제 페이지로 이동 -->
+					<li><a class="dropdown-item" href="#"><i class="bi bi-cart"></i>&nbsp;&nbsp;결제</a></li>
+					<!-- 설정 페이지로 이동 -->
+					<li><a class="dropdown-item" href="#"><i class="bi bi-gear"></i>&nbsp;&nbsp;설정</a></li>
+					<li><hr class="dropdown-divider"></li>
+					<!-- 로그아웃 하면서 시작페이지로 이동 -->
+           			<li><a class="dropdown-item" href="@{/}"><i class="bi bi-person-x"></i>&nbsp;&nbsp;로그아웃</a></li>
+				</ul>
 			</div>
 		</div>
-	</header>
+	</div>
+</header>
+
+<body>
 
 </body>
 </html>
