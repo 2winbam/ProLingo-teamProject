@@ -1,0 +1,4 @@
+cmd 창 실행
+netstat -ano 입력
+taskkill /pid 해당PID 4자리 /f <- 해당 PID에 번호 4자리 입력하고 엔터
+성공: 프로세스(PID 해당4자리번호)가 종료되었습니다. 뜨면 success
