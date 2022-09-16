@@ -1,6 +1,6 @@
 @charset "UTF-8";
-.card{
-	border: 50px;
+.card {
+	margin: 10px;
 	width: 400px;
 	height:600px;
 }
@@ -57,8 +57,19 @@ footer {
 	border: 20px;
 }
 
+#compiler{
+	height: 600px;
+	margin: 10px;
+	width: 600px;
+}
+
 .indicator{
 	color:white;
+}
+
+.codemirror-textarea{
+	width: 400px;
+	height: 600px;
 }
 
 .icon{
