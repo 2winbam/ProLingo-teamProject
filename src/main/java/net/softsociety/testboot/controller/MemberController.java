@@ -24,4 +24,12 @@ public class MemberController {
 		log.debug("called sign_up");
 		return "sign_up";
 	}
+	
+	//내정보
+	@GetMapping("/profile")
+	public String profile() {
+		log.debug("called profile");
+		return "profile";
+	}
+	
 }
