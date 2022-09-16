@@ -12,9 +12,9 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link rel="shortcut icon" th:href="@{/img/icons/icon-48x48.png}" />
 
-	<link rel="canonical" href="https://demo-basic.adminkit.io/pages-sign-in.html" />
+	<link rel="canonical" href="https://demo-basic.adminkit.io/pages-sign-up.html" />
 
-	<title>Sign In</title>
+	<title>Sign Up</title>
 
 	<link th:href="@{/css/app.css}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -28,44 +28,35 @@
 					<div class="d-table-cell align-middle">
 
 						<div class="text-center mt-4">
-							<h1 class="h2">ProLingo에 오신 것을 환영합니다!</h1>
+							<h1 class="h2">회원가입</h1>
 							<p class="lead">
-								저희 콘텐츠를 이용하기 위해서는 로그인은 필수 입니다.
-								<br>
-								계정이 없으시다면 회원가입을 진행해 주세요!	
+								아래의 양식을 작성해 주세요.
 							</p>
 						</div>
 
 						<div class="card">
 							<div class="card-body">
 								<div class="m-sm-4">
-									<div class="text-center">
-										<img th:src="@{/img/avatars/swallow.png}" alt="Swallow" class="img-fluid rounded-circle" width="132" height="132" />
-									</div>
 									<form>
+										<div class="mb-3">
+											<label class="form-label">이름</label>
+											<input class="form-control form-control-lg" type="text" name="m_name" placeholder="Enter your name" />
+										</div>
 										<div class="mb-3">
 											<label class="form-label">이메일</label>
 											<input class="form-control form-control-lg" type="email" name="m_mail" placeholder="Enter your email" />
 										</div>
 										<div class="mb-3">
 											<label class="form-label">비밀번호</label>
-											<input class="form-control form-control-lg" type="password" name="m_pw" placeholder="Enter your password" />
-											<small>
-            							<a href="index.html">비밀번호를 잊어버리셨나요?</a> <!-- 비밀번호 찾기 링크인데 비밀번호 찾기 사용할 것인지? -->
-          </small>
+											<input class="form-control form-control-lg" type="password" name="m_pw" placeholder="Enter password" />
 										</div>
-										<div>
-											<label class="form-check">
-            <input class="form-check-input" type="checkbox" value="remember-me" name="remember-me" checked>
-            <span class="form-check-label">
-              Remember me next time
-            </span>
-          </label>
+										<div class="mb-3">
+											<label class="form-label">나이</label>
+											<input class="form-control form-control-lg" type="text" name="m_age" placeholder="Enter your age" />
 										</div>
 										<div class="text-center mt-3">
-											<input type="submit" class="btn btn-lg btn-primary" value="로그인">
-											<!-- <button type="submit" class="btn btn-lg btn-primary">Sign in</button> -->
-											<a th:href="@{/member/sign_up}" class="btn btn-lg btn-primary">회원가입</a>
+											<input type="submit" class="btn btn-lg btn-primary" value="Sign Up"></a>
+											<!-- <button type="submit" class="btn btn-lg btn-primary">Sign up</button> -->
 										</div>
 									</form>
 								</div>
