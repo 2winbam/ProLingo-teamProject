@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>Prolingo</title>
 
-<script th:src="@{/scripts/jquery-3.6.0.js}"></script>
+<script th:src="@{/js/jquery-3.6.0.js}"></script>
 
 <!-- 상단 탭 작은 아이콘 -->
 <link rel="shortcut icon" th:href="@{/img/icons/icon-48x48.png}">
@@ -21,9 +21,9 @@
 <!-- 아이콘 사용 -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 
-<!-- main css -->
-<link th:href="@{/css/app.css}" rel="stylesheet">
+<script>
 
+</script>
 </head>
 
 <header class="p-3">
@@ -32,16 +32,16 @@
 				<!-- a태그의 이동페이지 주소는 해당 페이지의 제작자가 입력 요망 -->
 				
 			<div id="logo">
-						<a th:href="@{/}"><img th:src="@{/icons/swallow_icon.png}" alt="logo_icon" id="logo_icon"></a>
+				<a th:href="@{/}"><img th:src="@{/icons/swallow_icon.png}" alt="logo_icon" id="logo_icon"></a>
 			</div>
 			<div>
-				<a th:href="@{/}" class="px-5 nav-link text-start" id="prolingo" style="font-weight:bold">PROLINGO</a>
+				<a th:href="@{/}" class="menu px-5 nav-link text-start" id="title" style="font-weight:bold">PROLINGO</a>
 			</div>
 				
 			<div class="dropdown text-center">
 					
 				<a href="#" class="menu d-block dropdown-toggle text-decoration-none"
-					data-bs-toggle="dropdown" aria-expanded="false" id="dropdown"><i class="bi bi-book" id="icon"></i>학습
+					data-bs-toggle="dropdown" aria-expanded="false" id="learn" style="padding-right:10px;"><i class="bi bi-book" id="icon"></i>학습
 				</a>
 				<ul class="dropdown-menu text-small text-light">
 					<!-- 자바 학습페이지와 연결 -->
@@ -54,15 +54,15 @@
 					</li>
 				</ul>
 			</div>
-				
-			<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+			
+			<ul class="menu nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
 					
 				<!-- 현 시점에서는 홈으로 이동하도록 되어있으나 변경여지있음 -->
 						
 				<!-- 랭킹 페이지와 연결 -->
-				<li><a href="#" class="nav-link" id="dropdown"><i class="bi bi-award" id="icon"></i>랭킹</a></li>
+				<li><a href="#" class="nav-link" id="ranking"><i class="bi bi-award" id="icon"></i>랭킹</a></li>
 				<!-- 게시판 페이지와 연결 -->
-				<li><a href="#" class="nav-link" id="dropdown"><i class="bi bi-file-text" id="icon"></i>게시판</a></li>
+				<li><a href="#" class="nav-link" id="board"><i class="bi bi-file-text" id="icon"></i>게시판</a></li>
 			</ul>
 				
 			<!-- 다국어 지원 기능 구현시 사용 (미구현시에는 삭제)-->
@@ -70,7 +70,7 @@
 			<div class="dropdown text-center">
 					
 				<a href="#" class="menu d-block dropdown-toggle text-decoration-none"
-						data-bs-toggle="dropdown" aria-expanded="false">언어 설정
+						data-bs-toggle="dropdown" aria-expanded="false" id="language">언어 설정
 				</a>
 				<ul class="dropdown-menu text-small text-light">
 					<!-- 프로필 페이지와 연결 -->
@@ -89,7 +89,7 @@
 				
 			<div class="px-5 dropdown text-end">
 					<a href="#" class="menu d-block dropdown-toggle text-decoration-none"
-							data-bs-toggle="dropdown" aria-expanded="false">
+							data-bs-toggle="dropdown" aria-expanded="false" id="profile">
 					<img src="https://github.com/mdo.png" alt="profile" width="32" height="32"
 							class="rounded-circle">
 					</a>
