@@ -3,9 +3,6 @@ package net.softsociety.testboot.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 @Controller
 public class HomeController {
 	
@@ -17,6 +14,15 @@ public class HomeController {
 	@GetMapping("blankpage")
 	public String blankpage() {
 		return "blankpage";
-	};
+	}
+	
+	/**
+	 * 임시로
+	 * @return rank page
+	 */
+	@GetMapping("rank")
+	public String rank() {
+		return "rank";
+	}
 	
 }

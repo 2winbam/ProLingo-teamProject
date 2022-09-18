@@ -15,4 +15,31 @@ public class StudyCourseController {
 	public String JavaCourse() {
 		return"studyCourse/javaCourse";
 	}
+	
+	/**
+	 * 
+	 * @return 코스 선택 페이지
+	 */
+	@GetMapping("")
+	public String selectCourse() {
+		return "studyCourse/selectCourse";
+	}
+	
+	/**
+	 * 
+	 * @return 자바 입문
+	 */
+	@GetMapping("javaCourse/introduction")
+	public String JavaIntroduction() {
+		return "studyCourse/java_introduction";
+	}
+	
+	/**
+	 * 
+	 * @return 자바 초급
+	 */
+	@GetMapping("javaCourse/beginner")
+	public String JavaBeginner() {
+		return "studyCourse/java_beginner";
+	}
 }

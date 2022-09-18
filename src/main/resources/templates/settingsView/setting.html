@@ -3,7 +3,7 @@
 xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="fragments/head :: new_head(~{::title},~{::link},~{::script})">
 <!-- 타이틀 입력 -->
-<title>blankpage</title>
+<title>Setting</title>
  <!-- 추가되는 링크 입력, 없더라도 link 빈거 하나는 있어야 하는듯? -->
 <!-- <link rel="stylesheet" th:href="@{}"> -->
 <link>
@@ -24,15 +24,28 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 			<main class="content">
 				<div class="container-fluid p-0">
 		
-					<h1 class="h3 mb-3">Blank Page</h1>
+					<h1 class="h3 mb-3">세팅 페이지</h1>
 		
 					<div class="row">
 						<div class="col-12">
 							<div class="card">
 								<div class="card-header">
-									<h5 class="card-title mb-0">Empty card</h5>
+									<h5 class="card-title mb-0"></h5>
 								</div>
 								<div class="card-body">
+									<a th:href="@{/settings}">설정</a>
+								</div>
+								<div class="card-header">
+									<h5 class="card-title mb-0"></h5>
+								</div>
+								<div class="card-body">
+									<a th:href="@{/settings/account}">계정 설정</a>
+								</div>
+								<div class="card-header">
+									<h5 class="card-title mb-0"></h5>
+								</div>
+								<div class="card-body">
+									<a th:href="@{/settings/changepassword}">비밀번호 수정</a>
 								</div>
 							</div>
 						</div>
