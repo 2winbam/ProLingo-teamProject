@@ -42,4 +42,6 @@ public class StudyCourseController {
 	public String JavaBeginner() {
 		return "studyCourse/java_beginner";
 	}
+	
+	
 }

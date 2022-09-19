@@ -28,4 +28,10 @@ public class IndexController {
 		return "compilerForm";
 	}
 	
+	@GetMapping("/buttonForm")
+	public String buttonForm() {
+		log.debug("call buttonForm");
+		return "buttonForm";
+	}
+	
 }

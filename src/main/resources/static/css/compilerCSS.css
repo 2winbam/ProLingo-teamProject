@@ -22,6 +22,7 @@ footer {
 	width: auto;
 }
 
+
 .card-body{
 	padding:0px;
 }
@@ -78,6 +79,10 @@ footer {
 	left: 10px;
 }
 
+#contentsText{
+	padding:10px;
+}
+
 #compiler{
 	position:absolute;
 	height: 600px;
@@ -102,11 +107,20 @@ footer {
 #resultBody{
 	background-color:black;
 	color:white;
+	padding: 10px;
 }
 
 #rightsquare{
 	border:0px;
 	padding:0px;
+}
+
+#resultHeader{
+	padding:0px;
+}
+
+#right-square{
+	color:black;
 }
 
 .progress{
