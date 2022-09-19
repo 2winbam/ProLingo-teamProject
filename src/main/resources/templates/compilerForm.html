@@ -40,6 +40,17 @@
 <script>
  
 $(document).ready(function() {
+	//모달창 바로 띄우기
+	$('.modal-lesson-explain').fadeIn();
+	//모달창 클릭시 닫기
+	$('.modal-body').click(function() {
+		$('.modal-lesson-explain').fadeOut();
+	});
+	//슬라이드 돌아가기 버튼
+	 let callContents = document.getElementById("callContents");
+	$('callContents').click(function() {
+		$('.modal-lesson-explain').fadeIn();
+	}); 
 	
     // 코드미러 실행
     const codemirrorEditor = CodeMirror.fromTextArea(document.getElementById("codemirror"), {
@@ -98,6 +109,10 @@ $(document).ready(function() {
 
 
 <body>
+	<!-- 모달 개념설명 부분 -->
+	<div class="modal-lesson-explain">
+		<div class="modal-body">Modal 모달~모달~</div>
+	</div>
 	<div class="d-flex flex-wrap align-items-center">
 	<!-- 문제출력 부분 -->
 	<div class="card" id="contents">
@@ -130,7 +145,7 @@ $(document).ready(function() {
     </div>  	
 <div class="exercise footer">
 	<footer class="align-items-center">
-	<a href="#" class="btn btn-secondary" id="callContents">슬라이드로 돌아가기</a>
+	<button class="btn btn-secondary" id="callContents">슬라이드로 돌아가기</button> 
 </footer>
 </div>		
 </body>
