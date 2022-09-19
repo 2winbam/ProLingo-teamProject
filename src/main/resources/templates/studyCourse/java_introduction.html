@@ -1,52 +1,100 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://thymeleaf.org"
-xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="fragments/head :: new_head(~{::title},~{::link},~{::script})">
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head
+	th:replace="fragments/head :: new_head(~{::title},~{::link},~{::script})">
 <!-- 타이틀 입력 -->
 <title>Java Introduction</title>
- <!-- 추가되는 링크 입력, 없더라도 link 빈거 하나는 있어야 하는듯? -->
+<!-- 추가되는 링크 입력, 없더라도 link 빈거 하나는 있어야 하는듯? -->
 <!-- <link rel="stylesheet" th:href="@{}"> -->
 <link>
- <!-- 추가되는 스크립트 입력, 역시 없더라도 빈거 하나는 있어야 하는듯? -->
+<!-- 추가되는 스크립트 입력, 역시 없더라도 빈거 하나는 있어야 하는듯? -->
 <!-- <script type="text/javascript" th:src="@{/scripts/home.js}"></script> -->
+
+<link th:href="@{/css/row2.css}" rel="stylesheet">
+
 
 </head>
 <body>
 	<div class="wrapper">
 		<!-- sidebar -->
 		<div th:replace="fragments/sidebar :: sidebar"></div>
-		
+
 		<div class="main">
 			<!-- header -->
 			<div th:replace="fragments/header :: new_header"></div>
-			
+
 			<!-- content -->
 			<main class="content">
 				<div class="container-fluid p-0">
-		
-					<h1 class="h3 mb-3">Blank Page</h1>
-		
-					<div class="row">
+
+					<h1 class="h3 mb-3">Java : 입문편</h1>
+
+					<div class="row2">
 						<div class="col-12">
 							<div class="card">
-								<div class="card-header">
-									<h5 class="card-title mb-0">Empty card</h5>
+								<div class="c-card u-inline-block lesson-main">
+									
+										<div class="lesson-progress c-lesson-theme--java-study">
+											<img class="lesson-card-icon"
+												th:src="@{/img/icons/java_icon2.svg}">
+											<!-- <div class="c-progress c-progress--lesson-card c-progress--java-study">
+												<div aria-valuemax="100" aria-valuemin="0"
+													aria-valuenow="20"
+													class="c-progress-bar c-progress-bar--java-study"
+													role="progressbar" style="width: 20%"></div>
+											</div> -->
+											<!-- <p class="c-progress-percentage c-progress-percentage--java-study">20%</p> -->
+										</div>
+									
+									<div class="lesson-overview-wrapper">
+										<p
+											class="lesson-overview__category lesson-overview__category--study">학습 Lesson </p>
+										<div class="lesson-overview__tag-wrapper"></div>
+										<span class="lesson-overview__title">Java I</span> <span
+											class="lesson-icon-wrapper"> <img class="u-mr5"
+											src="https://prog-8.com/assets/icons/clock-e8d8a239a4d9ba79c3edd9acbb9497deb15a9429f8311a27b5432134f4518c1e.svg">
+											<span>학습시간	</span>
+										</span>
+				<!-- 						<div class="visible-xs">
+											<div
+												class="c-progress c-progress--lesson-card c-progress--java-study">
+												<div aria-valuemax="100" aria-valuemin="0"
+													aria-valuenow="20"
+													class="c-progress-bar c-progress-bar--java-study"
+													role="progressbar" style="width: 20%"></div>
+											</div>
+											<p
+												class="c-progress-percentage c-progress-percentage--java-study">20%</p>
+
+										</div> -->
+										<div class="lesson-overview__introduction u-mt10 u-mb10">
+											전 세계에서 사용되는 유명한 언어 "Java"의 세계에 오신 것을 환영합니다! 이 단원에서는 Java의 기본 코드 작성,
+											 데이터 유형, 변수 등에 대해 배웁니다.</div>
+										<div class="btn-wrapper">
+											<a
+												class="c-btn c-btn--continue c-btn--lesson-btn-start--java-study"
+												th:href="@{/compilerForm}">시작하기</a> <a
+												class="c-btn c-btn--detail c-btn--lesson-btn-detail--java-study"
+												href="/lessons/java/study/1">수업에대해 자세히 알아보기</a>
+										</div>
+									</div>
 								</div>
-								<div class="card-body">
-								</div>
+
+								<div class="card-body"></div>
 							</div>
 						</div>
 					</div>
-	
+
 				</div>
 			</main>
-			
+
 			<!-- footer -->
 			<div th:replace="fragments/footer :: new_footer"></div>
-		
+
 		</div>
 	</div>
-	
+
 	<!-- 이거 없으면 화이트라벨 뜸 ㅡㅡ -->
 	<script th:src="@{/js/app.js}"></script>
 </body>

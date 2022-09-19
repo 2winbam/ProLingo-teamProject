@@ -1,0 +1,15 @@
+@charset "UTF-8";
+.card-body {
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+.row2 {
+	margin: 0 auto;
+	width: 800px;
+	height: 320px;
+	display: felx;
+	text-align: center;
+}
+.lesson-card-icon {
+	width:128px;
+}
