@@ -65,7 +65,8 @@ $(document).ready(function() {
 			<div>
 				<a th:href="@{/}" class="menu px-5 nav-link text-start" id="title" style="font-weight:bold">PROLINGO</a>
 			</div>
-				
+			
+			
 	
 			<!-- 로그인한 계정페이지로의 연결과 프로필 사진 출력 필요 (개인페이지 구현 및 사진 저장경로 구현 후 상세히 작성예정) -->
 				
@@ -94,6 +95,7 @@ $(document).ready(function() {
 
 
 <body>
+
 	<div class="d-flex flex-wrap align-items-center">
 	<!-- 문제출력 부분 -->
 	<div class="card" id="contents">
@@ -117,7 +119,10 @@ $(document).ready(function() {
 	</form>
 	<!-- 답 출력부분 -->
 	<div class="card" id="result">
-  		<div class="card-header" >>_ 결과</div>
+  		<div class="card-header" >>_ 결과
+  			<button type="button" class="btn btn-light" data-container="body" data-toggle="popover" data-placement="bottom" 
+  			data-content="Compile"><i class="bi bi-arrow-right-square"></i></button> 
+  		</div>
   		<div class="card-body">
     		<h5 class="card-title">Special title treatment</h5>
     		<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
@@ -127,6 +132,9 @@ $(document).ready(function() {
 <div class="exercise footer">
 	<footer class="align-items-center">
 	<a href="#" class="btn btn-secondary" id="callContents">슬라이드로 돌아가기</a>
+	<div class="progress">
+  		<div class="progress-bar bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+	</div>
 </footer>
 </div>		
 </body>

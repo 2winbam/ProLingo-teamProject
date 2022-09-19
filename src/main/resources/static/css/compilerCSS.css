@@ -92,6 +92,14 @@ footer {
 	left: 11px;
 }
 
+.progress{
+	position:absolute;
+	width:400px;
+	bottom: 22px;
+	left: 550px;
+	font: white;
+}
+
 .indicator{
 	color:white;
 }
