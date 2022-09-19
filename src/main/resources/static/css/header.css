@@ -1,26 +1,16 @@
 @charset "UTF-8";
- 
-.menu{
-	color:rgb(192, 192, 192);
-}
 
-.menu:hover{
-	color:white;
-}
- 
-.nav-link{
- 	color:rgb(192, 192, 192);
- }
- 
-.nav-link:hover{
- 	color:white;
- }
 
 .p-3{
+	width:100%;
+	height:72px;
  	background-color:midnightblue;
  }
 
 #logo{
+	position:fixed;
+	top: 16px;
+	left:100px;
 	padding-right:0px;
 	padding-left:0px;
 }
@@ -34,11 +24,81 @@
 	padding-right:10px;
 }
 
+
 #dropdown{
-	padding-left:80px;
-	padding-right:60px;
+	color:rgb(192, 192, 192);
 }
 
+#dropdown:hover{
+	color:white;
+}
+
+#title{
+	position:fixed;
+	top: 24px;
+	left: 150px;
+	color:rgb(192, 192, 192);
+} 
+
+#title:hover{
+	color:white;
+} 
+
+#learn{
+	position:fixed;
+	top: 24px;
+	left: 330px;
+	color:rgb(192, 192, 192);
+} 
+
+#learn:hover{
+	color:white;
+} 
+
+#ranking{
+	position:fixed;
+	top: 16px;
+	left: 430px;
+	color:rgb(192, 192, 192);
+} 
+
+#ranking:hover{
+	color:white;
+} 
+
+#board{
+	position:fixed;
+	top: 16px;
+	left: 530px;
+	color:rgb(192, 192, 192);
+} 
+
+#board:hover{
+	color:white;
+}
+
+#language{
+	position:fixed;
+	top: 24px;
+	left: 1230px;
+	color:rgb(192, 192, 192);
+} 
+
+#language:hover{
+	color:white;
+} 
+
+#profile{
+	position:fixed;
+	top: 20px;
+	left: 1380px;
+	color:rgb(192, 192, 192);
+} 
+
+#profile:hover{
+	color:white;
+} 
+ 
 .indicator{
 	color:white;
 }

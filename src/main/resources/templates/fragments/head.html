@@ -15,11 +15,11 @@
 
 	<title th:replace="${title}">Blank Page | AdminKit Demo</title>
 
-	<link href="css/app.css" rel="stylesheet">
+	<link th:href="@{/css/app.css}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 	
 	<!-- 이거 없으면 슬라이드가 안됨 ㅡㅡ -->
-	<script src="js/app.js"></script>
+	<script th:src="@{/js/app.js}"></script>
 	
 	<!-- 상단 아이콘 -->
 	<link rel="shortcut icon" th:href="@{/img/icons/icon-48x48.png}">

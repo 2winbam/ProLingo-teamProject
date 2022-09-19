@@ -36,7 +36,8 @@
       <h1>Welcome to ProLingo</h1>
       <h2>코딩을 배워봅시다.</h2>
       <img src="assets/img/hero-img.png" alt="Hero Imgs" data-aos="zoom-out" data-aos-delay="100">
-      <a th:href="@{/member/sign_in}" class="btn-get-started scrollto">Get Started</a>
+      <!-- 메인 페이지(듀오링고 : learn, 프로게이트 : dashboard)로 이동, 로그인 안돼있으면 시큐리티가 알아서 로그인 페이지로 보내줄거임 -->
+      <a th:href="@{/study}" class="btn-get-started scrollto">Get Started</a>
     </div>
   </section><!-- End Hero Section -->
 
