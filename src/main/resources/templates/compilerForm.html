@@ -35,28 +35,53 @@
 
 <!-- include codemirror (codemirror.css, codemirror.js, xml.js, formatting.js) -->
 <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/codemirror.css">
-<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/theme/monokai.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/theme/abcdef.min.css">
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/codemirror.js"></script>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/mode/xml/xml.js"></script>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/codemirror/2.36.0/formatting.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/clike/clike.min.js"></script>
+
+<script src="codemirror/clike.js"></script>
+<script src="codemirror/comment.js"></script> 
+<script src="codemirror/codemirror.js"></script> 
+ 
+<link rel="stylesheet" type="text/css" th:href="@{/codemirror/codemirror.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/codemirror/monokai.css}">
+
 <script>
-	
+ 
 $(document).ready(function() {
-    $('#summernote').summernote({
-            height: 300,                 // set editor height
-            minHeight: null,             // set minimum height of editor
-            maxHeight: null,             // set maximum height of editor
-            focus: true                  // set focus to editable area after initializing summernote
+	
+	 /*  
+    $('#summernote').summernote({    
+    	//height: 300,              // set editor height
+        minHeight: 400,             // set minimum height of editor
+        maxHeight: 400,             // set maximum height of editor
+        focus: true                 // set focus to editable area after initializing summernote
     });
+    
+    $('.summernote').summernote({
+	  	height: 400,   //set editable area's height
+	  	codemirror: { // codemirror options
+	  		lineNumbers: true,
+	  		theme: 'monokai',
+	  		mode: "clike"
+	  	}
+	});
+    */
+     
+    // 코드미러 실행
+    const codemirrorEditor = CodeMirror.fromTextArea(document.getElementById("summernote"), {
+    	//라인 번호
+    	lineNumbers: true,
+    	//테마
+    	theme: 'abcdef',
+    	//자바 모드
+    	mode: "text/x-java"
+    });
+    
 });
 
-$('.summernote').summernote({
-	  height: 150,   //set editable area's height
-	  codemirror: { // codemirror options
-	    theme: 'monokai'
-	  }
-	});
-	
 </script>
 
 </head>
@@ -114,7 +139,7 @@ $('.summernote').summernote({
 		<div class="card-header"></div>
 		<div class="card-body">
 			<form>
-  				<textarea id="summernote"></textarea>
+  				<textarea class="summernote" id="summernote"></textarea>
   			</form>
   		</div>
   		<div class="card-footer"></div>
