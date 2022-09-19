@@ -22,8 +22,13 @@ footer {
 	width: auto;
 }
 
+.card-body{
+	padding:0px;
+}
+
 .card-footer{
 	text-align:right;
+	height:55px;
 }
 
 .menu{
@@ -45,6 +50,8 @@ footer {
 .p-3{
  	background-color:midnightblue;
  }
+
+
 
 #logo{
 	padding-right:0px;
@@ -90,6 +97,24 @@ footer {
 	position:absolute;
 	bottom: 11px;
 	left: 11px;
+}
+
+#resultBody{
+	background-color:black;
+	color:white;
+}
+
+#rightsquare{
+	border:0px;
+	padding:0px;
+}
+
+.progress{
+	position:absolute;
+	width:400px;
+	bottom: 22px;
+	left: 550px;
+	font: white;
 }
 
 .indicator{

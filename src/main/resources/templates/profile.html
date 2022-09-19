@@ -3,7 +3,7 @@
 xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="fragments/head :: new_head(~{::title},~{::link},~{::script})">
 <!-- 타이틀 입력 -->
-<title>blankpage</title>
+<title>Profile</title>
  <!-- 추가되는 링크 입력, 없더라도 link 빈거 하나는 있어야 하는듯? -->
 <!-- <link rel="stylesheet" th:href="@{}"> -->
 <link>
@@ -13,8 +13,6 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 </head>
 <body>
 	<div class="wrapper">
-		<!-- sidebar -->
-		<div th:replace="fragments/sidebar :: sidebar"></div>
 		
 		<div class="main">
 			<!-- header -->
@@ -23,7 +21,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 			<!-- content -->
 			<main class="content">
 				<div class="container-fluid p-0">
-		<div class="row justify-content-around">
+					<div class="row justify-content-around">
 						<div class="col-md-4 col-xl-3">
 							<div class="card mb-3">
 								<div class="card-header text-center">
@@ -36,10 +34,10 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 									<div>
 										<a class="btn btn-primary btn-sm" href="#">Follow</a>
-										<a class="btn btn-primary btn-sm" href="#"><span data-feather="mail"></span>Mail</a>
+										<a class="btn btn-primary btn-sm" href="#"><span data-feather="mail"></span> Mail</a>
 									</div>
 								</div>
-								<hr class="my-0" />
+								<hr class="my-0">
 								<div class="card-body text-center">
 									<h5 class="h6 card-title">Skills</h5>
 									<a href="#" class="badge bg-primary me-1 my-1">Java</a>
@@ -47,27 +45,29 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 								</div>
 							</div>
 						</div>
-					
-					<!-- 보기1 -->
+						
+						<!-- 내용1 -->
 						<div class="col-md-4 col-xl-3">
 							<div class="card mb-3">
 								<div class="card-header text-center">
 									<h5 class="card-title mb-0">어떤 내용?</h5>
 								</div>
+								<hr class="my-0">
 								<div class="card-body text-center">
-									
+								<!-- 들어갈 내용 -->
 								</div>
 							</div>
 						</div>
 						
-					<!-- 친구목록 -->
+						<!-- 친구목록 -->
 						<div class="col-md-4 col-xl-3">
 							<div class="card mb-3">
 								<div class="card-header text-center">
 									<h5 class="card-title mb-0">Friends</h5>
 								</div>
+								<hr class="my-0">
 								<div class="card-body text-center">
-									
+								<!-- 친구목록 뜨게 이곳에 작성 -->	
 								</div>
 							</div>
 						</div>
