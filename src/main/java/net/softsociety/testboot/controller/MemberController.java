@@ -38,6 +38,7 @@ public class MemberController {
 	 */
 	@GetMapping("/login")
 	public String login() {
+		log.debug("called login");
 		return "memberView/loginForm";
 	}
 	
@@ -47,6 +48,7 @@ public class MemberController {
 	 */
 	@GetMapping("/join")
 	public String join() {
+		log.debug("called join");
 		return "memberView/joinForm";
 	}
 	
