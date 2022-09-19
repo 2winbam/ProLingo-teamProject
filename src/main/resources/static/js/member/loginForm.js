@@ -2,7 +2,7 @@
  * 
  */
 $(document).ready(function() {
-	alert("hi");
+	//alert("hi");
 	$('#errorEmail').html('');
 	$('#errorPassword').html('');
 	$('#errorLogin').html('');
@@ -48,12 +48,12 @@ function passwordCheck(){
 //값이 없다면 에러 메세지, 값이 있다면 summit();
 //DB 구현 이후에 테스트 가능
 function loginCheck(){
-	//alert('안냥');
+	alert('안냥');
 	let email = $('#floatingInput').val();
 	let password = $('#floatingPassword').val();
 	
 	$.ajax({
-			url: 'logincheck',
+			url: 'logincheck',	
 			type: 'post',
 			data: {m_email: email, m_pw: password},
 			dataType:'text',
@@ -88,19 +88,19 @@ function loginCheck(){
 //});
 
 //팝업 모드
-const client = google.accounts.oauth2.initCodeClient({
-  client_id: 'YOUR_GOOGLE_CLIENT_ID',
-  scope: 'https://www.googleapis.com/auth/calendar.readonly',
-  ux_mode: 'popup',
-  callback: (response) => {
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', code_receiver_uri, true);
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    // Set custom header for CRSF
-    xhr.setRequestHeader('X-Requested-With', 'XmlHttpRequest');
-    xhr.onload = function() {
-      console.log('Auth code response: ' + xhr.responseText);
-    };
-    xhr.send('code=' + code);
-  },
-});
+//const client = google.accounts.oauth2.initCodeClient({
+//  client_id: 'YOUR_GOOGLE_CLIENT_ID',
+//  scope: 'https://www.googleapis.com/auth/calendar.readonly',
+//  ux_mode: 'popup',
+//  callback: (response) => {
+//    const xhr = new XMLHttpRequest();
+//    xhr.open('POST', code_receiver_uri, true);
+//    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+//    // Set custom header for CRSF
+//    xhr.setRequestHeader('X-Requested-With', 'XmlHttpRequest');
+//    xhr.onload = function() {
+//      console.log('Auth code response: ' + xhr.responseText);
+//    };
+//    xhr.send('code=' + code);
+//  },
+//});
