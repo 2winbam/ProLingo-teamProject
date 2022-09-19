@@ -95,10 +95,11 @@
 	
 	<div th:fragment="new_header">
 	<nav class="navbar navbar-expand navbar-light navbar-bg">
-				<a class="sidebar-toggle js-sidebar-toggle">
-          			<i class="hamburger align-self-center"></i>
-        		</a>
 
+				<a th:href="@{/study}" class="sidebar-toggle js-sidebar-toggle">
+					<img th:src="@{/icons/header_swallow_icon.png}" alt="swallow_icon">
+          		</a>
+       
 				<div class="navbar-collapse collapse">
 					<!--  -->
 					<ul class="navbar-nav navbar-align align-middle">
