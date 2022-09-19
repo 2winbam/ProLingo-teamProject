@@ -1,4 +1,5 @@
 @charset "UTF-8";
+
 .card {
 	margin: 10px;
 	width: 400px;
@@ -13,6 +14,18 @@ footer {
     bottom: 0;
     left: 0;
 }
+
+.CodeMirror {
+	border: 1px solid #eee;
+	height: auto;
+	max-height: 500px;
+	width: auto;
+}
+
+.card-footer{
+	text-align:right;
+}
+
 .menu{
 	color:rgb(192, 192, 192);
 }
@@ -53,23 +66,34 @@ footer {
 }
 
 #contents{
-	
-	border: 20px;
+	position:absolute;
+	top: 75px;
+	left: 10px;
 }
 
 #compiler{
+	position:absolute;
 	height: 600px;
 	margin: 10px;
-	width: 600px;
+	width: 655px;
+	top: 75px;
+	left: 430px;
+}
+
+#result{
+	position:absolute;
+	top: 75px;
+	left: 1105px;
+}
+
+#callContents{
+	position:absolute;
+	bottom: 11px;
+	left: 11px;
 }
 
 .indicator{
 	color:white;
-}
-
-.codemirror-textarea{
-	width: 400px;
-	height: 500px;
 }
 
 .icon{
