@@ -25,13 +25,6 @@ public class MemberController {
 		return "examples/sign_up";
 	}
 
-	// 내정보
-	@GetMapping("/profile")
-	public String profile() {
-		log.debug("called profile");
-		return "profile";
-	}
-
 	/**
 	 * sign in page
 	 * @return
