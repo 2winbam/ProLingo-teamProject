@@ -5,11 +5,11 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <!-- 타이틀 입력 -->
 <title>Login</title>
  <!-- 추가되는 링크 입력, 없더라도 link 빈거 하나는 있어야 하는듯? -->
-<!-- <link rel="stylesheet" th:href="@{}"> -->
+<link rel="stylesheet" th:href="@{/css/member/loginForm.css}">
 <link>
  <!-- 추가되는 스크립트 입력, 역시 없더라도 빈거 하나는 있어야 하는듯? -->
-<!-- <script type="text/javascript" th:src="@{/scripts/home.js}"></script> -->
-<script></script>
+<script type="text/javascript" th:src="@{/js/member/loginForm.js}"></script>
+<script src="https://accounts.google.com/gsi/client" onload="console.log('TODO: add onload function')"></script>
 </head>
 <body>
 	<div class="wrapper">
@@ -30,9 +30,9 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 								<div class="text-center mt-4">
 									<h1 class="h2">ProLingo에 오신 것을 환영합니다!</h1>
 									<p class="lead">
-										저희 콘텐츠를 이용하기 위해서는 로그인은 필수 입니다.
-										<br>
-										계정이 없으시다면 회원가입을 진행해 주세요!	
+<!-- 										저희 콘텐츠를 이용하기 위해서는 로그인은 필수 입니다. -->
+<!-- 										<br> -->
+<!-- 										계정이 없으시다면 회원가입을 진행해 주세요!	 -->
 									</p>
 								</div>
 		
@@ -46,13 +46,16 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 												<div class="mb-3">
 													<label class="form-label">이메일</label>
 													<input class="form-control form-control-lg" type="email" name="m_mail" placeholder="Enter your email" />
+													<div class="errorMesage text-end text-danger em">
+												    	<em><small id="errorEmail">이메일 에러 메세지</small></em>
+												    </div>
 												</div>
 												<div class="mb-3">
 													<label class="form-label">비밀번호</label>
 													<input class="form-control form-control-lg" type="password" name="m_pw" placeholder="Enter your password" />
-													<small>
-		            									비밀번호를 잊어버리셨다면 <a th:href="@{/member/findpassword}">여기</a>로 <!-- 비밀번호 찾기 링크인데 비밀번호 찾기 사용할 것인지? -->
-		         									</small>
+													<div class="errorMesage text-end text-danger em">
+												    	<em><small id="errorPassword">비밀번호 에러 메세지</small></em>
+												    </div>
 												</div>
 												<div>
 													<label class="form-check">
@@ -63,9 +66,16 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 												<div class="text-center mt-3">
 													<input type="submit" class="btn btn-lg btn-primary" value="로그인">
 													<!-- <button type="submit" class="btn btn-lg btn-primary">Sign in</button> -->
-													<a th:href="@{/member/join}" class="btn btn-lg btn-primary">회원가입</a>
+													<!-- <a th:href="@{/member/join}" class="btn btn-lg btn-primary">회원가입</a> -->
 												</div>
 											</form>
+											<div class="text-center text-muted">
+												<small>
+	            									<br>비밀번호를 잊어버리셨다면 <a th:href="@{/member/findpassword}">여기</a>로
+	         									</small>
+         									</div>	         									<!-- 인터넷에서 긁어온 것, css에 설정해놔서 절취선? 안에 텍스트 넣을 수 있음 -->
+											<div class="hr-sect">또는</div>
+											<div><button onclick="client.requestCode();">Authorize with Google</button></div>
 										</div>
 									</div>
 								</div>
@@ -82,7 +92,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 		</div>
 	</div>
 	
-	<!-- 이거 없으면 화이트라벨 뜸 ㅡㅡ -->
-	<script src="js/app.js"></script>
+	<!-- 이거 없으면 화이트라벨 뜸...아닌가? -->
+	<!-- <script src="js/app.js"></script> -->
 </body>
 </html>
