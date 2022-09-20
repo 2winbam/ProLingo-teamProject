@@ -192,15 +192,36 @@ footer {
 .dropdown-menu li a:hover, .navbar .dropdown-menu li a:active {
 	color: #333;
 }
-.modal-lesson-explain{
-	position:absolute;
-	width: 100%; height: 90%;
-	background: white;
-	top: 0; left:0;
+.modal-lesson{
+	position:fixed;
+	width: 100%; height: 650px;
+	display: flex;
+	justify-content: center;
+	background: black;
+	top: 6%; left:0%;
 	z-index:1050;
 	display:none;
 }
-.modal-body {
+.modal-dialog {
 	width:100%; height:100%;
+}
+.moal-header {
+	position: absolute;
+}
+.modal-body {	
+	position: fixed;
+	justify-content: center;
+	width:100%; height:550px;
+	top: 15%; left: 0%;
 	text-align: center;
+	background-color: skyblue;
+}
+.modal-body-title {
+	margin: 0 auto;
+	text-align: left;
+	justify-content: center;
+}
+.modal-body-bottom {
+	position: fixed;
+	top:
 }
