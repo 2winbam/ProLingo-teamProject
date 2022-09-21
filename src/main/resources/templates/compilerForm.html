@@ -150,7 +150,10 @@ $(function () {
   					<textarea class="textarea" id="codemirror"></textarea>
   			</div>
   			<div class="card-footer">
-  				<button type="button" class="btn btn-secondary">Submit</button> 
+  				<!-- 문제 저장버튼 -->
+  				<button type="button" class="btn btn-dark" onclick=""><i class="bi bi-download" id="downloadIcon"></i> 저장</button>
+  				<!-- 버튼 입력시 작동되도록 입력 필요 -->
+  				<button type="button" class="btn btn-secondary" onclick="">Submit</button> 
   			</div>
 		</div>
 	</form>
@@ -169,15 +172,13 @@ $(function () {
 	</div>
     </div>  	
 <div class="exercise footer">
-	<footer class="align-items-center">
+<footer class="align-items-center">
 
 	<button class="btn btn-secondary" id="callContents">슬라이드로 돌아가기</button> 
   		<div class="progress-bar bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-	</div>
-
+	
 </footer>
 </div>		
 </body>
-
 
 </html>

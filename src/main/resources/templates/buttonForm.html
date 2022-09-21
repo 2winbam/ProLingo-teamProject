@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>CompilerTest</title>
 
-<script th:src="@{/scripts/jquery-3.6.0.js}"></script>
+<script th:src="@{/js/jquery-3.6.0.js}"></script>
 
 <link rel="shortcut icon" th:href="@{/img/icons/icon-48x48.png}" />
 
@@ -23,9 +23,6 @@
 <!-- 아이콘 사용 -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 
-<!-- include libraries(jQuery) -->
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
 <!-- include codemirror (codemirror.css, codemirror.js, xml.js, formatting.js) -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/theme/moxer.min.css">
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/codemirror.js"></script>
@@ -37,11 +34,9 @@
 
 $(document).ready(function() {
 	
-	$('.example-popover').popover({
-	    container: 'body'
-	  })
-	
     // 코드미러 실행
+ 	
+    /*  
     const codemirrorEditor = CodeMirror.fromTextArea(document.getElementById("codemirror"), {
     	//라인 번호
     	lineNumbers: true,
@@ -49,16 +44,47 @@ $(document).ready(function() {
     	theme: 'moxer',
     	//자바 모드
     	mode: "text/x-java",
-    	viewpointMargin: Infinity,
     	readOnly:false,
     	lineWrapping:true
     });
+    */
+    buttonForm();	
 });
 
+	//버튼 입력 임의의 값(버튼 문제 데이터 베이스 입력 후 수정이 필요)
+	
+	function buttonForm() {
+		/*  
+		var array = new Array();
 
-$(function () {
-	  
-	})
+		for (i = 0; i < 10; i++) {
+			var btn = document.getElementById("btn" + i);
+			btn.value = i;
+		}
+		*/
+		btn0.value = '(';
+		btn1.value = ')';
+		btn2.value = 'System';
+		btn3.value = 'out';
+		btn4.value = 'println';
+		btn5.value = 'Hello';
+		btn6.value = 'world';
+		btn7.value = ' ';
+		btn8.value = '"';
+		btn9.value = ".";
+		btn10.value = ";";
+	}
+	
+	function input(e) {
+		var buttonInput = document.getElementById("buttonInput");
+		buttonInput.value = buttonInput.value + e.value;
+	}
+
+	function del() {
+		var buttonInput = document.getElementById("buttonInput");
+		buttonInput.value = buttonInput.value.substr(0, buttonInput.value.length - 1);
+	}
+
 </script>
 
 </head>
@@ -74,8 +100,6 @@ $(function () {
 				<a th:href="@{/}" class="menu px-5 nav-link text-start" id="title" style="font-weight:bold">PROLINGO</a>
 			</div>
 			
-			
-	
 			<!-- 로그인한 계정페이지로의 연결과 프로필 사진 출력 필요 (개인페이지 구현 및 사진 저장경로 구현 후 상세히 작성예정) -->
 				
 			<div class="px-5 dropdown text-end">
@@ -109,7 +133,8 @@ $(function () {
 	<div class="card" id="contents">
   		<div class="card-header"><i class="bi bi-journal-text"></i> 문제</div>
   		<div class="card-body">
-    		<p class="card-text" id="contentsText">예시문</p>
+    		<p class="card-text" id="contentsText">현재의 폼처럼 button으로 입력받는 경우에는 코드미러가 적용된 textarea내에 
+    		값이 입력되지 않는 문제가 있으므로, 코드미러의 스크립트 부분은 주석처리해서 작동되지 않도록 해놓은 상태임</p>
     	</div>	
 	</div>
 	<!--컴파일러 부분  -->
@@ -117,27 +142,54 @@ $(function () {
 		<div class="card" id="compiler">
 			<div class="card-header"><i class="bi bi-journal-code"></i></div>
 			<div class="card-body">
+					<!--  
   					<textarea class="textarea" id="codemirror"></textarea>
+  					-->
+  					<textarea class="textarea" id="buttonInput"></textarea>
   			</div>
   			<div class="card-footer">
-  				<button type="button" class="btn btn-secondary">Submit</button> 
+  				<!-- 문제 저장버튼 -->
+  				<button type="button" class="btn btn-dark" onclick=""><i class="bi bi-download" id="downloadIcon"></i> 저장</button>
+  				<!-- 버튼 입력시 작동되도록 입력 필요 -->
+  				<button type="button" class="btn btn-secondary" onclick="">Submit</button> 	
   			</div>
 		</div>
 	</form>
 	<!-- 답 출력부분 -->
-	<div class="card" id="result">
+	<div class="card" id="buttonResult">
   		<div class="card-header d-flex justify-content-between" id="resultHeader">
   			<div class="p-2 bd-highlight">>_ 결과</div>
   			<a href='#' class="p-2 bd-highlight"><i class="bi bi-arrow-right-square" id="right-square"></i></a>
   		</div>
   		<div class="card-body" id="resultBody">
-    		<p class="card-text" id="resultText">With supporting text below as a natural lead-in to additional content.</p>
-    	</div>
-    	<div class="card-footer">
-  			<br>
-  		</div>	
+    		<p class="card-text" id="resultText">버튼을 누르면 해당 값이 textarea에 입력되나 추후 버튼형식의 문제를 만든후에 
+    		폼 자체를 문제에 맞게 수정할 필요가 있다고 봄</p>
+    	</div>		
 	</div>
-    </div>  	
+   </div>
+   
+   <!-- 버튼입력 폼 ( 버튼입력 문제 데이터 작성 후 변경 가능성 있음) -->
+   <div>
+   		<div id="VirtualKey">
+   		<input id="btn0" type="button" onclick="input(this);" />
+    	<input id="btn1" type="button" onclick="input(this);" />
+    	<input id="btn2" type="button" onclick="input(this);" />
+    	<br />
+    	<input id="btn3" type="button" onclick="input(this);" />
+    	<input id="btn4" type="button" onclick="input(this);" />
+    	<input id="btn5" type="button" onclick="input(this);" />
+    	<br />
+    	<input id="btn6" type="button" onclick="input(this);" />
+    	<input id="btn7" type="button" onclick="input(this);" />
+    	<input id="btn8" type="button" onclick="input(this);" />
+    	<br />
+    	<input id="btn9" type="button" onclick="input(this);" />
+    	<input id="btn10" type="button" onclick="input(this);" />
+    	<input id="btnDel" type="button" value="Backspace" onclick="del();" />
+	</div>
+   </div>
+
+<!-- 문제 form의 footer -->
 <div class="exercise footer">
 	<footer class="align-items-center">
 		<button class="btn btn-secondary" id="callContents">슬라이드로 돌아가기</button>
