@@ -151,10 +151,34 @@ $(document).ready(function() {
   				<!-- 문제 저장버튼 -->
   				<button type="button" class="btn btn-dark" onclick=""><i class="bi bi-download" id="downloadIcon"></i> 저장</button>
   				<!-- 버튼 입력시 작동되도록 입력 필요 -->
-  				<button type="button" class="btn btn-secondary" onclick="">Submit</button> 	
+  				<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#resultModal">Submit</button> 	
+  			
+  				<!-- Modal -->
+				<div class="modal" id="resultModal">
+  					<div class="modal-dialog modal-lg">
+    					<div class="modal-content">
+      						<div class="modal-header">
+        						<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          							<span aria-hidden="true">&times;</span>
+        						</button>
+      						</div>
+      						<div class="modal-body">
+        						Congratulation
+      						</div>
+      						<div class="modal-footer">
+        						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        						<button type="button" class="btn btn-primary">Next</button>
+      						</div>
+    					</div>
+  					</div>
+				</div>
   			</div>
 		</div>
 	</form>
+	
+	
+	
 	<!-- 답 출력부분 -->
 	<div class="card" id="buttonResult">
   		<div class="card-header d-flex justify-content-between" id="resultHeader">
