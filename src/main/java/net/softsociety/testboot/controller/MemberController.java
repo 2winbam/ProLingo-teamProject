@@ -1,8 +1,16 @@
 package net.softsociety.testboot.controller;
 
+import java.util.Collections;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -31,7 +39,8 @@ public class MemberController {
 	 */
 	@GetMapping("/login")
 	public String login() {
-		log.debug("called login");
+		//log.debug("called login");
+		
 		return "memberView/loginForm";
 	}
 	
@@ -52,5 +61,13 @@ public class MemberController {
 	@GetMapping("/findpassword")
 	public String findpassword() {
 		return "memberView/findPasswordForm";
+	}
+	
+	@ResponseBody
+	@PostMapping("/getTokenTest")
+	public String getTokenTest(String token) {
+		log.debug(token);
+		
+		return "testgood";
 	}
 }

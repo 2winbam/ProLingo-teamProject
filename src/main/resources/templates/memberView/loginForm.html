@@ -8,8 +8,9 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <link rel="stylesheet" th:href="@{/css/member/loginForm.css}">
 <link>
  <!-- 추가되는 스크립트 입력, 역시 없더라도 빈거 하나는 있어야 하는듯? -->
+<script src="https://accounts.google.com/gsi/client" async defer></script>
 <script type="text/javascript" th:src="@{/js/member/loginForm.js}"></script>
-<script src="https://accounts.google.com/gsi/client" onload="console.log('TODO: add onload function')"></script>
+
 </head>
 <body>
 	<div class="wrapper">
@@ -42,18 +43,18 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 											<div class="text-center">
 												<img th:src="@{/img/avatars/swallow.png}" alt="Swallow" class="img-fluid rounded-circle" width="132" height="132" />
 											</div>
-											<form>
+											<form id="loginForm">
 												<div class="mb-3">
 													<label class="form-label">이메일</label>
-													<input class="form-control form-control-lg" type="email" name="m_mail" placeholder="Enter your email" />
-													<div class="errorMesage text-end text-danger em">
+													<input class="form-control form-control-lg" type="email" name="m_mail" placeholder="Enter your email" id="email" />
+													<div class="errorMesage text-end text-danger">
 												    	<em><small id="errorEmail">이메일 에러 메세지</small></em>
 												    </div>
 												</div>
 												<div class="mb-3">
 													<label class="form-label">비밀번호</label>
-													<input class="form-control form-control-lg" type="password" name="m_pw" placeholder="Enter your password" />
-													<div class="errorMesage text-end text-danger em">
+													<input class="form-control form-control-lg" type="password" name="m_pw" placeholder="Enter your password" id="password" />
+													<div class="errorMesage text-end text-danger">
 												    	<em><small id="errorPassword">비밀번호 에러 메세지</small></em>
 												    </div>
 												</div>
@@ -64,9 +65,14 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 		          									</label>
 												</div>
 												<div class="text-center mt-3">
-													<input type="submit" class="btn btn-lg btn-primary" value="로그인">
+													<!-- ajax에서 return false가 안되는거같아서 버튼으로 -->
+													<!-- <input type="submit" class="btn btn-lg btn-primary" value="로그인"> -->
+													<input type="button" class="btn btn-lg btn-primary" value="로그인" id="loginbtn">
 													<!-- <button type="submit" class="btn btn-lg btn-primary">Sign in</button> -->
 													<!-- <a th:href="@{/member/join}" class="btn btn-lg btn-primary">회원가입</a> -->
+													<div class="errorMesage text-center text-danger">
+														<em><small id="errorLogin">로그인 에러 메세지</small></em>
+													</div>
 												</div>
 											</form>
 											<div class="text-center text-muted">
@@ -75,7 +81,14 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 	         									</small>
          									</div>	         									<!-- 인터넷에서 긁어온 것, css에 설정해놔서 절취선? 안에 텍스트 넣을 수 있음 -->
 											<div class="hr-sect">또는</div>
-											<div><button onclick="client.requestCode();">Authorize with Google</button></div>
+											<!-- <div><button onclick="client.requestCode();">Authorize with Google</button></div> -->
+											<div id="buttonDiv"></div>
+<!-- 											<input type="button" id="logoutbtn" value="임시 구글 로그아웃"> -->
+<!-- 											<div id="g_id_onload" -->
+<!-- 										         data-client_id="969064842874-ido7rmd0p911v3mq4gi7jk2dggfesv8n.apps.googleusercontent.com" -->
+<!-- 										         data-callback="handleCredentialResponse"> -->
+<!-- 										    </div> -->
+<!-- 										    <div class="g_id_signin" data-type="standard"></div> -->
 										</div>
 									</div>
 								</div>
