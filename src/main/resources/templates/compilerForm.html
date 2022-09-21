@@ -37,20 +37,17 @@
 
 $(document).ready(function() {
 	//모달창 바로 띄우기
-	$('.modal-lesson-explain').fadeIn();
+	$('.modal-lesson').fadeIn();
 	//모달창 클릭시 닫기
 	$('.modal-body').click(function() {
-		$('.modal-lesson-explain').fadeOut();
+		$('.modal-lesson').fadeOut();
 	});
 	//슬라이드 돌아가기 버튼
 	 let callContents = document.getElementById("callContents");
 	$('callContents').click(function() {
-		$('.modal-lesson-explain').fadeIn();
+		$('.modal-lesson').fadeIn();
 	}); 
 	
-	$('.example-popover').popover({
-	    container: 'body'
-	  })
 	
     // 코드미러 실행
     const codemirrorEditor = CodeMirror.fromTextArea(document.getElementById("codemirror"), {
@@ -115,9 +112,28 @@ $(function () {
 
 <body>
 	<!-- 모달 개념설명 부분 -->
-	<div class="modal-lesson-explain">
-		<div class="modal-body">Modal 모달~모달~</div>
-	</div>
+	<div class="modal-lesson">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header"> 
+      <p></p>
+      </div>
+      <div class="modal-body">
+      	<div class="modal-body-title">
+      	<h3 class="modal-content-title">Java 입문</h3>
+      	</div>
+      	<div class="modal-body-content">
+        <p>Modal body text goes here.</p>
+        </div>
+        <div class="modal-body-bottom">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 	<div class="d-flex flex-wrap align-items-center">
 	<!-- 문제출력 부분 -->
 	<div class="card" id="contents">
@@ -134,7 +150,10 @@ $(function () {
   					<textarea class="textarea" id="codemirror"></textarea>
   			</div>
   			<div class="card-footer">
-  				<button type="button" class="btn btn-secondary">Submit</button> 
+  				<!-- 문제 저장버튼 -->
+  				<button type="button" class="btn btn-dark" onclick=""><i class="bi bi-download" id="downloadIcon"></i> 저장</button>
+  				<!-- 버튼 입력시 작동되도록 입력 필요 -->
+  				<button type="button" class="btn btn-secondary" onclick="">Submit</button> 
   			</div>
 		</div>
 	</form>
@@ -153,15 +172,13 @@ $(function () {
 	</div>
     </div>  	
 <div class="exercise footer">
-	<footer class="align-items-center">
+<footer class="align-items-center">
 
 	<button class="btn btn-secondary" id="callContents">슬라이드로 돌아가기</button> 
   		<div class="progress-bar bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-	</div>
-
+	
 </footer>
 </div>		
 </body>
-
 
 </html>
