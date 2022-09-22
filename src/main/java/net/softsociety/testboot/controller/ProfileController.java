@@ -20,4 +20,24 @@ public class ProfileController {
 		log.debug("called profile");
 		return "profile";
 	}
+	/**
+	 * 업적 달성 페이지
+	 * @return
+	 */
+	@GetMapping("/achievements")
+	public String achievements() {
+		log.debug("called achievements");
+		return "profile/achievements";
+	}
+	/**
+	 * 타임라인 페이지
+	 * @return
+	 */
+	@GetMapping("/timelineTest")
+	public String timelineTest() {
+		log.debug("called timelineTest");
+		return "profile/timelineTest";
+	}
+	
+	
 }
