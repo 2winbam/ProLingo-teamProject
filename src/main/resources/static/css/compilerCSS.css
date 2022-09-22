@@ -195,36 +195,26 @@ footer {
 
   
 .modal-lesson{
-	position:fixed;
+	position:absolute;
 	width: 100%; height: 650px;
-	display: flex;
 	justify-content: center;
 	background: black;
 	top: 6%; left:0%;
 	z-index:1050;
 	display:none;
 }
-.modal-dialog {
-	width:100%; height:100%;
-}
-.moal-header {
-	position: absolute;
-}
-.modal-body {	
+.modal-lesson-wrapper{
 	position: fixed;
-	justify-content: center;
 	width:100%; height:550px;
-	top: 15%; left: 0%;
+	top: 8%; left: 0%;
 	text-align: center;
 	background-color: skyblue;
 }
-.modal-body-title {
-	margin: 0 auto;
-	text-align: left;
-	justify-content: center;
+.modal-lesson-body {
+	height:450px;	
+}
+.slick-prev slick-arrow{
+	position:fixed;
+	top:40%
 }
 
-.modal-body-bottom {
-	position: fixed;
-	
-}

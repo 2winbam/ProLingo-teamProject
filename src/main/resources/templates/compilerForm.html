@@ -7,11 +7,6 @@
 <script th:src="@{/scripts/jquery-3.6.0.js}"></script>
 
 <link rel="shortcut icon" th:href="@{/img/icons/icon-48x48.png}" />
-<!-- slick CSS, JS -->
-<link rel="stylesheet" type="text/css" th:href="@{/css/slick.css}">
-<link rel="stylesheet" type="text/css" th:href="@{/css/slick-theme.css}">
-<script type="text/javascript" th:src="@{/js/slick.min.js}"></script>
-
 <!-- 부트스트랩 CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -37,24 +32,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/clike/clike.min.js"></script>
 <link rel="stylesheet" type="text/css" th:href="@{/css/codeMirror.css}">
 
+<!-- slick CSS, JS -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
 <script>
 
 $(document).ready(function() {
-	//모달창 바로 띄우기
-	$('.modal-lesson').fadeIn();
-	//모달창 클릭시 닫기
-	$('.btn-modal-close').click(function() {
-		$('.modal-lesson').fadeOut();
-	});
-	//슬라이드 돌아가기 버튼
-	$('.btn-callModal').click(function() {
-		$('.modal-lesson').fadeIn();
-	}); 
-	
-	$('#resultSubmit').click(function(){
-		$('#resultModal').fadeIn();
-	});
-	
     // 코드미러 실행
     const codemirrorEditor = CodeMirror.fromTextArea(document.getElementById("codemirror"), {
     	//라인 번호
@@ -67,10 +51,34 @@ $(document).ready(function() {
     	readOnly:false,
     	lineWrapping:true
     });
+    
+	//모달창 클릭시 닫기
+	$('.btn-modal-close').click(function() {
+		$('.modal-lesson').fadeOut();
+	});
+	//슬라이드 돌아가기 버튼
+	$('.btn-callModal').click(function() {
+		$('.modal-lesson').fadeIn();
+	}); 
+	
+	$('#resultSubmit').click(function(){
+		$('#resultModal').fadeIn();
+	});
+    
+  //모달창 바로 띄우기
+	$('.modal-lesson').fadeIn();
+	//슬라이더
+	$('.modal-lesson-wrapper').slick({
+		slidesToShow: 1,
+		slidesToScroll: 1,
+		speed: 100,
+		autoplay: false
+	});
+
+
 });
-
-
 </script>
+
 
 </head>
 
@@ -115,28 +123,50 @@ $(document).ready(function() {
 
 <body>
 	<!-- 모달 개념설명 부분 -->
-	<div class="modal-lesson">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header"> 
-      <p></p>
-      </div>
-      <div class="modal-body">
-      	<div class="modal-body-title">
-      	<h3 class="modal-content-title">Java 입문</h3>
-      	</div>
-      	<div class="modal-body-content">
-        <p>Modal body text goes here.</p>
-        </div>
-        <div class="modal-body-bottom">
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn-modal-close" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
+	<div class="modal-lesson" id="div-modal-slider">
+  		<div class="modal-lesson-wrapper">
+  			 <div class="modal-lesson-content">
+  				<div class="modal-lesson-header">
+  				</div>
+  				<div class="modal-lesson-body">
+  					<h2>Java 입문</h2>
+  				<div class="modal-lesson-body-content">
+  				<p>Modal body text goes here.</p>
+  				</div>
+  				<div class="modal-lesson-body-bottom"></div>
+  				</div>
+  				<div class="modal-lesson-footer">
+  					<button type="button" class="btn-modal-close">Close</button>
+  				</div>
+  			</div>
+  			<div class="modal-lesson-content">
+  				<div class="modal-lesson-header">
+  				</div>
+  				<div class="modal-lesson-body">
+  					<h2>Java 입문2</h2>
+  				<div class="modal-lesson-body-content">
+  				<p>Modal body text goes here.</p>
+  				</div>
+  				<div class="modal-lesson-body-bottom"></div>
+  				</div>
+  				<div class="modal-lesson-footer">
+  				</div>
+  			</div>
+  			<div class="modal-lesson-content">
+  				<div class="modal-lesson-header">
+  				</div>
+  				<div class="modal-lesson-body">
+  					<h2>Java 입문3</h2>
+  				<div class="modal-lesson-body-content">
+  				<p>Modal body text goes here.</p>
+  				</div>
+  				<div class="modal-lesson-body-bottom"></div>
+  				</div>
+  				<div class="modal-lesson-footer">
+  				</div>
+  			</div> 
+  		</div> 
+	</div>
 	<div class="d-flex flex-wrap align-items-center">
 	<!-- 문제출력 부분 -->
 	<div class="card" id="contents">

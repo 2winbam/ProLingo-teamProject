@@ -9,6 +9,26 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <link>
  <!-- 추가되는 스크립트 입력, 역시 없더라도 빈거 하나는 있어야 하는듯? -->
 <!-- <script type="text/javascript" th:src="@{/scripts/home.js}"></script> -->
+<script th:src="@{/scripts/jquery-3.6.0.js}"></script>
+<!-- slick CSS, JS -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script>
+	$(document).ready(function() {
+		//모달창 클릭시 닫기
+		$('.btn-modal-close').click(function() {
+			$('.modal-lesson').fadeOut();
+		});
+		//모달창 바로 띄우기
+		$('.modal-lesson').fadeIn();
+		$('.modal-lesson-wrapper').slick({
+			slidesToShow : 1,
+			slidesToScroll: 1,
+			infinite: false
+			
+		});
+	});
+</script>
 
 </head>
 <body>
@@ -40,6 +60,51 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 	
 				</div>
 			</main>
+		<!-- 모달 개념설명 부분 -->
+	<div class="modal-lesson" id="div-modal-slider">
+  		<div class="modal-lesson-wrapper">
+  			 <div class="modal-lesson-content">
+  				<div class="modal-lesson-header">
+  				</div>
+  				<div class="modal-lesson-body">
+  					<h2>Java 입문</h2>
+  				<div class="modal-lesson-body-content">
+  				<p>Modal body text goes here.</p>
+  				</div>
+  				<div class="modal-lesson-body-bottom"></div>
+  				</div>
+  				<div class="modal-lesson-footer">
+  					<button type="button" class="btn-modal-close">Close</button>
+  				</div>
+  			</div>
+  			<div class="modal-lesson-content">
+  				<div class="modal-lesson-header">
+  				</div>
+  				<div class="modal-lesson-body">
+  					<h2>Java 입문2</h2>
+  				<div class="modal-lesson-body-content">
+  				<p>Modal body text goes here.</p>
+  				</div>
+  				<div class="modal-lesson-body-bottom"></div>
+  				</div>
+  				<div class="modal-lesson-footer">
+  				</div>
+  			</div>
+  			<div class="modal-lesson-content">
+  				<div class="modal-lesson-header">
+  				</div>
+  				<div class="modal-lesson-body">
+  					<h2>Java 입문3</h2>
+  				<div class="modal-lesson-body-content">
+  				<p>Modal body text goes here.</p>
+  				</div>
+  				<div class="modal-lesson-body-bottom"></div>
+  				</div>
+  				<div class="modal-lesson-footer">
+  				</div>
+  			</div> 
+  		</div> 
+	</div>
 			
 			<!-- footer -->
 			<div th:replace="fragments/footer :: new_footer"></div>
