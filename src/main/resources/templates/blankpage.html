@@ -5,11 +5,11 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <!-- 타이틀 입력 -->
 <title>blankpage</title>
  <!-- 추가되는 링크 입력, 없더라도 link 빈거 하나는 있어야 하는듯? -->
-<!-- <link rel="stylesheet" th:href="@{}"> -->
+<!-- <link rel="stylesheet" th:href="@{/css/.css}"> -->
 <link>
  <!-- 추가되는 스크립트 입력, 역시 없더라도 빈거 하나는 있어야 하는듯? -->
-<!-- <script type="text/javascript" th:src="@{/scripts/home.js}"></script> -->
-
+<!-- <script type="text/javascript" th:src="@{/js/.js}"></script> -->
+<script></script>
 </head>
 <body>
 	<div class="wrapper">
@@ -48,6 +48,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 	</div>
 	
 	<!-- 이거 없으면 화이트라벨 뜸 ㅡㅡ -->
-	<script th:src="@{/js/app.js}"></script>
+	<!-- 위에 빈 스크립트 없어서 그런거였음 없어도 됨! -->
+	<!-- <script th:src="@{/js/app.js}"></script> -->
 </body>
 </html>
