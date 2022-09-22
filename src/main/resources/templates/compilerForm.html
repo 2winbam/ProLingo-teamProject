@@ -54,8 +54,8 @@ $(document).ready(function() {
     	matchBrackets: true,
     	styleActiveLine: true,
         autoCloseBrackets: true,
-        autoCloseTags: true,
-        foldGutter: true,
+        autoCloseTags: true
+        
     });
     
 	//모달창 클릭시 닫기
@@ -63,12 +63,16 @@ $(document).ready(function() {
 		$('.modal-lesson').fadeOut();
 	});
 	//슬라이드 돌아가기 버튼
-	$('.btn-callModal').click(function() {
+	$('.callModal').click(function() {
 		$('.modal-lesson').fadeIn();
 	}); 
 	
 	$('#resultSubmit').click(function(){
 		$('#resultModal').fadeIn();
+	});
+	
+	$('.resultClose').click(function(){
+		$('#resultModal').fadeOut();
 	});
     
   //모달창 바로 띄우기
@@ -91,7 +95,8 @@ $(document).ready(function() {
 .CodeMirror{
 	font-family: Consolas, serif; 
 	font-size: 17px;
-	line-height: 30px; 
+	line-height: 30px;
+	border:0px;
 }
 </style>
 
@@ -200,28 +205,34 @@ $(document).ready(function() {
 			<div class="card-body">
   					<textarea class="codemirror" id="codemirror"></textarea>
   			</div>
-  			<div class="card-footer">
-  				<!-- 문제 저장버튼 -->
-  				<button type="button" class="btn btn-dark" onclick=""><i class="bi bi-download" id="downloadIcon"></i> 저장</button>
-  				<!-- 버튼 입력시 작동되도록 입력 필요 -->
-  				<button type="button" class="btn btn-secondary" onclick="" id="resultSubmit">Submit</button> 
-  				
-  				<!-- Modal -->
-				<div class="modal" id="resultModal">
+  			<div class="compilerFooter card-footer d-flex justify-content-between">
+  				<span>
+  					<button type="button" class="footerButton btn btn-outline-danger" onclick="" 
+  							id="reset"><i class="bi bi-arrow-counterclockwise"></i>&nbsp;Reset</button>
+  					<button type="button" class="footerButton btn btn-outline-warning" onclick="" 
+  							id="seeAnswer"><i class="bi bi-eye"></i>&nbsp;See Answer</button>	
+  				</span>
+  				<span>
+  					<!-- 버튼 입력시 작동되도록 입력 필요 -->
+  					<button type="button" class="footerButton btn btn-success" onclick="" id="resultSubmit">Submit</button> 
+  				</span>
+  				<!-- submit 누른후 나오는 modal -->
+				<div class="resultModal modal" id="resultModal">
   					<div class="resultDialog modal-dialog modal-lg">
-    					<div class="modal-content">
-      						<div class="resultHeader modal-header">
-        						<h5 class="modalTitle modal-title" id="exampleModalLabel">결과 모달창 테스트</h5>
-        						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          							<span aria-hidden="true">&times;</span>
-        						</button>
+    					<div class="modal-content" id="submitModal">
+      						<div class="modalHeader modal-header">
+      							<div id="modalProgress"><i class="bi bi-trophy-fill" style="color:green;"></i>&nbsp;&nbsp;JAVA</div>
+        						<button type="button" class="resultClose btn-close" aria-label="Close" id="resultClose"></button>
       						</div>
       						<div class="modalBody modal-body">
-        						Congratulation
+        						<div style="color:deeppink;font-size:25px;">Congratulations!</div>
+        						<div>다음 과정은 ~~~ 입니다</div>
       						</div>
       						<div class="modalFooter modal-footer">
-        						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        						<button type="button" class="btn btn-primary">Next</button>
+      						<!-- 문제 저장버튼 -->
+  								<button type="button" class="btn btn-dark" onclick="" id="submitButton"><i class="bi bi-download" id="downloadIcon"></i> Save</button>
+        						<button type="button" class="btn btn-light" onclick="" id="submitButton">Answer</button>
+        						<button type="button" class="btn btn-info" onclick="" id="submitButton">Next</button>
       						</div>
     					</div>
   					</div>
@@ -232,21 +243,18 @@ $(document).ready(function() {
 	<!-- 답 출력부분 -->
 	<div class="card" id="result">
   		<div class="card-header d-flex justify-content-between" id="resultHeader">
-  			<div class="p-2 bd-highlight">>_ 결과</div>
-  			<a href='#' class="p-2 bd-highlight"><i class="bi bi-arrow-right-square" id="right-square"></i></a>
+  			<div class=" bd-highlight">>_ 결과</div>
+  			<a href='#' class=" bd-highlight"><i class="bi bi-arrow-right-square" id="right-square"></i></a>
   		</div>
   		<div class="card-body" id="resultBody">
     		<p class="card-text" id="resultText">With supporting text below as a natural lead-in to additional content.</p>
-    	</div>
-    	<div class="card-footer">
-  			<br>
-  		</div>	
+    	</div>	
 	</div>
     </div>  	
 <div class="exercise footer">
 <footer class="align-items-center">
 
-	<button class="btn-callModal" id="callContents">슬라이드로 돌아가기</button> 
+	<button class="callModal btn btn-secondary" id="callContents">슬라이드로 돌아가기</button> 
   		<div class="progress-bar bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
 	
 </footer>

@@ -21,11 +21,16 @@ footer {
 	width: auto;	
 }
 
+.card-header{
+	border:0px;
+}
+
 .card-body{
-	padding:0px;
+	padding:10px;
 }
 
 .card-footer{
+	border:0px;
 	text-align:right;
 	height:55px;
 }
@@ -87,12 +92,14 @@ footer {
 	width: 720px;
 	top: 75px;
 	left: 370px;
+	background-color: rgb(51, 51, 51);
+	color: white;
 }
 
 #buttonInput{
 	width : 100%;
 	height : 100%;
-	background-color: black;
+	background-color: rgb(51, 51, 51);
 	color: white;
 	resize: none;	
 }
@@ -101,13 +108,14 @@ footer {
 	color: white;
 }
 
+#resultHeader{
+	height:41px;
+}
+
 #result{
 	position:absolute;
 	top: 75px;
 	left: 1100px;
-	font-family: Consolas, serif; 
-	font-size: 17px;
-	line-height: 30px;
 }
 
 #buttonResult{
@@ -124,17 +132,23 @@ footer {
 }
 
 #resultBody{
-	background-color:black;
+	background-color: rgb(51, 51, 51);
 	color:white;
 	padding: 10px;
+	font-family: Consolas, serif; 
+	font-size: 17px;
+	line-height: 30px;
+}
+
+#submitModal{
+	position: fixed;
+	left: 390px;
+	bottom: 70px;
+	width: 700px;
 }
 
 #rightsquare{
 	border:0px;
-	padding:0px;
-}
-
-#resultHeader{
 	padding:0px;
 }
 
@@ -149,6 +163,10 @@ footer {
 	border: solid black;
 }
 
+#modalProgress{
+	color: black;
+}
+
 #btn1, #btn2, #btn3, #btn4, #btn5, #btn10,
 #btn6, #btn7, #btn8, #btn9, #btn0, #btnDel{
 	height:50px;
@@ -157,12 +175,22 @@ footer {
 	margin: 4px;
 }
 
+#submitButton{
+	width: 90px;
+}
+
 .progress{
 	position:absolute;
 	width:400px;
 	bottom: 22px;
 	left: 550px;
 	font: white;
+}
+
+.footerButton{
+	width:130px;
+	border:0px;
+	color: white;
 }
 
 .indicator{
@@ -195,7 +223,6 @@ footer {
 	color: #333;
 }
 
-  
 .modal-lesson{
 	position:absolute;
 	width: 100%; height: 650px;
@@ -234,7 +261,28 @@ footer {
     font-size: 3; 
     z-index: 1;  
 } 
-  
+
+.modalHeader{
+	text-indent: 10px;
+	border:0px;
+}
+
+.modalBody{
+	color: black;
+	text-align: left;
+	line-height: 40px;
+	text-indent: 10px;	
+}
+
+.modalFooter{
+	padding: 3px;
+	border: 0px;
+}
+
+.compilerFooter{
+	background-color: rgb(51, 51, 51);
+}
+
 .slick-prev {
     left: 2%;
 }
@@ -247,4 +295,3 @@ footer {
 .slick-next:before {
      content: ">";
 }
-
