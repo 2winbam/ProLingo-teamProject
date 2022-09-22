@@ -9,7 +9,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <link>
  <!-- 추가되는 스크립트 입력, 역시 없더라도 빈거 하나는 있어야 하는듯? -->
 <!-- <script type="text/javascript" th:src="@{/scripts/home.js}"></script> -->
-
+<script th:src="@{/js/calendar.js}"></script>
 </head>
 <body>
 	<div class="wrapper">
@@ -38,18 +38,28 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 									</div>
 									<br>
 									<div>
+										<a class="btn btn-primary"  th:href="@{/member/mypage}">My page Setting</a>
+									</div>
+									<br>
+									<div>
 										<a class="btn btn-primary"  th:href="@{/member/delete_account}">Delete Account</a>
 									</div>
 								</div>
 								<hr class="my-0">
-								<div class="card-body text-center">
-									<h5 class="h6 card-title">Skills</h5>
-									<a href="#" class="badge bg-primary me-1 my-1">Java</a>
-									<a href="#" class="badge bg-primary me-1 my-1">JavaScript</a>
-								</div>
-							</div>
+								<br>
+									<div class="card-header">
+										<h5 class="card-title mb-0">Calendar</h5>
+									</div>	
+										<div class="card-body d-flex">	
+											<div class="align-self-center w-100">
+												<div class="chart">
+													<div id="datetimepicker-dashboard"></div>
+												</div>	
+											</div>	
+										</div>			
+							</div>		
 						</div>
-						
+												
 						<!-- 내용1 -->
 						<div class="col-md-4 col-xl-3">
 							<div class="card mb-3">

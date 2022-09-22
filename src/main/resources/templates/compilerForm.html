@@ -2,7 +2,7 @@
 <html xmlns:th="http://thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>CompilerTest</title>
+<title>CompilerForm</title>
 
 <script th:src="@{/scripts/jquery-3.6.0.js}"></script>
 
@@ -27,7 +27,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 <!-- include codemirror (codemirror.css, codemirror.js, xml.js, formatting.js) -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/theme/moxer.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/theme/monokai.min.css"/>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/codemirror.js"></script>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/codemirror/2.36.0/formatting.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/clike/clike.min.js"></script>
@@ -47,28 +47,38 @@ $(document).ready(function() {
 		$('.modal-lesson').fadeIn();
 	}); 
 	
+	$('#resultSubmit').click(function(){
+		$('#resultModal').fadeIn();
+	});
 	
     // 코드미러 실행
     const codemirrorEditor = CodeMirror.fromTextArea(document.getElementById("codemirror"), {
     	//라인 번호
     	lineNumbers: true,
     	//테마
-    	theme: 'moxer',
+    	theme: 'monokai',
     	//자바 모드
     	mode: "text/x-java",
     	viewpointMargin: Infinity,
     	readOnly:false,
-    	lineWrapping:true
+    	lineWrapping:true,
+    	matchBrackets: true,
+    	styleActiveLine: true,
+        autoCloseBrackets: true,
+        autoCloseTags: true,
+        foldGutter: true,
     });
 });
 
-
-
-
-$(function () {
-	  
-	})
 </script>
+ 
+<style>
+.CodeMirror{
+	font-family: Consolas, serif; 
+	font-size: 17px;
+	line-height: 30px; 
+}
+</style>
 
 </head>
 
@@ -148,13 +158,34 @@ $(function () {
 		<div class="card" id="compiler">
 			<div class="card-header"><i class="bi bi-journal-code"></i></div>
 			<div class="card-body">
-  					<textarea class="textarea" id="codemirror"></textarea>
+  					<textarea class="codemirror" id="codemirror"></textarea>
   			</div>
   			<div class="card-footer">
   				<!-- 문제 저장버튼 -->
   				<button type="button" class="btn btn-dark" onclick=""><i class="bi bi-download" id="downloadIcon"></i> 저장</button>
   				<!-- 버튼 입력시 작동되도록 입력 필요 -->
-  				<button type="button" class="btn btn-secondary" onclick="">Submit</button> 
+  				<button type="button" class="btn btn-secondary" onclick="" id="resultSubmit">Submit</button> 
+  				
+  				<!-- Modal -->
+				<div class="modal" id="resultModal">
+  					<div class="resultDialog modal-dialog modal-lg">
+    					<div class="modal-content">
+      						<div class="resultHeader modal-header">
+        						<h5 class="modalTitle modal-title" id="exampleModalLabel">결과 모달창 테스트</h5>
+        						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          							<span aria-hidden="true">&times;</span>
+        						</button>
+      						</div>
+      						<div class="modalBody modal-body">
+        						Congratulation
+      						</div>
+      						<div class="modalFooter modal-footer">
+        						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        						<button type="button" class="btn btn-primary">Next</button>
+      						</div>
+    					</div>
+  					</div>
+				</div>
   			</div>
 		</div>
 	</form>
