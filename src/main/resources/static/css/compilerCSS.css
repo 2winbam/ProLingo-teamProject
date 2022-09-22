@@ -247,4 +247,8 @@ footer {
 .slick-next:before {
      content: ">";
 }
+.u-relative{
+	position: fixed;
+	width: 250px;
+}
 
