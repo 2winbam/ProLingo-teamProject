@@ -2,7 +2,6 @@
 
 .card {
 	margin: 10px;
-	width: 400px;
 	height:600px;
 }
 
@@ -19,9 +18,8 @@ footer {
 	border: 1px solid #eee;
 	height: auto;
 	max-height: 500px;
-	width: auto;
+	width: auto;	
 }
-
 
 .card-body{
 	padding:0px;
@@ -75,6 +73,7 @@ footer {
 	position:absolute;
 	top: 75px;
 	left: 10px;
+	width: 350px;
 }
 
 #contentsText{
@@ -85,9 +84,9 @@ footer {
 	position:absolute;
 	height: 600px;
 	margin: 10px;
-	width: 655px;
+	width: 720px;
 	top: 75px;
-	left: 430px;
+	left: 370px;
 }
 
 #buttonInput{
@@ -105,7 +104,10 @@ footer {
 #result{
 	position:absolute;
 	top: 75px;
-	left: 1105px;
+	left: 1100px;
+	font-family: Consolas, serif; 
+	font-size: 17px;
+	line-height: 30px;
 }
 
 #buttonResult{

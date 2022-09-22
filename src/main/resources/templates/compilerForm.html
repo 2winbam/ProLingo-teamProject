@@ -27,7 +27,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 <!-- include codemirror (codemirror.css, codemirror.js, xml.js, formatting.js) -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/theme/moxer.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/theme/monokai.min.css"/>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/codemirror.js"></script>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/codemirror/2.36.0/formatting.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/clike/clike.min.js"></script>
@@ -56,17 +56,29 @@ $(document).ready(function() {
     	//라인 번호
     	lineNumbers: true,
     	//테마
-    	theme: 'moxer',
+    	theme: 'monokai',
     	//자바 모드
     	mode: "text/x-java",
     	viewpointMargin: Infinity,
     	readOnly:false,
-    	lineWrapping:true
+    	lineWrapping:true,
+    	matchBrackets: true,
+    	styleActiveLine: true,
+        autoCloseBrackets: true,
+        autoCloseTags: true,
+        foldGutter: true,
     });
 });
 
-
 </script>
+ 
+<style>
+.CodeMirror{
+	font-family: Consolas, serif; 
+	font-size: 17px;
+	line-height: 30px; 
+}
+</style>
 
 </head>
 
@@ -146,7 +158,7 @@ $(document).ready(function() {
 		<div class="card" id="compiler">
 			<div class="card-header"><i class="bi bi-journal-code"></i></div>
 			<div class="card-body">
-  					<textarea class="textarea" id="codemirror"></textarea>
+  					<textarea class="codemirror" id="codemirror"></textarea>
   			</div>
   			<div class="card-footer">
   				<!-- 문제 저장버튼 -->
