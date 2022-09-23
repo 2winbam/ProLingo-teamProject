@@ -297,28 +297,24 @@ footer {
 
 .slick-prev {
     left: 2%;
+    font-size: 40px;
+    
 }
 .slick-next {
-    right: 5%;   
+    right: 5%;
+    font-size: 40px;   
 }
-.slick-prev:before {
-   	content: "<";
-}
+/* .slick-prev:before {
+   	
+} */
 
-.slick-next:before { 
+/* .slick-next:before { 
     content: ">";
-}
+} */
 
-.slick-next:before {
-     content: ">";
-
-}
 .u-relative{
 	position: fixed;
 	width: 250px;
 }
 
-<<<<<<< HEAD
 
-=======
->>>>>>> c76bc7de33cbb322335a5219ef457e500e1a0de0
