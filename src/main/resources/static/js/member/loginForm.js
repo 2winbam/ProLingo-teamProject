@@ -161,3 +161,5 @@ function loginAjaxTest(token){
 		}
 	});
 }
+
+//구글 로그인 테스트

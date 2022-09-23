@@ -1,5 +1,6 @@
 package net.softsociety.testboot.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,12 +9,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.extern.slf4j.Slf4j;
+import net.softsociety.testboot.service.MemberService;
 
 @Slf4j
 @Controller
 @RequestMapping("member")
 public class MemberController {
-
+	
+	@Autowired
+	MemberService service;
+	
 	// 로그인 화면
 	@GetMapping("/sign_in")
 	public String sign_in() {
@@ -34,7 +39,8 @@ public class MemberController {
 	 */
 	@GetMapping("/login")
 	public String login() {
-		//log.debug("called login");
+		
+		log.debug("called login");
 		
 		return "memberView/loginForm";
 	}
