@@ -283,6 +283,18 @@ footer {
 	background-color: rgb(51, 51, 51);
 }
 
+.contentClose{
+	display: block;
+	padding: 10px;
+	font-size:25px;
+	color:teal;
+}
+
+.contentClose:hover{
+	color: teal;
+	filter: brightness(130%);
+}
+
 .slick-prev {
     left: 2%;
 }
@@ -290,8 +302,13 @@ footer {
     right: 5%;   
 }
 .slick-prev:before {
-    content: '<';
+   	content: "<";
 }
+
+.slick-next:before { 
+    content: ">";
+}
+
 .slick-next:before {
      content: ">";
 
@@ -301,4 +318,7 @@ footer {
 	width: 250px;
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> c76bc7de33cbb322335a5219ef457e500e1a0de0
