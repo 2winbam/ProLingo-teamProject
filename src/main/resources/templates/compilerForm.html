@@ -47,61 +47,64 @@
 	src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
 <script>
-	$(document).ready(
-			function() {
-				// 코드미러 실행
-				const codemirrorEditor = CodeMirror.fromTextArea(document
-						.getElementById("codemirror"), {
-					//라인 번호
-					lineNumbers : true,
-					//테마
-					theme : 'monokai',
-					//자바 모드
-					mode : "text/x-java",
-					viewpointMargin : Infinity,
-					readOnly : false,
-					tabsize : 2,
-					lineWrapping : true,
-					matchBrackets : true,
-					styleActiveLine : true,
-					autoCloseBrackets : true,
-					autoCloseTags : true
+	$(document)
+			.ready(
+					function() {
+						// 코드미러 실행
+						const codemirrorEditor = CodeMirror.fromTextArea(
+								document.getElementById("codemirror"), {
+									//라인 번호
+									lineNumbers : true,
+									//테마
+									theme : 'monokai',
+									//자바 모드
+									mode : "text/x-java",
+									viewpointMargin : Infinity,
+									readOnly : false,
+									tabsize : 2,
+									lineWrapping : true,
+									matchBrackets : true,
+									styleActiveLine : true,
+									autoCloseBrackets : true,
+									autoCloseTags : true
 
-				});
+								});
 
-				//모달창 클릭시 닫기
-				$('.contentClose').click(function() {
-					$('.modal-lesson').fadeOut();
-				});
-				//슬라이드 돌아가기 버튼
-				$('.callModal').click(function() {
-					$('.modal-lesson').fadeIn();
-				});
+						//모달창 클릭시 닫기
+						$('.contentClose').click(function() {
+							$('.modal-lesson').fadeOut();
+						});
+						//슬라이드 돌아가기 버튼
+						$('.callModal').click(function() {
+							$('.modal-lesson').fadeIn();
+						});
 
-				//submit 버튼을 누른후 나오는 결과 모달창을 불러옴
-				$('#resultSubmit').click(function() {
-					$('#resultModal').fadeIn();
-				});
+						//submit 버튼을 누른후 나오는 결과 모달창을 불러옴
+						$('#resultSubmit').click(function() {
+							$('#resultModal').fadeIn();
+						});
 
-				//결과 모달창을 닫는 버튼
-				$('.resultClose').click(function() {
-					$('#resultModal').fadeOut();
-				});
+						//결과 모달창을 닫는 버튼
+						$('.resultClose').click(function() {
+							$('#resultModal').fadeOut();
+						});
 
-				//모달창 바로 띄우기
-				$('.modal-lesson').fadeIn();
-				//슬라이더
-				$('.modal-lesson-wrapper').slick({
-					slidesToShow : 1,
-					slidesToScroll : 1,
-					speed : 100,
-					autoplay : false,
-					prevArrow : "<button type='button' class='slick-prev'><i class='bi bi-arrow-left-circle-fill'></i></button>",        // 이전 화살표 모양 설정
-	                nextArrow : "<button type='button' class='slick-next'><i class='bi bi-arrow-right-circle-fill'></i></button>"   
+						//모달창 바로 띄우기
+						$('.modal-lesson').fadeIn();
+						//슬라이더
+						$('.modal-lesson-wrapper')
+								.slick(
+										{
+											slidesToShow : 1,
+											slidesToScroll : 1,
+											speed : 100,
+											autoplay : false,
+											prevArrow : "<button type='button' class='slick-prev'><i class='bi bi-arrow-left-circle-fill'></i></button>", // 이전 화살표 모양 설정
+											nextArrow : "<button type='button' class='slick-next'><i class='bi bi-arrow-right-circle-fill'></i></button>"
 
-				});
+										});
 
-			});
+					});
 </script>
 
 <!-- 코드미러 부분의 폰트 지정(CSS파일이나 textarea 내부에서 적용하려 하였으나 적용이 되지않아 여기서 직접 적용) -->
@@ -174,9 +177,20 @@
 					</a>
 				</div>
 				<div class="modal-lesson-body">
-					<h2>Java 입문</h2>
+					<h2>Java 세계에 오신 것을 환영합니다.</h2>
 					<div class="modal-lesson-body-content">
-						<p>Modal body text goes here.</p>
+						<p class="slide-top__description">
+							<span><font style="vertical-align: inherit;"><font
+									style="vertical-align: inherit;">이 단원에서는 Java의 기본 코드 작성,
+										데이터 유형, 변수 등에 대해 배웁니다. </font></font></span><br>
+							<span><font style="vertical-align: inherit;"><font
+									style="vertical-align: inherit;">처음 듣는 단어도 많이 어렵다고 느낄 수도
+										있을지도 모릅니다만, </font></font></span><br>
+							<span><font style="vertical-align: inherit;"><font
+									style="vertical-align: inherit;">하나하나 순서를 쫓아 배워 가므로, 끝까지
+										노력해 갑시다.</font></font></span><br>
+							<span></span>
+						</p>
 					</div>
 					<div class="modal-lesson-body-bottom"></div>
 				</div>
