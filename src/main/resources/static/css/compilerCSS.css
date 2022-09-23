@@ -294,13 +294,11 @@ footer {
 }
 .slick-next:before {
      content: ">";
-<<<<<<< HEAD
+
 }
 .u-relative{
 	position: fixed;
 	width: 250px;
 }
 
-=======
-}
->>>>>>> 8bca90ed7607a7ce5c81a8fa7b785e5f9a7f8c08
+
