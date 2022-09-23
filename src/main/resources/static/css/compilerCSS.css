@@ -253,13 +253,13 @@ footer {
     text-align:center;
     margin:0 auto;
     vertical-align:middle;
-    line-height:0px;  
-    top:45%;    
+    line-height:0px;     
     position: absolute;
     bottom: 20px;
     cursor: pointer;
     font-size: 3; 
-    z-index: 1;  
+    z-index: 1; 
+    color: teal;
 } 
 
 .modalHeader{
@@ -301,9 +301,10 @@ footer {
     
 }
 .slick-next {
-    right: 5%;
-    font-size: 40px;   
+	font-size: 40px;
+    right: 5%;   
 }
+
 /* .slick-prev:before {
    	
 } */
