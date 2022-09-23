@@ -47,63 +47,64 @@
 	src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
 <script>
-	$(document).ready(
-			function() {
-				// 코드미러 실행
-				const codemirrorEditor = CodeMirror.fromTextArea(document
-						.getElementById("codemirror"), {
-					//라인 번호
-					lineNumbers : true,
-					//테마
-					theme : 'monokai',
-					//자바 모드
-					mode : "text/x-java",
-					viewpointMargin : Infinity,
-					readOnly : false,
-					tabsize : 2,
-					lineWrapping : true,
-					matchBrackets : true,
-					styleActiveLine : true,
-					autoCloseBrackets : true,
-					autoCloseTags : true
+	$(document)
+			.ready(
+					function() {
+						// 코드미러 실행
+						const codemirrorEditor = CodeMirror.fromTextArea(
+								document.getElementById("codemirror"), {
+									//라인 번호
+									lineNumbers : true,
+									//테마
+									theme : 'monokai',
+									//자바 모드
+									mode : "text/x-java",
+									viewpointMargin : Infinity,
+									readOnly : false,
+									tabsize : 2,
+									lineWrapping : true,
+									matchBrackets : true,
+									styleActiveLine : true,
+									autoCloseBrackets : true,
+									autoCloseTags : true
 
-				});
-				
-				
+								});
 
-				//모달창 클릭시 닫기
-				$('.contentClose').click(function() {
-					$('.modal-lesson').fadeOut();
-				});
-				//슬라이드 돌아가기 버튼
-				$('.callModal').click(function() {
-					$('.modal-lesson').fadeIn();
-				});
+						//모달창 클릭시 닫기
+						$('.contentClose').click(function() {
+							$('.modal-lesson').fadeOut();
+						});
+						//슬라이드 돌아가기 버튼
+						$('.callModal').click(function() {
+							$('.modal-lesson').fadeIn();
+						});
 
-				//submit 버튼을 누른후 나오는 결과 모달창을 불러옴
-				$('#resultSubmit').click(function() {
-					$('#resultModal').fadeIn();
-				});
+						//submit 버튼을 누른후 나오는 결과 모달창을 불러옴
+						$('#resultSubmit').click(function() {
+							$('#resultModal').fadeIn();
+						});
 
-				//결과 모달창을 닫는 버튼
-				$('.resultClose').click(function() {
-					$('#resultModal').fadeOut();
-				});
+						//결과 모달창을 닫는 버튼
+						$('.resultClose').click(function() {
+							$('#resultModal').fadeOut();
+						});
 
-				//모달창 바로 띄우기
-				$('.modal-lesson').fadeIn();
-				//슬라이더
-				$('.modal-lesson-wrapper').slick({
-					slidesToShow : 1,
-					slidesToScroll : 1,
-					speed : 100,
-					autoplay : false,
-					prevArrow : "<button type='button' class='slick-prev'><i class='bi bi-arrow-left-circle-fill'></i></button>",        // 이전 화살표 모양 설정
-	                nextArrow : "<button type='button' class='slick-next'><i class='bi bi-arrow-right-circle-fill'></i></button>"   
+						//모달창 바로 띄우기
+						$('.modal-lesson').fadeIn();
+						//슬라이더
+						$('.modal-lesson-wrapper')
+								.slick(
+										{
+											slidesToShow : 1,
+											slidesToScroll : 1,
+											speed : 100,
+											autoplay : false,
+											prevArrow : "<button type='button' class='slick-prev'><i class='bi bi-arrow-left-circle-fill'></i></button>", // 이전 화살표 모양 설정
+											nextArrow : "<button type='button' class='slick-next'><i class='bi bi-arrow-right-circle-fill'></i></button>"
 
-				});
+										});
 
-			});
+					});
 </script>
 
 <!-- 코드미러 부분의 폰트 지정(CSS파일이나 textarea 내부에서 적용하려 하였으나 적용이 되지않아 여기서 직접 적용) -->
@@ -168,7 +169,6 @@
 <body>
 	<!-- 모달 개념설명 부분 -->
 	<div class="modal-lesson" id="div-modal-slider">
-<<<<<<< HEAD
 		<div class="modal-lesson-wrapper">
 			<div class="modal-lesson-content">
 				<div class="modal-lesson-header d-flex justify-content-end">
@@ -221,9 +221,7 @@
 				<div class="modal-lesson-body">
 					<h2>Java2</h2>
 					<div class="modal-lesson-body-content">
-						<p class="slide-top__description">
-							write here.
-						</p>
+						<p class="slide-top__description">write here.</p>
 					</div>
 					<div class="slide__SlideBottom-z90lcr-1 wNtlP">
 						<div
@@ -251,60 +249,6 @@
 				</div>
 			</div>
 		</div>
-=======
-
-  		<div class="modal-lesson-wrapper">
-  			 <div class="modal-lesson-content">
-  				<div class="modal-lesson-header d-flex justify-content-end">
-  					<a class="contentClose">	
-          				<span aria-hidden="true"><i class="bi bi-x-circle-fill"></i></span>
-          			</a>
-  				</div>
-  				<div class="modal-lesson-body">
-  					
-  					<h2>Java 입문</h2>
-  				<div class="modal-lesson-body-content">
-  					<p>Modal body text goes here.</p>
-  				</div>
-  					<div class="modal-lesson-body-bottom"></div>
-  				</div>
-  			</div>
-  			
-  			<div class="modal-lesson-content">
-  				<div class="modal-lesson-header d-flex justify-content-end">
-  					<a class="contentClose">	
-          				<span aria-hidden="true"><i class="bi bi-x-circle-fill"></i></span>
-          			</a>
-  				</div>
-  				<div class="modal-lesson-body">
-  					
-  					<h2>Java 입문2</h2>
-  					<div class="modal-lesson-body-content">
-  						<p>Modal body text goes here.</p>
-  					</div>
-  					<div class="modal-lesson-body-bottom"></div>
-  				</div>
-  			</div>
-  			<div class="modal-lesson-content">
-  				<div class="modal-lesson-header d-flex justify-content-end">
-  					<a class="contentClose">	
-          				<span aria-hidden="true"><i class="bi bi-x-circle-fill"></i></span>
-          			</a>
-  				</div>
-  				<div class="modal-lesson-body">
-  					<h2>Java 입문3</h2>
-  				<div class="modal-lesson-body-content">
-  					<p>Modal body text goes here.</p>
-  				</div>
-  					<div class="modal-lesson-body-bottom"></div>
-  				<div class="modal-lesson-body-bottom"></div>
-  				</div>
-  				<div class="modal-lesson-footer">
-  				
-  				</div>
-  			</div> 
-  		</div> 
->>>>>>> 35c74348f2ffcfd4b32b5a1ece2bfe5cb1d44b52
 	</div>
 	<div class="d-flex flex-wrap align-items-center">
 		<!-- 문제출력 부분 -->
@@ -362,8 +306,7 @@
 										id="submitButton">
 										<i class="bi bi-download" id="downloadIcon"></i> Save
 									</button>
-									<button type="button" class="btn btn-light"
-										id="answerButton">Answer</button>
+									<button type="button" class="btn btn-light" id="answerButton">Answer</button>
 									<button type="button" class="btn btn-info" onclick=""
 										id="submitButton">Next</button>
 								</div>
