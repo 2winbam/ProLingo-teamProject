@@ -59,7 +59,7 @@ $(document).ready(function() {
     });
     
 	//모달창 클릭시 닫기
-	$('.btn-modal-close').click(function() {
+	$('.contentClose').click(function() {
 		$('.modal-lesson').fadeOut();
 	});
 	//슬라이드 돌아가기 버튼
@@ -67,10 +67,12 @@ $(document).ready(function() {
 		$('.modal-lesson').fadeIn();
 	}); 
 	
+	//submit 버튼을 누른후 나오는 결과 모달창을 불러옴
 	$('#resultSubmit').click(function(){
 		$('#resultModal').fadeIn();
 	});
 	
+	//결과 모달창을 닫는 버튼
 	$('.resultClose').click(function(){
 		$('#resultModal').fadeOut();
 	});
@@ -147,45 +149,46 @@ $(document).ready(function() {
 	<div class="modal-lesson" id="div-modal-slider">
   		<div class="modal-lesson-wrapper">
   			 <div class="modal-lesson-content">
-  				<div class="modal-lesson-header">
+  				<div class="modal-lesson-header d-flex justify-content-end">
+  					<a class="contentClose">	
+          				<span aria-hidden="true"><i class="bi bi-x-circle-fill"></i></span>
+          			</a>
   				</div>
   				<div class="modal-lesson-body">
   					<h2>Java 입문</h2>
   				<div class="modal-lesson-body-content">
   				<p>Modal body text goes here.</p>
   				</div>
-  				<div class="modal-lesson-body-bottom"></div>
-  				</div>
-  				<div class="modal-lesson-footer">
-  					<button type="button" class="btn-modal-close">Close</button>
+  					<div class="modal-lesson-body-bottom"></div>
   				</div>
   			</div>
   			<div class="modal-lesson-content">
-  				<div class="modal-lesson-header">
+  				<div class="modal-lesson-header d-flex justify-content-end">
+  					<a class="contentClose">	
+          				<span aria-hidden="true"><i class="bi bi-x-circle-fill"></i></span>
+          			</a>
   				</div>
   				<div class="modal-lesson-body">
+  					
   					<h2>Java 입문2</h2>
-  				<div class="modal-lesson-body-content">
-  				<p>Modal body text goes here.</p>
-  				</div>
-  				<div class="modal-lesson-body-bottom"></div>
-  				</div>
-  				<div class="modal-lesson-footer">
-  					<button type="button" class="btn-modal-close">Close</button>
+  					<div class="modal-lesson-body-content">
+  						<p>Modal body text goes here.</p>
+  					</div>
+  					<div class="modal-lesson-body-bottom"></div>
   				</div>
   			</div>
   			<div class="modal-lesson-content">
-  				<div class="modal-lesson-header">
+  				<div class="modal-lesson-header d-flex justify-content-end">
+  					<a class="contentClose">	
+          				<span aria-hidden="true"><i class="bi bi-x-circle-fill"></i></span>
+          			</a>
   				</div>
   				<div class="modal-lesson-body">
   					<h2>Java 입문3</h2>
   				<div class="modal-lesson-body-content">
   				<p>Modal body text goes here.</p>
   				</div>
-  				<div class="modal-lesson-body-bottom"></div>
-  				</div>
-  				<div class="modal-lesson-footer">
-  					<button type="button" class="btn-modal-close">Close</button>
+  					<div class="modal-lesson-body-bottom"></div>
   				</div>
   			</div> 
   		</div> 

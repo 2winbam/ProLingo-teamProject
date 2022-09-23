@@ -224,28 +224,28 @@ footer {
 }
 
 .modal-lesson{
+	
 	position:absolute;
-	width: 100%; height: 650px;
-	justify-content: center;
+	width: 100%; height:750px;
 	background: black;
-	top: 6%; left:0%;
+	top: 9%; left:0%;
 	z-index:1050;
 	display:none;
 }
 .modal-lesson-wrapper{
 	position: fixed;
-	width:100%; height:550px;
-	top: 8%; left: 0%;
+	width:96%; height:83%;
+	top: 5%;
 	text-align: center;
-	background-color: skyblue;
+	background-color: lightcyan;
 }
 .modal-lesson-body {
 	height:450px;	
 }
 .slick-arrow{    
     /* background: #9e9e9e ;         */
-    background:  skyblue;
-    
+    background:  lightcyan;
+  
     width:40px;
     height:40px;
     border: 0;
@@ -283,6 +283,18 @@ footer {
 	background-color: rgb(51, 51, 51);
 }
 
+.contentClose{
+	display: block;
+	padding: 10px;
+	font-size:25px;
+	color:teal;
+}
+
+.contentClose:hover{
+	color: teal;
+	filter: brightness(130%);
+}
+
 .slick-prev {
     left: 2%;
 }
@@ -290,8 +302,8 @@ footer {
     right: 5%;   
 }
 .slick-prev:before {
-    content: '<';
+   	content: "<";
 }
-.slick-next:before {
-     content: ">";
+.slick-next:before { 
+    content: ">";
 }
