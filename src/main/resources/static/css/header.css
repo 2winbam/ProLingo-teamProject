@@ -102,12 +102,35 @@ header{
 	position: fixed;
 	top: 16px;
 	left: 200px;
+	border: 0px;
 	background-color:#f5f7fa;
 	color: #30546a;
 	font-size: 13px;
 	padding: 8px 16px 8px 16px;
 	border-radius: 5px 5px 5px 5px;
 	font-family: 'Noto Sans KR', sans-serif;
+}
+
+#learnList{
+	background-color:#f5f7fa;
+}
+
+.learningOne{
+	text-decoration: none;
+	color: #30546a;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+#learningLink{
+	padding:16px;
+	background-color: white;
+	border-bottom-style: solid; 
+	border-bottom-color: #f5f7fa;
+	text-decoration: none;
+}
+
+#learningLink:hover{
+	background-color: f5f7fa;
 }
 
 #pageList:hover{

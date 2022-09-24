@@ -65,7 +65,11 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 	});
 	
 	//header의 pageList 클릭시	출력되는 모달창
-		
+	$('#pageList').click(function() {
+		$('#learningModal').fadeIn();
+	});
+	
+	
 	//모달창 클릭시 닫기
 	$('.contentClose').click(function() {
 		$('.modal-lesson').fadeOut();
@@ -81,10 +85,11 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 		$('#resultModal').fadeIn();
 	});
 
-	//결과 모달창을 닫는 버튼
+	//모달창을 닫는 버튼( 모든 모달창에서 사용됨 )
 	$('.resultClose').click(function() {
 		$('#resultModal').fadeOut();
 		$('#answerModal').fadeOut();
+		$('#learningModal').fadeOut();
 		});
 		
 
@@ -141,13 +146,12 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 				<a th:href="@{/}" class="menu px-5 nav-link text-start" id="title" style="font-weight:bold">PROLINGO</a>
 			</div>
 			
-			<span id="pageList">
+			<button id="pageList">
 				Java Study 1
-				<i class="bi bi-chevron-right" id="chevron"></i>
-				변수
-				<i class="bi-chevron-right" id="chevron"></i>
+				&nbsp;<i class="bi-chevron-right" id="chevron"></i>&nbsp;
 				변수의 선언 및 개념
-			</span>
+				&nbsp;<i class="bi bi-caret-down-fill"></i>
+			</button>
 			
 			<!-- 로그인한 계정페이지로의 연결과 프로필 사진 출력 필요 (개인페이지 구현 및 사진 저장경로 구현 후 상세히 작성예정) -->
 				
@@ -171,6 +175,26 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 				</ul>
 			</div>
 		</div>
+	</div>
+	
+	<div class="modal" id="learningModal">
+  		<div class="modal-dialog" role="document">
+    		<div class="modal-content">
+     		 	<div class="modal-header">
+        			<h5 class="modal-title" id="exampleModalLongTitle">Java Study1</h5>
+        			<button type="button" class="resultClose btn-close"
+						aria-label="Close" id="resultClose"></button>
+      			</div>
+      		<div class="modal-body" id="learnList">
+      			<div class="learningLink" id="learningLink">
+        			<a th:href:"" class="learningOne" >1. 학습리스트 예시1</a>
+        		</div>
+        		<div class="learningLink" id="learningLink">
+        			<a th:href:"" class="learningOne" >2. 학습리스트 예시2</a>
+        		</div>
+      		</div>
+    	</div>
+  		</div>
 	</div>
 </header>
 
@@ -290,6 +314,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 						<button type="button" class="footerButton btn btn-success"
 							onclick="" id="resultSubmit">Submit</button>
 					</span>
+					
 					<!-- submit 누른후 나오는 modal -->
 					<div class="resultModal modal" id="resultModal">
 						<div class="resultDialog modal-dialog modal-lg">
