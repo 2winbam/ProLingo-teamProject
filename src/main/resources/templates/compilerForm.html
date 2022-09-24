@@ -1,20 +1,19 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org">
+<html lang="ko" xmlns:th="http://thymeleaf.org" 
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
 <title>CompilerForm</title>
 
-<script th:src="@{/scripts/jquery-3.6.0.js}"></script>
+<script th:src="@{/js/jquery-3.6.0.js}"></script>
 
 <link rel="shortcut icon" th:href="@{/img/icons/icon-48x48.png}" />
+
 <!-- 부트스트랩 CSS -->
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
-	rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- 부트스트랩 JavaScript -->
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <!-- compiler의 css -->
 <link rel="stylesheet" type="text/css" th:href="@{/css/compilerCSS.css}">
@@ -22,22 +21,18 @@
 <!-- header의 css -->
 <link rel="stylesheet" type="text/css" th:href="@{/css/header.css}">
 
+<!-- header의 폰트 -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet">
+
 <!-- 아이콘 사용 -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 
-<!-- include libraries(jQuery) -->
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
 <!-- include codemirror (codemirror.css, codemirror.js, xml.js, formatting.js) -->
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/theme/monokai.min.css" />
-<script type="text/javascript"
-	src="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/codemirror.js"></script>
-<script type="text/javascript"
-	src="//cdnjs.cloudflare.com/ajax/libs/codemirror/2.36.0/formatting.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/clike/clike.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/theme/monokai.min.css" />
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/codemirror.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/codemirror/2.36.0/formatting.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/clike/clike.min.js"></script>
 <link rel="stylesheet" type="text/css" th:href="@{/css/codeMirror.css}">
 
 <!-- slick CSS, JS -->
@@ -46,127 +41,141 @@
 <script type="text/javascript"
 	src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
+<!-- 코드미러의 설정 -->	
 <script>
-	$(document)
-			.ready(
-					function() {
-						// 코드미러 실행
-						const codemirrorEditor = CodeMirror.fromTextArea(
-								document.getElementById("codemirror"), {
-									//라인 번호
-									lineNumbers : true,
-									//테마
-									theme : 'monokai',
-									//자바 모드
-									mode : "text/x-java",
-									viewpointMargin : Infinity,
-									readOnly : false,
-									tabsize : 2,
-									lineWrapping : true,
-									matchBrackets : true,
-									styleActiveLine : true,
-									autoCloseBrackets : true,
-									autoCloseTags : true
-
-								});
-
-						//모달창 클릭시 닫기
-						$('.contentClose').click(function() {
-							$('.modal-lesson').fadeOut();
-						});
-						//슬라이드 돌아가기 버튼
-						$('.callModal').click(function() {
-							$('.modal-lesson').fadeIn();
-						});
-
-						//submit 버튼을 누른후 나오는 결과 모달창을 불러옴
-						$('#resultSubmit').click(function() {
-							$('#resultModal').fadeIn();
+	$(document).ready(function() {
+		// 코드미러 실행
+		const codemirrorEditor = CodeMirror.fromTextArea(
+			document.getElementById("codemirror"),{
+			//라인 번호
+			lineNumbers : true,
+			//테마
+			theme : 'monokai',
+			//자바 모드
+			mode : "text/x-java",
+			viewpointMargin : Infinity,
+			readOnly : false,
+			lineWrapping : true,
+			matchBrackets : true,
+			styleActiveLine : true,
+			autoCloseBrackets : true,
+			lineNumbers: true,
+		    autoRefresh:true,
+			autoCloseTags : true
+	});
+	
+	//header의 pageList 클릭시	출력되는 모달창
+		
+	//모달창 클릭시 닫기
+	$('.contentClose').click(function() {
+		$('.modal-lesson').fadeOut();
+	});
+	
+	//슬라이드 돌아가기 버튼
+	$('.callModal').click(function() {
+		$('.modal-lesson').fadeIn();
 						});
 
-						//결과 모달창을 닫는 버튼
-						$('.resultClose').click(function() {
-							$('#resultModal').fadeOut();
-						});
+	//submit 버튼을 누른후 나오는 결과 모달창을 불러옴
+	$('#resultSubmit').click(function() {
+		$('#resultModal').fadeIn();
+	});
 
-						//모달창 바로 띄우기
-						$('.modal-lesson').fadeIn();
-						//슬라이더
-						$('.modal-lesson-wrapper')
-								.slick(
-										{
-											slidesToShow : 1,
-											slidesToScroll : 1,
-											speed : 100,
-											autoplay : false,
-											prevArrow : "<button type='button' class='slick-prev'><i class='bi bi-arrow-left-circle-fill'></i></button>", // 이전 화살표 모양 설정
-											nextArrow : "<button type='button' class='slick-next'><i class='bi bi-arrow-right-circle-fill'></i></button>"
+	//결과 모달창을 닫는 버튼
+	$('.resultClose').click(function() {
+		$('#resultModal').fadeOut();
+		$('#answerModal').fadeOut();
+		});
+		
 
-										});
+	//모달창 바로 띄우기
+	$('.modal-lesson').fadeIn();
+	
+	
+	//정답 모달창 띄우기
+	$('#answerButton').click(function() {
+		$('#resultModal').fadeOut();
+		$('#answerModal').fadeIn();
+		
+	});
+	
+	$('#seeAnswer').click(function() {
+		$('#resultModal').fadeOut();
+		$('#answerModal').fadeIn();
+		
+	});
+	
+	//슬라이더
+	$('.modal-lesson-wrapper').slick(
+		{
+		slidesToShow : 1,
+		slidesToScroll : 1,
+		speed : 100,
+		autoplay : false,
+		prevArrow : "<button type='button' class='slick-prev'><i class='bi bi-arrow-left-circle-fill'></i></button>", // 이전 화살표 모양 설정
+		nextArrow : "<button type='button' class='slick-next'><i class='bi bi-arrow-right-circle-fill'></i></button>"
+	});
 
-					});
+});
 </script>
 
-<!-- 코드미러 부분의 폰트 지정(CSS파일이나 textarea 내부에서 적용하려 하였으나 적용이 되지않아 여기서 직접 적용) -->
 <style>
 .CodeMirror {
 	font-family: Consolas, serif;
 	font-size: 17px;
 	line-height: 30px;
 	border: 0px;
-}
+}	
 </style>
-
 
 </head>
 
 <header class="p-3">
 	<div class="container">
 		<div class="d-flex flex-wrap align-items-center">
-			<!-- a태그의 이동페이지 주소는 해당 페이지의 제작자가 입력 요망 -->
+				<!-- a태그의 이동페이지 주소는 해당 페이지의 제작자가 입력 요망 -->		
 			<div id="logo">
-				<a th:href="@{/}"><img th:src="@{/icons/swallow_icon.png}"
-					alt="logo_icon" id="logo_icon"></a>
+				<a th:href="@{/}"><img th:src="@{/icons/swallow_icon.png}" alt="logo_icon" id="logo_icon"></a>
 			</div>
 			<div>
-				<a th:href="@{/}" class="menu px-5 nav-link text-start" id="title"
-					style="font-weight: bold">PROLINGO</a>
+				<a th:href="@{/}" class="menu px-5 nav-link text-start" id="title" style="font-weight:bold">PROLINGO</a>
 			</div>
-
-
-
+			
+			<span id="pageList">
+				Java Study 1
+				<i class="bi bi-chevron-right" id="chevron"></i>
+				변수
+				<i class="bi-chevron-right" id="chevron"></i>
+				변수의 선언 및 개념
+			</span>
+			
 			<!-- 로그인한 계정페이지로의 연결과 프로필 사진 출력 필요 (개인페이지 구현 및 사진 저장경로 구현 후 상세히 작성예정) -->
-
+				
 			<div class="px-5 dropdown text-end">
-				<a href="#"
-					class="menu d-block dropdown-toggle text-decoration-none"
-					data-bs-toggle="dropdown" aria-expanded="false" id="profile"> <img
-					src="https://github.com/mdo.png" alt="profile" width="32"
-					height="32" class="rounded-circle">
-				</a>
-
+					<a href="#" class="menu d-block dropdown-toggle text-decoration-none"
+							data-bs-toggle="dropdown" aria-expanded="false" id="profile">
+					<img src="https://github.com/mdo.png" alt="profile" width="32" height="32"
+							class="rounded-circle">
+					</a>
+				
 				<ul class="dropdown-menu text-small text-light">
 					<!-- 프로필 페이지와 연결 -->
-					<li><a class="dropdown-item" href="#"><i
-							class="bi bi-person-circle"></i>&nbsp;&nbsp;프로필</a></li>
+					<li><a class="dropdown-item" href="#"><i class="bi bi-person-circle"></i>&nbsp;&nbsp;프로필</a></li>
 					<!-- 결제 페이지로 이동 -->
-					<li><a class="dropdown-item" href="#"><i
-							class="bi bi-cart"></i>&nbsp;&nbsp;결제</a></li>
+					<li><a class="dropdown-item" href="#"><i class="bi bi-cart"></i>&nbsp;&nbsp;결제</a></li>
 					<!-- 설정 페이지로 이동 -->
-					<li><a class="dropdown-item" href="#"><i
-							class="bi bi-gear"></i>&nbsp;&nbsp;설정</a></li>
+					<li><a class="dropdown-item" href="#"><i class="bi bi-gear"></i>&nbsp;&nbsp;설정</a></li>
 					<li><hr class="dropdown-divider"></li>
 					<!-- 로그아웃 하면서 시작페이지로 이동 -->
-					<li><a class="dropdown-item" href="@{/}"><i
-							class="bi bi-person-x"></i>&nbsp;&nbsp;로그아웃</a></li>
+           			<li><a class="dropdown-item" href="@{/}"><i class="bi bi-person-x"></i>&nbsp;&nbsp;로그아웃</a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
 </header>
 
-
 <body>
+
 	<!-- 모달 개념설명 부분 -->
 	<div class="modal-lesson" id="div-modal-slider">
 		<div class="modal-lesson-wrapper">
@@ -178,7 +187,6 @@
 				</div>
 				<div class="modal-lesson-body">
 					<h2>Java 세계에 오신 것을 환영합니다.</h2>
-					<!-- 여기부터 콘텐츠 -->
 					<div class="modal-lesson-body-content">
 						<p class="slide-top__description">
 							<span><font style="vertical-align: inherit;"><font
@@ -192,13 +200,44 @@
 										노력해 갑시다.</font></font></span><br> <span></span>
 						</p>
 					</div>
-					<div class="slide__SlideBottom-z90lcr-1 wNtlP">
-						<div
-							class="slide_bottom_items__SlideBottomItems-sc-1g258za-0 cVxUeS">
+						<div class="slide__SlideBottom-z90lcr-1 wNtlP">
 							<div
-								class="slide_bottom_items__SlideBottomItemsInnerWrapper-sc-1g258za-1 eIFOJW">
+								class="slide_bottom_items__SlideBottomItems-sc-1g258za-0 cVxUeS">
 								<div
-									class="slide_bottom_items__SlideBottomItem-sc-1g258za-2 kDyeWH">
+									class="slide_bottom_items__SlideBottomItemsInnerWrapper-sc-1g258za-1 eIFOJW">
+									<div 
+										class="slide_bottom_items__SlideBottomItem-sc-1g258za-2 kDyeWH">
+										<div class="u-inline">
+											<div class="u-relative">
+												<img data-id="1377"
+													class="slide_image1"
+													src="https://d2aj9sy12tbpym.cloudfront.net/progate/shared/images/slide/java/study/1/1464330632364.png">
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+				</div>
+			</div>
+			
+			<div class="modal-lesson-content">
+				<div class="modal-lesson-header d-flex justify-content-end">
+					<a class="contentClose"> <span aria-hidden="true"><i
+							class="bi bi-x-circle-fill"></i></span>
+					</a>
+				</div>
+				<div class="modal-lesson-body">
+					<h2>Java 2</h2>
+					<div class="modal-lesson-body-content">
+						<p class="slide-top__description">
+							
+						</p>
+					</div>
+					<div class="slide__SlideBottom-z90lcr-1 wNtlP">
+						<div class="slide_bottom_items__SlideBottomItems-sc-1g258za-0 cVxUeS">
+							<div class="slide_bottom_items__SlideBottomItemsInnerWrapper-sc-1g258za-1 eIFOJW">
+								<div class="slide_bottom_items__SlideBottomItem-sc-1g258za-2 kDyeWH">
 									<div class="u-inline">
 										<div class="u-relative">
 											<img data-id="1377" class="slide_image1"
@@ -209,43 +248,6 @@
 							</div>
 						</div>
 					</div>
-				</div>
-			</div>
-			<!-- 여기까지가 하나의 콘텐츠 -->
-			<div class="modal-lesson-content">
-				<div class="modal-lesson-header d-flex justify-content-end">
-					<a class="contentClose"> <span aria-hidden="true"><i
-							class="bi bi-x-circle-fill"></i></span>
-					</a>
-				</div>
-				<div class="modal-lesson-body">
-					<h2>Java2</h2>
-					<div class="modal-lesson-body-content">
-						<p class="slide-top__description">write here.</p>
-					</div>
-					<div class="slide__SlideBottom-z90lcr-1 wNtlP">
-						<div
-							class="slide_bottom_items__SlideBottomItems-sc-1g258za-0 cVxUeS">
-							<div
-								class="slide_bottom_items__SlideBottomItemsInnerWrapper-sc-1g258za-1 eIFOJW">
-								<div
-									class="slide_bottom_items__SlideBottomItem-sc-1g258za-2 kDyeWH">
-									<div class="u-inline">
-										<div class="u-relative">
-											<!-- 이미지파일 넣기 -->
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="modal-lesson-content-controll">
-				<div class="modal-lesson-header d-flex justify-content-end">
-					<a class="contentClose"> <span aria-hidden="true"><i
-							class="bi bi-x-circle-fill"></i></span>
-					</a>
 				</div>
 			</div>
 		</div>
@@ -261,6 +263,9 @@
 					below as a natural lead-in to additional content.</p>
 			</div>
 		</div>
+		
+
+		
 		<!--컴파일러 부분  -->
 		<form method="post" action="">
 			<div class="card" id="compiler">
@@ -268,7 +273,7 @@
 					<i class="bi bi-journal-code"></i>
 				</div>
 				<div class="card-body">
-					<textarea class="codemirror" id="codemirror"></textarea>
+					<textarea class="CodeMirror" id="codemirror" ></textarea>
 				</div>
 				<div
 					class="compilerFooter card-footer d-flex justify-content-between">
@@ -297,8 +302,36 @@
 										aria-label="Close" id="resultClose"></button>
 								</div>
 								<div class="modalBody modal-body">
-									<div style="color: deeppink; font-size: 25px;">Congratulations!</div>
+									<div style="color: deeppinks; font-size: 25px;">Congratulations!</div>
 									<div>다음 과정은 ~~~ 입니다</div>
+								</div>
+								<div class="modalFooter modal-footer">
+									<!-- 문제 저장버튼 -->
+									<button type="button" class=" btn btn-dark" onclick=""
+										id="submitButton">
+										<i class="bi bi-download" id="downloadIcon"></i> Save
+									</button>
+									<button type="button" class="btn btn-light" onclick=""
+										id="answerButton">Answer</button>
+									<button type="button" class="btn btn-info" onclick=""
+										id="submitButton">Next</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- answer 누르면 나오는 modal -->
+					<div class="answerModal modal" id="answerModal">
+						<div class="answerDialog modal-dialog modal-lg">
+							<div class="modal-content" id="answerModal">
+								<div class="answerHeader modal-header">
+									<div id="modalProgress">
+										Answer
+									</div>
+									<button type="button" class="resultClose btn-close"
+										aria-label="Close" id="resultClose"></button>
+								</div>
+								<div class="card-body">
+									<textarea class="codeAnswer" id="codeAnswer"></textarea>
 								</div>
 								<div class="modalFooter modal-footer">
 									<!-- 문제 저장버튼 -->
@@ -306,9 +339,6 @@
 										id="submitButton">
 										<i class="bi bi-download" id="downloadIcon"></i> Save
 									</button>
-									<button type="button" class="btn btn-light" id="answerButton">Answer</button>
-									<button type="button" class="btn btn-info" onclick=""
-										id="submitButton">Next</button>
 								</div>
 							</div>
 						</div>
@@ -316,7 +346,7 @@
 				</div>
 			</div>
 		</form>
-		<!-- 컴파일러 출력부분(Console) -->
+		<!-- 답 출력부분 -->
 		<div class="card" id="result">
 			<div class="card-header d-flex justify-content-between"
 				id="resultHeader">
@@ -331,7 +361,6 @@
 		</div>
 	</div>
 
-
 	<div class="exercise footer">
 		<footer class="align-items-center">
 
@@ -343,6 +372,8 @@
 
 		</footer>
 	</div>
+	
+
 </body>
 
 </html>
