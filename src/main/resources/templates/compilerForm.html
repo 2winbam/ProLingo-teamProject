@@ -44,9 +44,11 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <!-- 아래의 스크립트문을 js파일로 따로 만든 결과 설정이 적용이 되지 않아 여기서 작성 -->
 
 <script>
-	$(document).ready(function() {
+	$(document).ready(
 		// 코드미러 실행
-		const codemirrorEditor = CodeMirror.fromTextArea(
+		function codemirror() {
+		
+			const codemirrorEditor = CodeMirror.fromTextArea(
 			document.getElementById("codemirror"),{
 			//코드미러 세부설정
 			
@@ -56,18 +58,16 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 			theme : 'monokai',
 			//자바 모드
 			mode : "text/x-java",
-			viewpointMargin : Infinity,
 			readOnly : false,
 			lineWrapping : true,
 			matchBrackets : true,
 			styleActiveLine : true,
 			autoCloseBrackets : true,
-			lineNumbers: true,
 		    autoRefresh:true,
-			autoCloseTags : true
-	});
+			autoCloseTags : true,	
+		});
 	
-	//header의 pageList 클릭시	출력되는 모달창
+	// 학습 리스트를 보여주는 모달을 불러옴
 	$('#pageList').click(function() {
 		$('#learningModal').fadeIn();
 	});
@@ -100,7 +100,8 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 	$('.modal-lesson').fadeIn();
 	
 	
-	//정답 모달창 띄우기
+	//정답 모달창 띄우기('#answerButton', '#seeAnswer')
+	//같은 기능이라 같은 아이디로 실행하려고 하였으나 한쪽만 실행되는 문제가 발생해서 분리시킴
 	$('#answerButton').click(function() {
 		$('#resultModal').fadeOut();
 		$('#answerModal').fadeIn();
@@ -127,15 +128,25 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 });
 </script>
 
-<!-- 코드미러의 글씨체, 폰트 사이즈, 라인 간격, border값 -->
-<!-- 이 css도 header.css나 compilerCSS..css에서 적용하려 하면 적용이 안되므로 여기서 설정 -->
+<!-- 이 css도 header.css나 compilerCSS.css에서 적용하려 하면 적용이 안되므로 여기서 설정 -->
 <style>
+/* 코드미러의 글씨체, 폰트 사이즈, 라인 간격, border값 */
 .CodeMirror {
 	font-family: Consolas, serif;
-	font-size: 17px;
+	font-size: px;
 	line-height: 30px;
 	border: 0px;
-}	
+}
+/* 코드미러 2자리 이상 숫자 겹치는 문제 해결을 위한 코드문 */
+.CodeMirror-gutter {
+  height: 100%;
+  width: 50px;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  padding-bottom: 30px;
+  margin-bottom: -32px;
+  display: inline-block;
+}
 </style>
 
 </head>
@@ -158,9 +169,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 				&nbsp;<i class="bi-chevron-right" id="chevron"></i>&nbsp;
 				변수의 선언 및 개념
 				&nbsp;<i class="bi bi-caret-down-fill"></i>
-			</button>
-			
-			
+			</button>		
 		</div>
 	</div>
 	
@@ -283,8 +292,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 		<!-- 문재가 출력되야하는 부분 -->
 		<div class="card-body contents">
 			<!-- 문제 출력부분 예시 -->
-			<p class="card-text" id="contentsText">With supporting text
-				below as a natural lead-in to additional content.</p>
+			<p class="card-text" id="contentsText">Hello World를 출력하시오, 문제가 출력되는 p태그(필요할시 textarea등으로 변경가능)</p>
 		</div>
 	</div>
 
@@ -299,7 +307,14 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 			<!-- 코드미러가 사용된 card의 body -->
 			<div class="card-body">
 				<!-- 코드미러가 적용되어있는 textarea 부분 -->
-				<textarea class="CodeMirror" id="codemirror" ></textarea>
+				<!-- 아래는 예시 코드 -->
+				<textarea class="CodeMirror" id="codemirror">
+public class Main {
+    public static void main(String[] args) {
+       System. out.println("Hello World" );
+    }
+}
+				</textarea>
 			</div>
 				<!-- 컴파일러 card의 아래부분 -->
 				<div class="compilerFooter card-footer d-flex justify-content-between">
@@ -373,7 +388,13 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 						</div>
 						<!-- 해당 문제의 정답이 출력될 textarea -->
 						<div class="card-body">
-							<textarea class="codeAnswer" id="codeAnswer"></textarea>
+							<textarea class="codeAnswer" id="codeAnswer">
+public class Main {
+    public static void main(String[] args) {
+       System. out.println("Hello World" );
+    }
+}
+							</textarea>
 						</div>
 						<!-- 해당 modal창의 footer -->
 						<div class="modalFooter modal-footer">
@@ -403,8 +424,8 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 		<!-- 결과값이 출력될 card-body -->
 		<div class="card-body" id="resultBody">
 			<!-- 컴파일된 결과가 여기서 풀력 -->
-			<p class="card-text" id="resultText">With supporting text below
-					as a natural lead-in to additional content.</p>
+			<p class="card-text" id="resultText"> "Hello World" 
+			컴파일 결과가 출력되는 p태그(필요할시 textarea등으로 변경가능)</p>
 		</div>
 	</div>
 </div>
