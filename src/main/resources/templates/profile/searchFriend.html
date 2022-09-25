@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org">
-<head>
+<html lang="ko" xmlns:th="http://thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/head :: new_head(~{::title},~{::link},~{::script})">
 <meta charset="UTF-8">
 <title>searchFriend</title>
 
@@ -18,45 +19,58 @@
 <!-- jQuery -->
 <script th:src="@{/js/jquery-3.6.0.js}"></script>
 
+ 
 <!-- 친구찾기 기능의 JavaScript -->
+<!-- 
 <script th:src="@{/js/searchFriend.js}"></script>
-
+-->
 </head>
 <body>
-	<h1> 친구 찾기 </h1>
+<div class="wrapper">
+		<!-- sidebar -->
+		<!-- <div th:replace="fragments/sidebar :: sidebar"></div> -->
+		
+		<div class="main">
+			<!-- header -->
+			<div th:replace="fragments/header :: new_header"></div>
+
+	<h3> 친구 찾기 </h3>
 	
-	<form id="search" th:action="@{/member/list}" method="get">
+	<form class="search" id="searchFriend" action="" method="">
 		<!-- 검색창 -->
 		<div class="inputWrap">
-			<i class="bi bi-search"></i><input type="text" id="searchWord" placeholder="이메일, 이름, 또는 아이디">
-			<button class="btnReset"><i class="bi bi-x-circle"></i></button>
+		<!-- 원래는 아이콘이 보여야 하나 위의 헤더와 충돌하여 아이콘이 미출력 됨 -->
+			<i class="searchBox bi bi-search"></i>
+			<input type="text" id="searchWord" placeholder="이메일, 이름, 또는 아이디">
+			<!-- 누르면 검색칭 리셋 -->
+			<a><i class="bi bi-x-circle-fill"></i></a>
 		</div>
 		<HR>
 		<!-- 가져온 값의 count가 필요 -->
+		<!--  
 		<span th:text=""></span>건의 결과
+		-->
+		<span>1</span>건의 결과
 	</form>
 	<form>	
 		<div id="output"></div>	
 	</form>
-	
-	<!--  <div class="col-md-8">
-            <div class="people-nearby">     
-              <div class="nearby-user">
-                <div class="row">
-                  <div class="col-md-2 col-sm-2">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="user" class="profile-photo-lg">
-                  </div>
-                  <div class="col-md-7 col-sm-7">
-                    <h5><a href="#" class="profile-link">김정수</a></h5>
-                    <p>@email</p>
-                  </div>
-                  <div class="col-md-3 col-sm-3">
-                    <button class="btn btn-primary pull-right">Add Friend</button>
-                  </div>
-                </div>
-              </div>
+	  <div class="searchResult col-md-8">
+      		<div class="row">
+      			<div class="col-md-2 col-sm-2">
+                    <img th:src="@{/img/avatars/avatar.jpg}" alt="user" class="profilePhoto">
+                 </div>
+            <div class="col-md-7 col-sm-7">
+                <h5><a href="#" class="profile-link">김정수</a></h5>
+               	<p>@email</p>
             </div>
+            <div class="col-md-3 col-sm-3">
+                <button class="btn btn-primary">Add Friend</button>
+            </div>
+           </div>
     	</div>
-	-->	
+	</div>
+</div>
+
 </body>
 </html>

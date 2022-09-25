@@ -1,0 +1,29 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+h3{
+	position: absolute;
+	text-align:center;
+	top: 100px;
+	width: 100%;
+	border: 50px;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight:bold;
+}
+
+.achieveList{
+	width:100%;
+	position: fixed;
+	top: 180px;
+	left: 20%;
+	text-align:left;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+.achievement{
+	width:900px;
+}
+
+#payment{
+	filter:grayscale(100%);
+}

@@ -8,24 +8,24 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MemberVO {
-	 int USER_ID; 
-	 int USER_PW;
-	 String DEFAULAT_EMAIL;
-	 String EMAIL;
-	 String USER_NAME;
-	 String NICKNAME;
-	 String PHOTO;
-	 int AGE;
-	 String USER_ROLE;
-	 String LOGINTYPE;
-	 int JOINDATE;
-	 int EXP;
-	 int CONTINUEDAY;
-	 int MONEY;
-	 int GOAL;
-	 int NOTICE;
-	 int AUTOSAVE;
-}
+	private int user_id; 
+	private int user_pw;
+	private String default_email;
+	private String email;
+	private String user_name;
+	private String nickname;
+	private String photo;
+	private int age;
+	private String user_role;
+	private String longintype;
+	private int joindate;
+	private int exp;
+	private int continueday;
+	private int money;
+	private int goal;
+	private int notice;
+	private int autosave;
+}	
 
 /*--PROLINGO_USER                  
 DROP TABLE   PROLINGO_USER   ;            

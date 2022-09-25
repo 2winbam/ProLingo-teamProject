@@ -39,5 +39,12 @@ public class ProfileController {
 		return "profile/timelineTest";
 	}
 	
-	
+	/**
+	 * 친구찾기 페이지
+	 */
+	@GetMapping("/searchFriend")
+	public String searchFriend() {
+		log.debug("called searchFriend");
+		return "profile/searchFriend";
+	}
 }

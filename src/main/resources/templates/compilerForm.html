@@ -85,9 +85,10 @@ $(document).ready(
 		$('.modal-lesson').fadeIn();
 						});
 
-	//submit 버튼을 누른후 나오는 결과 모달창을 불러옴
+	//submit 버튼을 누른후 나오는 결과 모달창을 불러옴(resultModal은 정답일 경우, falseModal은 오답일 경우)
 	$('#resultSubmit').click(function() {
 		$('#resultModal').fadeIn();
+		//$('#falseModal').fadeIn();
 	});
 
 	//모달창을 닫는 버튼( 모든 모달창에서 사용됨 )
@@ -95,6 +96,7 @@ $(document).ready(
 		$('#resultModal').fadeOut();
 		$('#answerModal').fadeOut();
 		$('#learningModal').fadeOut();
+		$('#falseModal').fadeOut();
 		});
 		
 
@@ -167,7 +169,7 @@ $(document).ready(
 			
 			<!-- 특정 학습 페이지로 이동하기 위한 메뉴 -->
 			<button id="pageList">
-				Java Study 1
+				Java Study 개념
 				&nbsp;<i class="bi-chevron-right" id="chevron"></i>&nbsp;
 				변수의 선언 및 개념
 				&nbsp;<i class="bi bi-caret-down-fill"></i>
@@ -183,7 +185,7 @@ $(document).ready(
     			<!-- 모달의 헤더 값 -->
     			<!-- modal-title에 학습의 대분류값이 출력 -->
      		 	<div class="modal-header">
-        			<h5 class="modal-title" id="exampleModalLongTitle">Java Study1</h5>
+        			<h5 class="modal-title" id="exampleModalLongTitle">Java Study 개념</h5>
         			<!-- 해당 모달창을 닫는 버튼 -->
         			<button type="button" class="resultClose btn-close"
 						aria-label="Close" id="resultClose"></button>
@@ -341,7 +343,7 @@ public class Main {
 						onclick="" id="resultSubmit">Submit</button>
 					</span>
 					
-				<!-- submit 누른후 나오는 modal -->
+				<!-- submit 누른후 정답이면 나오는 modal -->
 				<div class="resultModal modal" id="resultModal">
 					<div class="resultDialog modal-dialog modal-lg">
 						<div class="modal-content" id="submitModal">
@@ -356,7 +358,7 @@ public class Main {
 							</div>
 							<!-- modal의 body -->
 							<div class="modalBody modal-body">
-								<div style="color: deeppinks; font-size: 25px;">Congratulations!</div>
+								<div style="color: #FF1493; font-size: 25px;">Congratulations!</div>
 								<!-- 다음 과정을 알려줄수있으면 적용, 미사용시에는 삭제 -->
 								<div>다음 과정은 ~~~ 입니다</div>
 							</div>
@@ -377,6 +379,29 @@ public class Main {
 						</div>
 					</div>
 				</div>
+				
+				<!-- submit 누른후 정답이 아니면 나오는 modal -->
+				<div class="resultModal modal" id="falseModal">
+					<div class="resultDialog modal-dialog modal-lg">
+						<div class="modal-content" id="incorrectModal">
+							<div class="modalHeader modal-header">
+								<!-- 현재 공부중인 언어를 알려 줌 -->
+								<div id="modalProgress">
+									<i class="bi bi-file-earmark-excel" style="color: red;"></i>&nbsp;&nbsp;JAVA
+								</div>
+								<!-- 현재의 모달창을 닫는 버튼 -->
+								<button type="button" class="resultClose btn-close"
+									aria-label="Close" id="resultClose"></button>
+							</div>
+							<!-- modal의 body -->
+							<div class="modalBody modal-body">
+								<div style="color: rgb(51, 51, 51);">정답이 아닙니다</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				
 			<!-- answer 누르면 나오는 modal -->
 			<div class="answerModal modal" id="answerModal">
 				<div class="answerDialog modal-dialog modal-lg">
