@@ -42,9 +42,11 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 	src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
 <!-- 아래의 스크립트문을 js파일로 따로 만든 결과 설정이 적용이 되지 않아 여기서 작성 -->
-
+<!-- 되는거 같은디? -->
+<script type="text/javascript" th:src="@{/js/compiler/compiler.js}"></script>
+<!-- 
 <script>
-	$(document).ready(
+$(document).ready(
 		// 코드미러 실행
 		function codemirror() {
 		
@@ -127,7 +129,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 });
 </script>
-
+ -->
 <!-- 이 css도 header.css나 compilerCSS.css에서 적용하려 하면 적용이 안되므로 여기서 설정 -->
 <style>
 /* 코드미러의 글씨체, 폰트 사이즈, 라인 간격, border값 */
@@ -298,7 +300,8 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <!--컴파일러 부분  -->
 	<!-- action값을 지정 안 함 -->
-	<form method="post" action="">
+<!-- 	ajax 써야하는거라 폼 필요 없을듯? -->
+<!-- 	<form method="post" action=""> -->
 		<div class="card" id="compiler">
 			<!-- 컴파일러 부분의 header 아이콘만 장식됨 -->
 			<div class="card-header">
@@ -358,6 +361,7 @@ public class Main {
 								<div>다음 과정은 ~~~ 입니다</div>
 							</div>
 							<div class="modalFooter modal-footer">
+<!-- 							여기 버튼 아이디들이 이상함 -->
 								<!-- 문제 저장버튼, 아래의 downloadIcon과 같은 기능 -->
 								<button type="button" class=" btn btn-dark" onclick=""
 									id="submitButton">
@@ -410,7 +414,7 @@ public class Main {
 				</div>
 			</div>
 		</div>
-	</form>
+<!-- 	</form> -->
 <!-- 답 출력부분 -->
 <div class="card" id="result">
 	<div class="card-header d-flex justify-content-between" id="resultHeader">
