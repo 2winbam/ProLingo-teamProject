@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org">
-<head>
+<html lang="ko" xmlns:th="http://thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/head :: new_head(~{::title},~{::link},~{::script})">
 <meta charset="UTF-8">
 <title>Achievements</title>
 
 <script th:src="@{/scripts/jquery-3.6.0.js}"></script>
-
-<link rel="shortcut icon" th:href="@{/img/icons/icon-48x48.png}" />
 
 <!-- Latest compiled and minified CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -14,14 +13,86 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
 
+<!-- 업적창의 css -->
+<link rel="stylesheet" type="text/css" th:href="@{/css/achievements.css}">
+
+
 <!-- 업적 데이터를 ajax로 출력하기 위한 경로 -->
+<!-- ajax로 출력하려면 사용 -->
+<!--  
 <script th:src="@{/js/achievements.js}"></script>
+-->
 
 </head>
 <body>
+	<div class="wrapper">
+		<!-- sidebar -->
+		<!-- <div th:replace="fragments/sidebar :: sidebar"></div> -->
+		
+		<div class="main">
+			<!-- header -->
+			<div th:replace="fragments/header :: new_header"></div>
+			
 	
-	<!-- 데이터 입력 후 테스트 필요 -->
 	<div class="list-group w-auto" id="output"></div>
+	 
+	<h3>모든 업적</h3>
+
+	<div class="achieveList list-group w-100 d-flex flex-column justify-content-center">
+		<div class="achievement list-group-item list-group-item-action d-flex gap-3 py-3"
+			aria-current="true">
+			
+			<!-- 업적의 사진 -->
+			<img th:src="@{/img/achievements/sign_up.png}" alt="twbs" width="50" height="50"
+			class="rounded-circle flex-shrink-0">
+			
+			<div class="d-flex gap-2 w-100 justify-content-between">
+				<div>
+				<!-- 업적의 제목과 내용 -->
+					<h6 class="mb-0">가입</h6>
+					<p class="mb-0 opacity-75">프로링고의 회원이 되신것을 축하합니다.</p>
+				</div>
+				<!-- 달성한 시간 출력 -->
+				<small class="opacity-50 text-nowrap">2022-09-01</small>
+			</div>
+		</div> 
+		
+		<div class="achievement list-group-item list-group-item-action d-flex gap-3 py-3"
+			aria-current="true"> 
+			
+			<img th:src="@{/img/achievements/many_friend.png}" alt="twbs" width="50" height="50"
+			class="rounded-circle flex-shrink-0">
+			
+			<div class="d-flex gap-2 w-100 justify-content-between">
+				<div>
+					<h6 class="mb-0">인기 스타</h6>
+					<p class="mb-0 opacity-75">친구가 많으시군요! </p>
+				</div>
+				<small class="opacity-50 text-nowrap">2022-09-20</small>
+			</div>
+		</div> 
+		
+		<div class="achievement list-group-item list-group-item-action d-flex gap-3 py-3"
+			aria-current="true" id="payment"> 
+			
+			<img th:src="@{/img/achievements/payment.png}" alt="twbs" width="50" height="50"
+			class="rounded-circle flex-shrink-0">
+			
+			<div class="d-flex gap-2 w-100 justify-content-between">
+				<div>
+					<h6 class="mb-0">우리의 영웅</h6>
+					<p class="mb-0 opacity-75">프로링고의 유료회원이 되어주셨네요!</p>
+				</div>
+				<small class="opacity-50 text-nowrap">미달성</small>
+			</div>
+		</div>
+	</div>
 	
+	<!-- ajax로 업적 출력시 사용, 데이터 입력 후 테스트 필요 -->
+	<!--  
+	<div class="list-group w-auto" id="output"></div>
+	-->	
+		</div>
+	</div>
 </body>
 </html>
