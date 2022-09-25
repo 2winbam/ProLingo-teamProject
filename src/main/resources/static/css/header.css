@@ -1,27 +1,26 @@
 @charset "UTF-8";
 
+header{
+	box-shadow: 5px gray;
+}
 
 .p-3{
 	width:100%;
-	height:72px;
- 	background-color:midnightblue;
+	height:65px;
+ 	background-color:white;
  }
 
 #logo{
 	position:fixed;
-	top: 16px;
-	left:100px;
+	top: 18px;
+	left:22px;
 	padding-right:0px;
 	padding-left:0px;
 }
 
 #logo_icon{
-	width: 40px;
-	height: 40px;
-}
-
-#icon{
-	padding-right:10px;
+	width: 26px;
+	height: 26px;
 }
 
 
@@ -35,13 +34,13 @@
 
 #title{
 	position:fixed;
-	top: 24px;
-	left: 150px;
-	color:rgb(192, 192, 192);
+	top: 18px;
+	left: 30px;
+	color:gray;
 } 
 
 #title:hover{
-	color:white;
+	color:rgb(192, 192, 192);
 } 
 
 #learn{
@@ -98,7 +97,46 @@
 #profile:hover{
 	color:white;
 } 
- 
+
+#pageList{
+	position: fixed;
+	top: 16px;
+	left: 200px;
+	border: 0px;
+	background-color:#f5f7fa;
+	color: #30546a;
+	font-size: 13px;
+	padding: 8px 16px 8px 16px;
+	border-radius: 5px 5px 5px 5px;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+#learnList{
+	background-color:#f5f7fa;
+}
+
+.learningOne{
+	text-decoration: none;
+	color: #30546a;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+#learningLink{
+	padding:16px;
+	background-color: white;
+	border-bottom-style: solid; 
+	border-bottom-color: #f5f7fa;
+	text-decoration: none;
+}
+
+#learningLink:hover{
+	background-color: f5f7fa;
+}
+
+#pageList:hover{
+	background-color:#eaeffa;
+}
+
 .indicator{
 	color:white;
 }
@@ -107,6 +145,8 @@
 	width: 30px;
 	height: 30px;	
 }
+
+
 
 .dropdown-menu i {
 	font-size: 16px;
