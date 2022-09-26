@@ -30,6 +30,11 @@ footer {
 	border: 0px;	
 }
 
+.cardForm{
+	position: relative;
+	width: 24%;
+}
+
 .card-header{
 	border:0px;
 }
@@ -88,10 +93,9 @@ footer {
 }
 
 #contents{
-	position:absolute;
+	position: fixed;
 	top: 75px;
 	left: 10px;
-	width: 350px;
 }
 
 #contentsText{
@@ -99,12 +103,12 @@ footer {
 }
 
 #compiler{
-	position:absolute;
+	position: absolute;
+	left: 26%;
 	height: 600px;
 	margin: 10px;
-	width: 720px;
+	width: 46%;
 	top: 75px;
-	left: 370px;
 	background-color: rgb(51, 51, 51);
 	color: white;
 }
@@ -133,7 +137,7 @@ footer {
 #result{
 	position:absolute;
 	top: 75px;
-	left: 1100px;
+	left: 73.5%;
 }
 
 #buttonResult{
