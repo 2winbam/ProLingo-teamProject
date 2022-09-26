@@ -42,9 +42,11 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 	src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
 <!-- 아래의 스크립트문을 js파일로 따로 만든 결과 설정이 적용이 되지 않아 여기서 작성 -->
-
+<!-- 되는거 같은디? -->
+<script type="text/javascript" th:src="@{/js/compiler/compiler.js}"></script>
+<!-- 
 <script>
-	$(document).ready(
+$(document).ready(
 		// 코드미러 실행
 		function codemirror() {
 		
@@ -129,7 +131,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 });
 </script>
-
+ -->
 <!-- 이 css도 header.css나 compilerCSS.css에서 적용하려 하면 적용이 안되므로 여기서 설정 -->
 <style>
 /* 코드미러의 글씨체, 폰트 사이즈, 라인 간격, border값 */
@@ -148,6 +150,10 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
   padding-bottom: 30px;
   margin-bottom: -32px;
   display: inline-block;
+}
+
+#resultBody{
+width: 400px;
 }
 </style>
 
@@ -302,8 +308,13 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <!--컴파일러 부분  -->
 	<!-- action값을 지정 안 함 -->
+<<<<<<< HEAD
 
 		<div class="cardForm card" id="compiler">
+=======
+<!-- 	<form method="post" action=""> -->
+		<div class="card" id="compiler">
+>>>>>>> 950e3696acaa99e7e728d76aae1b68845be03cac
 			<!-- 컴파일러 부분의 header 아이콘만 장식됨 -->
 			<div class="card-header">
 				<i class="bi bi-journal-code"></i>
@@ -364,7 +375,7 @@ public class Main {
 							<div class="modalFooter modal-footer">
 								<!-- 문제 저장버튼, 아래의 downloadIcon과 같은 기능 -->
 								<button type="button" class=" btn btn-dark" onclick=""
-									id="submitButton">
+									id="saveButton">
 									<i class="bi bi-download" id="downloadIcon"></i> Save
 								</button>
 								<!-- 답을 보여주는 modal을 호풀하는 버튼, 위의 seeAnswer와 같은 모달을 출력한다.-->
@@ -372,7 +383,7 @@ public class Main {
 									id="answerButton">Answer</button>
 								<!-- 다음 학습페이지로 넘어가는 버튼 -->
 								<button type="button" class="btn btn-info" onclick=""
-									id="submitButton">Next</button>
+									id="nextButton">Next</button>
 							</div>
 						</div>
 					</div>
@@ -437,7 +448,11 @@ public class Main {
 				</div>
 			</div>
 		</div>
+<<<<<<< HEAD
 
+=======
+<!-- 	</form> -->
+>>>>>>> 950e3696acaa99e7e728d76aae1b68845be03cac
 <!-- 답 출력부분 -->
 <div class="cardForm card" id="result">
 	<div class="card-header d-flex justify-content-between" id="resultHeader">
@@ -451,8 +466,8 @@ public class Main {
 		<!-- 결과값이 출력될 card-body -->
 		<div class="card-body" id="resultBody">
 			<!-- 컴파일된 결과가 여기서 풀력 -->
-			<p class="card-text" id="resultText"> "Hello World" 
-			컴파일 결과가 출력되는 p태그(필요할시 textarea등으로 변경가능)</p>
+			<pre class="card-text" id="resultText"> "Hello World" 
+			컴파일 결과가 출력되는 p태그(필요할시 textarea등으로 변경가능)</pre>
 		</div>
 	</div>
 </div>
