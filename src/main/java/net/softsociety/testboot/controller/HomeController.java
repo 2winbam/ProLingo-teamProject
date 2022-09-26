@@ -23,6 +23,11 @@ public class HomeController {
 		return "blankpage";
 	}
 	
+	@GetMapping("error")
+	public String errorpage() {
+		return "errorpage";
+	}
+	
 	/**
 	 * 임시로
 	 * @return rank page

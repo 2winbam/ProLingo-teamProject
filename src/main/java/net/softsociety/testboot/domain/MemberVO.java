@@ -1,5 +1,10 @@
 package net.softsociety.testboot.domain;
 
+import java.util.Collection;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,7 +12,12 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class MemberVO {
+//시큐리티 로그인을 위한 인터페이스
+public class MemberVO implements UserDetails{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3714727137138636200L;
 	private int user_id; 
 	private String user_pw;
 	private String default_email;
@@ -18,13 +28,53 @@ public class MemberVO {
 	private int age;
 	private String user_role;
 	private String longintype;
-	private int joindate;
+	private String joindate; //int로 되어있던걸 String으로 수정
 	private int exp;
 	private int continueday;
 	private int money;
 	private int goal;
 	private int notice;
 	private int autosave;
+	//로그인에 필수라는듯
+	//db에도 ALTER TABLE PROLINGO_USER ADD ENABLED NUMBER DEFAULT 1 NOT NULL CHECK(ENABLED IN (0, 1)); 해줘야함
+	private boolean enabled;
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	//패스워드 리턴
+	public String getPassword() {
+		// TODO Auto-generated method stub
+		return this.user_pw;
+	}
+	@Override
+	//아이디를 String으로 리턴
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return Integer.toString(this.user_id);
+	}
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return this.enabled;
+	}
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return true;
+	}
 }	
 
 /*--PROLINGO_USER								

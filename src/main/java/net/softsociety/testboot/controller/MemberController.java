@@ -57,7 +57,7 @@ public class MemberController {
 		
 		int result = service.logincheck(email, user_pw);
 		
-		log.debug("result값:{}", result);
+		log.debug("result(유저 아이디)값:{}", result);
 		
 		return result;	
 	}

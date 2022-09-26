@@ -38,5 +38,11 @@
 		<!-- USER_PW = #{user_pw} -->
 </select>
 
+<!-- 이메일로 멤버 객체 하나 반환 -->
+<select id="selectMemberByEmail" parameterType="string" resultType="MemberVO">
+	select *
+	from prolingo_user
+	where email = #{email}
+</select>
 
 </mapper>

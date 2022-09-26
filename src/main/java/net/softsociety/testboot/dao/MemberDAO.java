@@ -13,4 +13,7 @@ public interface MemberDAO {
 
 	int logincheck(HashMap<String, String> map);
 
+	//이메일로 멤버 객체 하나 반환
+	MemberVO selectMemberByEmail(String email);
+
 }
