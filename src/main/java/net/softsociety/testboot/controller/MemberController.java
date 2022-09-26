@@ -1,6 +1,8 @@
 package net.softsociety.testboot.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,7 +49,7 @@ public class MemberController {
 	}
 	
 	/**
-	 * sine up page
+	 * sine up page 
 	 * @return
 	 */
 	@GetMapping("/join")
@@ -89,7 +91,7 @@ public class MemberController {
 	public String mypage() {
 	// 백앤드 완성 되면 위에 지우고 나중에 활성화	
 	//public String mypage(Model model, @AuthenticationPrincipal UserDetails user) {
-		log.debug("called My page");
+		//log.debug("called My page");
 		//로그인한 ID 읽어서 개인정보 검색
 		//String m_id = user.getUsername();
 		//Member member = service.getMemberInfo(m_id); 
@@ -103,18 +105,19 @@ public class MemberController {
 	 * @return
 	 */
 	 //백앤드 완성 되면 활성화
-//	@PostMapping("/mypage")
-//	public String mypage(Member member, @AuthenticationPrincipal UserDetails user) {
-//		//수정폼에 입력한 값을 전달받음
-//		log.debug("수정할 정보 : {}", member);
-//		//로그인한 ID 읽어서 전달받은 객체에 추가
-//		String id = user.getUsername();
-//		member.setMemberid(m_id);
-//		//그 객체를 서비스로 전달하여 DB 수정
-//		service.update(member);
-//		//메인화면으로 이동
-//		return "profile";
-//	}
+	@PostMapping("/mypage")
+	public String mypage(MemberVO member, @AuthenticationPrincipal UserDetails user) {
+		//수정폼에 입력한 값을 전달받음
+		log.debug("수정할 정보 : {}", member);
+		//로그인한 ID 읽어서 전달받은 객체에 추가
+		String id = user.getUsername();
+		log.debug("username 값 : {}", id);
+		//member.setMemberid(default_email);
+		//그 객체를 서비스로 전달하여 DB 수정
+		//service.update(member);
+		//메인화면으로 이동
+		return "memberView/mypage";
+	}
 	
 	/**
 	 * Delete account 페이지로 이동
