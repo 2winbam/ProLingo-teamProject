@@ -41,121 +41,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <script type="text/javascript"
 	src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
-<!-- 아래의 스크립트문을 js파일로 따로 만든 결과 설정이 적용이 되지 않아 여기서 작성 -->
-<!-- 되는거 같은디? -->
 <script type="text/javascript" th:src="@{/js/compiler/compiler.js}"></script>
-<!-- 
-<script>
-$(document).ready(
-		// 코드미러 실행
-		function codemirror() {
-		
-			const codemirrorEditor = CodeMirror.fromTextArea(
-			document.getElementById("codemirror"),{
-			//코드미러 세부설정
-			
-			//라인 번호
-			lineNumbers : true,
-			//테마
-			theme : 'monokai',
-			//자바 모드
-			mode : "text/x-java",
-			readOnly : false,
-			lineWrapping : true,
-			matchBrackets : true,
-			styleActiveLine : true,
-			autoCloseBrackets : true,
-		    autoRefresh:true,
-			autoCloseTags : true,	
-		});
-	
-	// 학습 리스트를 보여주는 모달을 불러옴
-	$('#pageList').click(function() {
-		$('#learningModal').fadeIn();
-	});
-	
-	
-	//모달창 클릭시 닫기
-	$('.contentClose').click(function() {
-		$('.modal-lesson').fadeOut();
-	});
-	
-	//슬라이드 돌아가기 버튼
-	$('.callModal').click(function() {
-		$('.modal-lesson').fadeIn();
-						});
-
-	//submit 버튼을 누른후 나오는 결과 모달창을 불러옴(resultModal은 정답일 경우, falseModal은 오답일 경우)
-	$('#resultSubmit').click(function() {
-		$('#resultModal').fadeIn();
-		//$('#falseModal').fadeIn();
-	});
-
-	//모달창을 닫는 버튼( 모든 모달창에서 사용됨 )
-	$('.resultClose').click(function() {
-		$('#resultModal').fadeOut();
-		$('#answerModal').fadeOut();
-		$('#learningModal').fadeOut();
-		$('#falseModal').fadeOut();
-		});
-		
-
-	//모달창 바로 띄우기
-	$('.modal-lesson').fadeIn();
-	
-	
-	//정답 모달창 띄우기('#answerButton', '#seeAnswer')
-	//같은 기능이라 같은 아이디로 실행하려고 하였으나 한쪽만 실행되는 문제가 발생해서 분리시킴
-	$('#answerButton').click(function() {
-		$('#resultModal').fadeOut();
-		$('#answerModal').fadeIn();
-		
-	});
-	
-	$('#seeAnswer').click(function() {
-		$('#resultModal').fadeOut();
-		$('#answerModal').fadeIn();
-		
-	});
-	
-	//슬라이더
-	$('.modal-lesson-wrapper').slick(
-		{
-		slidesToShow : 1,
-		slidesToScroll : 1,
-		speed : 100,
-		autoplay : false,
-		prevArrow : "<button type='button' class='slick-prev'><i class='bi bi-arrow-left-circle-fill'></i></button>", // 이전 화살표 모양 설정
-		nextArrow : "<button type='button' class='slick-next'><i class='bi bi-arrow-right-circle-fill'></i></button>"
-	});
-
-});
-</script>
- -->
-<!-- 이 css도 header.css나 compilerCSS.css에서 적용하려 하면 적용이 안되므로 여기서 설정 -->
-<style>
-/* 코드미러의 글씨체, 폰트 사이즈, 라인 간격, border값 */
-.CodeMirror {
-	font-family: Consolas, serif;
-	font-size: px;
-	line-height: 30px;
-	border: 0px;
-}
-/* 코드미러 2자리 이상 숫자 겹치는 문제 해결을 위한 코드문 */
-.CodeMirror-gutter {
-  height: 100%;
-  width: 50px;
-  -moz-box-sizing: content-box;
-  box-sizing: content-box;
-  padding-bottom: 30px;
-  margin-bottom: -32px;
-  display: inline-block;
-}
-
-#resultBody{
-width: 400px;
-}
-</style>
 
 </head>
 
@@ -310,8 +196,6 @@ width: 400px;
 	<!-- action값을 지정 안 함 -->
 		<div class="cardForm card" id="compiler">
 <!-- 	<form method="post" action=""> -->
-		<div class="card" id="compiler">
-
 			<!-- 컴파일러 부분의 header 아이콘만 장식됨 -->
 			<div class="card-header">
 				<i class="bi bi-journal-code"></i>

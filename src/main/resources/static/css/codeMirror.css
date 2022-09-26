@@ -265,3 +265,20 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
     visibility: hidden;
   }
 }
+
+.CodeMirror {
+	font-family: Consolas, serif;
+	font-size: px;
+	line-height: 30px;
+	border: 0px;
+}
+/* 코드미러 2자리 이상 숫자 겹치는 문제 해결을 위한 코드문 */
+.CodeMirror-gutter {
+  height: 100%;
+  width: 50px;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  padding-bottom: 30px;
+  margin-bottom: -32px;
+  display: inline-block;
+}
