@@ -26,7 +26,7 @@ public class WebSecurityConfig {
         .authorizeRequests()
         .antMatchers(
         		"/",
-        		"/**", //모든 페이지에 로그인 필요 없게 임시로 
+        		//"/**", //모든 페이지에 로그인 필요 없게 임시로 
                 "/assets/**",
                 "/css/**",
                 "/fonts/**",
@@ -34,14 +34,16 @@ public class WebSecurityConfig {
                 "/img/**",
                 "/js/**",
                 "/member/join",
+                "/member/logincheck",
+                "/member/js/**", //이거 머임?;
                 "/board/list").permitAll()
         .anyRequest().authenticated()
         .and()
         .formLogin()					
         .loginPage("/member/login")	
         .loginProcessingUrl("/member/login").permitAll()
-        .usernameParameter("memberid")
-        .passwordParameter("memberpw")
+        .usernameParameter("userid") //username에 userid를(로그인 폼의 id의 name)
+        .passwordParameter("userpw") //password에 userpw를(로그인 폼의 pw의 name)
         .and()
         .logout()
         .logoutUrl("/member/logout")
@@ -60,15 +62,17 @@ public class WebSecurityConfig {
         auth.jdbcAuthentication()
         .dataSource(dataSource)
         // 인증 (로그인)
+        //enabled가 필수, 앞의건 테이블의 컬럼명, 뒤에건 username과 password 고정
         .usersByUsernameQuery(
-        		"select memberid username, memberpw password, enabled " +
-                "from market_member " +
-                "where memberid = ?")
+        		"select user_id username, user_pw password, enabled " +
+                "from prolingo_user " +
+                "where user_id = ?")
         // 권한
+        //여기 role_name은 제대로 동작할지?
         .authoritiesByUsernameQuery(
-        		"select memberid username, rolename role_name " +
-                "from market_member " +
-                "where memberid = ?");
+        		"select user_id username, user_role role_name " +
+                "from prolingo_user " +
+                "where user_id = ?");
     }
 
     // 단방향 비밀번호 암호화

@@ -69,23 +69,27 @@ function loginCheck() {
 	$.ajax({
 		url: 'logincheck',
 		type: 'post',
-		data: { m_email: email, m_pw: password },
-		dataType: 'text',
+		data: { email: email, user_pw: password },
+		//생략해서 숫자로 받아옴
+		//dataType: 'text',
 		success: function(res) {
 			//alert("성공 : " + res);
-			//select문에서 1혹은 0이 돌아올 것이다
-			if (res) {
-				//$('#loginForm').submit();
+			//select문에서 아이디 혹은 0이 돌아옴
+			if (res != 0) {
+				//alert(res);
+				//hidden인 id에 id값을 넣어서 섭밋
+				$('#userid').val(res);
+				$('#loginForm').submit();
 			}
-			else {
+			else if (res == 0)  {
 				//상황마다 다르게?
-				$('#errorPassword').html('메일 주소 혹은 비밀번호가 틀렸습니다');
+				//alert("0");
+				$('#errorLogin').html('메일 주소 혹은 비밀번호가 틀렸습니다');
 			}
 		},
-		//controller쪽 구현이 안되어 있기 때문에 여기에서 테스트
 		error: function(e) {
 			alert("로그인 ajax 실패 : " + e.status);
-			$('#errorLogin').html('메일 주소 혹은 비밀번호가 틀렸습니다');
+			//$('#errorLogin').html('메일 주소 혹은 비밀번호가 틀렸습니다');
 		}
 	});
 }

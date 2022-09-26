@@ -26,4 +26,23 @@
 	, #{age}
 	)
 </insert>
+
+<!-- AJAX 로그인 체크 -->
+<select id="logincheck" parameterType="map" resultType="int">
+	SELECT 
+		count(*)
+	FROM 
+		PROLINGO_USER
+	WHERE 
+		EMAIL = #{email}
+		<!-- USER_PW = #{user_pw} -->
+</select>
+
+<!-- 이메일로 멤버 객체 하나 반환 -->
+<select id="selectMemberByEmail" parameterType="string" resultType="MemberVO">
+	select *
+	from prolingo_user
+	where email = #{email}
+</select>
+
 </mapper>
