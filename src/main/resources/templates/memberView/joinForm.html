@@ -37,22 +37,22 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 							<div class="card">
 								<div class="card-body">
 									<div class="m-sm-4">
-										<form action="join" method="post">
+										<form th:action="@{/member/join}" method="post">
 											<div class="mb-3">
 												<label class="form-label">이름</label>
-												<input class="form-control form-control-lg" type="text" name="m_name" placeholder="Enter your name" />
+												<input class="form-control form-control-lg" type="text" name="user_name" placeholder="Enter your name" />
 											</div>
 											<div class="mb-3">
 												<label class="form-label">이메일</label>
-												<input class="form-control form-control-lg" type="email" name="m_mail" placeholder="Enter your email" />
+												<input class="form-control form-control-lg" type="email" name="default_email" placeholder="Enter your email" />
 											</div>
 											<div class="mb-3">
 												<label class="form-label">비밀번호</label>
-												<input class="form-control form-control-lg" type="password" name="m_pw" placeholder="Enter password" />
+												<input class="form-control form-control-lg" type="password" name="user_pw" placeholder="Enter password" />
 											</div>
 											<div class="mb-3">
 												<label class="form-label">나이</label>
-												<input class="form-control form-control-lg" type="text" name="m_age" placeholder="Enter your age" />
+												<input class="form-control form-control-lg" type="text" name="age" placeholder="Enter your age" />
 											</div>
 											<div class="text-center mt-3">
 												<input type="submit" class="btn btn-lg btn-primary" value="Sign Up"></a>
