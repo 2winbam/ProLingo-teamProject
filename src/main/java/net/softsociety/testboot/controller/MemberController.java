@@ -46,6 +46,18 @@ public class MemberController {
 	}
 	
 	/**
+	 * 로그인 AJAX
+	 * @return
+	 */
+	@ResponseBody
+	@PostMapping("/logincheck")
+	public String logincheck() {
+		log.debug("전달 된 값{}":)
+	}
+	
+	
+	
+	/**
 	 * sine up page
 	 * @return
 	 */

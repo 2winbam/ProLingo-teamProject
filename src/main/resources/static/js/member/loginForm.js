@@ -69,13 +69,13 @@ function loginCheck() {
 	$.ajax({
 		url: 'logincheck',
 		type: 'post',
-		data: { m_email: email, m_pw: password },
+		data: { email: email, user_pw: password },
 		dataType: 'text',
 		success: function(res) {
 			//alert("성공 : " + res);
 			//select문에서 1혹은 0이 돌아올 것이다
 			if (res) {
-				//$('#loginForm').submit();
+				$('#loginForm').submit();
 			}
 			else {
 				//상황마다 다르게?
