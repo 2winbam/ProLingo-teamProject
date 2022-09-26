@@ -59,7 +59,7 @@ public class CompilerController {
 
 			String result = execCmd("java -cp " + fullpath + " " + classname, "java");
 			//String result = execCmd("cd", "java");
-			result = "javac -encoding UTF-8 " + fullpath + filename;
+//			result = "javac -encoding UTF-8 " + fullpath + filename;
 			log.debug("실행 결과 : {}", result);
 
 			return result;

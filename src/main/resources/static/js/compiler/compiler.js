@@ -2,8 +2,7 @@
  * 
  */
 // 코드미러 실행
-//이거 함수명 넣은 이유?
-$(document).ready(function codemirror() {
+$(document).ready(function() {
 
 	//alert('연결?');
 	const codemirrorEditor = CodeMirror.fromTextArea(
@@ -25,6 +24,7 @@ $(document).ready(function codemirror() {
 		autoCloseTags: true,
 	});
 
+	console.log(codemirrorEditor.getValue());
 	// 학습 리스트를 보여주는 모달을 불러옴
 	$('#pageList').click(function() {
 		$('#learningModal').fadeIn();
@@ -43,11 +43,29 @@ $(document).ready(function codemirror() {
 
 	//submit 버튼을 누른후 나오는 결과 모달창을 불러옴
 	//함수 따로 빼겠습니다
-//	$('#resultSubmit').click(function() {
-//		
-//		$('#resultModal').fadeIn();
-//	});
-	$('#resultSubmit').click(submitClick);
+	$('#resultSubmit').click(function() {
+		let language = 'java';
+		let code = codemirrorEditor.getValue();
+		console.log(code);
+		
+		//컴파일용 ajax
+		$.ajax({
+			url: 'compile',
+			type: 'post',
+			data: { language: language, code: code },
+			dataType: 'text',
+			success: function(res) {
+				console.log("compile ajax 성공")
+				$('#resultText').html(res);
+			},
+			error: function(e) {
+				alert("compile ajax 실패 : " + e);
+			}
+		});
+
+		$('#resultModal').fadeIn();
+	});
+	//$('#resultSubmit').click(submitClick);
 
 	//모달창을 닫는 버튼( 모든 모달창에서 사용됨 )
 	$('.resultClose').click(function() {
@@ -86,28 +104,8 @@ $(document).ready(function codemirror() {
 			nextArrow: "<button type='button' class='slick-next'><i class='bi bi-arrow-right-circle-fill'></i></button>"
 		});
 
+//	function submitClick() {
+//		
+//	}
 });
 
-function submitClick(){
-	//alert('submit clicked');
-	
-	//만들어둔게 있으니까 넣겠습니다.
-	//컴파일용 ajax
-	let language = 'java';
-	let code = $('#codeAnswer').val();
-	$.ajax({
-		url: 'compile',
-		type: 'post',
-		data: {language: language, code: code},
-		dataType:'text',
-		success: function(res){
-			console.log("compile ajax 성공")
-			$('#resultText').html(res);
-		},
-		error: function(e){
-			alert("compile ajax 실패 : " + e);
-		}
-	});
-	
-	$('#resultModal').fadeIn();
-}
