@@ -74,18 +74,20 @@ function loginCheck() {
 		success: function(res) {
 			//alert("성공 : " + res);
 			//select문에서 1혹은 0이 돌아올 것이다
-			if (res) {
+			if (res == "1") {
+				//alert("1");
 				$('#loginForm').submit();
 			}
-			else {
+			else if (res == "0")  {
 				//상황마다 다르게?
-				$('#errorPassword').html('메일 주소 혹은 비밀번호가 틀렸습니다');
+				//alert("0");
+				$('#errorLogin').html('메일 주소 혹은 비밀번호가 틀렸습니다');
 			}
 		},
 		//controller쪽 구현이 안되어 있기 때문에 여기에서 테스트
 		error: function(e) {
 			alert("로그인 ajax 실패 : " + e.status);
-			$('#errorLogin').html('메일 주소 혹은 비밀번호가 틀렸습니다');
+			//$('#errorLogin').html('메일 주소 혹은 비밀번호가 틀렸습니다');
 		}
 	});
 }

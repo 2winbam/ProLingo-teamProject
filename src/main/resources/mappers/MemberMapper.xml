@@ -26,4 +26,17 @@
 	, #{age}
 	)
 </insert>
+
+<!-- AJAX 로그인 체크 -->
+<select id="logincheck" parameterType="map" resultType="int">
+	SELECT 
+		count(*)
+	FROM 
+		PROLINGO_USER
+	WHERE 
+		EMAIL = #{email}
+		<!-- USER_PW = #{user_pw} -->
+</select>
+
+
 </mapper>
