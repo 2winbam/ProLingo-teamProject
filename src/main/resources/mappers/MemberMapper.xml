@@ -1,0 +1,29 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.softsociety.testboot.dao.MemberDAO">
+<!-- 가입 -->
+<insert id="insertMember" parameterType="MemberVO">
+	insert into prolingo_user
+	(
+	USER_ID
+	, USER_PW
+	, USER_NAME
+	, NICKNAME
+	, DEFAULAT_EMAIL
+	, EMAIL
+	, AGE
+	)
+	values
+	(
+	prolingo_user_seq.nextval
+	, #{user_pw}
+	, #{user_name}
+	, #{user_name}
+	, #{default_email}
+	, #{default_email}
+	, #{age}
+	)
+</insert>
+</mapper>

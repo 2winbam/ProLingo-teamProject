@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.extern.slf4j.Slf4j;
+import net.softsociety.testboot.domain.MemberVO;
 import net.softsociety.testboot.service.MemberService;
 
 @Slf4j
@@ -60,16 +61,16 @@ public class MemberController {
 	 * @return
 	 */
 	//백앤드 되면 활성화
-//	@PostMapping("/join")
-//	public String join(Member member) {
-//		log.debug("전달된 값 : {}", member);
-//		
-//		service.SignUPMember(member);
-//		
-//		log.debug("가입 결과 :" + member);
-//		
-//		return "redirect:/";
-//	}
+	@PostMapping("/join")
+	public String join(MemberVO member) {
+		log.debug("전달된 값 : {}", member);
+		
+		service.insertMember(member);
+		
+		log.debug("가입 결과 :" + member);
+		
+		return "redirect:/";
+	}
 	
 	/**
 	 * sine up page
