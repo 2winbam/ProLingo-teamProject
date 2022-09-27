@@ -17,7 +17,8 @@ public class MemberSerivceImple implements MemberService {
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-
+	
+	// 회원가입
 	@Override
 	public int insertMember(MemberVO member) {
 		String encodePasswrod = passwordEncoder.encode(member.getUser_pw());
@@ -56,5 +57,25 @@ public class MemberSerivceImple implements MemberService {
 //		log.debug("email:{}, user_pw:{}", map.get("email"), encodePasswrod);
 //		int check = dao.logincheck(map);
 //		return check;
+	}
+	
+	//현재 로그인한 멤버 정보 찾기
+	@Override
+	public MemberVO getMemerInfo(String userid) {
+		
+		int id = Integer.parseInt(userid);
+		return dao.selectMemberByUserid(id);
+	}
+
+	@Override
+	public int updateMemberInfo(MemberVO member) {
+		// 만약 비밀번호 수정도 추가할시 들어가야함.
+//		if (!(member.getUser_pw() == null || member.getUser_pw() == "")) {
+//			String encodePassword = passwordEncoder.encode(member.getUser_pw());
+//			member.setUser_pw(encodePassword);
+//		}
+		
+		int result = dao.updateMemberInfo(member);
+		return result;
 	}
 }

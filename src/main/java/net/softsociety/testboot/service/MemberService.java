@@ -9,4 +9,8 @@ public interface MemberService {
 	//AJAX 로그인 체크
 	public int logincheck(String email, String user_pw);
 
+	public MemberVO getMemerInfo(String userid);
+
+	public int updateMemberInfo(MemberVO member);
+
 }

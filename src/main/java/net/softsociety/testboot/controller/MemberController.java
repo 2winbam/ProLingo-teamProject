@@ -49,9 +49,6 @@ public class MemberController {
 	}
 	
 	/**
-<<<<<<< HEAD
-	 * sine up page 
-=======
 	 * AJAX 로그인 체크
 	 * @return
 	 */
@@ -70,7 +67,6 @@ public class MemberController {
 		
 	/**
 	 * sine up page
->>>>>>> 94d1d4f6af2789b9078504b971517e703e378f92
 	 * @return
 	 */
 	@GetMapping("/join")
@@ -108,16 +104,15 @@ public class MemberController {
 	 * 회원정보 수정 page 불러오기
 	 * @return
 	 */
-	@GetMapping("/mypage")
-	public String mypage() {
-	// 백앤드 완성 되면 위에 지우고 나중에 활성화	
-	//public String mypage(Model model, @AuthenticationPrincipal UserDetails user) {
-		//log.debug("called My page");
+	@GetMapping("/mypage")	
+	public String mypage(Model model, @AuthenticationPrincipal UserDetails user) {
+		log.debug("called My page");
 		//로그인한 ID 읽어서 개인정보 검색
-		//String m_id = user.getUsername();
-		//Member member = service.getMemberInfo(m_id); 
+		String userid = user.getUsername();
+		log.debug("로그인한 id값 : {}", userid);
+		MemberVO member = service.getMemerInfo(userid); 
 		// 검색한 결과를 모델에 저장하고 html로 이동
-		//model.addAttribute("member", member);
+		model.addAttribute("member", member);
 		return "memberView/mypage";
 	}
 	
@@ -131,13 +126,14 @@ public class MemberController {
 		//수정폼에 입력한 값을 전달받음
 		log.debug("수정할 정보 : {}", member);
 		//로그인한 ID 읽어서 전달받은 객체에 추가
-		String id = user.getUsername();
-		log.debug("username 값 : {}", id);
-		//member.setMemberid(default_email);
+		//username이 String이라 int형으로 변환후 객체에 넣어야함.
+		int userid = Integer.parseInt(user.getUsername());
+		log.debug("username 값 : {}", userid);
+		member.setUser_id(userid);
 		//그 객체를 서비스로 전달하여 DB 수정
-		//service.update(member);
+		service.updateMemberInfo(member);
 		//메인화면으로 이동
-		return "memberView/mypage";
+		return "redirect:/profile";
 	}
 	
 	/**

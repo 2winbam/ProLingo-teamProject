@@ -35,7 +35,7 @@ public class WebSecurityConfig {
                 "/js/**",
                 "/member/join",
                 "/member/logincheck",
-                "/member/js/**", //이거 머임?;
+                "/member/js/**", //이거 머임?; --js..?
                 "/board/list").permitAll()
         .anyRequest().authenticated()
         .and()

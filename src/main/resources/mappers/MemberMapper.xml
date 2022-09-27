@@ -45,4 +45,21 @@
 	where email = #{email}
 </select>
 
+<!-- userid로 멤버 객체 찾기 -->
+<select id="selectMemberByUserid" parameterType="int" resultType="MemberVO">
+	select *
+	from prolingo_user
+	where USER_ID = #{id}
+</select>
+
+<!--회원정보 수정  -->
+<update id="updateMemberInfo" parameterType="MemberVO">
+	<!-- 현재 로그인 userid값을 조건비교해서 수정 -->
+	update prolingo_user
+	set
+		NICKNAME = #{nickname}
+		, EMAIL = #{email}
+		, AGE = #{age}
+	where USER_ID = #{user_id}
+</update>
 </mapper>
