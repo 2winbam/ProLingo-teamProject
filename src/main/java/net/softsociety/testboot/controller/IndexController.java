@@ -21,13 +21,7 @@ public class IndexController {
 		log.debug("call header");
 		return "header";
 	}
-	
-	@GetMapping("/compilerForm")
-	public String compilerForm() {
-		log.debug("call compilerForm");
-		return "compilerForm";
-	}
-	
+
 	@GetMapping("/buttonForm")
 	public String buttonForm() {
 		log.debug("call buttonForm");

@@ -21,6 +21,7 @@ public class MemberSerivceImple implements MemberService {
 	// 회원가입
 	@Override
 	public int insertMember(MemberVO member) {
+		
 		String encodePasswrod = passwordEncoder.encode(member.getUser_pw());
 		member.setUser_pw(encodePasswrod);
 		
