@@ -43,5 +43,13 @@ public class StudyCourseController {
 		return "studyCourse/java_beginner";
 	}
 	
+	/**
+	 * 
+	 * @return 컴파일러 문제 폼
+	 */
+	@GetMapping("javaCourse/compilerForm")
+	public String compilerForm() {
+		return "studyCourse/compilerForm";
+	}
 	
 }
