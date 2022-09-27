@@ -23,6 +23,16 @@ public class DBTestServiceImpl implements DBTestService {
 		
 		return result;
 	}
+
+	@Override
+	public int insertCodeTest(String code) {
+
+		log.debug("넘어온 값 : {}", code);
+		
+		int result = dao.insertCodeTest(code);
+		
+		return result;
+	}
 	
 	
 }

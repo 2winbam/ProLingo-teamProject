@@ -6,19 +6,27 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.extern.slf4j.Slf4j;
+import net.softsociety.testboot.service.DBTestService;
 
 @Controller
-@ResponseBody
 @Slf4j
 public class CompilerController {
+	
+	@Autowired
+	DBTestService dbts;
 
 	@PostMapping("compile")
+	@ResponseBody
 	public String compileResult(String language, String code) {
+		
+		dbts.insertCodeTest(code);
+		
 		log.debug("language : {}, code : {}", language, code);
 
 		// 유저 이름? 아이디?로 파일이름 생성하기

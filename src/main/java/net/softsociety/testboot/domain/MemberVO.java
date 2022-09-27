@@ -19,7 +19,7 @@ public class MemberVO implements UserDetails{
 	 */
 	private static final long serialVersionUID = -3714727137138636200L;
 	private int user_id; 
-	private String user_pw;
+	private String user_pw; //ALTER TABLE PROLINGO_USER MODIFY USER_PW VARCHAR2(100);
 	private String default_email;
 	private String email;
 	private String user_name;
