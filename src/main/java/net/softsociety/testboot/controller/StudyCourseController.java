@@ -1,16 +1,22 @@
 package net.softsociety.testboot.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.extern.slf4j.Slf4j;
+import net.softsociety.testboot.service.StudyCourseService;
 
-@Controller
 @Slf4j
+@Controller
 @RequestMapping("study")
 public class StudyCourseController {
-
+	
+	@Autowired
+	StudyCourseService service;
+	
 	@GetMapping("javaCourse")
 	public String JavaCourse() {
 		return"studyCourse/javaCourse";
@@ -30,7 +36,11 @@ public class StudyCourseController {
 	 * @return 자바 입문
 	 */
 	@GetMapping("javaCourse/introduction")
-	public String JavaIntroduction() {
+	public String JavaIntroduction(Model model) {
+		
+		//ArrayList<testLesson> chapterLisst = 
+		
+		
 		return "studyCourse/java_introduction";
 	}
 	
@@ -51,5 +61,5 @@ public class StudyCourseController {
 	public String compilerForm() {
 		return "studyCourse/compilerForm";
 	}
-	
+	 
 }

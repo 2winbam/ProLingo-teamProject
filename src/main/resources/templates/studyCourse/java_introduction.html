@@ -71,6 +71,15 @@
 								</div>
 
 								<div class="card-body"></div>
+								
+									<table>
+										<tr th:each="chapterList:${chapterList}" class="chapter">
+											<td th:text="${chapterList.lesson_id}"></td>
+											<td>
+												<a th:text="${chapterList.lesson_name}" th:href="@{/study/studycourse/compilerForm(lessson_id=${chapterList.lessson_id})}"></a>
+											</td>	
+										</tr>
+									</table>
 							</div>
 						</div>
 					</div>
