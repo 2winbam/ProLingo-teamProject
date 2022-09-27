@@ -64,7 +64,8 @@ public class MemberSerivceImple implements MemberService {
 	public MemberVO getMemerInfo(String userid) {
 		
 		int id = Integer.parseInt(userid);
-		return dao.selectMemberByUserid(id);
+		MemberVO member =  dao.selectMemberByUserid(id);
+		return member;
 	}
 
 	@Override
@@ -77,5 +78,26 @@ public class MemberSerivceImple implements MemberService {
 		
 		int result = dao.updateMemberInfo(member);
 		return result;
+	}
+
+	@Override
+	public int deleteAccont(String userid, String user_pw) {
+		
+		if(!(user_pw == null || user_pw == "")) {
+			//DB에서 넘어온 비번
+			int id = Integer.parseInt(userid);
+			MemberVO DBmember = dao.selectMemberByUserid(id);
+			log.debug("넘어온 정보 : {} ", DBmember.getUser_pw());
+			// 웹에서 받은 암호화된 비번과 DB에서 넘어온 비번 비교
+			if(passwordEncoder.matches(user_pw, DBmember.getUser_pw())) {
+				log.debug("비밀번호 서로 일치");
+				return dao.deleteMemberAccount(id);
+			} else {
+				log.debug("비밀번호 불일치");
+				return 0;
+			}
+			
+		}
+		return 0;
 	}
 }
