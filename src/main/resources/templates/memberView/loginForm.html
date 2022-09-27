@@ -72,9 +72,15 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 													<div class="errorMesage text-center text-danger">
 														<em><small id="errorLogin">로그인 에러 메세지</small></em>
 													</div>
+													
 												</div>
 												<input type="hidden" id="userid" name="userid" value="0">
 											</form>
+											<br>
+											<div style=text-align:center>
+											 <a th:href="@{/member/join}" class="btn btn-lg btn-primary">회원가입</a>
+											</div>
+											<br>
 											<div class="text-center text-muted">
 												<small>
 	            									<br>비밀번호를 잊어버리셨다면 <a th:href="@{/member/findpassword}">여기</a>로
