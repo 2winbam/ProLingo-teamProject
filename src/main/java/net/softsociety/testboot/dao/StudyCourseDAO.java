@@ -11,9 +11,8 @@ public interface StudyCourseDAO {
 	
 	/**
 	 * 학습선택 페이지에서 입문편 리스트 출력
-	 * @param intro 개념편이라는것을 구분하기 위한 파라미터
 	 * @return
 	 */
-	ArrayList<TestLessonVO> introdutionAll(String intro);
+	ArrayList<TestLessonVO> introdutionAll();
 	
 }

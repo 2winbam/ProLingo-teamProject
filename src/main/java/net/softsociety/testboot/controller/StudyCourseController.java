@@ -41,10 +41,7 @@ public class StudyCourseController {
 	@GetMapping("javaCourse/introduction")
 	public String JavaIntroduction(Model model) {
 		
-		// 입문편을 구분하기 위한 변수
-		String intro = "introdution";
-		
-		ArrayList<TestLessonVO> chapterList = service.introdutionAll(intro);
+		ArrayList<TestLessonVO> chapterList = service.introdutionAll();
 		
 		log.debug("조회한 리스트 전체 : {}", chapterList);
 		

@@ -5,10 +5,9 @@
 <mapper namespace="net.softsociety.testboot.dao.StudyCourseDAO">
 
 <!-- 학습페이지에서 입문편 리스트 조회-->
-<select id="" parameterType="String" resultType="TestLessonVO">
+<select id="introdutionAll" resultType="TestLessonVO">
 	select * 
 	from  test_lesson
-	where GRADE = #{intro}	
 </select>
 
 </mapper>

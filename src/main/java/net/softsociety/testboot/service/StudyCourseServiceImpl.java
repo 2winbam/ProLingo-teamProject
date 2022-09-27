@@ -20,10 +20,12 @@ public class StudyCourseServiceImpl implements StudyCourseService {
 	 * 학습선택 페이지에서 개념편 리스트 전체 출력
 	 */
 	@Override
-	public ArrayList<TestLessonVO> introdutionAll(String intro){
+	public ArrayList<TestLessonVO> introdutionAll(){
+				
+		ArrayList<TestLessonVO> chapterList = dao.introdutionAll();
 		
-		 ArrayList<TestLessonVO> chapterList = dao.introdutionAll(intro);
-		
+		log.debug("조회 완료 : {}", chapterList);
+		 
 		return chapterList;
 	}
 }
