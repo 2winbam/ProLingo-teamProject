@@ -45,6 +45,8 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 </head>
 
+
+<body>
 <!-- 컴파일러폼에서만 사용되는 header -->
 <header class="p-3">
 	<div class="container">
@@ -85,10 +87,10 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
    				<!-- 특정 학습 페이지로 이동하기 위한 a태그 -->
    				<!-- each로 반복해야 할 부분으로 생각됨 -->
       			<div class="learningLink" id="learningLink">
-        			<a th:href="" class="learningOne" >1. 학습리스트 예시1</a>
+        			<a th:href="@{/}" class="learningOne" >1. 학습리스트 예시1</a>
         		</div>
         		<div class="learningLink" id="learningLink">
-        			<a th:href="" class="learningOne" >2. 학습리스트 예시2</a>
+        			<a th:href="@{/}" class="learningOne" >2. 학습리스트 예시2</a>
         		</div>
       		</div>
     	</div>
@@ -96,8 +98,10 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 	</div>
 </header>
 
-<body>
 
+<!-- 현재 학습 과정이 뭔지 불러와줄 부분 -->
+<!-- 원래는 타임리프를 사용해야 할 부분 -->
+<span id="language" th:lang="java"></span>
 
 <div>
 <!-- 모달 개념설명 부분 -->
