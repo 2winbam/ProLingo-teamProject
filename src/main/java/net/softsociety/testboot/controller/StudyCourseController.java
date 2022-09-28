@@ -89,5 +89,21 @@ public class StudyCourseController {
 		
 		return "studyCourse/compilerForm";
 	}
+	
+	@GetMapping("javaCourse/compilerForm2")
+	public String compilerForm2(
+			@RequestParam(name="lessonid", defaultValue="0")int lessonid, 
+			@RequestParam(name="questionindex", defaultValue="0")int questionindex, 
+			Model model) {
+		log.debug("lessonid : {}", lessonid);
+		
+		ArrayList<ProlingoQuestionVO> questionList = qs.selectAllQuestionsByLessonID(lessonid);		
+		
+		model.addAttribute("lessonid", lessonid);
+		model.addAttribute("questionindex", questionindex);
+		model.addAttribute("questionList", questionList);
+		
+		return "studyCourse/compilerForm2";
+	}
 	 
 }

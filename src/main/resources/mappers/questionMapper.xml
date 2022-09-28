@@ -8,5 +8,6 @@
 	select *
 	from prolingo_question
 	where lesson_id = #{lesson_id}
+	order by question_id
 </select>
 </mapper>

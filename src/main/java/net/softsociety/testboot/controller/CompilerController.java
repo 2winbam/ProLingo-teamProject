@@ -18,6 +18,9 @@ import net.softsociety.testboot.service.DBTestService;
 @Slf4j
 public class CompilerController {
 	
+	//컴파일 실패시 파일이 생성되지 않으나 기존에 성공해서 만들어진 파일이 있어서 그게 실행됨
+	//결과 출력 이후 파일을 삭제하는 코드가 필요할듯
+	
 	@Autowired
 	DBTestService dbts;
 
