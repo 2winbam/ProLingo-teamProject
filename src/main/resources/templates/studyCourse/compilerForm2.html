@@ -103,9 +103,17 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <!-- 현재 학습 과정이 뭔지 불러와줄 부분 -->
 <!-- 원래는 타임리프를 사용해야 할 부분 -->
-<span id="language" th:lang="java"></span>
-<span id="defaultcode" th:dcode="${questionList[questionindex].default_code}"></span>
-<span id="answercode" th:acode="${questionList[questionindex].answer}"></span>
+<span id="info" th:lang="java"
+		th:question="${questionlist[questionindex].question_contents}"
+		th:dcode="${questionlist[questionindex].default_code}"
+		th:acode="${questionlist[questionindex].answer}"
+		th:result="${questionlist[questionindex].console_result}"
+		th:lid="${lessonid}"
+		th:listlength="${#lists.size(questionlist)}"
+		th:index="${questionindex}"
+		th:currurl="${#httpServletRequest.requestURI}"></span>
+<!-- <span id="defaultcode" th:dcode="${questionlist[questionindex].default_code}"></span> -->
+<!-- <span id="answercode" th:acode="${questionlist[questionindex].answer}"></span> -->
 
 <!-- 모달 개념설명 부분 -->
 <div class="modal-lesson" id="div-modal-slider">
@@ -196,7 +204,8 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 		<div class="card-body contents">
 			<!-- 문제 출력부분 예시 -->
 			<!-- 컨트롤러에서 문제 객체 받아와서 출력되게 함 -->
-			<p class="card-text" id="contentsText" th:text="${questionList[questionindex].question_contents}">Hello World를 출력하시오, 문제가 출력되는 p태그(필요할시 textarea등으로 변경가능)</p>
+<!-- 			<p class="card-text" id="contentsText" th:text="${questionlist[questionindex].question_contents}">Hello World를 출력하시오, 문제가 출력되는 p태그(필요할시 textarea등으로 변경가능)</p> -->
+			<div style="white-space:pre-wrap;" class="card-text" id="contentsText">Hello World를 출력하시오, 문제가 출력되는 p태그(필요할시 textarea등으로 변경가능)</div>
 		</div>
 	</div>
 
@@ -271,7 +280,7 @@ class Main {
 								<button type="button" class="btn btn-light" onclick=""
 									id="answerButton">Answer</button>
 								<!-- 다음 학습페이지로 넘어가는 버튼 -->
-								<button type="button" class="btn btn-info" onclick=""
+								<button type="button" class="btn btn-info" onclick="nextpage()"
 									id="nextButton">Next</button>
 							</div>
 						</div>
@@ -316,8 +325,8 @@ class Main {
 						<!-- 해당 문제의 정답이 출력될 textarea -->
 						<div class="card-body">
 						<!-- 컨트롤러에서 문제 객체 받아와서 출력되게 함 -->
-						<!--th:text="${questionList[questionindex].answer}"-->
-							<textarea class="codeAnswer" id="codeAnswer" >
+						<!--th:text="${questionlist[questionindex].answer}"-->
+							<textarea class="codeAnswer" id="codeAnswer" readonly>
 class Main {
     public static void main(String[] args) {
        System. out.println("Hello answer" );

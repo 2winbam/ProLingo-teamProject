@@ -28,7 +28,7 @@ public class CompilerController {
 	@ResponseBody
 	public String compileResult(String language, String code) {
 		
-		dbts.insertCodeTest(code);
+		//dbts.insertCodeTest(code);
 		
 		log.debug("language : {}, code : {}", language, code);
 
