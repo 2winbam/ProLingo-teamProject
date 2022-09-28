@@ -42,8 +42,9 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 	src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
 <script type="text/javascript" th:src="@{/js/compiler/compiler.js}"></script>
+
 <!-- 개념 슬라이드 값 출력을 위한 JavaScript -->
-<script type="text/javascript" th:src="@{/js/compiler/contents.js}"></script>
+<!-- <script type="text/javascript" th:src="@{/js/compiler/contents.js}"></script> -->
 
 </head>
 
@@ -103,55 +104,46 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <!-- 현재 학습 과정이 뭔지 불러와줄 부분 -->
 <!-- 원래는 타임리프를 사용해야 할 부분 -->
+ 
 <span id="language" th:lang="java"></span>
 <span id="defaultcode" th:dcode="${questionList[questionindex].default_code}"></span>
 <span id="answercode" th:acode="${questionList[questionindex].answer}"></span>
 
 <!-- 모달 개념설명 부분 -->
 <div class="modal-lesson" id="div-modal-slider">
-	<div class="modal-lesson-wrapper">
-		<div class="modal-lesson-content">
+	<div class="modal-lesson-wrapper" id="slider"> 
+		<div th:each="contentsList:${contentsList}" class="modal-lesson-content">
 			<div class="modal-lesson-header d-flex justify-content-end">
 				<a class="contentClose"> 
 					<span aria-hidden="true"><i class="bi bi-x-circle-fill"></i></span>
 				</a>
-				</div>
-				<div class="modal-lesson-body">
-					<h2>Java 세계에 오신 것을 환영합니다.</h2>
-					<div class="modal-lesson-body-content">
-						<p class="slide-top__description">
-							<span><font style="vertical-align: inherit;"><font
-									style="vertical-align: inherit;">이 단원에서는 Java의 기본 코드 작성,
-										데이터 유형, 변수 등에 대해 배웁니다. </font></font></span><br> <span><font
-								style="vertical-align: inherit;"><font
-									style="vertical-align: inherit;">처음 듣는 단어도 많이 어렵다고 느낄 수도
-										있을지도 모릅니다만, </font></font></span><br> <span><font
-								style="vertical-align: inherit;"><font
-									style="vertical-align: inherit;">하나하나 순서를 쫓아 배워 가므로, 끝까지
-										노력해 갑시다.</font></font></span><br> <span></span>
-						</p>
-					</div>
-						<div class="slide__SlideBottom-z90lcr-1 wNtlP">
-							<div
-								class="slide_bottom_items__SlideBottomItems-sc-1g258za-0 cVxUeS">
-								<div
-									class="slide_bottom_items__SlideBottomItemsInnerWrapper-sc-1g258za-1 eIFOJW">
-									<div 
-										class="slide_bottom_items__SlideBottomItem-sc-1g258za-2 kDyeWH">
-										<div class="u-inline">
-											<div class="u-relative">
-												<img data-id="1377"
-													class="slide_image1"
-													src="https://d2aj9sy12tbpym.cloudfront.net/progate/shared/images/slide/java/study/1/1464330632364.png">
-											</div>
-										</div>
-									</div>
-								</div>
+			</div>
+		<div class="modal-lesson-body">
+			<div class="d-flex flex-row justify-content-center">
+			<div class="contents modal-lesson-body-title">
+				<h3 th:text="${contentsList.lesson_subtitle}"></h3>
+			</div>	
+			<div class="contents modal-lesson-body-content">
+				<p class="slide-top__description">
+					<span th:text="${contentsList.lesson_contents}"></span>
+				</p>
+			</div>
+			</div>
+		<div class="slide__SlideBottom-z90lcr-1 wNtlP">
+			<div class="slide_bottom_items__SlideBottomItems-sc-1g258za-0 cVxUeS">
+				<div class="slide_bottom_items__SlideBottomItemsInnerWrapper-sc-1g258za-1 eIFOJW">
+					<div class="slide_bottom_items__SlideBottomItem-sc-1g258za-2 kDyeWH">
+						<div class="u-inline">
+							<div class="u-relative">
+<!-- 	 							<img class="slide_image1" th:src="@{/img/contents/1-0.png}"> -->
+								<img class="slide_image1" th:src="${contentsList.lesson_picture}">
 							</div>
 						</div>
+					</div>
 				</div>
 			</div>
-			
+		</div></div></div>
+			<!--  
 			<div class="modal-lesson-content">
 				<div class="modal-lesson-header d-flex justify-content-end">
 					<a class="contentClose"> <span aria-hidden="true"><i
@@ -181,8 +173,9 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 					</div>
 				</div>
 			</div>
-		</div>
+		-->
 	</div>
+</div>
 	
 <div class="d-flex flex-wrap align-items-center">
 	
