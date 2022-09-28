@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
 import net.softsociety.testboot.dao.StudyCourseDAO;
+import net.softsociety.testboot.domain.ContentsVO;
 import net.softsociety.testboot.domain.TestLessonVO;
 
 @Slf4j
@@ -28,4 +29,14 @@ public class StudyCourseServiceImpl implements StudyCourseService {
 		 
 		return chapterList;
 	}
+	
+	@Override
+	public ArrayList<ContentsVO> selectContents(int lessonid){
+		
+		log.debug("서비스 impl의 lessonid : {}", lessonid);
+		
+		ArrayList<ContentsVO> contentsList = dao.selectContents(lessonid);
+		
+		return contentsList;
+	} 
 }

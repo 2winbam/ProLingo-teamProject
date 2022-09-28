@@ -8,4 +8,9 @@
 	insert into dbtesttable
 	values(#{tid}, #{tname})
 </insert>
+
+<insert id="insertCodeTest" parameterType="string">
+	insert into codetesttable
+	values(#{code})
+</insert>
 </mapper>

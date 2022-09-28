@@ -5,7 +5,18 @@
 $(document).ready(function() {
 
 	//컴파일러 호출을 위한 현재 학습중인 언어 설정
-	setDefaultCode($('#language').attr('lang'));
+	//setDefaultCode($('#language').attr(rang));
+	//console.log($('#defaultcode').attr('dcode'));
+	var defaultcode1 = $('#defaultcode').attr('dcode');
+	var defaultcode2 = 'class Main{\n\tpublic static void main(String[] args) {\n\t\tSystem.out.println(\"Hello World!\");\n\t}\n}';
+	//$('#codemirror').val($('#defaultcode').attr('dcode'));
+	console.log(defaultcode1.length);
+	console.log(defaultcode1.replaceAll('\\n', '\n').replaceAll('\\t', '\t').replaceAll('\\"', '\"').length);
+	console.log(defaultcode2.length);
+	
+	//$('#codemirror').val(defaultcode1.replaceAll('\\n', '\n').replaceAll('\\t', '\t').replaceAll('\\"', '\"'));
+	$('#codemirror').val(codechange(defaultcode1));
+	$('#codeAnswer').html(codechange($('#answercode').attr('acode')));
 
 	//alert('연결?');
 	const codemirrorEditor = CodeMirror.fromTextArea(
@@ -45,15 +56,15 @@ $(document).ready(function() {
 	});
 
 	//submit 버튼을 누른후 나오는 결과 모달창을 불러옴
-	//함수 따로 빼겠습니다
 	$('#resultSubmit').click(function() {
 		let language = $('#language').attr('lang');
 		let code = codemirrorEditor.getValue();
-		//console.log(code);
+		//let code = $('#codeAnswer').html();
+		console.log(code);
 
 		//컴파일용 ajax
 		$.ajax({
-			url: 'compile',
+			url: '/prolingo/compile',
 			type: 'post',
 			data: { language: language, code: code },
 			dataType: 'text',
@@ -65,7 +76,7 @@ $(document).ready(function() {
 					$('#resultModal').fadeIn();
 				}
 				else{
-					//$('#falseModal').fadeIn();
+					$('#falseModal').fadeIn();
 				}
 			},
 			error: function(e) {
@@ -82,6 +93,7 @@ $(document).ready(function() {
 		$('#resultModal').fadeOut();
 		$('#answerModal').fadeOut();
 		$('#learningModal').fadeOut();
+		$('#falseModal').fadeOut();
 	});
 
 
@@ -119,34 +131,37 @@ $(document).ready(function() {
 	//	}
 });
 
-function setDefaultCode(lang) {
-	//alert(lang);
-	switch (lang) {
-		case "java":
-			//console.log("it is java");
-			$('#codemirror').val(
-				"class Main{\n"
-				+ "\tpublic static void main(String[] args) {\n"
-				//+ "\t\tSystem.out.println(\"Hello World!\");\n"
-				+ "\n"
-				+ "\t}\n"
-				+ "}");
-			break;
-		case "c":
-			//console.log("it is c");
-			$('#codemirror').val(
-				"#include <stdio.h>\n\n"
-				+ "int main() {\n"
-				+ "\tprintf(\"Hello World!\\n\");\n"
-				+ "\treturn 0;\n"
-				+ "}");
-			break;
-		default:
-			console.log("lang error");
-			break;
-	}
+//function setDefaultCode(lang) {
+//	//alert(lang);
+//	switch (lang) {
+//		case "java":
+//			//console.log("it is java");
+//			$('#codemirror').val(
+//				"class Main{\n"
+//				+ "\tpublic static void main(String[] args) {\n"
+//				+ "\t\tSystem.out.println(\"Hello World!\");\n"
+//				+ "\t}\n"
+//				+ "}");
+//			break;
+//		case "c":
+//			//console.log("it is c");
+//			$('#codemirror').val(
+//				"#include <stdio.h>\n\n"
+//				+ "int main() {\n"
+//				+ "\tprintf(\"Hello World!\\n\");\n"
+//				+ "\treturn 0;\n"
+//				+ "}");
+//			break;
+//		default:
+//			console.log("lang error");
+//			break;
+//	}
+//}
+
+function codechange(code){
+	return code.replaceAll('\\n', '\n').replaceAll('\\t', '\t').replaceAll('\\"', '\"');
 }
 
 function isCorrect(answer){
-	return false;
+	return true;
 }

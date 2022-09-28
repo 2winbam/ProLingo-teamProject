@@ -9,4 +9,6 @@ public interface DBTestDAO {
 
 	int insertTest(DBTestVO vo);
 
+	int insertCodeTest(String code);
+
 }

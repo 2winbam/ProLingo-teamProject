@@ -34,24 +34,30 @@
          <!-- end timeline-time -->
          <!-- begin timeline-icon -->
          <div class="timeline-icon">
-            <a th:href="">&nbsp;</a>
+            <a href="">&nbsp;</a>
          </div>
          <!-- end timeline-icon -->
          <!-- begin timeline-body -->
          <div class="timeline-body">
             <div class="timeline-header">
-               <span class="userimage"><img th:src="@{/img/avatars/avatar.png}" alt="프로필 사진"></span>
+               <span class="userimage">
+               		<img th:src="@{/img/avatars/avatar.jpg}" alt="프로필 사진">
+               </span>
                <span class="username">김정수</span>
             </div>
             <div class="timeline-content w-100 p-3 d-flex bd-highlight mb-3">
                 <h4 class="template-title me-auto p-2 bd-highligh">프로링고와 공부를 시작하셨군요!</h4>
-               	<img th:src="@{/img/achievements/start_course.png}" alt="업적 아이콘" class="achievement p-2 bd-highlight">   
+               	<img th:src="@{/img/achievements/start_course.png}" alt="업적 아이콘" class="achievement p-2 bd-highlight">  
             </div>
-            <div class="timeline-footer">
+            <div class="timeline-footer d-flex d-flex justify-content-between">
             	<!-- 하이파이브 기능 -->
-            	<button class="btn btn-lg btn-light"><img th:src="@{/img/icons/party-popper.png}" alt="하이파이브 아이콘">축하하기</button>
+            	<button type="button" class="hivefive btn-img btn-lg btn-light">
+            		<img th:src="@{/img/icons/party-popper.png}" class="party" alt="하이파이브 아이콘">축하하기
+            	</button>
             	<!-- 좋아요 개수표시 -->
-                <img th:src="@{/img/icons/likes_icon.png}" alt="좋아요 아이콘"><div th:text=""></div>  
+            	<div>
+                	<img th:src="@{/img/icons/likes_icon.png}" alt="좋아요 아이콘"><div text=""></div>
+                </div>
             </div>
          </div>
          <!-- end timeline-body -->

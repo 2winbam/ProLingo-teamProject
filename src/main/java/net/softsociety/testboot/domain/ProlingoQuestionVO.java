@@ -14,6 +14,8 @@ public class ProlingoQuestionVO {
 	private String question_contents;
 	private String answer;
 	private String keywords;
+	private String default_code;
+	private String console_result;
 }
 
 /*--PROLINGO_QUESTION								

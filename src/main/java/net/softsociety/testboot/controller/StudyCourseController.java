@@ -6,9 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.extern.slf4j.Slf4j;
+import net.softsociety.testboot.domain.ContentsVO;
+import net.softsociety.testboot.domain.ProlingoQuestionVO;
+import net.softsociety.testboot.service.QuestionService;
+import net.softsociety.testboot.service.QuestionServiceImpl;
 import net.softsociety.testboot.domain.TestLessonVO;
 import net.softsociety.testboot.service.StudyCourseService;
 
@@ -59,13 +66,70 @@ public class StudyCourseController {
 		return "studyCourse/java_beginner";
 	}
 	
+	@Autowired
+	QuestionService qs;
+	
 	/**
-	 * 
-	 * @return 컴파일러 문제 폼
+	 * get방식으로 lessonid를 받아서 모델에 넣어줌
+	 * kim : 걍 여기서 문제 받아와서 넣어버리겠음
+	 * @param lessonid
+	 * @param questionindex
+	 * @param model
+	 * @return 컴파일 문제 풀이 페이지
 	 */
 	@GetMapping("javaCourse/compilerForm")
-	public String compilerForm() {
+	public String compilerForm(
+			@RequestParam(name="lessonid", defaultValue="0")int lessonid, 
+			@RequestParam(name="questionindex", defaultValue="0")int questionindex, 
+			Model model) {
+		
+		log.debug("lessonid : {}", lessonid);
+		
+		ArrayList<ContentsVO> contentsList = service.selectContents(lessonid);
+		
+		log.debug("받아온 contentsList 값 : {}", contentsList);
+		
+		model.addAttribute("contentsList", contentsList);
+
+		ArrayList<ProlingoQuestionVO> questionList = qs.selectAllQuestionsByLessonID(lessonid);		
+		
+		model.addAttribute("lessonid", lessonid);
+		model.addAttribute("questionindex", questionindex);
+		model.addAttribute("questionList", questionList);
+		
 		return "studyCourse/compilerForm";
 	}
-	 
+	
+	@GetMapping("javaCourse/compilerForm2")
+	public String compilerForm2(
+			@RequestParam(name="lessonid", defaultValue="0")int lessonid, 
+			@RequestParam(name="questionindex", defaultValue="0")int questionindex, 
+			Model model) {
+		log.debug("lessonid : {}", lessonid);
+		
+		ArrayList<ProlingoQuestionVO> questionList = qs.selectAllQuestionsByLessonID(lessonid);		
+		
+		model.addAttribute("lessonid", lessonid);
+		model.addAttribute("questionindex", questionindex);
+		model.addAttribute("questionList", questionList);
+		
+		return "studyCourse/compilerForm2";
+	}
+	
+	/*
+	@ResponseBody
+	@GetMapping("contentsList")
+	public ArrayList<ContentsVO> contentsList(){
+		
+		int lessonid = 1;
+		
+		log.debug("받은 lessonid 값 : {}", lessonid);
+		
+		ArrayList<ContentsVO> contentsList = service.selectContents(lessonid);
+		
+		log.debug("받아온 contentsList 값 : {}", contentsList);
+		
+		return contentsList;
+		}
+	*/
 }

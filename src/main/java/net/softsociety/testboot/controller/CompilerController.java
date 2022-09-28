@@ -6,19 +6,30 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.extern.slf4j.Slf4j;
+import net.softsociety.testboot.service.DBTestService;
 
 @Controller
-@ResponseBody
 @Slf4j
 public class CompilerController {
+	
+	//컴파일 실패시 파일이 생성되지 않으나 기존에 성공해서 만들어진 파일이 있어서 그게 실행됨
+	//결과 출력 이후 파일을 삭제하는 코드가 필요할듯
+	
+	@Autowired
+	DBTestService dbts;
 
 	@PostMapping("compile")
+	@ResponseBody
 	public String compileResult(String language, String code) {
+		
+		dbts.insertCodeTest(code);
+		
 		log.debug("language : {}, code : {}", language, code);
 
 		// 유저 이름? 아이디?로 파일이름 생성하기
