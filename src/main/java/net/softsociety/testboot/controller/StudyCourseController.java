@@ -6,10 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.extern.slf4j.Slf4j;
+import net.softsociety.testboot.domain.ContentsVO;
 import net.softsociety.testboot.domain.ProlingoQuestionVO;
 import net.softsociety.testboot.service.QuestionService;
 import net.softsociety.testboot.service.QuestionServiceImpl;
@@ -79,8 +82,15 @@ public class StudyCourseController {
 			@RequestParam(name="lessonid", defaultValue="0")int lessonid, 
 			@RequestParam(name="questionindex", defaultValue="0")int questionindex, 
 			Model model) {
+		
 		log.debug("lessonid : {}", lessonid);
 		
+		ArrayList<ContentsVO> contentsList = service.selectContents(lessonid);
+		
+		log.debug("받아온 contentsList 값 : {}", contentsList);
+		
+		model.addAttribute("contentsList", contentsList);
+
 		ArrayList<ProlingoQuestionVO> questionList = qs.selectAllQuestionsByLessonID(lessonid);		
 		
 		model.addAttribute("lessonid", lessonid);
@@ -105,5 +115,21 @@ public class StudyCourseController {
 		
 		return "studyCourse/compilerForm2";
 	}
-	 
+	
+	/*
+	@ResponseBody
+	@GetMapping("contentsList")
+	public ArrayList<ContentsVO> contentsList(){
+		
+		int lessonid = 1;
+		
+		log.debug("받은 lessonid 값 : {}", lessonid);
+		
+		ArrayList<ContentsVO> contentsList = service.selectContents(lessonid);
+		
+		log.debug("받아온 contentsList 값 : {}", contentsList);
+		
+		return contentsList;
+		}
+	*/
 }

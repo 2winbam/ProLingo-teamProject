@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/head :: new_head(~{::title},~{::link},~{::script})">
+<meta charset="UTF-8">
+<!-- 타이틀 입력 -->
+<title>글쓰기</title>
+<script th:src="@{/js/jquery-3.6.0.js}"></script>
+<!-- 네이버 스마트에디터2 텍스트편집기 -->
+<script th:src="@{/smarteditor2/js/HuskyEZCreator.js}" charset="utf-8"></script>
+<script type="text/javascript" th:inline="javascript">
+	
+	$(document).ready(function () {
+		// SmartEditor2 텍스트편집기
+		let oEditors = [];
+		
+		function smartEditorIFrame() {
+			let link = [[@{/smarteditor2/SmartEditor2Skin.html}]];
+			
+			nhn.husky.EZCreator.createInIFrame({
+				oAppRef : oEditors,
+				elPlaceHolder : "form-control",
+				sSkinURI : link,
+				fCreator : "createSEditor2"
+			});
+		}
+		smartEditorIFrame();
+	});
+	
+	
+</script>
+ <!-- 추가되는 링크 입력, 없더라도 link 빈거 하나는 있어야 하는듯? -->
+<!-- <link rel="stylesheet" th:href="@{/css/.css}"> -->
+<link>
+ <!-- 추가되는 스크립트 입력, 역시 없더라도 빈거 하나는 있어야 하는듯? -->
+<!-- <script type="text/javascript" th:src="@{/js/.js}"></script> -->
+<script></script>
+</head>
+<body>
+	<div class="wrapper">
+		<!-- sidebar -->
+		<!-- <div th:replace="fragments/sidebar :: sidebar"></div> -->
+		
+		<div class="main">
+			<!-- header -->
+			<div th:replace="fragments/header :: new_header"></div>
+			
+			<!-- content -->
+			<main class="content">
+				<div class="container-fluid p-0">
+		
+					<h1 class="h3 mb-3">글쓰기</h1>
+		
+					<!-- 내용 -->
+    				<textarea rows="20" cols="100" name="form-control" id="form-control"></textarea>
+				</div>
+			</main>
+			<!-- footer -->
+			<div th:replace="fragments/footer :: new_footer"></div>
+		</div>
+	</div>
+	
+	<!-- 이거 없으면 화이트라벨 뜸 ㅡㅡ -->
+	<!-- 위에 빈 스크립트 없어서 그런거였음 없어도 됨! -->
+	<!-- <script th:src="@{/js/app.js}"></script> -->
+</body>
+</html>

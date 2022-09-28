@@ -10,4 +10,12 @@
 	from  test_lesson
 </select>
 
+<!-- 학습페이지에서 특정 슬라이드 목록을 조회 -->
+<select id="selectContents" parameterType="int" resultType="ContentsVO">
+	select * 
+	from prolingo_contents
+	where lesson_id = #{lessonid}
+	order by lesson_slide
+</select>
+
 </mapper>

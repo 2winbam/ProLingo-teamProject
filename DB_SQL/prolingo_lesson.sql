@@ -19,8 +19,28 @@ SUBJECT_ID	NUMBER	REFERENCES PROLINGO_SUBJECT(SUBJECT_ID)	ON DELETE CASCADE	,	--
 GRADE	VARCHAR2(20)	CHECK(GRADE IN('INTRODUTION', 'BEGINNER'))	NOT NULL	,	--과정 등급
 LESSON_CONTENTS	VARCHAR2(2000)		NOT NULL	);	--개념, 어떻게 넣을것인지? 이미지로?
 
-ALTER TABLE PROLINGO_LESSON ADD LESSON_TITLE VARCHAR2(100); -- 학습 제목
+
+ALTER TABLE PROLINGO_LESSON ADD LESSON_SUBJECT VARCHAR(100); -- 학습 제목
+ALTER TABLE PROLINGO_LESSON ADD LESSON_SLIDE NUMBER; -- 슬라이드 번호
+ALTER TABLE PROLINGO_LESSON ADD LESSON_TITLE VARCHAR2(100); -- 학습 소제목
 ALTER TABLE PROLINGO_LESSON ADD LESSON_PICTURE VARCHAR2(500); -- 학습사진경로
+
+
+-- 개념 슬라이드 파트를 위한 테이블
+DROP TABLE PROLINGO_CONTENTS; 
+CREATE TABLE PROLINGO_CONTENTS(
+    CONTENT_ID NUMBER PRIMARY KEY,                              -- 개념 식별 아이디 (seq로 nextval값을 넣을 예정, 슬라이드 정렬을 하는 기준)
+    LESSON_ID	NUMBER	REFERENCES PROLINGO_LESSON(LESSON_ID),	-- 학습 아이디(학습페이지 식별을 위해서 사용, 슬라이드를 조회시 기준이 되기도 함)
+    LESSON_TITLE VARCHAR2(100),                                 -- 해당 학습의 제목(ex. '시작하기')
+    LESSON_SLIDE NUMBER,                                        -- 슬라이드의 번호
+    LESSON_SUBTITLE VARCHAR2(200),                              -- 해당 슬라이드의 소제목(ex. 시작하기 - '코드 작성을 배워봅시다.')
+    LESSON_CONTENTS	VARCHAR2(2000),                             -- 해당 슬라이드의 내용
+    LESSON_PICTURE VARCHAR2(500)                                -- 사진 경로
+);
+-- CONTENT_ID의 생성을 위한 시퀀스
+DROP SEQUENCE	PROLINGO_CONTENTS_SEQ;	
+CREATE SEQUENCE	PROLINGO_CONTENTS_SEQ;	
+
 
 --PROLINGO_QUESTION					
 DROP TABLE	PROLINGO_QUESTION	;			

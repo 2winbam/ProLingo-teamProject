@@ -47,4 +47,13 @@ public class ProfileController {
 		log.debug("called searchFriend");
 		return "profile/searchFriend";
 	}
+	
+	/**
+	 * 저장된 코드 페이지
+	 */
+	@GetMapping("/savedCode")
+	public String savedCode() {
+		log.debug("called savedCode");
+		return "profile/savedCode";
+	}
 }

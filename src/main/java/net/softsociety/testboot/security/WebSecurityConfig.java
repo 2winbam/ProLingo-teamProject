@@ -33,6 +33,7 @@ public class WebSecurityConfig {
                 "/icons/**",
                 "/img/**",
                 "/js/**",
+                "/smarteditor2/**",
                 "/member/join",
                 "/member/logincheck",
                 "/member/js/**", //이거 머임?; --js..?

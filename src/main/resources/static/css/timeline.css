@@ -3,6 +3,22 @@ body{
     background:#eee;
 }
 
+.hivefive{
+	height:90px;
+	background-color: white;
+	border: 0px;
+}
+
+.hivefive:hover{
+	height:90px;
+	background-color: gray;
+}
+
+.party{
+	height: 40px;
+	width: 40px;
+}
+
 .timeline {
     list-style-type: none;
     margin: 0;
