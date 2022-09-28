@@ -1,0 +1,21 @@
+#board1 {
+    width: 80%;
+    margin: 0 auto; /* 세로, 가로 */
+}
+#board2 {
+    background-color: aqua;
+} 
+#board3 {
+    background-color: bisque;
+}
+td {
+    text-align: center;
+}
+
+#navigator {
+	text-align: center;
+}
+
+#container{
+	text-align: center;
+}
