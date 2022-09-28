@@ -16,13 +16,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class TestLessonVO {
 
-	private int LESSON_ID;
-	private int SUBJECT_ID;      	
-	String LESSON_NAME;      
-	String GRADE;
-	String LESSON_SUBJECT;
-	String LESSON_CONTENTS;		
-	String LESSON_PICTURE;
+	private int lesson_id;
+	private int subject_id;      	
+	String lesson_name;      
+	String grade;
+	String lesson_subject;
+	String lesson_contents;		
+	String lesson_picture;
 }
 
 /*--PROLINGO_LESSON					

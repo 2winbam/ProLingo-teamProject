@@ -62,4 +62,9 @@
 		, AGE = #{age}
 	where USER_ID = #{user_id}
 </update>
+<!-- 회원정보 삭제 -->
+<delete id="deleteMemberAccount" parameterType="int">
+	delete from prolingo_user
+	where USER_ID = #{user_id}
+</delete>
 </mapper>

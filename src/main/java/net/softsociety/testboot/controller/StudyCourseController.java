@@ -13,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import net.softsociety.testboot.domain.ProlingoQuestionVO;
 import net.softsociety.testboot.service.QuestionService;
 import net.softsociety.testboot.service.QuestionServiceImpl;
+import net.softsociety.testboot.domain.TestLessonVO;
 import net.softsociety.testboot.service.StudyCourseService;
 
 @Slf4j
@@ -38,14 +39,17 @@ public class StudyCourseController {
 	}
 	
 	/**
-	 * 
+	 * 학습선택 페이지에서 입문편 리스트를 전부 출력
 	 * @return 자바 입문
 	 */
 	@GetMapping("javaCourse/introduction")
 	public String JavaIntroduction(Model model) {
 		
-		//ArrayList<testLesson> chapterLisst = 
+		ArrayList<TestLessonVO> chapterList = service.introdutionAll();
 		
+		log.debug("조회한 리스트 전체 : {}", chapterList);
+		
+		model.addAttribute("chapterList", chapterList);
 		
 		return "studyCourse/java_introduction";
 	}

@@ -141,9 +141,43 @@ public class MemberController {
 	 * @return
 	 */
 	@GetMapping("/delete_account")
-	public String delete_account() {
+	public String delete_account(Model model, @AuthenticationPrincipal UserDetails user) {
 		log.debug("called Delete_Account");
+		//로그인한 ID 읽어서 개인정보 검색
+				String userid = user.getUsername();
+				log.debug("로그인한 id값 : {}", userid);
+				MemberVO member = service.getMemerInfo(userid);
+				log.debug("불러온 회원 정보 : {}", member);
+				// 검색한 결과를 모델에 저장하고 html로 이동
+				model.addAttribute("member", member);
 		return "memberView/delete_account";
+	}
+	/**
+	 * 
+	 * Delete account 계정 삭제 처리
+	 * @return
+	 */
+	@PostMapping("/delete_account")
+	public String delete_account(String user_pw, @AuthenticationPrincipal UserDetails user) {
+		//page에서 입력 값을 전달 받음
+		log.debug("전달받은 값 : {}", user_pw);
+		//로그인한 ID 읽어서 변수명 선언
+		String userid = user.getUsername();
+		//MemberVO member = service.getMemerInfo(userid);
+		//log.debug("db에서 전달된 값 : {}", member);
+		
+		//로그인id와 입력받은 비번을 서비스로 전달
+		int result = service.deleteAccont(userid, user_pw);
+		
+		if(result == 1) {
+			log.debug("삭제성공");
+			return "redirect:/";
+		} else {
+		log.debug("삭제실패");
+		return "redirect:/profile";
+		}
+		
+		
 	}
 	
 	/**

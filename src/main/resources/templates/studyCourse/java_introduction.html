@@ -63,30 +63,31 @@
 										<div class="btn-wrapper">
 											<a
 												class="c-btn c-btn--continue c-btn--lesson-btn-start--java-study"
-												th:href="@{/compilerForm}">시작하기</a> 
+												href="studyCourse/compilerForm">시작하기</a> 
 												<!-- <a class="c-btn c-btn--detail c-btn--lesson-btn-detail--java-study"
 												href="/lessons/java/study/1">수업에대해 자세히 알아보기</a> -->
 										</div>
 									</div>
 								</div>
 
-								<div class="card-body"></div>
-								
+							<div class="card-body">
+								<form>
 									<table>
-										<tr th:each="chapterList:${chapterList}" class="chapter">
+										<tr th:each="chapterList:${chapterList}">
 											<td th:text="${chapterList.lesson_id}"></td>
 											<td>
-												<a th:text="${chapterList.lesson_name}" th:href="@{/study/studycourse/compilerForm(lessson_id=${chapterList.lessson_id})}"></a>
+												<a th:text="${chapterList.lesson_name}" href=""></a>		
 											</td>	
 										</tr>
 									</table>
+								</form> 
+							</div>
 							</div>
 						</div>
 					</div>
 
 				</div>
 			</main>
-
 			<!-- footer -->
 			<div th:replace="fragments/footer :: new_footer"></div>
 
