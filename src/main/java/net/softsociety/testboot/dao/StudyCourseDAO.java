@@ -3,6 +3,7 @@ package net.softsociety.testboot.dao;
 import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import net.softsociety.testboot.domain.ContentsVO;
 import net.softsociety.testboot.domain.TestLessonVO;
@@ -22,5 +23,7 @@ public interface StudyCourseDAO {
 	 * @return
 	 */
 	public ArrayList<ContentsVO> selectContents(int lessonid);
+
+	public ArrayList<ContentsVO> selectContents2(@Param("lessonid")int lessonid, @Param("questionindex")int questionindex);
 	
 }

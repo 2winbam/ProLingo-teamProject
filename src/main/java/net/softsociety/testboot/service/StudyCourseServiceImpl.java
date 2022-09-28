@@ -38,5 +38,13 @@ public class StudyCourseServiceImpl implements StudyCourseService {
 		ArrayList<ContentsVO> contentsList = dao.selectContents(lessonid);
 		
 		return contentsList;
+	}
+
+	@Override
+	public ArrayList<ContentsVO> selectContents(int lessonid, int questionindex) {
+		
+		ArrayList<ContentsVO> contentsList = dao.selectContents2(lessonid, questionindex);
+		
+		return contentsList;
 	} 
 }

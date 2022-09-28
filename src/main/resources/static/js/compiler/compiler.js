@@ -46,11 +46,8 @@ $(document).ready(function() {
 		$('#learningModal').fadeIn();
 	});
 
-	//맨처음에만 띄우기
-	if ($('#info').attr('index') == 0) {
-		//모달창 바로 띄우기
-		$('.modal-lesson').fadeIn();
-	}
+	//모달창 바로 띄우기
+	//$('.modal-lesson').fadeIn();
 
 	//모달창 클릭시 닫기
 	$('.contentClose').click(function() {
@@ -93,10 +90,13 @@ $(document).ready(function() {
 
 	});
 	//$('#resultSubmit').click(submitClick);
-	
-	$('#reset').click(function(){
+
+	//리셋 버튼 클릭
+	$('#reset').click(function() {
 		codemirrorEditor.setValue(defaultcode);
 	});
+	//넥스트 버튼 클릭
+	$('#nextButton').click(nextpage);
 
 	//모달창을 닫는 버튼( 모든 모달창에서 사용됨 )
 	$('.resultClose').click(function() {
@@ -166,24 +166,25 @@ $(document).ready(function() {
 //데이터 베이스에서 받아온 \를 출력하려고 자동으로 \가 하나씩 더 들어가는걸 다시 되돌려주는 용도
 //다른 특수문자가 추가된다면 더 추가해야함, \\를 \로 바꿔주는건 \가 동작해버려서 못함
 function codechange(code) {
-	return code.replaceAll('\\n', '\n', ).replaceAll('\\t', '\t').replaceAll('\\"', '\"');
+	return code.replaceAll('\\n', '\n',).replaceAll('\\t', '\t').replaceAll('\\"', '\"');
 }
 
 //정답 체크 임시
 function isCorrect(answer) {
 	let result = codechange($('#info').attr('result'));
-//	console.log("결과 : " + answer + "정답 : " + result);
-//	console.log("결과 : " + typeof answer + "\n정답 : " + typeof result);
-//	console.log("결과 : " + answer.length + "\n정답 : " + result.length);
-	
-	if(result == answer) {
-		alert("정답!");
+	//	console.log("결과 : " + answer + "정답 : " + result);
+	//	console.log("결과 : " + typeof answer + "\n정답 : " + typeof result);
+	//	console.log("결과 : " + answer.length + "\n정답 : " + result.length);
+
+	if (result == answer) {
+		//alert("정답!");
+		return true;
 	}
-	else{
-		alert("오답!");
+	else {
+		//alert("오답!");
+		return false;
 	}
 
-	return true;	
 }
 
 //다음 페이지로 가는데 index가 초과되면 과정 선택 페이지로
@@ -197,7 +198,7 @@ function nextpage() {
 
 	currindex = Number(currindex);
 	currindex++;
-	
+
 	if (currindex < indexmax) {
 		location.href = currurl + "?lessonid=" + currlesson + "&questionindex=" + currindex;
 	}

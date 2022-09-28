@@ -85,17 +85,17 @@ public class StudyCourseController {
 		
 		log.debug("lessonid : {}", lessonid);
 		
-		ArrayList<ContentsVO> contentsList = service.selectContents(lessonid);
+		ArrayList<ContentsVO> contentsList = service.selectContents(lessonid, questionindex);
 		
 		log.debug("받아온 contentsList 값 : {}", contentsList);
 		
 		model.addAttribute("contentsList", contentsList);
 
-		ArrayList<ProlingoQuestionVO> questionList = qs.selectAllQuestionsByLessonID(lessonid);		
+		ArrayList<ProlingoQuestionVO> questionlist = qs.selectAllQuestionsByLessonID(lessonid);		
 		
 		model.addAttribute("lessonid", lessonid);
 		model.addAttribute("questionindex", questionindex);
-		model.addAttribute("questionList", questionList);
+		model.addAttribute("questionlist", questionlist);
 		
 		return "studyCourse/compilerForm";
 	}
@@ -114,6 +114,29 @@ public class StudyCourseController {
 		model.addAttribute("questionlist", questionlist);
 		
 		return "studyCourse/compilerForm2";
+	}
+	
+	@GetMapping("javaCourse/compilerForm3")
+	public String compilerForm3(
+			@RequestParam(name="lessonid", defaultValue="0")int lessonid, 
+			@RequestParam(name="questionindex", defaultValue="0")int questionindex, 
+			Model model) {
+		
+		log.debug("lessonid : {}", lessonid);
+		
+		ArrayList<ContentsVO> contentsList = service.selectContents(lessonid);
+		
+		log.debug("받아온 contentsList 값 : {}", contentsList);
+		
+		model.addAttribute("contentsList", contentsList);
+
+		ArrayList<ProlingoQuestionVO> questionList = qs.selectAllQuestionsByLessonID(lessonid);		
+		
+		model.addAttribute("lessonid", lessonid);
+		model.addAttribute("questionindex", questionindex);
+		model.addAttribute("questionList", questionList);
+		
+		return "studyCourse/compilerForm3";
 	}
 	
 	/*

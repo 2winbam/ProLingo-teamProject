@@ -20,6 +20,8 @@ public interface StudyCourseService {
 	 * @return 해당 슬라이드 리스트
 	 */
 	public ArrayList<ContentsVO> selectContents(int lessonid);
+
+	public ArrayList<ContentsVO> selectContents(int lessonid, int questionindex);
 	
 	
 }

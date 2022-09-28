@@ -102,7 +102,6 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 
 <!-- 현재 학습 과정이 뭔지 불러와줄 부분 -->
-<!-- 원래는 타임리프를 사용해야 할 부분 -->
 <span id="info" th:lang="java"
 		th:question="${questionlist[questionindex].question_contents}"
 		th:dcode="${questionlist[questionindex].default_code}"
