@@ -97,11 +97,11 @@ public class StudyCourseController {
 			Model model) {
 		log.debug("lessonid : {}", lessonid);
 		
-		ArrayList<ProlingoQuestionVO> questionList = qs.selectAllQuestionsByLessonID(lessonid);		
+		ArrayList<ProlingoQuestionVO> questionlist = qs.selectAllQuestionsByLessonID(lessonid);		
 		
 		model.addAttribute("lessonid", lessonid);
 		model.addAttribute("questionindex", questionindex);
-		model.addAttribute("questionList", questionList);
+		model.addAttribute("questionlist", questionlist);
 		
 		return "studyCourse/compilerForm2";
 	}

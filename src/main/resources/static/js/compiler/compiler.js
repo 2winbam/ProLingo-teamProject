@@ -7,16 +7,18 @@ $(document).ready(function() {
 	//컴파일러 호출을 위한 현재 학습중인 언어 설정
 	//setDefaultCode($('#language').attr(rang));
 	//console.log($('#defaultcode').attr('dcode'));
-	var defaultcode1 = $('#defaultcode').attr('dcode');
-	var defaultcode2 = 'class Main{\n\tpublic static void main(String[] args) {\n\t\tSystem.out.println(\"Hello World!\");\n\t}\n}';
+	//var defaultcode1 = $('#defaultcode').attr('dcode');
+	//var defaultcode2 = 'class Main{\n\tpublic static void main(String[] args) {\n\t\tSystem.out.println(\"Hello World!\");\n\t}\n}';
 	//$('#codemirror').val($('#defaultcode').attr('dcode'));
-	console.log(defaultcode1.length);
-	console.log(defaultcode1.replaceAll('\\n', '\n').replaceAll('\\t', '\t').replaceAll('\\"', '\"').length);
-	console.log(defaultcode2.length);
-	
+	//console.log(defaultcode1.length);
+	//console.log(defaultcode1.replaceAll('\\n', '\n').replaceAll('\\t', '\t').replaceAll('\\"', '\"').length);
+	//console.log(defaultcode2.length);
+
+	var defaultcode = codechange($('#info').attr('dcode'));
 	//$('#codemirror').val(defaultcode1.replaceAll('\\n', '\n').replaceAll('\\t', '\t').replaceAll('\\"', '\"'));
-	$('#codemirror').val(codechange(defaultcode1));
-	$('#codeAnswer').html(codechange($('#answercode').attr('acode')));
+	$('#codemirror').val(defaultcode);
+	$('#codeAnswer').html(codechange($('#info').attr('acode')));
+	$('#contentsText').html(codechange($('#info').attr('question')));
 
 	//alert('연결?');
 	const codemirrorEditor = CodeMirror.fromTextArea(
@@ -44,6 +46,11 @@ $(document).ready(function() {
 		$('#learningModal').fadeIn();
 	});
 
+	//맨처음에만 띄우기
+	if ($('#info').attr('index') == 0) {
+		//모달창 바로 띄우기
+		$('.modal-lesson').fadeIn();
+	}
 
 	//모달창 클릭시 닫기
 	$('.contentClose').click(function() {
@@ -52,15 +59,15 @@ $(document).ready(function() {
 
 	//슬라이드 돌아가기 버튼
 	$('.callModal').click(function() {
-		$('.modal-lesson').fadeIn();
+		$('.modal-``').fadeIn();
 	});
 
 	//submit 버튼을 누른후 나오는 결과 모달창을 불러옴
 	$('#resultSubmit').click(function() {
-		let language = $('#language').attr('lang');
+		let language = $('#info').attr('lang');
 		let code = codemirrorEditor.getValue();
 		//let code = $('#codeAnswer').html();
-		console.log(code);
+		//console.log(code);
 
 		//컴파일용 ajax
 		$.ajax({
@@ -71,11 +78,11 @@ $(document).ready(function() {
 			success: function(res) {
 				console.log("compile ajax 성공");
 				$('#resultText').html(res);
-				
-				if(isCorrect(res)){
+
+				if (isCorrect(res)) {
 					$('#resultModal').fadeIn();
 				}
-				else{
+				else {
 					$('#falseModal').fadeIn();
 				}
 			},
@@ -84,9 +91,12 @@ $(document).ready(function() {
 			}
 		});
 
-		
 	});
 	//$('#resultSubmit').click(submitClick);
+	
+	$('#reset').click(function(){
+		codemirrorEditor.setValue(defaultcode);
+	});
 
 	//모달창을 닫는 버튼( 모든 모달창에서 사용됨 )
 	$('.resultClose').click(function() {
@@ -95,11 +105,6 @@ $(document).ready(function() {
 		$('#learningModal').fadeOut();
 		$('#falseModal').fadeOut();
 	});
-
-
-	//모달창 바로 띄우기
-	$('.modal-lesson').fadeIn();
-
 
 	//정답 모달창 띄우기('#answerButton', '#seeAnswer')
 	//같은 기능이라 같은 아이디로 실행하려고 하였으나 한쪽만 실행되는 문제가 발생해서 분리시킴
@@ -158,10 +163,46 @@ $(document).ready(function() {
 //	}
 //}
 
-function codechange(code){
-	return code.replaceAll('\\n', '\n').replaceAll('\\t', '\t').replaceAll('\\"', '\"');
+//데이터 베이스에서 받아온 \를 출력하려고 자동으로 \가 하나씩 더 들어가는걸 다시 되돌려주는 용도
+//다른 특수문자가 추가된다면 더 추가해야함, \\를 \로 바꿔주는건 \가 동작해버려서 못함
+function codechange(code) {
+	return code.replaceAll('\\n', '\n', ).replaceAll('\\t', '\t').replaceAll('\\"', '\"');
 }
 
-function isCorrect(answer){
-	return true;
+//정답 체크 임시
+function isCorrect(answer) {
+	let result = codechange($('#info').attr('result'));
+//	console.log("결과 : " + answer + "정답 : " + result);
+//	console.log("결과 : " + typeof answer + "\n정답 : " + typeof result);
+//	console.log("결과 : " + answer.length + "\n정답 : " + result.length);
+	
+	if(result == answer) {
+		alert("정답!");
+	}
+	else{
+		alert("오답!");
+	}
+
+	return true;	
 }
+
+//다음 페이지로 가는데 index가 초과되면 과정 선택 페이지로
+function nextpage() {
+	//alert('gd');
+	let currlesson = $('#info').attr('lid');
+	let currindex = $('#info').attr('index');
+	let indexmax = $('#info').attr('listlength');
+
+	let currurl = $('#info').attr('currurl');
+
+	currindex = Number(currindex);
+	currindex++;
+	
+	if (currindex < indexmax) {
+		location.href = currurl + "?lessonid=" + currlesson + "&questionindex=" + currindex;
+	}
+	else {
+		location.href = "./";
+	}
+}
+
