@@ -13,5 +13,8 @@ public interface MemberService {
 	public int updateMemberInfo(MemberVO member);
 	//회원탈퇴
 	public int deleteAccont(String userid, String user_pw);
+	
+	//유저 경험치 추가
+	public int updateUserExp(String userid, int exp);
 
 }

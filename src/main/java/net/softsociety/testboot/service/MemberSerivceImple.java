@@ -101,4 +101,12 @@ public class MemberSerivceImple implements MemberService {
 		}
 		return 0;
 	}
+
+	@Override
+	public int updateUserExp(String userid, int exp) {
+		
+		int result = dao.updateUserExp(Integer.parseInt(userid), exp);
+		
+		return result;
+	}
 }

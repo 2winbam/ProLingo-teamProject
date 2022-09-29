@@ -178,6 +178,22 @@ function isCorrect(answer) {
 
 	if (result == answer) {
 		//alert("정답!");
+		let currlesson = $('#info').attr('lid');
+		let currquestion = $('#info').attr('qid');
+
+		//유저 경험치 주기
+		$.ajax({
+			url: lessoncomplite,
+			type: 'post',
+			data: { lesson_id: currlesson, question_id: currquestion },
+			success: function(res) {
+				console.log("lessoncomplite ajax 성공");
+				console.log("유저 경험치 : " + res);				
+			},
+			error: function(e) {
+				alert("lessoncomplite ajax 실패 : " + e);
+			}
+		});
 		return true;
 	}
 	else {
