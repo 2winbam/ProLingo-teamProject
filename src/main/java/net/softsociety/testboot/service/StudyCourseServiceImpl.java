@@ -29,11 +29,11 @@ public class StudyCourseServiceImpl implements StudyCourseService {
 		 
 		return chapterList;
 	}
-	
+	/**
+	 * 개념 슬라이드 조회
+	 */
 	@Override
 	public ArrayList<ContentsVO> selectContents(int lessonid){
-		
-		log.debug("서비스 impl의 lessonid : {}", lessonid);
 		
 		ArrayList<ContentsVO> contentsList = dao.selectContents(lessonid);
 		
@@ -47,4 +47,14 @@ public class StudyCourseServiceImpl implements StudyCourseService {
 		
 		return contentsList;
 	} 
+	
+	@Override
+	public String searchTitle(int questionindex) {
+		
+		String title = dao.searchTitle(questionindex);
+		
+		return title;
+	}
+	
+	
 }

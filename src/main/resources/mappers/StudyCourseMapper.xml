@@ -27,4 +27,14 @@
 	order by CONTENT_ID
 </select>
 
+<select id="searchTitle" parameterType="int" resultType="String">
+	
+	select lesson_title
+	from prolingo_contents
+	where lesson_slide = #{questionindex}
+	group by lesson_title
+	
+	
+</select>
+
 </mapper>

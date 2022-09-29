@@ -22,5 +22,12 @@ public interface StudyCourseService {
 
 	public ArrayList<ContentsVO> selectContents(int lessonid, int questionindex);
 	
+	/**
+	 * 컴파일러 폼의 헤더리스트에서 현재 페이지의 타이틀을 조회
+	 * @param questionindex
+	 * @return 해당 컴파일러 폼 페이지의 타이틀
+	 */
+	public String searchTitle(int questionindex);
+	
 	
 }

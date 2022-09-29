@@ -85,7 +85,9 @@ public class StudyCourseController {
 		log.debug("lessonid : {}", lessonid);
 		
 		ArrayList<ContentsVO> chapterList = service.introdutionAll();
+		String title = service.searchTitle(questionindex);
 		
+		model.addAttribute("title", title);
 		model.addAttribute("chapterList", chapterList);
 			
 		ArrayList<ContentsVO> contentsList = service.selectContents(lessonid, questionindex);
