@@ -47,7 +47,7 @@ $(document).ready(function() {
 	});
 
 	//모달창 바로 띄우기
-	//$('.modal-lesson').fadeIn();
+	$('.modal-lesson').fadeIn();
 
 	//모달창 클릭시 닫기
 	$('.contentClose').click(function() {
@@ -55,8 +55,8 @@ $(document).ready(function() {
 	});
 
 	//슬라이드 돌아가기 버튼
-	$('.callModal').click(function() {
-		$('.modal-``').fadeIn();
+	$('#callContents').click(function() {
+		$('#div-modal-slider').fadeIn();
 	});
 
 	//submit 버튼을 누른후 나오는 결과 모달창을 불러옴

@@ -87,8 +87,6 @@ public class StudyCourseController {
 		
 		ArrayList<ContentsVO> contentsList = service.selectContents(lessonid, questionindex);
 		
-		log.debug("받아온 contentsList 값 : {}", contentsList);
-		
 		model.addAttribute("contentsList", contentsList);
 
 		ArrayList<ProlingoQuestionVO> questionlist = qs.selectAllQuestionsByLessonID(lessonid);		
@@ -138,21 +136,4 @@ public class StudyCourseController {
 		
 		return "studyCourse/compilerForm3";
 	}
-	
-	/*
-	@ResponseBody
-	@GetMapping("contentsList")
-	public ArrayList<ContentsVO> contentsList(){
-		
-		int lessonid = 1;
-		
-		log.debug("받은 lessonid 값 : {}", lessonid);
-		
-		ArrayList<ContentsVO> contentsList = service.selectContents(lessonid);
-		
-		log.debug("받아온 contentsList 값 : {}", contentsList);
-		
-		return contentsList;
-		}
-	*/
 }

@@ -71,17 +71,15 @@
 								</div>
 
 							<div class="card-body">
-								<form>
-									<!--  
+								<form>  
 									<table>
 										<tr th:each="chapterList:${chapterList}">
 											<td th:text="${chapterList.lesson_id}"></td>
 											<td>
-												<a th:text="${chapterList.lesson_name}" href=""></a>		
+												<a th:text="${chapterList.lesson_name}" th:href="@{compilerForm}"></a>		
 											</td>	
 										</tr>
 									</table>
-									-->
 								</form> 
 							</div>
 							</div>
