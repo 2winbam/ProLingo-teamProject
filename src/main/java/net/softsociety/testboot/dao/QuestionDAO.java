@@ -11,4 +11,6 @@ public interface QuestionDAO {
 
 	ArrayList<ProlingoQuestionVO> selectAllQuestionsByLessonID(int lessonid);
 
+	ArrayList<String> selectAllKeywordsName(int questionid);
+
 }

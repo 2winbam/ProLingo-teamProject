@@ -24,6 +24,8 @@ public interface StudyCourseDAO {
 	public ArrayList<ContentsVO> selectContents(int lessonid);
 
 	public ArrayList<ContentsVO> selectContents2(@Param("lessonid")int lessonid, @Param("questionindex")int questionindex);
+
+	public String getLanguage(int lessonid);
 	
 	/**
 	 * 컴파일러 폼의 헤더리스트에서 현재 페이지의 타이틀을 조회

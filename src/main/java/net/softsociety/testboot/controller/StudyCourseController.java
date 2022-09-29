@@ -100,6 +100,11 @@ public class StudyCourseController {
 		model.addAttribute("questionindex", questionindex);
 		model.addAttribute("questionlist", questionlist);
 		
+		String language = service.getLanguage(lessonid);
+		
+		log.debug("이 레슨의 언어 : {}", language);
+		model.addAttribute("language", language);
+		
 		return "studyCourse/compilerForm";
 	}
 	

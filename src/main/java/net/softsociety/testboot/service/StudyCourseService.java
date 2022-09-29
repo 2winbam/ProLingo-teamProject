@@ -21,6 +21,9 @@ public interface StudyCourseService {
 	public ArrayList<ContentsVO> selectContents(int lessonid);
 
 	public ArrayList<ContentsVO> selectContents(int lessonid, int questionindex);
+
+	//레슨의 언어 반환
+	public String getLanguage(int lessonid);
 	
 	/**
 	 * 컴파일러 폼의 헤더리스트에서 현재 페이지의 타이틀을 조회

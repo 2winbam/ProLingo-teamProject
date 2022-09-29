@@ -8,4 +8,6 @@ public interface QuestionService {
 
 	public ArrayList<ProlingoQuestionVO> selectAllQuestionsByLessonID(int lessonid);
 
+	public ArrayList<String> selectAllKeywordsName(int questionid);
+
 }

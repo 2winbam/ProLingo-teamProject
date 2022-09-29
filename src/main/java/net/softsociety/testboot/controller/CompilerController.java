@@ -5,6 +5,7 @@ import java.io.BufferedReader;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -17,6 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 import net.softsociety.testboot.domain.MemberVO;
 import net.softsociety.testboot.service.DBTestService;
 import net.softsociety.testboot.service.MemberService;
+import net.softsociety.testboot.service.QuestionService;
 
 @Controller
 @Slf4j
@@ -30,6 +32,9 @@ public class CompilerController {
 	
 	@Autowired
 	MemberService ms;
+	
+	@Autowired
+	QuestionService qs;
 
 	@PostMapping("compile")
 	@ResponseBody
@@ -180,5 +185,15 @@ public class CompilerController {
 		}
 		
 		return "로그인 한 유저 없음";
+	}
+	
+	@PostMapping("getkeywords")
+	@ResponseBody
+	ArrayList<String> getkeywords(int questionid){
+		log.debug("문제 번호 : {}", questionid);
+		
+		ArrayList<String> keywordnames = qs.selectAllKeywordsName(questionid);
+		
+		return keywordnames;
 	}
 }
