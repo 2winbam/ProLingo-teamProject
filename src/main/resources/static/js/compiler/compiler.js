@@ -61,9 +61,10 @@ $(document).ready(function() {
 
 	//submit 버튼을 누른후 나오는 결과 모달창을 불러옴
 	$('#resultSubmit').click(function() {
-		let language = $('#info').attr('lang');
+		let language = $('#info').attr('lang').toLowerCase();
 		let code = codemirrorEditor.getValue();
 		//let code = $('#codeAnswer').html();
+		console.log(language);
 		//console.log(code);
 
 		//컴파일용 ajax
@@ -78,6 +79,7 @@ $(document).ready(function() {
 
 				if (isCorrect(res)) {
 					$('#resultModal').fadeIn();
+					updateExp();
 				}
 				else {
 					$('#falseModal').fadeIn();
@@ -178,22 +180,25 @@ function isCorrect(answer) {
 
 	if (result == answer) {
 		//alert("정답!");
-		let currlesson = $('#info').attr('lid');
-		let currquestion = $('#info').attr('qid');
-
-		//유저 경험치 주기
-		$.ajax({
-			url: lessoncomplite,
-			type: 'post',
-			data: { lesson_id: currlesson, question_id: currquestion },
-			success: function(res) {
-				console.log("lessoncomplite ajax 성공");
-				console.log("유저 경험치 : " + res);				
-			},
-			error: function(e) {
-				alert("lessoncomplite ajax 실패 : " + e);
-			}
-		});
+		//키워드들을 보내줄 필요 없이 문제만 보내줘도?
+		//let kewords = $('#info').attr('keywords');
+		//console.log(kewords);
+//		let qid = Number($('#info').attr('qid'));
+//		
+//		//키워드들의 이름을 리스트로 받아와서
+//		$.ajax({
+//			url: '/prolingo/getkeywords',
+//			type: 'post',
+//			data: { questionid: qid },
+//			success: function(res) {
+//				console.log("getkeywords ajax 성공 : " + res);
+//			},
+//			error: function(e) {
+//				alert("getkeywords ajax 실패 : " + e);
+//			}
+//		});
+		//code 내용에 일치하는게 있는지 확인하는 작업
+		
 		return true;
 	}
 	else {
@@ -223,3 +228,21 @@ function nextpage() {
 	}
 }
 
+function updateExp() {
+	let currlesson = $('#info').attr('lid');
+	let currquestion = $('#info').attr('qid');
+
+	//유저 경험치 주기
+	$.ajax({
+		url: '/prolingo/lessoncomplite',
+		type: 'post',
+		data: { lesson_id: currlesson, question_id: currquestion },
+		success: function(res) {
+			console.log("lessoncomplite ajax 성공");
+			console.log("유저 경험치 : " + res);
+		},
+		error: function(e) {
+			alert("lessoncomplite ajax 실패 : " + e);
+		}
+	});
+}

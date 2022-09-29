@@ -46,6 +46,14 @@ public class StudyCourseServiceImpl implements StudyCourseService {
 		ArrayList<ContentsVO> contentsList = dao.selectContents2(lessonid, questionindex);
 		
 		return contentsList;
+	}
+
+	@Override
+	public String getLanguage(int lessonid) {
+
+		String result = dao.getLanguage(lessonid);
+		
+		return result;
 	} 
 	
 	@Override

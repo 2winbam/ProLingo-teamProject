@@ -27,6 +27,20 @@
 	order by CONTENT_ID
 </select>
 
+<!-- <select id="getLanguage" parameterType="int" resultType="string"> -->
+<!-- 	select subject_name -->
+<!-- 	from prolingo_subject -->
+<!-- 	where subject_id = ( -->
+<!-- 		select subject_id -->
+<!-- 		from prolingo_lesson -->
+<!-- 		where lesson_id = #{lessonid}) -->
+<!-- </select> -->
+<select id="getLanguage" parameterType="int" resultType="string">
+	select s.subject_name
+	from prolingo_subject s, prolingo_lesson l
+	where l.lesson_id = #{lessonid} and s.subject_id = l.subject_id
+</select>
+
 <select id="searchTitle" parameterType="int" resultType="String">
 	
 	select lesson_title

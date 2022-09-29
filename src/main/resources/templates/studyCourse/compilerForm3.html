@@ -43,7 +43,11 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <script type="text/javascript" th:src="@{/js/compiler/compiler.js}"></script>
 
+<!-- 개념 슬라이드 값 출력을 위한 JavaScript -->
+<!-- <script type="text/javascript" th:src="@{/js/compiler/contents.js}"></script> -->
+
 </head>
+
 
 <body>
 <!-- 컴파일러폼에서만 사용되는 header -->
@@ -62,7 +66,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 			<button id="pageList">
 				Java Study 개념
 				&nbsp;<i class="bi-chevron-right" id="chevron"></i>&nbsp;
-				<span th:text="${title}"></span>
+				변수의 선언 및 개념
 				&nbsp;<i class="bi bi-caret-down-fill"></i>
 			</button>		
 		</div>
@@ -85,10 +89,11 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
       		<div class="modal-body" id="learnList">
    				<!-- 특정 학습 페이지로 이동하기 위한 a태그 -->
    				<!-- each로 반복해야 할 부분으로 생각됨 -->
-      			<div th:each="chapterList:${chapterList}" class="learningLink" id="learningLink">
-        			<a th:text="${chapterList.lesson_title}" 
-        			th:href="|@{compilerForm}?lessonid=${chapterList.lesson_id}&questionindex=${chapterList.lesson_slide}|" 
-        			class="learningOne" ></a>
+      			<div class="learningLink" id="learningLink">
+        			<a th:href="@{/}" class="learningOne" >1. 학습리스트 예시1</a>
+        		</div>
+        		<div class="learningLink" id="learningLink">
+        			<a th:href="@{/}" class="learningOne" >2. 학습리스트 예시2</a>
         		</div>
       		</div>
     	</div>
@@ -98,20 +103,11 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 
 <!-- 현재 학습 과정이 뭔지 불러와줄 부분 -->
-<!-- 그냥 자바 스크립트에서 ajax로 객체 가져오는게 200만배는 나았을듯 -->
-<span id="info" th:lang="${language}"
-		th:lid="${lessonid}"
-		th:qid="${questionlist[questionindex].question_id}"
-		th:question="${questionlist[questionindex].question_contents}"
-		th:dcode="${questionlist[questionindex].default_code}"
-		th:acode="${questionlist[questionindex].answer}"
-		th:result="${questionlist[questionindex].console_result}"
-		th:keywords="${questionlist[questionindex].keywords}"
-		th:listlength="${#lists.size(questionlist)}"
-		th:index="${questionindex}"
-		th:currurl="${#httpServletRequest.requestURI}"></span>
-<!-- <span id="defaultcode" th:dcode="${questionlist[questionindex].default_code}"></span> -->
-<!-- <span id="answercode" th:acode="${questionlist[questionindex].answer}"></span> -->
+<!-- 원래는 타임리프를 사용해야 할 부분 -->
+ 
+<span id="language" th:lang="java"></span>
+<span id="defaultcode" th:dcode="${questionList[questionindex].default_code}"></span>
+<span id="answercode" th:acode="${questionList[questionindex].answer}"></span>
 
 <!-- 모달 개념설명 부분 -->
 <div class="modal-lesson" id="div-modal-slider">
@@ -127,7 +123,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 					<div class="contents modal-lesson-body-title">
 						<h3 th:text="${contentsList.lesson_subtitle}"></h3>
 					</div>	
-				<div class="bodyContent modal-lesson-body-content">
+				<div class="contents modal-lesson-body-content">
 					<p class="slide-top__description">
 						<span th:text="${contentsList.lesson_contents}"></span>
 					</p>
@@ -163,7 +159,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 		<div class="card-body contents">
 			<!-- 문제 출력부분 예시 -->
 			<!-- 컨트롤러에서 문제 객체 받아와서 출력되게 함 -->
-			<div class="card-text" id="contentsText">Hello World를 출력하시오, 문제가 출력되는 p태그(필요할시 textarea등으로 변경가능)</div>
+			<p class="card-text" id="contentsText" th:text="${questionList[questionindex].question_contents}">Hello World를 출력하시오, 문제가 출력되는 p태그(필요할시 textarea등으로 변경가능)</p>
 		</div>
 	</div>
 
@@ -284,7 +280,7 @@ class Main {
 						<div class="card-body">
 						<!-- 컨트롤러에서 문제 객체 받아와서 출력되게 함 -->
 						<!--th:text="${questionList[questionindex].answer}"-->
-							<textarea class="codeAnswer" id="codeAnswer" readonly>
+							<textarea class="codeAnswer" id="codeAnswer" >
 class Main {
     public static void main(String[] args) {
        System. out.println("Hello answer" );
