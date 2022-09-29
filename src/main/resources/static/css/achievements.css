@@ -2,8 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 
 h3{
-	position: absolute;
-	text-align:center;
 	top: 100px;
 	width: 100%;
 	border: 50px;
@@ -12,11 +10,6 @@ h3{
 }
 
 .achieveList{
-	width:100%;
-	position: fixed;
-	top: 180px;
-	left: 20%;
-	text-align:left;
 	font-family: 'Noto Sans KR', sans-serif;
 }
 
@@ -24,6 +17,8 @@ h3{
 	width:900px;
 }
 
-#payment{
+.notAchieveList{
 	filter:grayscale(100%);
+	opacity: 70%;
+	font-family: 'Noto Sans KR', sans-serif;
 }
