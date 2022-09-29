@@ -67,4 +67,7 @@
 	delete from prolingo_user
 	where USER_ID = #{user_id}
 </delete>
+
+<!-- 유저 경험치 추가 -->
+<update id="updateUserExp"></update>
 </mapper>

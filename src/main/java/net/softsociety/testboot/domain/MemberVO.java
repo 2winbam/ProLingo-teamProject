@@ -29,7 +29,7 @@ public class MemberVO implements UserDetails{
 	private String user_role;
 	private String longintype;
 	private String joindate; //int로 되어있던걸 String으로 수정
-	private int exp;
+	private int user_exp; //이름을 exp 에서 user_exp로 변경, ALTER TABLE PROLINGO_USER RENAME COLUMN EXP TO USER_EXP;
 	private int continueday;
 	private int money;
 	private int goal;

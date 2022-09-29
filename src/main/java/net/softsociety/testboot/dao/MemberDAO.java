@@ -3,6 +3,7 @@ package net.softsociety.testboot.dao;
 import java.util.HashMap;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import net.softsociety.testboot.domain.MemberVO;
 
@@ -20,5 +21,8 @@ public interface MemberDAO {
 	int updateMemberInfo(MemberVO member);
 	//회원정보 삭제
 	int deleteMemberAccount(int id);
+	
+	//경험치 추가
+	int updateUserExp(@Param("id") int userid, @Param("exp") int exp);
 
 }
