@@ -47,7 +47,7 @@ $(document).ready(function() {
 	});
 
 	//모달창 바로 띄우기
-	//$('.modal-lesson').fadeIn();
+	$('.modal-lesson').fadeIn();
 
 	//모달창 클릭시 닫기
 	$('.contentClose').click(function() {
