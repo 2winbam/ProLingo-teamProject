@@ -40,4 +40,15 @@
 	from prolingo_subject s, prolingo_lesson l
 	where l.lesson_id = #{lessonid} and s.subject_id = l.subject_id
 </select>
+
+<select id="searchTitle" parameterType="int" resultType="String">
+	
+	select lesson_title
+	from prolingo_contents
+	where lesson_slide = #{questionindex}
+	group by lesson_title
+	
+	
+</select>
+
 </mapper>

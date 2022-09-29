@@ -16,7 +16,6 @@ import net.softsociety.testboot.domain.ContentsVO;
 import net.softsociety.testboot.domain.ProlingoQuestionVO;
 import net.softsociety.testboot.service.QuestionService;
 import net.softsociety.testboot.service.QuestionServiceImpl;
-import net.softsociety.testboot.domain.TestLessonVO;
 import net.softsociety.testboot.service.StudyCourseService;
 
 @Slf4j
@@ -48,7 +47,7 @@ public class StudyCourseController {
 	@GetMapping("javaCourse/introduction")
 	public String JavaIntroduction(Model model) {
 		
-		ArrayList<TestLessonVO> chapterList = service.introdutionAll();
+		ArrayList<ContentsVO> chapterList = service.introdutionAll();
 		
 		log.debug("조회한 리스트 전체 : {}", chapterList);
 		
@@ -85,10 +84,12 @@ public class StudyCourseController {
 		
 		log.debug("lessonid : {}", lessonid);
 		
-		ArrayList<TestLessonVO> chapterList = service.introdutionAll();
+		ArrayList<ContentsVO> chapterList = service.introdutionAll();
+		String title = service.searchTitle(questionindex);
 		
+		model.addAttribute("title", title);
 		model.addAttribute("chapterList", chapterList);
-		
+			
 		ArrayList<ContentsVO> contentsList = service.selectContents(lessonid, questionindex);
 		
 		model.addAttribute("contentsList", contentsList);
