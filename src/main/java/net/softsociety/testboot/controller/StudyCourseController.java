@@ -85,6 +85,10 @@ public class StudyCourseController {
 		
 		log.debug("lessonid : {}", lessonid);
 		
+		ArrayList<TestLessonVO> chapterList = service.introdutionAll();
+		
+		model.addAttribute("chapterList", chapterList);
+		
 		ArrayList<ContentsVO> contentsList = service.selectContents(lessonid, questionindex);
 		
 		model.addAttribute("contentsList", contentsList);
