@@ -5,9 +5,11 @@
 <mapper namespace="net.softsociety.testboot.dao.StudyCourseDAO">
 
 <!-- 학습페이지에서 입문편 리스트 조회-->
-<select id="introdutionAll" resultType="TestLessonVO">
-	select * 
-	from  test_lesson
+<select id="introdutionAll" resultType="ContentsVO">
+	select lesson_slide, lesson_title 
+	from prolingo_contents
+	group by lesson_slide, lesson_title
+	order by lesson_slide
 </select>
 
 <!-- 학습페이지에서 특정 슬라이드 목록을 조회 -->

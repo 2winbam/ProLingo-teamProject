@@ -13,3 +13,8 @@
 .lesson-card-icon {
 	width:128px;
 }
+
+.lesson-overview__introduction{
+	text-align: center;
+	width: 350px;
+}

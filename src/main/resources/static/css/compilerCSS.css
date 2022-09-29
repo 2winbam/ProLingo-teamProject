@@ -20,6 +20,9 @@ footer {
     left: 0;
 }
 
+.bodyContent{
+	width:500px;
+}
 
 .CodeMirror {
 	border: 1px solid #eee;
@@ -35,7 +38,6 @@ footer {
 
 .contents{
 	font-family: 'Noto Sans KR', sans-serif;
-/* 	width: 500px; */
 }
 
 .cardForm{

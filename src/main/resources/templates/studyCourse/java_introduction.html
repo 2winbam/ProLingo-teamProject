@@ -14,6 +14,8 @@
 <link th:href="@{/css/row2.css}" rel="stylesheet">
 
 
+
+
 </head>
 <body>
 	<div class="wrapper">
@@ -25,7 +27,7 @@
 			<div th:replace="fragments/header :: new_header"></div>
 
 			<!-- content -->
-			<main class="content">
+			<main class="content d-flex justify-content-start">
 				<div class="container-fluid p-0">
 
 					<h1 class="h3 mb-3">Java : 입문편</h1>
@@ -60,29 +62,33 @@
 										<div class="lesson-overview__introduction u-mt10 u-mb10">
 											전 세계에서 사용되는 유명한 언어 "Java"의 세계에 오신 것을 환영합니다! 이 단원에서는 Java의 기본 코드 작성,
 											 데이터 유형, 변수 등에 대해 배웁니다.</div>
-										<div class="btn-wrapper">
-											<a
-												class="c-btn c-btn--continue c-btn--lesson-btn-start--java-study"
-												href="studyCourse/compilerForm">시작하기</a> 
-												<!-- <a class="c-btn c-btn--detail c-btn--lesson-btn-detail--java-study"
-												href="/lessons/java/study/1">수업에대해 자세히 알아보기</a> -->
-										</div>
 									</div>
 								</div>
 
 							<div class="card-body">
-								<form>
-									<!--  
+
+     		 				<div class="header">
+        						<h3 class="modal-title" id="exampleModalLongTitle">Java 시작하기</h3>
+        		
+      						</div>
+      						
+      						<div th:each="chapterList:${chapterList}" id="javaList">
+   							
+   							<!-- 특정 학습 페이지로 이동하기 위한 a태그 -->
+      							<div class="learningLink d-flex flex-row" id="learningLink">
+        							<a th:text="${chapterList.lesson_title}" th:href="|@{compilerForm}?lessonid=${chapterList.lesson_id}&questionindex=${chapterList.lesson_slide}|"></a>
+        						</div>
+      						</div>
+      						<!--  
 									<table>
 										<tr th:each="chapterList:${chapterList}">
-											<td th:text="${chapterList.lesson_id}"></td>
+											<td th:text="${chapterList.lesson_slide}"></td>
 											<td>
-												<a th:text="${chapterList.lesson_name}" href=""></a>		
+												<a th:text="${chapterList.lesson_title}" th:href="@{compilerForm}"></a>		
 											</td>	
 										</tr>
 									</table>
-									-->
-								</form> 
+ 							-->
 							</div>
 							</div>
 						</div>

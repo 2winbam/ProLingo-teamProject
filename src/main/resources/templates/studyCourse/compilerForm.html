@@ -43,11 +43,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <script type="text/javascript" th:src="@{/js/compiler/compiler.js}"></script>
 
-<!-- 개념 슬라이드 값 출력을 위한 JavaScript -->
-<!-- <script type="text/javascript" th:src="@{/js/compiler/contents.js}"></script> -->
-
 </head>
-
 
 <body>
 <!-- 컴파일러폼에서만 사용되는 header -->
@@ -129,7 +125,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 					<div class="contents modal-lesson-body-title">
 						<h3 th:text="${contentsList.lesson_subtitle}"></h3>
 					</div>	
-				<div class="contents modal-lesson-body-content">
+				<div class="bodyContent modal-lesson-body-content">
 					<p class="slide-top__description">
 						<span th:text="${contentsList.lesson_contents}"></span>
 					</p>
