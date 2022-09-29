@@ -6,7 +6,6 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import net.softsociety.testboot.domain.ContentsVO;
-import net.softsociety.testboot.domain.TestLessonVO;
 
 @Mapper
 public interface StudyCourseDAO {
@@ -15,7 +14,7 @@ public interface StudyCourseDAO {
 	 * 학습선택 페이지에서 입문편 리스트 출력
 	 * @return
 	 */
-	public ArrayList<TestLessonVO> introdutionAll();
+	public ArrayList<ContentsVO> introdutionAll();
 	
 	/**
 	 * 개념 슬라이드 출력

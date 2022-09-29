@@ -3,7 +3,6 @@ package net.softsociety.testboot.service;
 import java.util.ArrayList;
 
 import net.softsociety.testboot.domain.ContentsVO;
-import net.softsociety.testboot.domain.TestLessonVO;
 
 public interface StudyCourseService {
 	
@@ -12,7 +11,7 @@ public interface StudyCourseService {
 	 * 학습선택 페이지에서 입문편 리스트 전체출력
 	 * @return
 	 */
-	public ArrayList<TestLessonVO> introdutionAll();
+	public ArrayList<ContentsVO> introdutionAll();
 	
 	/**
 	 * 개념 슬라이드 출력
