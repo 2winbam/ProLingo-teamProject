@@ -109,6 +109,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 		th:acode="${questionlist[questionindex].answer}"
 		th:result="${questionlist[questionindex].console_result}"
 		th:lid="${lessonid}"
+		th:qid="${questionlist[questionindex].question_id}"
 		th:listlength="${#lists.size(questionlist)}"
 		th:index="${questionindex}"
 		th:currurl="${#httpServletRequest.requestURI}"></span>
