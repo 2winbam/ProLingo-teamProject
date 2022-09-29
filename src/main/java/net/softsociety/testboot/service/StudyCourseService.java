@@ -22,6 +22,9 @@ public interface StudyCourseService {
 	public ArrayList<ContentsVO> selectContents(int lessonid);
 
 	public ArrayList<ContentsVO> selectContents(int lessonid, int questionindex);
+
+	//레슨의 언어 반환
+	public String getLanguage(int lessonid);
 	
 	
 }

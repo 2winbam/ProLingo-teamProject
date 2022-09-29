@@ -25,5 +25,7 @@ public interface StudyCourseDAO {
 	public ArrayList<ContentsVO> selectContents(int lessonid);
 
 	public ArrayList<ContentsVO> selectContents2(@Param("lessonid")int lessonid, @Param("questionindex")int questionindex);
+
+	public String getLanguage(int lessonid);
 	
 }

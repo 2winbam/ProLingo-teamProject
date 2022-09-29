@@ -18,4 +18,10 @@ public class QuestionServiceImpl implements QuestionService {
 	public ArrayList<ProlingoQuestionVO> selectAllQuestionsByLessonID(int lessonid) {
 		return dao.selectAllQuestionsByLessonID(lessonid);
 	}
+
+	@Override
+	public ArrayList<String> selectAllKeywordsName(int questionid) {
+
+		return dao.selectAllKeywordsName(questionid);
+	}
 }

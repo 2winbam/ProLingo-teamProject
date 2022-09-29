@@ -69,5 +69,9 @@
 </delete>
 
 <!-- 유저 경험치 추가 -->
-<update id="updateUserExp"></update>
+<update id="updateUserExp">
+	update prolingo_user
+	set user_exp = user_exp + #{exp}
+	where user_id = #{id}
+</update>
 </mapper>
