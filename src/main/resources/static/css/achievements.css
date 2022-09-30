@@ -4,9 +4,10 @@
 h3{
 	top: 100px;
 	width: 100%;
-	border: 50px;
+	border-bottom: 50px;
 	font-family: 'Noto Sans KR', sans-serif;
 	font-weight:bold;
+	
 }
 
 .achieveList{

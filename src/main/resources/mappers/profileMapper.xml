@@ -16,7 +16,7 @@
 <select id="selectNotClear" resultType="AchievementVO">
 	select distinct p.achievement_id, p.achievement_name, p.achievement_text, p.achievement_picture
 	from prolingo_achievement p, user_achieve u
-	where p.achievement_id != u.achievement_id
+	where p.achievement_id != u.achievement_id and u.achievement_id != p.achievement_id
 	order by p.achievement_id
 </select>
 
