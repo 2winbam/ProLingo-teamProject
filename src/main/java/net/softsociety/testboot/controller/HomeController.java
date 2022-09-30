@@ -1,18 +1,28 @@
 package net.softsociety.testboot.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 
+import lombok.extern.slf4j.Slf4j;
 import net.softsociety.testboot.domain.DBTestVO;
+import net.softsociety.testboot.domain.MemberVO;
 import net.softsociety.testboot.service.DBTestService;
+import net.softsociety.testboot.service.MemberService;
 
 @Controller
+@Slf4j
 public class HomeController {
 
 	@Autowired
 	DBTestService service;
+	
+	@Autowired
+	MemberService ms;
 	
 	@GetMapping({"","/"})
 	public String home() {
@@ -27,6 +37,20 @@ public class HomeController {
 	@GetMapping("error")
 	public String errorpage() {
 		return "errorpage";
+	}
+	
+	@GetMapping("loginsuccess")
+	public String loginsuccess(HttpSession session, @AuthenticationPrincipal UserDetails user) {
+		log.debug("로긴함");
+		
+		MemberVO member = ms.getMemerInfo(user.getUsername());
+		
+		log.debug(member.getUser_name());
+		
+		session.setAttribute("noticecount", member.getAge());
+		session.setAttribute("nickname", member.getUser_name());
+		
+		return "redirect:/study";
 	}
 	
 	/**
