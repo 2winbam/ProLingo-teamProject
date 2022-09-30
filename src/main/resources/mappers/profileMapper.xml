@@ -1,0 +1,23 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.softsociety.testboot.dao.ProfileDAO">
+
+<!-- 달성한 업적을 조회 -->
+<select id="selectClear" parameterType="String" resultType="AchievementVO">
+	select u.achievement_date, p.achievement_id, p.achievement_name, p.achievement_text, p.achievement_picture
+	from prolingo_achievement p, user_achieve u 
+	where p.achievement_id = u.achievement_id and u.user_id = #{userid}
+	order by p.achievement_id
+</select>
+
+<!-- 미달성한 업적을 조회 -->
+<select id="selectNotClear" parameterType="String" resultType="AchievementVO">
+	select distinct p.achievement_id, p.achievement_name, p.achievement_text, p.achievement_picture
+	from prolingo_achievement p, user_achieve u
+	where p.achievement_id != u.achievement_id  and u.user_id = #{userid}
+	order by p.achievement_id
+</select>
+
+</mapper>

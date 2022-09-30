@@ -10,4 +10,8 @@
 	where lesson_id = #{lesson_id}
 	order by question_id
 </select>
+
+<!-- <select id="selectAllKeywordsName" parameterMap="int" resultType="string"> -->
+<!-- 퀘스천의 키워드들 가져와서 이름 받아오기 -->
+<!-- </select> -->
 </mapper>

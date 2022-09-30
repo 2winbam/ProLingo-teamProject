@@ -7,15 +7,10 @@
 <title>Java Introduction</title>
 <!-- 추가되는 링크 입력, 없더라도 link 빈거 하나는 있어야 하는듯? -->
 <!-- <link rel="stylesheet" th:href="@{}"> -->
-<link>
+<link th:href="@{/css/row2.css}" rel="stylesheet">
 <!-- 추가되는 스크립트 입력, 역시 없더라도 빈거 하나는 있어야 하는듯? -->
 <!-- <script type="text/javascript" th:src="@{/scripts/home.js}"></script> -->
-
-<link th:href="@{/css/row2.css}" rel="stylesheet">
-
-
-
-
+<script></script>
 </head>
 <body>
 	<div class="wrapper">
@@ -27,7 +22,7 @@
 			<div th:replace="fragments/header :: new_header"></div>
 
 			<!-- content -->
-			<main class="content d-flex justify-content-start">
+			<main class="content">
 				<div class="container-fluid p-0">
 
 					<h1 class="h3 mb-3">Java : 입문편</h1>
@@ -67,42 +62,30 @@
 
 							<div class="card-body">
 
-     		 				<div class="header">
-        						<h3 class="modal-title" id="exampleModalLongTitle">Java 시작하기</h3>
+     		 					<div class="header">
+        							<h3 class="modal-title" id="exampleModalLongTitle">Java 시작하기</h3>
         		
-      						</div>
+      							</div>
       						
-      						<div th:each="chapterList:${chapterList}" id="javaList">
+      							<div th:each="chapterList:${chapterList}" id="javaList">
    							
-   							<!-- 특정 학습 페이지로 이동하기 위한 a태그 -->
-      							<div class="learningLink d-flex flex-row" id="learningLink">
-        							<a th:text="${chapterList.lesson_title}" th:href="|@{compilerForm}?lessonid=${chapterList.lesson_id}&questionindex=${chapterList.lesson_slide}|"></a>
-        						</div>
-      						</div>
-      						<!--  
-									<table>
-										<tr th:each="chapterList:${chapterList}">
-											<td th:text="${chapterList.lesson_slide}"></td>
-											<td>
-												<a th:text="${chapterList.lesson_title}" th:href="@{compilerForm}"></a>		
-											</td>	
-										</tr>
-									</table>
- 							-->
-							</div>
+   								<!-- 특정 학습 페이지로 이동하기 위한 a태그 -->
+      								<div class="learningLink d-flex flex-row" id="learningLink">
+        								<a th:text="${chapterList.lesson_title}" th:href="|@{compilerForm}?lessonid=${chapterList.lesson_id}&questionindex=${chapterList.lesson_slide}|"></a>
+        							</div>
+      							</div>
 							</div>
 						</div>
 					</div>
-
 				</div>
-			</main>
+			</div>
+			
+		</main>
 			<!-- footer -->
 			<div th:replace="fragments/footer :: new_footer"></div>
 
 		</div>
 	</div>
 
-	<!-- 이거 없으면 화이트라벨 뜸 ㅡㅡ -->
-	<script th:src="@{/js/app.js}"></script>
 </body>
 </html>
