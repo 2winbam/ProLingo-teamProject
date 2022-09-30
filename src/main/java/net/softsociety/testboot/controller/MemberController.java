@@ -228,6 +228,9 @@ public class MemberController {
 		session.setAttribute("noticecount", member.getAge());
 		session.setAttribute("nickname", member.getNickname());
 		session.setAttribute("username", member.getUser_name());
+		session.setAttribute("userexp", member.getUser_exp());
+		session.setAttribute("continueday", member.getContinueday());
+		session.setAttribute("usermoney", member.getMoney());
 		session.setAttribute("userphoto", photourl);
 		
 		session.setAttribute("userinfo", member);
