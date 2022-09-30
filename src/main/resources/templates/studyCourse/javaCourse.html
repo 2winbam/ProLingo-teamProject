@@ -1,152 +1,177 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>학습페이지</title>
+<!-- <html xmlns:th="http://thymeleaf.org"> -->
+<!-- <head> -->
+<!-- <meta charset="UTF-8"> -->
+<!-- <title>학습페이지</title> -->
 
-<script th:src="@{/scripts/jquery-3.6.0.js}"></script>
+<!-- <script th:src="@{/scripts/jquery-3.6.0.js}"></script> -->
 
-<!-- 부트스트랩 CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- <!-- 부트스트랩 CSS -->
+<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"> -->
 
-<!-- 부트스트랩 JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
- 
-<!-- header의 css -->
-<link rel="stylesheet" type="text/css" th:href="@{/css/header.css}">
+<!-- <!-- 부트스트랩 JavaScript -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script> -->
 
-<!-- 아이콘 사용 -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-<link rel="shortcut icon" th:href="@{/img/icons/icon-48x48.png}">
-<!-- main css -->
-<link th:href="@{/css/app.css}" rel="stylesheet">
+<!-- <!-- header의 css -->
+<!-- <link rel="stylesheet" type="text/css" th:href="@{/css/header.css}"> -->
 
-<!-- 학습 코스 container css -->
-<link th:href="@{/css/row.css}" rel="stylesheet">
+<!-- <!-- 아이콘 사용 -->
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"> -->
+<!-- <link rel="shortcut icon" th:href="@{/img/icons/icon-48x48.png}"> -->
+<!-- <!-- main css -->
+<!-- <link th:href="@{/css/app.css}" rel="stylesheet"> -->
+
+<!-- <!-- 학습 코스 container css -->
+<!-- <link th:href="@{/css/row.css}" rel="stylesheet"> -->
+<!-- </head> -->
+<html lang="ko" xmlns:th="http://thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head
+	th:replace="fragments/head :: new_head(~{::title},~{::link},~{::script})">
+<!-- 타이틀 입력 -->
+<title>select level</title>
+<!-- 추가되는 링크 입력, 없더라도 link 빈거 하나는 있어야 하는듯? -->
+<!-- <link rel="stylesheet" th:href="@{}"> -->
+<link th:href="@{/css/row2.css}" rel="stylesheet">
+<!-- 추가되는 스크립트 입력, 역시 없더라도 빈거 하나는 있어야 하는듯? -->
+<!-- <script type="text/javascript" th:src="@{/scripts/home.js}"></script> -->
+<script></script>
 
 </head>
 <body>
-<header class="p-3">
-	<div class="container">
-		<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-				<!-- a태그의 이동페이지 주소는 해당 페이지의 제작자가 입력 요망 -->
-				
-			<div id="logo">
-						<a th:href="@{/}"><img th:src="@{/icons/swallow_icon.png}" alt="logo_icon" id="logo_icon"></a>
-			</div>
-			<div>
-				<a th:href="@{/}" class="px-5 nav-link text-start" id="prolingo" style="font-weight:bold">PROLINGO</a>
-			</div>
-				
-			<div class="dropdown text-center">
-					
-				<a href="#" class="menu d-block dropdown-toggle text-decoration-none"
-					data-bs-toggle="dropdown" aria-expanded="false" id="dropdown"><i class="bi bi-book" id="icon"></i>학습
-				</a>
-				<ul class="dropdown-menu text-small text-light">
-					<!-- 자바 학습페이지와 연결 -->
-					<li><a class="dropdown-item text-decoration-none" th:href="@{/study/javaCourse}">
-						<img th:src="@{/icons/java_icon.png}" alt="java_icon" class="icon">&nbsp;자바</a>
-					</li>
-					<!-- C 학습 페이지와 연결 -->
-					<li><a class="dropdown-item text-decoration-none" href="#">
-						<img th:src="@{/icons/c_icon.png}" alt="c_icon" class="icon">&nbsp;C</a>
-					</li>
-				</ul>
-			</div>
-				
-			<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-					
-				<!-- 현 시점에서는 홈으로 이동하도록 되어있으나 변경여지있음 -->
-						
-				<!-- 랭킹 페이지와 연결 -->
-				<li><a href="#" class="nav-link" id="dropdown"><i class="bi bi-award" id="icon"></i>랭킹</a></li>
-				<!-- 게시판 페이지와 연결 -->
-				<li><a href="#" class="nav-link" id="dropdown"><i class="bi bi-file-text" id="icon"></i>게시판</a></li>
-			</ul>
-				
-			<!-- 다국어 지원 기능 구현시 사용 (미구현시에는 삭제)-->
-				
-			<div class="dropdown text-center">
-					
-				<a href="#" class="menu d-block dropdown-toggle text-decoration-none"
-						data-bs-toggle="dropdown" aria-expanded="false">언어 설정
-				</a>
-				<ul class="dropdown-menu text-small text-light">
-					<!-- 프로필 페이지와 연결 -->
-					<li><a class="dropdown-item" href="#">
-						<img th:src="@{/icons/korea_icon.png}" alt="korea_icon" class="icon">&nbsp;한국어</a>
-					</li>
-					<!-- 결제 페이지로 이동 -->
-					<li><a class="dropdown-item" href="#">
-						<img th:src="@{/icons/japan_icon.png}" alt="japan_icon" class="icon">&nbsp;日本語</a>
-					</li>
-				</ul>
-			</div>
-			
-			
-			<!-- 로그인한 계정페이지로의 연결과 프로필 사진 출력 필요 (개인페이지 구현 및 사진 저장경로 구현 후 상세히 작성예정) -->
-				
-			<div class="px-5 dropdown text-end">
-					<a href="#" class="menu d-block dropdown-toggle text-decoration-none"
-							data-bs-toggle="dropdown" aria-expanded="false">
-					<img src="https://github.com/mdo.png" alt="profile" width="32" height="32"
-							class="rounded-circle">
-					</a>
-				
-				<ul class="dropdown-menu text-small text-light">
-					<!-- 프로필 페이지와 연결 -->
-					<li><a class="dropdown-item" href="#"><i class="bi bi-person-circle"></i>&nbsp;&nbsp;프로필</a></li>
-					<!-- 결제 페이지로 이동 -->
-					<li><a class="dropdown-item" href="#"><i class="bi bi-cart"></i>&nbsp;&nbsp;결제</a></li>
-					<!-- 설정 페이지로 이동 -->
-					<li><a class="dropdown-item" href="#"><i class="bi bi-gear"></i>&nbsp;&nbsp;설정</a></li>
-					<li><hr class="dropdown-divider"></li>
-					<!-- 로그아웃 하면서 시작페이지로 이동 -->
-           			<li><a class="dropdown-item" href="@{/}"><i class="bi bi-person-x"></i>&nbsp;&nbsp;로그아웃</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
-</header>
+	<!-- <header class="p-3"> -->
+	<!-- 	<div class="container"> -->
+	<!-- 		<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"> -->
+	<!-- 				a태그의 이동페이지 주소는 해당 페이지의 제작자가 입력 요망 -->
+
+	<!-- 			<div id="logo"> -->
+	<!-- 						<a th:href="@{/}"><img th:src="@{/icons/swallow_icon.png}" alt="logo_icon" id="logo_icon"></a> -->
+	<!-- 			</div> -->
+	<!-- 			<div> -->
+	<!-- 				<a th:href="@{/}" class="px-5 nav-link text-start" id="prolingo" style="font-weight:bold">PROLINGO</a> -->
+	<!-- 			</div> -->
+
+	<!-- 			<div class="dropdown text-center"> -->
+
+	<!-- 				<a href="#" class="menu d-block dropdown-toggle text-decoration-none" -->
+	<!-- 					data-bs-toggle="dropdown" aria-expanded="false" id="dropdown"><i class="bi bi-book" id="icon"></i>학습 -->
+	<!-- 				</a> -->
+	<!-- 				<ul class="dropdown-menu text-small text-light"> -->
+	<!-- 					자바 학습페이지와 연결 -->
+	<!-- 					<li><a class="dropdown-item text-decoration-none" th:href="@{/study/javaCourse}"> -->
+	<!-- 						<img th:src="@{/icons/java_icon.png}" alt="java_icon" class="icon">&nbsp;자바</a> -->
+	<!-- 					</li> -->
+	<!-- 					C 학습 페이지와 연결 -->
+	<!-- 					<li><a class="dropdown-item text-decoration-none" href="#"> -->
+	<!-- 						<img th:src="@{/icons/c_icon.png}" alt="c_icon" class="icon">&nbsp;C</a> -->
+	<!-- 					</li> -->
+	<!-- 				</ul> -->
+	<!-- 			</div> -->
+
+	<!-- 			<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"> -->
+
+	<!-- 				현 시점에서는 홈으로 이동하도록 되어있으나 변경여지있음 -->
+
+	<!-- 				랭킹 페이지와 연결 -->
+	<!-- 				<li><a href="#" class="nav-link" id="dropdown"><i class="bi bi-award" id="icon"></i>랭킹</a></li> -->
+	<!-- 				게시판 페이지와 연결 -->
+	<!-- 				<li><a href="#" class="nav-link" id="dropdown"><i class="bi bi-file-text" id="icon"></i>게시판</a></li> -->
+	<!-- 			</ul> -->
+
+	<!-- 			<!-- 다국어 지원 기능 구현시 사용 (미구현시에는 삭제)-->
+
+	<!-- 			<div class="dropdown text-center"> -->
+
+	<!-- 				<a href="#" class="menu d-block dropdown-toggle text-decoration-none" -->
+	<!-- 						data-bs-toggle="dropdown" aria-expanded="false">언어 설정 -->
+	<!-- 				</a> -->
+	<!-- 				<ul class="dropdown-menu text-small text-light"> -->
+	<!-- 					프로필 페이지와 연결 -->
+	<!-- 					<li><a class="dropdown-item" href="#"> -->
+	<!-- 						<img th:src="@{/icons/korea_icon.png}" alt="korea_icon" class="icon">&nbsp;한국어</a> -->
+	<!-- 					</li> -->
+	<!-- 					결제 페이지로 이동 -->
+	<!-- 					<li><a class="dropdown-item" href="#"> -->
+	<!-- 						<img th:src="@{/icons/japan_icon.png}" alt="japan_icon" class="icon">&nbsp;日本語</a> -->
+	<!-- 					</li> -->
+	<!-- 				</ul> -->
+	<!-- 			</div> -->
 
 
-	<div class="container-fluid p-0">
+	<!-- 			<!-- 로그인한 계정페이지로의 연결과 프로필 사진 출력 필요 (개인페이지 구현 및 사진 저장경로 구현 후 상세히 작성예정) -->
+
+	<!-- 			<div class="px-5 dropdown text-end"> -->
+	<!-- 					<a href="#" class="menu d-block dropdown-toggle text-decoration-none" -->
+	<!-- 							data-bs-toggle="dropdown" aria-expanded="false"> -->
+	<!-- 					<img src="https://github.com/mdo.png" alt="profile" width="32" height="32" -->
+	<!-- 							class="rounded-circle"> -->
+	<!-- 					</a> -->
+
+	<!-- 				<ul class="dropdown-menu text-small text-light"> -->
+	<!-- 					프로필 페이지와 연결 -->
+	<!-- 					<li><a class="dropdown-item" href="#"><i class="bi bi-person-circle"></i>&nbsp;&nbsp;프로필</a></li> -->
+	<!-- 					결제 페이지로 이동 -->
+	<!-- 					<li><a class="dropdown-item" href="#"><i class="bi bi-cart"></i>&nbsp;&nbsp;결제</a></li> -->
+	<!-- 					설정 페이지로 이동 -->
+	<!-- 					<li><a class="dropdown-item" href="#"><i class="bi bi-gear"></i>&nbsp;&nbsp;설정</a></li> -->
+	<!-- 					<li><hr class="dropdown-divider"></li> -->
+	<!-- 					로그아웃 하면서 시작페이지로 이동 -->
+	<!--            			<li><a class="dropdown-item" href="@{/}"><i class="bi bi-person-x"></i>&nbsp;&nbsp;로그아웃</a></li> -->
+	<!-- 				</ul> -->
+	<!-- 			</div> -->
+	<!-- 		</div> -->
+	<!-- 	</div> -->
+	<!-- </header> -->
+
+	<div class="wrapper">
+		<!-- sidebar -->
+		<!-- <div th:replace="fragments/sidebar :: sidebar"></div> -->
+
+		<div class="main">
+			<!-- header -->
+			<div th:replace="fragments/header :: new_header"></div>
+
+			<!-- content -->
+			<main class="content">
+				<div class="container-fluid p-0">
 
 					<div class="mb-3">
 						<h1 class="h3 d-inline align-middle">Java 학습</h1>
-						<p class="badge bg-dark text-white ms-2">	
-      자바를 공부해봅시다!
-  </p>
+						<p class="badge bg-dark text-white ms-2">자바를 공부해봅시다!</p>
 					</div>
 					<div class="row">
 						<div class="col-12 col-md-6">
 							<div class="card">
-									<img class="card-img-top" th:src="@{/img/icons/java_icon2.svg}" alt="java_icon" style="width: 128px">
-									<div class="card-header">
-										<h5 class="card-title mb-0">Java 입문편</h5>
-									</div>
-									<div class="card-body">
-										<p class="card-text">Java를 시작하기위한 개념설명과 간단한 문제풀이를 해봅시다!</p>
-										<a th:href="@{javaCourse/introduction}" class="btn btn-primary">학습하러 가기</a>
-									</div>
+								<img class="card-img-top" th:src="@{/img/icons/java_icon2.svg}"
+									alt="java_icon" style="width: 128px">
+								<div class="card-header">
+									<h5 class="card-title mb-0">Java 입문편</h5>
+								</div>
+								<div class="card-body">
+									<p class="card-text">Java를 시작하기위한 개념설명과 간단한 문제풀이를 해봅시다!</p>
+									<a th:href="@{/study/javaCourse/introduction}"
+										class="btn btn-primary">학습하러 가기</a>
+								</div>
 							</div>
-							</div>
-							<div class="col-12 col-md-6">
+						</div>
+						<div class="col-12 col-md-6">
 							<div class="card">
-									<img class="card-img-top" th:src="@{/img/icons/java_icon2.svg}" alt="java_icon" style="width: 128px">
-									<div class="card-header">
-										<h5 class="card-title mb-0">Java 초급편</h5>
-									</div>
-									<div class="card-body">
-										<p class="card-text">ava를 시작하기위한 개념설명과 간단한 문제풀이를 해봅시다!</p>
-										<a th:href="@{javaCourse/beginner}" class="btn btn-primary">학습하러 가기</a>
-									</div>
+								<img class="card-img-top" th:src="@{/img/icons/java_icon2.svg}"
+									alt="java_icon" style="width: 128px">
+								<div class="card-header">
+									<h5 class="card-title mb-0">Java 초급편</h5>
+								</div>
+								<div class="card-body">
+									<p class="card-text">Java를 시작하기위한 개념설명과 간단한 문제풀이를 해봅시다!</p>
+									<a th:href="@{javaCourse/beginner}" class="btn btn-primary">학습하러
+										가기</a>
+								</div>
 							</div>
-							</div>
-				</div>			
+						</div>
+					</div>
+				</div>
+			</main>
+		</div>
 	</div>
-
-	<!-- blankpage에 맞게 수정 요망 -->
 </body>
 </html>
