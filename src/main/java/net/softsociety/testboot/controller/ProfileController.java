@@ -3,6 +3,8 @@ package net.softsociety.testboot.controller;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +21,7 @@ import net.softsociety.testboot.service.ProfileService;
 public class ProfileController {
 	
 	@Autowired
-	ProfileService service;
+	ProfileService ps;
 	
 	/**
 	 * 
@@ -35,12 +37,17 @@ public class ProfileController {
 	 * @return 업적 달성 
 	 */
 	@GetMapping("/achievements")
-	public String achievements(Model model) {
+	public String achievements(Model model, @AuthenticationPrincipal UserDetails user) {
 		
+		// 현재 접속중인 유저의 userid를 조회
+		String userId = user.getUsername();
+		
+		log.debug("접속중인 아이디: {}" , userId);
+				
 		// 달성한 업적 조회
-		ArrayList<AchievementVO> clearList = service.selectClear();
+		ArrayList<AchievementVO> clearList = ps.selectClear(userId);
 		// 미달성한 업적 조회
-		ArrayList<AchievementVO> notClearList = service.selectNotClear();
+		ArrayList<AchievementVO> notClearList = ps.selectNotClear(userId);
 		
 		//log.debug("조회한 달성 리스트 전체 : {}", clearList);
 		//log.debug("조회한 미달성 리스트 전체 : {}", notClearList);
