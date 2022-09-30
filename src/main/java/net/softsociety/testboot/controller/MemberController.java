@@ -215,12 +215,15 @@ public class MemberController {
 		log.debug("로긴함");
 		
 		MemberVO member = service.getMemerInfo(user.getUsername());
+		String photourl = "";
+		//log.debug(member.getUser_name());
 		if(member.getPhoto() == null) {
-			member.setPhoto("/prolingo/img/avatars/basicprofilePhoto.png");
+			photourl = "/prolingo/img/avatars/basicprofilePhoto.png";
 		}
-		log.debug(member.getUser_name());
+		else {
+			photourl = "/prolingo/img/avatars/" + member.getPhoto();
+		}
 		
-		String photourl = "/prolingo/img/avatars/" + member.getPhoto();
 		
 		session.setAttribute("noticecount", member.getAge());
 		session.setAttribute("nickname", member.getNickname());
