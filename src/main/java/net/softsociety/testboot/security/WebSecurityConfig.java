@@ -43,7 +43,7 @@ public class WebSecurityConfig {
         .formLogin()					
         .loginPage("/member/login")	
         .loginProcessingUrl("/member/login").permitAll()
-        .defaultSuccessUrl("/loginsuccess", true)
+        .defaultSuccessUrl("/member/loginsuccess", true)
         .usernameParameter("userid") //username에 userid를(로그인 폼의 id의 name)
         .passwordParameter("userpw") //password에 userpw를(로그인 폼의 pw의 name)
         .and()

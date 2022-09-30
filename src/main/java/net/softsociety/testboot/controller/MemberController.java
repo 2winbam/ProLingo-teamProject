@@ -1,5 +1,7 @@
 package net.softsociety.testboot.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -192,16 +194,41 @@ public class MemberController {
 	}
 	
 	@GetMapping("/pricing")
-	public String pricing(Model model) {
+	public String pricing(Model model, @AuthenticationPrincipal UserDetails user) {
 		String user_role = "plus";
 		model.addAttribute("role", user_role);
+		
+		MemberVO member = service.getMemerInfo(user.getUsername());
+		model.addAttribute("member", member);
 		
 		return "memberView/pricing";
 	}
 	
-	@GetMapping("upgrade")
+	@GetMapping("/upgrade")
 	public String upgrade() {
 		
 		return "redirect:/member/pricing";
+	}
+	
+	@GetMapping("loginsuccess")
+	public String loginsuccess(HttpSession session, @AuthenticationPrincipal UserDetails user) {
+		log.debug("로긴함");
+		
+		MemberVO member = service.getMemerInfo(user.getUsername());
+		if(member.getPhoto() == null) {
+			member.setPhoto("/prolingo/img/avatars/basicprofilePhoto.png");
+		}
+		log.debug(member.getUser_name());
+		
+		String photourl = "/prolingo/img/avatars/" + member.getPhoto();
+		
+		session.setAttribute("noticecount", member.getAge());
+		session.setAttribute("nickname", member.getNickname());
+		session.setAttribute("username", member.getUser_name());
+		session.setAttribute("userphoto", photourl);
+		
+		session.setAttribute("userinfo", member);
+		
+		return "redirect:/study";
 	}
 }
