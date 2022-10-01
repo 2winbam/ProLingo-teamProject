@@ -38,28 +38,46 @@ public class CompilerController {
 
 	@PostMapping("compile")
 	@ResponseBody
-	public String compileResult(String language, String code) {
+	public String compileResult(String language, String code, @AuthenticationPrincipal UserDetails user) {
 		
 		//dbts.insertCodeTest(code);
-		
 		log.debug("language : {}, code : {}", language, code);
+		
+		String newcode = code.replace("class Main {\n\tpublic static void main(String[] args) {",
+				"import java.time.LocalTime;"
+				+ "class Main {"
+				+ "public static void main(String[] args) {"
+				+ "int st = LocalTime.now().getNano();"
+				+ "Usercode.usercode();"
+				+ "int et = LocalTime.now().getNano();"
+				+ "System.out.println(\"forsplit걸린 시간 : \" + (et - st) / (double)1000000000);"
+				+ "}"
+				+ "}"
+				+ "class Usercode {"
+				+ "static void usercode() {");
+		log.debug(newcode);
+		
 
 		// 유저 이름? 아이디?로 파일이름 생성하기
-		int userid = 1234;
+		String userid = user.getUsername();
 		// 자바에선 동작하지만 c에선 동작하지 않는 패스라 일단 제거
 		// String path = "src/main/resources/static/codes/";
 		String path = "";
 		// 현재 패스 찾는거 알 수 있는 방법이 있나?
-		String fullpath = "/user/Documents/ProLingo-teamProject/" + path;
+		//String fullpath = "/user/Documents/ProLingo-teamProject/" + path;
+		
+		//정수 집 컴 경로
+		String fullpath = "/Users/SU/Documents/ProLingo-teamProject/" + path;
 		
 		if (language.equals("java")) {
 			String filename = userid + "_Javacode.java";
-			// code 에서 클래스 이름을 꺼내오게 하는게 더 좋긴 한데 일단 이대로
+			// code 에서 클래스 이름을 꺼내오게 하면 좋을것 같은데 일단 이대로
 			String classname = "Main";
 
 			try {
 				BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(path + filename));
-				byte[] by = code.getBytes();
+				//byte[] by = code.getBytes();
+				byte[] by = newcode.getBytes();
 				bos.write(by);
 				bos.close();
 				// 필요 없나?
@@ -82,7 +100,17 @@ public class CompilerController {
 
 			String result = execCmd("java -cp " + fullpath + " " + classname, "java");
 			//String result = execCmd("cd", "java");
-//			result = "javac -encoding UTF-8 " + fullpath + filename;
+			
+			try {
+				//.java파일
+				//Runtime.getRuntime().exec("cmd /c del " + filename);
+				//.class파일
+				Runtime.getRuntime().exec("cmd /c del " + classname +".class");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			log.debug("실행 결과 : {}", result);
 
 			return result;
@@ -111,6 +139,14 @@ public class CompilerController {
 			String result = execCmd(exename, "c");
 
 			log.debug("실행 결과 : {}", result);
+			
+			try {
+				//동작하는지 확인 요망
+				Runtime.getRuntime().exec("cmd /c del " + exename);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 			return result;
 		}
@@ -149,51 +185,5 @@ public class CompilerController {
 			e.printStackTrace();
 		}
 		return null;
-	}
-	
-	/**
-	 * 
-	 * @param lessonid 지금은 question 아이디만 알면 필요 없지만 나중에 lessonid, index 복합키로 바꾼다면 필요
-	 * @param questid
-	 * @return
-	 */
-	@PostMapping("lessoncomplite")
-	@ResponseBody
-	public String lessoncomplite(int lesson_id, int question_id, @AuthenticationPrincipal UserDetails user) {
-		log.debug("레슨 : {} 퀘스쳔 : {}", lesson_id, question_id);
-		
-		//로그인 한 유저가 있으면
-		if(user != null) {
-			//lesson의 question을 이미 완료했는지 확인하는 코드 필요
-			
-			//완료하지 않은 문제였다면
-			//그 유저의 경험치를 10만큼 추가
-			int result = ms.updateUserExp(user.getUsername(), 10);
-			//성공시
-			if(result != 0) {
-				//경험치를 확인하기 위해
-				MemberVO member = ms.getMemerInfo(user.getUsername());
-				
-				return "user " + member.getUser_name() + "의 경험치 : " + member.getUser_exp();
-			}
-			else {
-				return "lessoncomplite fail";
-			}
-			
-			//완료한 문제였다면
-			//return "이미 경험치 획득한 문제";
-		}
-		
-		return "로그인 한 유저 없음";
-	}
-	
-	@PostMapping("getkeywords")
-	@ResponseBody
-	ArrayList<String> getkeywords(int questionid){
-		log.debug("문제 번호 : {}", questionid);
-		
-		ArrayList<String> keywordnames = qs.selectAllKeywordsName(questionid);
-		
-		return keywordnames;
 	}
 }
