@@ -1,7 +1,11 @@
 @charset "UTF-8";
+.card-body {
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
 .row {
 	margin: 0 auto;
-	width: 800px;
+	width: 1200px;
 	height: 320px;
 	display: felx;
 	text-align: center;
@@ -9,7 +13,6 @@
 .card-img-top {
 	margin: 0 auto;
 }
-.mb-3 {
-	padding-left:50px;
-	height: 100px;
+.lesson-card-icon {
+	width:128px;
 }
