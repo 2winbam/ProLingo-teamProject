@@ -87,14 +87,17 @@ public class BoardController {
 			) {
 		String id = user.getUsername(); // id 읽어서
 		int boardID = Integer.parseInt(id);
-		board.setBoard_id(boardID);
+		//board.setBoard_id(boardID);
+		board.setUser_id(boardID); // userid입니다
+		
 		
 		
 		log.debug("저장할 글 정보: {}", board);
 		
 		service.writeBoard(board);
 		
-		return "boardView/boardList";
+		//return "boardView/boardList";
+		return "redirect:/board/list";
 		
 	}
 	
