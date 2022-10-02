@@ -19,5 +19,5 @@ public interface ProfileService {
 	 * @return
 	 */
 	public ArrayList<AchievementVO> selectNotClear(String userId);
-	
+		
 }

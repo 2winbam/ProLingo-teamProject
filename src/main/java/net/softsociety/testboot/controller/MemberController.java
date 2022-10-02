@@ -27,6 +27,7 @@ public class MemberController {
 	// 로그인 화면
 	@GetMapping("/sign_in")
 	public String sign_in() {
+		
 		log.debug("called sign_in");
 		return "examples/sign_in";
 	}
@@ -84,6 +85,7 @@ public class MemberController {
 	//백앤드 되면 활성화
 	@PostMapping("/join")
 	public String join(MemberVO member) {
+		
 		log.debug("전달된 값 : {}", member);
 		
 		service.insertMember(member);
@@ -223,6 +225,8 @@ public class MemberController {
 		else {
 			photourl = "/prolingo/img/avatars/" + member.getPhoto();
 		}
+		
+		
 		
 		
 		session.setAttribute("noticecount", member.getAge());

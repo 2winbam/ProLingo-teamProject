@@ -41,8 +41,8 @@ public class ProfileServiceImpl implements ProfileService{
 		for(AchievementVO cl : clearList) {
 			int i = 0;
 			for(AchievementVO ncl : notClearList) {
-				//log.debug("cl : " + cl.getAchievement_id());
-				//log.debug("ncl : " + ncl.getAchievement_id());
+				log.debug("cl : " + cl.getAchievement_id());
+				log.debug("ncl : " + ncl.getAchievement_id());
 				if(cl.getAchievement_id() == ncl.getAchievement_id()) {
 					//log.debug("" + i);
 					notClearList.remove(i);

@@ -3,6 +3,8 @@ package net.softsociety.testboot.controller;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,8 +28,14 @@ public class StudyCourseController {
 	@Autowired
 	StudyCourseService service;
 	
+	/**
+	 * 학습 페이지를 띄움
+	 * @param user
+	 * @return
+	 */
 	@GetMapping("javaCourse")
 	public String JavaCourse() {
+		
 		return"studyCourse/javaCourse";
 	}
 	

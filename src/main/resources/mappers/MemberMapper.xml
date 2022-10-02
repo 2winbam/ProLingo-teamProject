@@ -74,4 +74,5 @@
 	set user_exp = user_exp + #{exp}
 	where user_id = #{id}
 </update>
+
 </mapper>

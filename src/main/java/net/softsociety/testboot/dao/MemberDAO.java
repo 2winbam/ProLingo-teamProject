@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import net.softsociety.testboot.domain.MemberVO;
 

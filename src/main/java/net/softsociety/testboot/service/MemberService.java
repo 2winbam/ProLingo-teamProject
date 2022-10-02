@@ -1,5 +1,7 @@
 package net.softsociety.testboot.service;
 
+import org.springframework.security.core.userdetails.UserDetails;
+
 import net.softsociety.testboot.domain.MemberVO;
 
 public interface MemberService {
@@ -16,5 +18,5 @@ public interface MemberService {
 	
 	//유저 경험치 추가
 	public int updateUserExp(String userid, int exp);
-
+	
 }
