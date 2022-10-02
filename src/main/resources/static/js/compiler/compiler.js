@@ -69,15 +69,16 @@ $(document).ready(function() {
 
 		//컴파일용 ajax
 		$.ajax({
-			url: '/prolingo/compile',
+			//url: '/prolingo/compile',
+			url: '/prolingo/compile2', //신버전
 			type: 'post',
 			data: { language: language, code: code },
-			dataType: 'text',
+			dataType: 'json',
 			success: function(res) {
 				console.log("compile ajax 성공");
-				$('#resultText').html(res);
-
-				if (isCorrect(res)) {
+				$('#resultText').html(res[0]);
+				if (isCorrect(res[0])) {
+					$('#timetaken').html("코드 실행에 걸린 시간 : " + res[1] + "초");
 					$('#resultModal').fadeIn();
 					updateExp();
 				}
