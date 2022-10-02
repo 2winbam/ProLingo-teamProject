@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import net.softsociety.testboot.dao.QuestionDAO;
+import net.softsociety.testboot.domain.ProlingoKeywordVO;
 import net.softsociety.testboot.domain.ProlingoQuestionVO;
 
 @Service
@@ -20,8 +21,17 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 
 	@Override
-	public ArrayList<String> selectAllKeywordsName(int questionid) {
+	public ArrayList<ProlingoKeywordVO> selectAllKeywordsName(String keywords) {
+		
+		String[] keywordlist = keywords.split(",");
+		
+		ArrayList<ProlingoKeywordVO> result = new ArrayList<>();
+		
+		for(String key : keywordlist) {
+			Integer.parseInt(key);
+			result.add(dao.selectKeywordById(Integer.parseInt(key)));
+		}
 
-		return dao.selectAllKeywordsName(questionid);
+		return result;
 	}
 }

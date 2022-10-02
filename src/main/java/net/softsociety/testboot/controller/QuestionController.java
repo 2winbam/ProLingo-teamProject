@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.extern.slf4j.Slf4j;
 import net.softsociety.testboot.domain.MemberVO;
+import net.softsociety.testboot.domain.ProlingoKeywordVO;
 import net.softsociety.testboot.domain.ProlingoQuestionVO;
 import net.softsociety.testboot.service.MemberService;
 import net.softsociety.testboot.service.QuestionService;
@@ -80,10 +81,10 @@ public class QuestionController {
 	}
 	
 	@PostMapping("getkeywords")
-	ArrayList<String> getkeywords(int questionid){
-		log.debug("문제 번호 : {}", questionid);
+	ArrayList<ProlingoKeywordVO> getkeywords(String kewords){
+		log.debug("문제 키워드들 : {}", kewords);
 		
-		ArrayList<String> keywordnames = qs.selectAllKeywordsName(questionid);
+		ArrayList<ProlingoKeywordVO> keywordnames = qs.selectAllKeywordsName(kewords);
 		
 		return keywordnames;
 	}
