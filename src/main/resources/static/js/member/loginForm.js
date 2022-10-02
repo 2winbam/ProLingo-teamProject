@@ -27,13 +27,18 @@ $(document).ready(function() {
 });
 
 //이메일 입력시 체크해서 메세지 띄우는 함수
-function emailCheck() {
+function emailCheck(key) {
 	//console.log($('#floatingInput').val());
 	if (!IsEmail($('#email').val())) {
 		$('#errorEmail').html('올바른 이메일 형식이 아닙니다');
 	}
 	else {
 		$('#errorEmail').html('');
+	}
+	
+	if (key.keyCode == 13) {
+		//alert("엔터키를 눌렀습니다.");
+		$('#password').select();
 	}
 }
 
@@ -49,12 +54,17 @@ function IsEmail(email) {
 }
 
 //비밀번호 입력시 체크해서 메세지 띄우는 함수
-function passwordCheck() {
+function passwordCheck(key) {
 	if ($('#password').val().length < 8) {
 		$('#errorPassword').html('비밀번호는 8자리 이상 입니다');
 	}
 	else {
 		$('#errorPassword').html('');
+	}
+	
+	if (key.keyCode == 13) {
+		//alert("엔터키를 눌렀습니다.");
+		$('#loginbtn').click();
 	}
 }
 

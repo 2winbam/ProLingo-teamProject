@@ -31,12 +31,16 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 		
 					<h1 class="h3 mb-3">글쓰기</h1>
 		
-					<!-- 내용 -->
-    				<form action="writeForm" method="post">
-						<textarea id="summernote" name="editordata"></textarea>
-						<br>					
-						<input type="submit" class="btn btn-primary" value="저장">
-						<span><a th:href="@{/board/list}" class="btn btn-success">뒤로가기</a></span>
+					<!-- 글쓰기 -->
+    				<form id="writeForm" action="writeForm" method="post">
+    					<input type=text name="title" id="title" placeholder="제목을 입력해 주세요." style="width: 500px; margin: 5px">
+							<!-- summer note -->
+							<!-- <textarea id="summernote" name="editordata"></textarea> -->
+							<textarea id="summernote" name="board_content"></textarea> <!-- board_content 입니다 -->
+							<br>
+							
+							<input type="submit" class="btn btn-primary" value="저장">
+							<span><a th:href="@{/board/list}" class="btn btn-success">뒤로가기</a></span>
 					</form>	
     				
 				</div>

@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BoardVO {
+	
 	private int board_id;
 	private int user_id;
 	private String title;
