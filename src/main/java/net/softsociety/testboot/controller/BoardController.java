@@ -2,8 +2,11 @@ package net.softsociety.testboot.controller;
 
 import java.util.ArrayList;
 
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 import net.softsociety.testboot.domain.BoardVO;
 import net.softsociety.testboot.domain.PageNavigator;
 import net.softsociety.testboot.service.BoardService;
+import oracle.jdbc.proxy.annotation.Post;
 
 
 @Slf4j
@@ -47,12 +51,16 @@ public class BoardController {
 		log.debug("페이지당 글수:{}, 페이지이동 링크수{}, page : {}, type : {}, searchWord : {}, mode : {}"
 				,countPerPage, pagePerGroup, page, type, searchWord, mode);
 		
-		//PageNavigator navi = service.getgetPageNavigator(page, type, searchWord);
 		
-		//ArrayList<BoardVO> boardList = service.boardListAll(navi,type,searchWord);
+		PageNavigator navi = service.getgetPageNavigator(pagePerGroup, countPerPage, page, type, searchWord);
 		
-		//model.addAttribute("navi", navi);
+		//DB의 게시판 테이블의 모든 글을 읽기
+		ArrayList<BoardVO> boardList = service.boardListAll(navi,type,searchWord);
+		
+		//ArrayList<Board> 타입으로 모델에 저장
+		model.addAttribute("navi", navi);
 		model.addAttribute("type", type);
+		model.addAttribute("boardlist", boardList);
 		model.addAttribute("searchWord", searchWord);
 		model.addAttribute("mode", mode);
 		
@@ -68,5 +76,27 @@ public class BoardController {
 		log.debug("writeForm() called");
 		return "boardView/writeForm";
 	}
+
+	/**
+	 * 글저장
+	 */
+	@PostMapping("/writeForm")
+	public String writeForm(
+			BoardVO board
+			, @AuthenticationPrincipal UserDetails user // 로그인한 사용자 정보 전달
+			) {
+		String id = user.getUsername(); // id 읽어서
+		int boardID = Integer.parseInt(id);
+		board.setBoard_id(boardID);
+		
+		
+		log.debug("저장할 글 정보: {}", board);
+		
+		service.writeBoard(board);
+		
+		return "boardView/boardList";
+		
+	}
+	
 	
 }

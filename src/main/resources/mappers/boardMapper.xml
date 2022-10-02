@@ -1,0 +1,84 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="net.softsociety.testboot.dao.BoardDAO">
+
+<!-- 게시글 저장 -->
+<insert id="writeBoard" parameterType="BoardVO">
+	INSERT INTO PROLINGO_BOARD
+	(
+		board_id
+		, user_id
+		, title
+		, board_content	
+	) 
+	VALUES
+	(
+		PROLINGO_BOARD_SEQ.NEXTVAL
+		, #{user_id}
+		, #{title}
+		, #{board_content}		
+	)
+</insert>
+
+<!-- 글 개수 -->
+<select id="count" parameterType="map" resultType="int">
+	SELECT 
+		count(*)
+	FROM
+		PROLINGO_BOARD
+	<if test="type != null and searchWord != null">
+	<where>
+		<if test="type == 'title'">
+			UPPER(title) like '%' || UPPER(#{searchWord}) || '%'
+		</if>
+		<if test="type == 'board_content'">
+			UPPER(board_content) like '%' || UPPER(#{searchWord}) || '%'
+		</if>
+		<if test="type == 'user_id'">
+			UPPER(user_id) like UPPER(#{searchWord})
+		</if>
+		<if test="type == 'all'">
+			UPPER(title) like '%' || UPPER(#{searchWord}) || '%'
+			OR UPPER(board_content) like '%' || UPPER(#{searchWord}) || '%'
+			OR UPPER(user_id) like UPPER(#{searchWord})
+		</if>
+	</where>
+	</if>
+</select>
+
+<!-- 글 전체 목록 -->
+<select id="boardListAll" parameterType="map" resultType="BoardVO">
+	SELECT 
+		board_id
+		, title
+		, user_id
+		, hits
+		, TO_CHAR(writingdate, 'YY-MM-DD') AS writingdate
+	FROM
+		PROLINGO_BOARD
+		<!-- 전달된 값에 따라서 sql 변경 -> 동적 sql --> <!-- 검색어가 넘어왔는지부터 확인 -->
+	<if test="type != null and searchWord != null"> <!-- true, false가 나오는 조건식 --> <!-- vo : 변수명 map : key -->
+	<where> <!-- 조건이 하나도 안남으면 where도 지움 -->
+		<if test="type == 'title'"> <!-- 넘어왔다는 게 확인이 되면 타입에 들어있는 문자열 내용을 보면 알 수 있음 -> if문으로 확인 -->
+			UPPER(title) like '%' || UPPER(#{searchWord}) || '%'
+		</if>
+		<if test="type == 'board_content'">
+			UPPER(board_content) like '%' || UPPER(#{searchWord}) || '%'
+		</if>
+		<if test="type == 'user_id'">
+			UPPER(user_id) like UPPER(#{searchWord})
+		</if>
+		<if test="type == 'all'">
+			UPPER(title) like '%' || UPPER(#{searchWord}) || '%'
+			OR UPPER(board_content) like '%' || UPPER(#{searchWord}) || '%'
+			OR UPPER(user_id) like UPPER(#{searchWord})
+		</if>
+	</where>
+	</if>
+	ORDER BY
+		board_id DESC
+</select>
+
+</mapper>
