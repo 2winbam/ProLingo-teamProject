@@ -5,7 +5,7 @@ import java.io.BufferedReader;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.extern.slf4j.Slf4j;
-import net.softsociety.testboot.domain.MemberVO;
 import net.softsociety.testboot.service.DBTestService;
 import net.softsociety.testboot.service.MemberService;
 import net.softsociety.testboot.service.QuestionService;
@@ -42,21 +41,24 @@ public class CompilerController {
 		
 		//dbts.insertCodeTest(code);
 		log.debug("language : {}, code : {}", language, code);
-		
-		String newcode = code.replace("class Main {\n\tpublic static void main(String[] args) {",
-				"import java.time.LocalTime;"
-				+ "class Main {"
-				+ "public static void main(String[] args) {"
-				+ "int st = LocalTime.now().getNano();"
-				+ "Usercode.usercode();"
-				+ "int et = LocalTime.now().getNano();"
-				+ "System.out.println(\"forsplit걸린 시간 : \" + (et - st) / (double)1000000000);"
-				+ "}"
-				+ "}"
-				+ "class Usercode {"
-				+ "static void usercode() {");
-		log.debug(newcode);
-		
+//		String[] splitedcode = code.split("\n");
+//		splitedcode[0] = "import java.time.LocalTime;"
+//				+ "class Main {"
+//				+ "public static void main(String[] args) {"
+//				+ "int st = LocalTime.now().getNano();"
+//				+ "Usercode.usercode();"
+//				+ "int et = LocalTime.now().getNano();"
+//				+ "System.out.println(\"forsplit걸린 시간 : \" + (et - st) / (double)1000000000);"
+//				+ "}"
+//				+ "}"
+//				+ "class Usercode {"
+//				+ "static void usercode() {";
+//		splitedcode[1] = "";
+//		String newcode = "";
+//		
+//		for(String c : splitedcode) {
+//			newcode += c;
+//		}
 
 		// 유저 이름? 아이디?로 파일이름 생성하기
 		String userid = user.getUsername();
@@ -76,8 +78,8 @@ public class CompilerController {
 
 			try {
 				BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(path + filename));
-				//byte[] by = code.getBytes();
-				byte[] by = newcode.getBytes();
+				byte[] by = code.getBytes();
+				//byte[] by = newcode.getBytes();
 				bos.write(by);
 				bos.close();
 				// 필요 없나?
@@ -186,4 +188,152 @@ public class CompilerController {
 		}
 		return null;
 	}
+	
+	@PostMapping("compile2")
+	@ResponseBody
+	public String[] compileResult2(String language, String code, @AuthenticationPrincipal UserDetails user) {
+				
+		log.debug("language : {}, code : {}", language, code);
+		//한 줄로 바뀌면서 죄 주석 처리 되는 문제가 발생
+//		//위의 두 줄을 바꿔줌
+//		String[] splitedcode = code.split("\n");
+//		splitedcode[0] = "import java.time.LocalTime;"
+//				+ "class Main {"
+//				+ "public static void main(String[] args) {"
+//				+ "int st = LocalTime.now().getNano();"
+//				+ "Usercode.usercode();"
+//				+ "int et = LocalTime.now().getNano();"
+//				+ "System.out.println(\"forsplit\" + (et - st) / (double)1000000000);"
+//				+ "}"
+//				+ "}"
+//				+ "class Usercode {"
+//				+ "static void usercode() {";
+//		splitedcode[1] = "";
+//		
+//		String newcode = "";
+//			
+//		for(String c : splitedcode) {
+//			newcode += c;
+//		}
+		
+		//위의 두 줄이 안바뀌기를 바라는 수 밖에
+		String newcode = code.replace("class Main {\n\tpublic static void main(String[] args) {", 
+				"import java.time.LocalTime;"
+				+ "class Main {"
+				+ "public static void main(String[] args) {"
+				+ "int st = LocalTime.now().getNano();"
+				+ "Usercode.usercode();"
+				+ "int et = LocalTime.now().getNano();"
+				+ "System.out.println(\"forsplit\" + (et - st) / (double)1000000000);"
+				+ "}"
+				+ "}"
+				+ "class Usercode {"
+				+ "static void usercode() {");
+		
+		log.debug("newcode : " + newcode);
+
+		// 유저 이름? 아이디?로 파일이름 생성하기
+		String userid = user.getUsername();
+		// 자바에선 동작하지만 c에선 동작하지 않는 패스라 일단 제거
+		// String path = "src/main/resources/static/codes/";
+		String path = "";
+		// 현재 패스 찾는거 알 수 있는 방법이 있나?
+		//String fullpath = "/user/Documents/ProLingo-teamProject/" + path;
+		
+		//정수 집 컴 경로
+		String fullpath = "/Users/SU/Documents/ProLingo-teamProject/" + path;
+		
+		if (language.equals("java")) {
+			String filename = userid + "_Javacode.java";
+			// code 에서 클래스 이름을 꺼내오게 하면 좋을것 같은데 일단 이대로
+			String classname = "Main";
+
+			try {
+				BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(path + filename));
+				byte[] by = newcode.getBytes();
+				bos.write(by);
+				bos.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+			try {
+				// 한글 인코딩 문제 해결
+				// https://proni.tistory.com/82
+				Runtime.getRuntime().exec("cmd /c javac -encoding UTF-8 " + fullpath + filename).waitFor();
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+
+			String result = execCmd("java -cp " + fullpath + " " + classname, "java");
+			
+			try {
+				//.java파일
+				//Runtime.getRuntime().exec("cmd /c del " + filename);
+				//.class파일
+				Runtime.getRuntime().exec("cmd /c del Main.class");
+				Runtime.getRuntime().exec("cmd /c del Usercode.class");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			log.debug("실행 결과 : {}", result);
+			
+			String[] splitedresult = result.split("forsplit");
+			
+			//log.debug("result : " + splitedresult[0]);
+			//log.debug("time : " + splitedresult[1]);
+			
+			return splitedresult;
+			
+		} else if (language.equals("c")) {
+			String filename = userid + "_Ccode.c";
+			String exename = "main";
+
+			try {
+				BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(path + filename));
+				byte[] by = code.getBytes();
+				bos.write(by);
+				bos.close();
+//			} catch (FileNotFoundException e) {
+//				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+			try {
+				// 내가 원하는 경로에 넣는 방법을 모르겠음, 그냥 디폴트(프로젝트 최상위) 경로로만 만들어짐
+				Runtime.getRuntime().exec("cmd /c gcc -o " + exename + " " + fullpath + filename).waitFor();
+			} catch (InterruptedException | IOException e) {
+				e.printStackTrace();
+			}
+
+			String result = execCmd(exename, "c");
+
+			log.debug("실행 결과 : {}", result);
+			
+			try {
+				//동작하는지 확인 요망
+				Runtime.getRuntime().exec("cmd /c del " + exename);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			String[] splitedresult = result.split("forsplit");
+			
+			log.debug("result : " + splitedresult[0]);
+			log.debug("time : " + splitedresult[1]);
+			
+			//C는 어떻게?
+			return splitedresult;
+		}
+
+		//에러
+		return null;
+	}
 }
+
+

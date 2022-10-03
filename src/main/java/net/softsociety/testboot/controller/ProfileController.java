@@ -30,8 +30,16 @@ public class ProfileController {
 	 * @return profile page
 	 */
 	@GetMapping("")
-	public String profile() {
-		log.debug("called profile");
+	public String profile(Model model, @AuthenticationPrincipal UserDetails user) {
+		//log.debug("called profile");
+		// 현재 접속중인 유저의 userid를 조회
+		String userId = user.getUsername();
+				
+		log.debug("접속중인 아이디: {}" , userId);
+		// 달성한 업적 조회
+		ArrayList<AchievementVO> clearList = ps.selectClear(userId);
+		//log.debug("조회한 달성 리스트 전체 : {}", clearList);
+		model.addAttribute("clearList", clearList);
 		return "profile";
 	}
 	/**

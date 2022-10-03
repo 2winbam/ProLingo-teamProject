@@ -226,7 +226,8 @@ class Main {
 							<div class="modalBody modal-body">
 								<div style="color: #FF1493; font-size: 25px;">Congratulations!</div>
 								<!-- 다음 과정을 알려줄수있으면 적용, 미사용시에는 삭제 -->
-								<div>다음 과정은 ~~~ 입니다</div>
+								<!-- 일단 경과 시간 표시로 -->
+								<div id="timetaken"></div>
 							</div>
 							<div class="modalFooter modal-footer">
 								<!-- 문제 저장버튼, 아래의 downloadIcon과 같은 기능 -->
@@ -261,6 +262,7 @@ class Main {
 							<!-- modal의 body -->
 							<div class="modalBody modal-body">
 								<div style="color: rgb(51, 51, 51);">정답이 아닙니다</div>
+								<div id="missingkeyword"></div>
 							</div>
 						</div>
 					</div>

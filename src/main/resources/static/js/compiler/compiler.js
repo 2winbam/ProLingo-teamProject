@@ -40,7 +40,7 @@ $(document).ready(function() {
 		autoCloseTags: true,
 	});
 
-	console.log(codemirrorEditor.getValue());
+	//console.log(codemirrorEditor.getValue());
 	// 학습 리스트를 보여주는 모달을 불러옴
 	$('#pageList').click(function() {
 		$('#learningModal').fadeIn();
@@ -69,15 +69,16 @@ $(document).ready(function() {
 
 		//컴파일용 ajax
 		$.ajax({
-			url: '/prolingo/compile',
+			//url: '/prolingo/compile',
+			url: '/prolingo/compile2', //신버전
 			type: 'post',
 			data: { language: language, code: code },
-			dataType: 'text',
+			dataType: 'json',
 			success: function(res) {
 				console.log("compile ajax 성공");
-				$('#resultText').html(res);
-
-				if (isCorrect(res)) {
+				$('#resultText').html(res[0]);
+				if (isCorrect(res[0], code)) {
+					$('#timetaken').html("코드 실행에 걸린 시간 : " + res[1] + "초");
 					$('#resultModal').fadeIn();
 					updateExp();
 				}
@@ -172,40 +173,54 @@ function codechange(code) {
 }
 
 //정답 체크 임시
-function isCorrect(answer) {
-	let result = codechange($('#info').attr('result'));
-	//	console.log("결과 : " + answer + "정답 : " + result);
+function isCorrect(result, code) {
+	//문제 객체 안에 있는 정답
+	let answer = codechange($('#info').attr('result'));
+		console.log("결과 : " + result + ", 정답 : " + answer);
 	//	console.log("결과 : " + typeof answer + "\n정답 : " + typeof result);
 	//	console.log("결과 : " + answer.length + "\n정답 : " + result.length);
 
 	if (result == answer) {
+		let isanswer = true;
 		//alert("정답!");
 		//키워드들을 보내줄 필요 없이 문제만 보내줘도?
-		//let kewords = $('#info').attr('keywords');
-		//console.log(kewords);
-//		let qid = Number($('#info').attr('qid'));
-//		
-//		//키워드들의 이름을 리스트로 받아와서
-//		$.ajax({
-//			url: '/prolingo/getkeywords',
-//			type: 'post',
-//			data: { questionid: qid },
-//			success: function(res) {
-//				console.log("getkeywords ajax 성공 : " + res);
-//			},
-//			error: function(e) {
-//				alert("getkeywords ajax 실패 : " + e);
-//			}
-//		});
+		let kewords = $('#info').attr('keywords');
+		console.log(kewords);
+		//let qid = Number($('#info').attr('qid'));
+
+		//키워드들의 이름을 리스트로 받아와서
+		$.ajax({
+			url: '/prolingo/getkeywords',
+			type: 'post',
+			async: false,
+			data: { kewords: kewords },
+			success: function(res) {
+				console.log("getkeywords ajax 성공 : " + res);
+				$.each(res, function(i, v) {
+					console.log(v.keyword_name);
+					if(!code.toUpperCase().includes(v.keyword_name)){
+						console.log("키워드 없음 ");
+						$('#missingkeyword').html("키워드 없음 " + v.keyword_name + "을 써보세요");
+						isanswer = false;
+						return;
+					}
+				});
+			},
+			error: function(e) {
+				alert("getkeywords ajax 실패 : " + e);
+				$('#missingkeyword').html("");
+				isanswer = false;
+			}
+		});
 		//code 내용에 일치하는게 있는지 확인하는 작업
-		
-		return true;
+		console.log(isanswer);
+		return isanswer;
 	}
 	else {
-		//alert("오답!");
+		alert("오답!");
+		$('#missingkeyword').html("");
 		return false;
 	}
-
 }
 
 //다음 페이지로 가는데 index가 초과되면 과정 선택 페이지로
