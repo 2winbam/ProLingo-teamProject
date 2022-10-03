@@ -37,7 +37,9 @@ insert into USER_FOLLOW
 (USER_ID, TARGET_ID)
 values
 (30, 31);
-					
+
+commit;		
+			
 --USER_WEEKLY_EXP						
 DROP TABLE	USER_WEEKLY_EXP	;				
 CREATE TABLE	USER_WEEKLY_EXP	(				
