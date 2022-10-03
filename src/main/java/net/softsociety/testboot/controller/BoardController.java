@@ -42,7 +42,7 @@ public class BoardController {
 	 * 글 전체 불러오기
 	 * @return
 	 */
-	@GetMapping("/list")
+	@GetMapping("list")
 	public String getBoardList(@RequestParam(value = "page", defaultValue = "1")int page,
 			@RequestParam(value = "type", required = false) String type,
 			@RequestParam(value = "searchWord", required = false) String searchWord,
@@ -71,7 +71,7 @@ public class BoardController {
 	 * 글쓰기
 	 * @return
 	 */
-	@GetMapping("/writeForm")
+	@GetMapping("writeForm")
 	public String writeForm() {
 		log.debug("writeForm() called");
 		return "boardView/writeForm";
@@ -80,7 +80,7 @@ public class BoardController {
 	/**
 	 * 글저장
 	 */
-	@PostMapping("/writeForm")
+	@PostMapping("writeForm")
 	public String writeForm(
 			BoardVO board
 			, @AuthenticationPrincipal UserDetails user // 로그인한 사용자 정보 전달
@@ -97,7 +97,7 @@ public class BoardController {
 		service.writeBoard(board);
 		
 		//return "boardView/boardList";
-		return "redirect:/board/list";
+		return "redirect:list";
 		
 	}
 	

@@ -59,13 +59,13 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 						            <th>조회수</th>
 						            <th>등록일</th>
 		        				</tr>
-					        		<tr id="board3" th:each="N : ${noticeList}">
-							            <td th:text="${N.boardnum}">번호</td>
-							            <td><a th:text="${N.title}" th:href="@{/board/read(boardnum=${N.boardnum})}">제목</a></td>
-							            <td th:text="${N.memberid}">작성자</td>
-							            <td th:text="${N.hits}">조회수</td>
-							            <td th:text="${N.inputdate}">등록일</td>
-							        </tr>
+					        		<tr id="board3" th:each=" notice:${noticeList}">
+										<td th:text="${notice.board_id}"></td>
+										<td><a th:text="${notice.title}" th:href="@{/board/read(board_id=${list.board_id})}"></a></td>
+										<td th:text="${notice.user_id}"></td>
+										<td th:text="${notice.hits}"></td>
+										<td th:text="${notice.writingdate}"></td>
+									</tr>
 					     		</table>
 				     			<br>
 		     					</div>
@@ -81,13 +81,13 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 								            <th>조회수</th>
 						            		<th>등록일</th>
 		        						</tr>
-						        		<tr id="board3" th:each="N : ${noticeList}">
-								            <td th:text="${N.boardnum}">번호</td>
-								            <td><a th:text="${N.title}" th:href="@{/board/read(boardnum=${N.boardnum})}">제목</a></td>
-								            <td th:text="${N.memberid}">작성자</td>
-								            <td th:text="${N.hits}">조회수</td>
-								            <td th:text="${N.inputdate}">등록일</td>
-								        </tr>
+						        		<tr id="board3" th:each=" notice:${noticeList}">
+											<td th:text="${notice.board_id}"></td>
+											<td><a th:text="${notice.title}" th:href="@{/board/read(board_id=${list.board_id})}"></a></td>
+											<td th:text="${notice.user_id}"></td>
+											<td th:text="${notice.hits}"></td>
+											<td th:text="${notice.writingdate}"></td>
+										</tr>
 					     			</table>
 				     				<br>
 			     				</div>
@@ -108,13 +108,13 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 							            <th>조회수</th>
 							            <th>등록일</th>
 				        			</tr>
-							        <tr id="board3" th:each="l : ${writeList}">
-							            <td th:text="${l.board_id}">번호</td>
-							            <td><a th:text="${l.title}" th:href="@{/board/read(board_id=${l.board_id})}">제목</a></td>
-							            <td th:text="${l.user_id}">작성자</td>
-							            <td th:text="${l.hits}">조회수</td>
-							            <td th:text="${l.writingdate}">등록일</td>
-							        </tr>
+							      	<tr id="board3" th:each=" list:${boardlist}">
+										<td th:text="${list.board_id}"></td>
+										<td><a th:text="${list.title}" th:href="@{/board/read(board_id=${list.board_id})}"></a></td>
+										<td th:text="${list.user_id}"></td>
+										<td th:text="${list.hits}"></td>
+										<td th:text="${list.writingdate}"></td>
+									</tr>
 					     		</table>
 				     			<br>
 					     
@@ -161,13 +161,13 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 							            <th>조회수</th>
 							            <th>등록일</th>
 				        			</tr>
-							        <tr id="board3" th:each="l : ${writeList}">
-							            <td th:text="${l.board_id}">번호</td>
-							            <td><a th:text="${l.title}" th:href="@{/board/read(board_id=${l.board_id})}">제목</a></td>
-							            <td th:text="${l.user_id">작성자</td>
-							            <td th:text="${l.hits}">조회수</td>
-							            <td th:text="${l.writingdate}">등록일</td>
-							        </tr>
+							        <tr id="board3" th:each=" list:${boardlist}">
+										<td th:text="${list.board_id}"></td>
+										<td><a th:text="${list.title}" th:href="@{/board/read(board_id=${list.board_id})}"></a></td>
+										<td th:text="${list.user_id}"></td>
+										<td th:text="${list.hits}"></td>
+										<td th:text="${list.writingdate}"></td>
+									</tr>
 					     		</table>
 					     		<br>
 						     
@@ -217,13 +217,13 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 							            <th>조회수</th>
 							            <th>등록일</th>
 			        				</tr>
-						        	<tr id="board3" th:each="board : ${hitList}">
-							            <td th:text="${board.boardnum}">번호</td>
-							            <td><a th:text="${board.title}" th:href="@{/board/read(boardnum=${board.boardnum})}">제목</a></td>
-							            <td th:text="${board.memberid}">작성자</td>
-							            <td th:text="${board.hits}">조회수</td>
-							            <td th:text="${board.inputdate}">등록일</td>
-						        	</tr>
+						        	<tr id="board3" th:each=" list:${hitList}">
+										<td th:text="${list.board_id}"></td>
+										<td><a th:text="${list.title}" th:href="@{/board/read(board_id=${list.board_id})}"></a></td>
+										<td th:text="${list.user_id}"></td>
+										<td th:text="${list.hits}"></td>
+										<td th:text="${list.writingdate}"></td>
+									</tr>
 				     			</table>
 			     				<br>
 		     				</div>
@@ -239,13 +239,13 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 							            <th>조회수</th>
 							            <th>등록일</th>
 			        				</tr>
-						        	<tr id="board3" th:each="board : ${hitList}">
-							            <td th:text="${board.boardnum}">번호</td>
-							            <td><a th:text="${board.title}" th:href="@{/board/read(boardnum=${board.boardnum})}">제목</a></td>
-							            <td th:text="${board.memberid}">작성자</td>
-							            <td th:text="${board.hits}">조회수</td>
-							            <td th:text="${board.inputdate}">등록일</td>
-						        	</tr>
+						        	<tr id="board3" th:each=" list:${hitList}">
+										<td th:text="${list.board_id}"></td>
+										<td><a th:text="${list.title}" th:href="@{/board/read(board_id=${list.board_id})}"></a></td>
+										<td th:text="${list.user_id}"></td>
+										<td th:text="${list.hits}"></td>
+										<td th:text="${list.writingdate}"></td>
+									</tr>
 			     				</table>
 		     					<br>
 		     				</div>
