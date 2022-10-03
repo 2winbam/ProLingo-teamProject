@@ -1,4 +1,4 @@
 @charset "UTF-8";
-.col-md-7 col-xl-8 {
-	height: 500px;
+.card-header text-center {
+	background-color: grey;
 }

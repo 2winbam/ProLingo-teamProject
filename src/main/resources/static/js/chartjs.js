@@ -11,7 +11,7 @@
 						borderColor: window.theme.primary,
 						hoverBackgroundColor: window.theme.primary,
 						hoverBorderColor: window.theme.primary,
-						data: [54, 67, 41, 55, 62, 45, 100],
+						data: [dataA, 67, 41, 55, 62, 45, 100],
 						barPercentage: .75,
 						categoryPercentage: .5
 					},
