@@ -44,7 +44,13 @@ public class StudyCourseController {
 	 * @return 코스 선택 페이지
 	 */
 	@GetMapping("")
-	public String selectCourse() {
+	public String selectCourse(@AuthenticationPrincipal UserDetails user) {
+		
+		log.debug("현재 로그인중인 유저 : {}", user);
+		
+		//
+		//int achieveLogIn = service.insertLogIn(user);
+		
 		return "studyCourse/selectCourse";
 	}
 	

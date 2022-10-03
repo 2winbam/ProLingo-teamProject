@@ -3,6 +3,7 @@ package net.softsociety.testboot.service;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
@@ -62,6 +63,17 @@ public class StudyCourseServiceImpl implements StudyCourseService {
 		String title = dao.searchTitle(questionindex);
 		
 		return title;
+	}
+	
+	/**
+	 * 로그인 업적 조회
+	 */
+	@Override
+	public int insertLogIn(UserDetails user) {
+		
+		int achieveLogIn = dao.insertLogIn(user);
+				
+		return achieveLogIn;
 	}
 	
 	

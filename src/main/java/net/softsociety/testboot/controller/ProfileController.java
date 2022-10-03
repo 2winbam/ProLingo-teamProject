@@ -8,11 +8,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.extern.slf4j.Slf4j;
 import net.softsociety.testboot.domain.AchievementVO;
 import net.softsociety.testboot.domain.ContentsVO;
+import net.softsociety.testboot.domain.MemberVO;
 import net.softsociety.testboot.service.ProfileService;
 
 @Slf4j
@@ -68,13 +70,33 @@ public class ProfileController {
 	}
 	
 	/**
-	 * 친구찾기 페이지
+	 * 친구찾기 페이지 띄우기
 	 */
 	@GetMapping("/searchFriend")
 	public String searchFriend() {
 		log.debug("called searchFriend");
 		return "profile/searchFriend";
 	}
+	
+	/**
+	 * 친구찾기 페이지 검색
+	 */
+	@PostMapping("/searchList")
+	public ArrayList<MemberVO> searchList(String searchWord, @AuthenticationPrincipal UserDetails user) {
+		
+		log.debug("접속한 user : {}", user);
+		
+		String userId = user.getUsername();
+		
+		log.debug("검색어 : {}", searchWord); 
+		
+		ArrayList<MemberVO> memberList = ps.searchList(searchWord, userId);
+		
+		log.debug("memberList: {}",memberList);
+		
+		return memberList;
+	}
+	
 	
 	/**
 	 * 저장된 코드 페이지

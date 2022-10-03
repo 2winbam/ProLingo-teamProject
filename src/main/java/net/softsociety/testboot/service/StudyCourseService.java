@@ -2,6 +2,8 @@ package net.softsociety.testboot.service;
 
 import java.util.ArrayList;
 
+import org.springframework.security.core.userdetails.UserDetails;
+
 import net.softsociety.testboot.domain.ContentsVO;
 
 public interface StudyCourseService {
@@ -31,6 +33,13 @@ public interface StudyCourseService {
 	 * @return 해당 컴파일러 폼 페이지의 타이틀
 	 */
 	public String searchTitle(int questionindex);
+	
+	/**
+	 * 로그인 업적
+	 * @param user 현재 로그인한 유저의 아이디
+	 * @return 로그인 업적 insert
+	 */
+	public int insertLogIn(UserDetails user);
 	
 	
 }

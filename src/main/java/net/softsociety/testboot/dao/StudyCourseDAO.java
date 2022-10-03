@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import net.softsociety.testboot.domain.ContentsVO;
 
@@ -33,5 +34,12 @@ public interface StudyCourseDAO {
 	 * @return 해당 컴파일러 폼 페이지의 타이틀
 	 */
 	public String searchTitle(int questionindex);
+	
+	/**
+	 * 로그인 업적
+	 * @param user 현재 접속해있는 유저의 아이디
+	 * @return 로그인 업적 insert
+	 */
+	public int insertLogIn(UserDetails user);
 	
 }
