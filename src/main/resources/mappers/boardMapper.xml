@@ -112,4 +112,29 @@
 		board_id DESC
 </select>
 
+<!-- 조회수 1 증가 -->
+<update id="updateHits" parameterType="int">
+UPDATE
+	PROLINGO_BOARD
+SET
+	hits = hits +1
+WHERE
+	board_id = #{board_id}
+</update>
+
+<!-- 글읽기 -->
+<select id="writingRead" resultType="BoardWithName" parameterType="int">
+SELECT 
+	B.board_id AS board_id
+	, B.title AS title
+	, B.hits AS hits
+	, B.board_content AS board_content
+	, TO_CHAR(B.writingdate, 'YY-MM-DD') AS writingdate
+	, U.nickname AS nickname
+FROM
+	PROLINGO_BOARD B, PROLINGO_USER U
+WHERE
+	B.user_id = U.user_id	
+</select>
+
 </mapper>

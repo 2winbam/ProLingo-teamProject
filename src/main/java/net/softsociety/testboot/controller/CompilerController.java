@@ -238,8 +238,14 @@ public class CompilerController {
 		// String path = "src/main/resources/static/codes/";
 		String path = "";
 		// 현재 패스 찾는거 알 수 있는 방법이 있나?
+
+		//String fullpath = "/user/Documents/ProLingo-teamProject/" + path;
+		//승범 컴 경로
+		//String fullpath= "/Java2/testboot/" + path;
+
 		String fullpath = "/user/Documents/ProLingo-teamProject/" + path;
 		
+
 		//정수 집 컴 경로
 		//String fullpath = "/Users/SU/Documents/ProLingo-teamProject/" + path;
 		

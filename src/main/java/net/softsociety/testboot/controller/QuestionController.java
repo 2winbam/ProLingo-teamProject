@@ -62,6 +62,8 @@ public class QuestionController {
 			//완료하지 않은 문제였다면
 			//그 유저의 경험치를 10만큼 추가
 			int result = ms.updateUserExp(user.getUsername(), 10);
+			int result2 = ms.updateUserExpDay(user.getUsername(), 10);
+			//log.debug("user값 : {}",user.getUsername());
 			//성공시
 			if(result != 0) {
 				//경험치를 확인하기 위해

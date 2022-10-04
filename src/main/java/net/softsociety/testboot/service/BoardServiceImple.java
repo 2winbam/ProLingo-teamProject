@@ -62,6 +62,22 @@ public class BoardServiceImple implements BoardService{
 		return boardLsit;
 		
 	}
+			
+	//조회수 증가
+	@Override
+	public int updateHits(int boardnum) {
+	
+		return boardDAO.updateHits(boardnum);
+	}
+	
+	//글읽기
+	@Override
+	public BoardWithName boardNum(int board_id) {
+		
+		return boardDAO.writingRead(board_id);
+	}
+	
+	
 	
 	
 	
