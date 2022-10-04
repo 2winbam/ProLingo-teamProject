@@ -26,11 +26,16 @@ public class PageNavigator {
 			
 			//전체 페이지 수
 			totalPageCount = (totalRecordsCount + countPerPage - 1) / countPerPage;
+			
+			//총 페이지가 0이 되는 것을 방지하기 위함
+			if(totalPageCount < 1)
+			 	totalPageCount = 1;
 
 			//전달된 현재 페이지가 1보다 작으면 현재페이지를 1페이지로 지정
 			if (currentPage < 1)	currentPage = 1;
 			//전달된 현재 페이지가 마지막 페이지보다 크면 현재페이지를 마지막 페이지로 지정
 			if (currentPage > totalPageCount)	currentPage = totalPageCount;
+			
 			
 			this.currentPage = currentPage;
 
