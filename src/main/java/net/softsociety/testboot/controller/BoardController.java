@@ -113,7 +113,6 @@ public class BoardController {
 	@GetMapping("read")
 	public String read() {
 		log.debug("read() called");
-		
 		return "boardView/read";
 	}
 }

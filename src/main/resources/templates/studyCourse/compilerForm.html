@@ -109,7 +109,8 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 		th:keywords="${questionlist[questionindex].keywords}"
 		th:listlength="${#lists.size(questionlist)}"
 		th:index="${questionindex}"
-		th:currurl="${#httpServletRequest.requestURI}"></span>
+		th:currurl="${#httpServletRequest.requestURI}"
+		th:lessoncontents="${contentsList}"></span>
 <!-- <span id="defaultcode" th:dcode="${questionlist[questionindex].default_code}"></span> -->
 <!-- <span id="answercode" th:acode="${questionlist[questionindex].answer}"></span> -->
 

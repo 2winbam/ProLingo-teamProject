@@ -3,7 +3,6 @@
  */
 // 코드미러 실행
 $(document).ready(function() {
-
 	//컴파일러 호출을 위한 현재 학습중인 언어 설정
 	//setDefaultCode($('#language').attr(rang));
 	//console.log($('#defaultcode').attr('dcode'));
@@ -47,7 +46,10 @@ $(document).ready(function() {
 	});
 
 	//모달창 바로 띄우기
-	$('.modal-lesson').fadeIn();
+	if($('#info').attr('lessoncontents') != '[]'){
+		//alert($('#info').attr('lessoncontents'));
+		$('.modal-lesson').fadeIn();
+	}
 
 	//모달창 클릭시 닫기
 	$('.contentClose').click(function() {
@@ -195,9 +197,11 @@ function isCorrect(result, code) {
 		success: function(res) {
 			console.log("getkeywords ajax 성공 : " + res);
 			$.each(res, function(i, v) {
-				console.log(v.keyword_name);
+				//console.log(v.keyword_name);
+				//console.log(code);
+				//console.log(code.includes(v.keyword_name));
 				//code 내용에 일치하는게 있는지 확인하는 작업
-				if (!code.toUpperCase().includes(v.keyword_name)) {
+				if (!code.includes(v.keyword_name)) {
 					console.log("키워드 없음 ");
 					$('#missingkeyword').html(v.keyword_name + "을 써보세요");
 					isanswer = false;
@@ -215,9 +219,17 @@ function isCorrect(result, code) {
 	});
 
 	console.log(isanswer);
-	if (result == answer && isanswer) {
+	if (isanswer) {
 		//alert("정답!");
-		return true;
+		if(result == answer ){
+			return true;
+		}
+		else if(code.replace(/(\s*)/g, "").includes(answer)){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 	else {
 		alert("오답!");
