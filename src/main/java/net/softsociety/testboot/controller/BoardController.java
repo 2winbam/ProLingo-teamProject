@@ -2,7 +2,6 @@ package net.softsociety.testboot.controller;
 
 import java.util.ArrayList;
 
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -18,7 +17,6 @@ import lombok.extern.slf4j.Slf4j;
 import net.softsociety.testboot.domain.BoardVO;
 import net.softsociety.testboot.domain.PageNavigator;
 import net.softsociety.testboot.service.BoardService;
-import oracle.jdbc.proxy.annotation.Post;
 
 
 @Slf4j
