@@ -73,6 +73,9 @@ public class BoardServiceImple implements BoardService{
 	//글읽기
 	@Override
 	public BoardWithName boardNum(int board_id) {
+		log.debug("serviceImple boardNum() called");
+		
+		log.debug("board_id : {}", board_id);
 		
 		return boardDAO.writingRead(board_id);
 	}

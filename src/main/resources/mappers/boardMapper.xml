@@ -134,7 +134,8 @@ SELECT
 FROM
 	PROLINGO_BOARD B, PROLINGO_USER U
 WHERE
-	B.user_id = U.user_id	
+	B.user_id = U.user_id
+	AND board_id = #{board_id}	
 </select>
 
 </mapper>
