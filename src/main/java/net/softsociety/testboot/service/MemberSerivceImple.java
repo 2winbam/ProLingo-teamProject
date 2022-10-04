@@ -110,5 +110,7 @@ public class MemberSerivceImple implements MemberService {
 		
 		return result;
 	}
+
+
 	
 }

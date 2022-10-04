@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import lombok.extern.slf4j.Slf4j;
 import net.softsociety.testboot.domain.BoardVO;
+import net.softsociety.testboot.domain.BoardWithName;
 import net.softsociety.testboot.domain.PageNavigator;
 import net.softsociety.testboot.service.BoardService;
+import net.softsociety.testboot.service.MemberService;
 
 
 @Slf4j
@@ -26,6 +28,9 @@ public class BoardController {
 	
 	@Autowired
 	BoardService service;
+	
+	@Autowired
+	MemberService memberservice;
 	
 	//게시판 페이지 당 출력할 글수
 	@Value("${user.board.page}")
@@ -44,7 +49,8 @@ public class BoardController {
 	public String getBoardList(@RequestParam(value = "page", defaultValue = "1")int page,
 			@RequestParam(value = "type", required = false) String type,
 			@RequestParam(value = "searchWord", required = false) String searchWord,
-			@RequestParam(value = "mode", required = false) String mode, Model model) {
+			@RequestParam(value = "mode", required = false) String mode, 
+			Model model) {
 		log.debug("getBoardList() called");
 		log.debug("페이지당 글수:{}, 페이지이동 링크수{}, page : {}, type : {}, searchWord : {}, mode : {}"
 				,countPerPage, pagePerGroup, page, type, searchWord, mode);
@@ -53,7 +59,9 @@ public class BoardController {
 		PageNavigator navi = service.getgetPageNavigator(pagePerGroup, countPerPage, page, type, searchWord);
 		
 		//DB의 게시판 테이블의 모든 글을 읽기
-		ArrayList<BoardVO> boardList = service.boardListAll(navi,type,searchWord);
+		//ArrayList<BoardVO> boardList = service.boardListAll(navi,type,searchWord);
+		ArrayList<BoardWithName> boardList = service.boardListAll(navi,type,searchWord);
+		
 		
 		//ArrayList<Board> 타입으로 모델에 저장
 		model.addAttribute("navi", navi);
@@ -99,5 +107,13 @@ public class BoardController {
 		
 	}
 	
-	
+	/**
+	 * 글 읽기
+	 */
+	@GetMapping("read")
+	public String read() {
+		log.debug("read() called");
+		
+		return "boardView/read";
+	}
 }

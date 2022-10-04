@@ -25,5 +25,8 @@ public interface MemberDAO {
 	
 	//경험치 추가
 	int updateUserExp(@Param("id") int userid, @Param("exp") int exp);
+	
+	//전체글 유저닉네임
+	int usernickname(MemberVO member);
 
 }
