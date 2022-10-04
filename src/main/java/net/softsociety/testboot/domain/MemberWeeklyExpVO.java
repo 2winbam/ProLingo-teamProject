@@ -17,6 +17,7 @@ public class MemberWeeklyExpVO {
 	private int fri_exp;
 	private int sat_exp;
 	private int sun_exp;
+	//private int today;
 	
 }
 
@@ -30,4 +31,4 @@ WED_EXP	NUMBER	DEFAULT 0	NOT NULL	,	--수
 THU_EXP	NUMBER	DEFAULT 0	NOT NULL	,	--목	
 FRI_EXP	NUMBER	DEFAULT 0	NOT NULL	,	--금	
 SAT_EXP	NUMBER	DEFAULT 0	NOT NULL	,	--토	
-SUN_EXP	NUMBER	DEFAULT 0	NOT NULL	);	--월	*/
+SUN_EXP	NUMBER	DEFAULT 0	NOT NULL	);	--일	*/

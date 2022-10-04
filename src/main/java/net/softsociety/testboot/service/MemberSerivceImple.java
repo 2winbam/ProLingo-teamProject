@@ -1,5 +1,7 @@
 package net.softsociety.testboot.service;
 
+import java.util.Calendar;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Service;
 import lombok.extern.slf4j.Slf4j;
 import net.softsociety.testboot.dao.MemberDAO;
 import net.softsociety.testboot.domain.MemberVO;
+import net.softsociety.testboot.domain.MemberWeeklyExpVO;
 
 @Slf4j
 @Service
@@ -27,6 +30,11 @@ public class MemberSerivceImple implements MemberService {
 		member.setUser_pw(encodePasswrod);
 		
 		int result = dao.insertMember(member);
+		
+		int result2 = dao.insertUserExpDay();
+		
+		//log.debug(result + ", " + result2);
+		
 		return result;
 	}
 	
@@ -109,6 +117,27 @@ public class MemberSerivceImple implements MemberService {
 		int result = dao.updateUserExp(Integer.parseInt(userid), exp);
 		
 		return result;
+	}
+
+	@Override
+	public int updateUserExpDay(String userid, int exp) {
+		Calendar cal = Calendar.getInstance();
+		//요일 출력(일~토 => 1~7 순으로 출력됨)
+		int today = cal.get(Calendar.DAY_OF_WEEK);
+		
+		//log.debug("오늘 요일 출력 : {}", today);
+		//log.debug("username 출력 : {}", userid);
+		//log.debug("exp값 : {}", exp);
+
+		int result = dao.updateUserExpDay(Integer.parseInt(userid), exp, today);
+		return result;
+	}
+
+	@Override
+	public MemberWeeklyExpVO getExp(String userid) {
+		
+		MemberWeeklyExpVO exp = dao.getExp(Integer.parseInt(userid));
+		return exp;
 	}
 	
 }
