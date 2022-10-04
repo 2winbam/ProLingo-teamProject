@@ -27,8 +27,15 @@ public interface MemberDAO {
 	int insertUserExpDay();
 	//경험치 추가
 	int updateUserExp(@Param("id") int userid, @Param("exp") int exp);
+
 	//요일별 획득 경험치 업데이트
 	int updateUserExpDay(@Param("id")int userid, @Param("exp")int exp, @Param("today")int today);
 	//유저 요일별 획득 누적 경험치 조회
 	MemberWeeklyExpVO getExp(@Param("id")int userid);
+
+	
+	//전체글 유저닉네임
+	int usernickname(MemberVO member);
+
+
 }

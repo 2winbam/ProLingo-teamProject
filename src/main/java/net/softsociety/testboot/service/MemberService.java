@@ -11,8 +11,8 @@ public interface MemberService {
 
 	// AJAX 로그인 체크
 	public int logincheck(String email, String user_pw);
-	
-	//회원 조회
+
+	// 회원 조회
 	public MemberVO getMemerInfo(String userid);
 
 	// 회원정보 수정
@@ -24,9 +24,9 @@ public interface MemberService {
 	// 유저 경험치 추가
 	public int updateUserExp(String userid, int exp);
 
-	// 유저 요일별 획득 누적 경험치 
+	// 유저 요일별 획득 누적 경험치
 	public int updateUserExpDay(String username, int exp);
-	
+
 	// 유저 요일별 획득 누적 경험치 조회
 	public MemberWeeklyExpVO getExp(String userid);
 

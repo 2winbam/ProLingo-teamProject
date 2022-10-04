@@ -75,10 +75,10 @@ $(document).ready(function() {
 			data: { language: language, code: code },
 			dataType: 'json',
 			success: function(res) {
-				console.log("compile ajax 성공");
+				console.log("compile ajax 성공" + res[0] + ", " + Number(res[1]).toFixed(6));
 				$('#resultText').html(res[0]);
 				if (isCorrect(res[0], code)) {
-					$('#timetaken').html("코드 실행에 걸린 시간 : " + res[1] + "초");
+					$('#timetaken').html("코드 실행에 걸린 시간 : " + Number(res[1]).toFixed(6) + "초");
 					$('#resultModal').fadeIn();
 					updateExp();
 				}
@@ -174,51 +174,54 @@ function codechange(code) {
 
 //정답 체크 임시
 function isCorrect(result, code) {
+
+	let isanswer = false;
 	//문제 객체 안에 있는 정답
 	let answer = codechange($('#info').attr('result'));
-		console.log("결과 : " + result + ", 정답 : " + answer);
+	console.log("결과 : " + result + ", 정답 : " + answer);
 	//	console.log("결과 : " + typeof answer + "\n정답 : " + typeof result);
 	//	console.log("결과 : " + answer.length + "\n정답 : " + result.length);
+	//키워드들을 보내줄 필요 없이 문제만 보내줘도?
+	let kewords = $('#info').attr('keywords');
+	console.log(kewords);
+	//let qid = Number($('#info').attr('qid'));
 
-	if (result == answer) {
-		let isanswer = true;
-		//alert("정답!");
-		//키워드들을 보내줄 필요 없이 문제만 보내줘도?
-		let kewords = $('#info').attr('keywords');
-		console.log(kewords);
-		//let qid = Number($('#info').attr('qid'));
-
+	$.ajax({
+		url: '/prolingo/getkeywords',
+		type: 'post',
+		async: false,
+		data: { kewords: kewords },
 		//키워드들의 이름을 리스트로 받아와서
-		$.ajax({
-			url: '/prolingo/getkeywords',
-			type: 'post',
-			async: false,
-			data: { kewords: kewords },
-			success: function(res) {
-				console.log("getkeywords ajax 성공 : " + res);
-				$.each(res, function(i, v) {
-					console.log(v.keyword_name);
-					if(!code.toUpperCase().includes(v.keyword_name)){
-						console.log("키워드 없음 ");
-						$('#missingkeyword').html("키워드 없음 " + v.keyword_name + "을 써보세요");
-						isanswer = false;
-						return;
-					}
-				});
-			},
-			error: function(e) {
-				alert("getkeywords ajax 실패 : " + e);
+		success: function(res) {
+			console.log("getkeywords ajax 성공 : " + res);
+			$.each(res, function(i, v) {
+				console.log(v.keyword_name);
+				//code 내용에 일치하는게 있는지 확인하는 작업
+				if (!code.toUpperCase().includes(v.keyword_name)) {
+					console.log("키워드 없음 ");
+					$('#missingkeyword').html(v.keyword_name + "을 써보세요");
+					isanswer = false;
+					return false;
+				}
 				$('#missingkeyword').html("");
-				isanswer = false;
-			}
-		});
-		//code 내용에 일치하는게 있는지 확인하는 작업
-		console.log(isanswer);
-		return isanswer;
+				isanswer = true;
+			});
+		},
+		error: function(e) {
+			alert("getkeywords ajax 실패 : " + e);
+			$('#missingkeyword').html("");
+			isanswer = false;
+		}
+	});
+
+	console.log(isanswer);
+	if (result == answer && isanswer) {
+		//alert("정답!");
+		return true;
 	}
 	else {
 		alert("오답!");
-		$('#missingkeyword').html("");
+		//$('#missingkeyword').html("");
 		return false;
 	}
 }
