@@ -19,6 +19,13 @@ public interface BoardService {
 	//public ArrayList<BoardVO> boardListAll(PageNavigator navi, String type, String searchWord);
 	public ArrayList<BoardWithName> boardListAll(PageNavigator navi, String type, String searchWord);
 	
+	//조회수 증가
+	public int updateHits(int boardnum);
+	
+	//글 읽기
+	public BoardWithName boardNum(int board_id);
+	
+	
 	
 
 }

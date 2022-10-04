@@ -111,8 +111,26 @@ public class BoardController {
 	 * 글 읽기
 	 */
 	@GetMapping("read")
-	public String read() {
+	public String read(@RequestParam(name="board_id", defaultValue="0") int board_id, Model model) {
 		log.debug("read() called");
+		
+		BoardWithName board = service.boardNum(board_id);
+		
+		log.debug("가져온 값 : {}", board);
+		
+		if(board == null) {				
+			return "redirect:list";
+		}
+		
+		//조회수 증가
+		service.updateHits(board_id);
+		
+		//현재 글의 리플 목록 읽기
+
+		
+		//결과를 모델에 담아서 html에 출력
+		model.addAttribute("writingRead", board);
+		//model.addAttribute("replylist", replylist);
 		
 		return "boardView/read";
 	}

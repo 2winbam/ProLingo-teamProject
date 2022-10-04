@@ -21,5 +21,12 @@ public interface BoardDAO {
 	//글 전체 목록
 	//public ArrayList<BoardVO> boardListAll(HashMap<String, String> map, RowBounds rb);
 	public ArrayList<BoardWithName> boardListAll(HashMap<String, String> map, RowBounds rb);
+	
+	//글 읽기
+	public BoardWithName writingRead(int boardnum);
+	
+	//조회수 증가
+	public int updateHits(int boardnum);
+	
 
 }
