@@ -49,37 +49,6 @@
 </select>
 
 <!-- 글 전체 목록 -->
-<!-- <select id="boardListAll" parameterType="map" resultType="BoardVO"> -->
-<!-- 	SELECT  -->
-<!-- 		board_id -->
-<!-- 		, title -->
-<!-- 		, user_id -->
-<!-- 		, hits -->
-<!-- 		, TO_CHAR(writingdate, 'YY-MM-DD') AS writingdate -->
-<!-- 	FROM -->
-<!-- 		PROLINGO_BOARD -->
-<!-- 		 전달된 값에 따라서 sql 변경 -> 동적 sql  검색어가 넘어왔는지부터 확인 -->
-<!-- 	<if test="type != null and searchWord != null"> true, false가 나오는 조건식 vo : 변수명 map : key -->
-<!-- 	<where> 조건이 하나도 안남으면 where도 지움 -->
-<!-- 		<if test="type == 'title'"> 넘어왔다는 게 확인이 되면 타입에 들어있는 문자열 내용을 보면 알 수 있음 -> if문으로 확인 -->
-<!-- 			UPPER(title) like '%' || UPPER(#{searchWord}) || '%' -->
-<!-- 		</if> -->
-<!-- 		<if test="type == 'board_content'"> -->
-<!-- 			UPPER(board_content) like '%' || UPPER(#{searchWord}) || '%' -->
-<!-- 		</if> -->
-<!-- 		<if test="type == 'user_id'"> -->
-<!-- 			UPPER(user_id) like UPPER(#{searchWord}) -->
-<!-- 		</if> -->
-<!-- 		<if test="type == 'all'"> -->
-<!-- 			UPPER(title) like '%' || UPPER(#{searchWord}) || '%' -->
-<!-- 			OR UPPER(board_content) like '%' || UPPER(#{searchWord}) || '%' -->
-<!-- 			OR UPPER(user_id) like UPPER(#{searchWord}) -->
-<!-- 		</if> -->
-<!-- 	</where> -->
-<!-- 	</if> -->
-<!-- 	ORDER BY -->
-<!-- 		board_id DESC -->
-<!-- </select> -->
 <select id="boardListAll" parameterType="map" resultType="BoardWithName">
 	SELECT 
 		B.board_id AS board_id
@@ -136,6 +105,40 @@ FROM
 WHERE
 	B.user_id = U.user_id
 	AND board_id = #{board_id}	
+</select>
+
+<!-- 인기글 리스트 -->
+<select id="hitListAll" parameterType="map" resultType="BoardWithName">
+	SELECT 
+		B.board_id AS board_id
+		, B.title AS title
+		, B.hits AS hits
+		, TO_CHAR(B.writingdate, 'YY-MM-DD') AS writingdate
+		, U.nickname AS nickname
+	FROM
+		PROLINGO_BOARD B, PROLINGO_USER U
+		<!-- 전달된 값에 따라서 sql 변경 -> 동적 sql --> <!-- 검색어가 넘어왔는지부터 확인 -->
+	WHERE
+		B.user_id = U.user_id
+		AND B.hits <![CDATA[>=]]> 5
+	<if test="type != null and searchWord != null"> <!-- true, false가 나오는 조건식 --> <!-- vo : 변수명 map : key -->
+		<if test="type == 'title'"> <!-- 넘어왔다는 게 확인이 되면 타입에 들어있는 문자열 내용을 보면 알 수 있음 -> if문으로 확인 -->
+			AND UPPER(B.title) like '%' || UPPER(#{searchWord}) || '%'
+		</if>
+		<if test="type == 'board_content'">
+			AND UPPER(B.board_content) like '%' || UPPER(#{searchWord}) || '%'
+		</if>
+		<if test="type == 'nickname'">
+			AND UPPER(U.nickname) like UPPER(#{searchWord})
+		</if>
+		<if test="type == 'all'">
+			AND UPPER(B.title) like '%' || UPPER(#{searchWord}) || '%'
+			OR UPPER(B.board_content) like '%' || UPPER(#{searchWord}) || '%'
+			OR UPPER(U.nickname) like UPPER(#{searchWord})
+		</if>
+	</if>
+	ORDER BY
+		board_id DESC
 </select>
 
 </mapper>
