@@ -140,6 +140,7 @@ public class ProfileServiceImpl implements ProfileService{
 		
 		return friendInfo;
 	}
+
 	
 	// 친구 추가
 	public int followFriend(String target, String userId) {
@@ -155,5 +156,13 @@ public class ProfileServiceImpl implements ProfileService{
 		int followResult = dao.followFriend(followMap);
 		
 		return followResult;
+	}
+	//내 프로필에 친구조회
+	@Override
+	public ArrayList<MemberVO> selectAllFriends(String userId) {
+
+		ArrayList<MemberVO> friendsInfo = dao.selectAllFriends(userId);
+		return friendsInfo;
+
 	}
 }
