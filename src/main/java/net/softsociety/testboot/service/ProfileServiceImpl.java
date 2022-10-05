@@ -44,8 +44,8 @@ public class ProfileServiceImpl implements ProfileService{
 		for(AchievementVO cl : clearList) {
 			int i = 0;
 			for(AchievementVO ncl : notClearList) {
-				log.debug("cl : " + cl.getAchievement_id());
-				log.debug("ncl : " + ncl.getAchievement_id());
+				//log.debug("cl : " + cl.getAchievement_id());
+				//log.debug("ncl : " + ncl.getAchievement_id());
 				if(cl.getAchievement_id() == ncl.getAchievement_id()) {
 					//log.debug("" + i);
 					notClearList.remove(i);
@@ -118,8 +118,8 @@ public class ProfileServiceImpl implements ProfileService{
 		for(MemberVO ml : friendList) {
 			int i = 0;
 			for(MemberVO nml : unFriendList) {
-				log.debug("cl : " + ml.getUser_id());
-				log.debug("ncl : " + nml.getUser_id());
+				//log.debug("cl : " + ml.getUser_id());
+				//log.debug("ncl : " + nml.getUser_id());
 				if(ml.getUser_id() == nml.getUser_id()) {
 					//log.debug("" + i);
 					unFriendList.remove(i);

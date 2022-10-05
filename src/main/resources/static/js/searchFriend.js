@@ -89,11 +89,11 @@
 			str+='<div class="profile card radius-15 col-2 bt-50">';
 			str+='<div class="card-body text-center">';
 			str+='<div class=" p-3 border radius-15">';
-			str+='<img th:src="@{/img/avatars/avatar.jpg}" th:alt="@{/img/avatars/basicprofilePhoto.png}" width="110" height="110" class="rounded-circle shadow">';
-			str+='<a th:href="@{friendProfile}?user_id=${' + item.user_id + '}" class="profileLink">&nbsp;' + item.user_name + '</a>';
+			str+='<img src="/prolingo/img/avatars/avatar.jpg" alt="/img/avatars/basicprofilePhoto.png" width="110" height="110" class="rounded-circle shadow">';
+			str+='<a href="friendProfile?user_id=' + item.user_id + '" class="profileLink">&nbsp;' + item.user_name + '</a>';
 			str+='<p>'+ item.email +'</p>';
 			str+='<div class="d-grid"> <button class="btn btn-outline-primary radius-15" id="follow" ';
-			str+='th:user_id="${'+ item.user_id +'}" th:onclick="|javascript:followFriend(${' + item.user_id + '})|"><i class="bi bi-person-plus"></i> 친구추가</button>';
+			str+='user_id="'+ item.user_id +'" onclick="javascript:followFriend(' + item.user_id + ')"><i class="bi bi-person-plus"></i> 친구추가</button>';
 			str+='</div></div></div></div>';
 			});
 			
