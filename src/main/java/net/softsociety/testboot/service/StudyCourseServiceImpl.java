@@ -110,7 +110,7 @@ public class StudyCourseServiceImpl implements StudyCourseService {
 		dateMap.put("formatedNow", formatedNow);
 		
 		// 누적 로그인 일자가 0인경우 (로그인 업적 제공, 누적 로그인 일자 +1, 현재 로그인한 일자 등록)
-		if(formatedNow != lastLogin) {
+		if(!formatedNow.equals(lastLogin)) {
 			
 			// 최종 로그인 일자 업데이트
 			int updateDate = dao.updateLastDay(dateMap);

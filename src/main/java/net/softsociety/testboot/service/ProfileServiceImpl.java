@@ -69,17 +69,18 @@ public class ProfileServiceImpl implements ProfileService{
 		log.debug("친구찾기의 impl searchWord : {}", searchWord);
 		
 		// 아이디와 검색어로 친구목록 조회
-		HashMap<String, String> map = new HashMap<String, String>();
+		HashMap<String, String> friendMap = new HashMap<String, String>();
+		friendMap.put("userId", userId);
+		friendMap.put("searchWord", searchWord);
 		
-		map.put("userId", userId);
-		map.put("searchWord", searchWord);
-		
-		log.debug("친구찾기의 impl map의 usrId : {}", map.get(userId));
-		log.debug("친구찾기의 impl map의 searchWord : {}", map.get(searchWord));
+		log.debug("map의 userid : {}", friendMap.get(userId));
+		log.debug("map의 searchWord : {}", friendMap.get(searchWord));
 		
 		// 해당 검색어를 가진 친구 목록을 조회
-		ArrayList<MemberVO> friendList = dao.searchfriends(map);
-				
+		ArrayList<MemberVO> friendList = dao.searchfriends(friendMap);
+		
+		log.debug("조회한 친구 리스트 : {}",friendList);
+		
 		return friendList;
 	}
 	
