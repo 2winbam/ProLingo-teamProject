@@ -68,6 +68,50 @@ public class ProfileController {
 		
 		return "profile";
 	}
+	
+	/**
+	 * 친구의 프로필 보기
+	 * @return profile page
+	 */
+	@GetMapping("/friendProfile")
+	public String friendProfile(Model model, String user_id) {
+		//log.debug("called profile");
+		// 현재 접속중인 유저의 userid를 조회
+				
+		log.debug("친구 아이디: {}" , user_id);
+		
+		MemberVO friendInfo = ps.selectFriend(user_id);
+		
+		log.debug("friendInfo : {}", friendInfo);
+		
+		model.addAttribute("friendInfo", friendInfo);
+		
+		// 달성한 업적 조회
+		ArrayList<AchievementVO> clearList = ps.selectClear(user_id);
+		//log.debug("조회한 달성 리스트 전체 : {}", clearList);
+		model.addAttribute("clearList", clearList);
+		//요일별 경험치 조회
+		//log.debug("데이터 조회 : {}",service.getExp(userId));
+		//경험치 html로 날리기
+		MemberWeeklyExpVO exp = service.getExp(user_id);
+		int mon_exp = exp.getMon_exp();
+		int tue_exp = exp.getTue_exp();
+		int wed_exp = exp.getWed_exp();
+		int thu_exp = exp.getThu_exp();
+		int fri_exp = exp.getFri_exp();
+		int sat_exp = exp.getSat_exp();
+		int sun_exp = exp.getSun_exp();
+		
+		model.addAttribute("mon", mon_exp);
+		model.addAttribute("tue", tue_exp);
+		model.addAttribute("wed", wed_exp);
+		model.addAttribute("thu", thu_exp);
+		model.addAttribute("fri", fri_exp);
+		model.addAttribute("sat", sat_exp);
+		model.addAttribute("sun", sun_exp);
+		
+		return "profile/friendProfile";
+	}
 	/**
 	 * 업적 달성 페이지 및 업적 조회
 	 * @return 업적 달성 

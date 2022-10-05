@@ -36,5 +36,12 @@ public interface ProfileService {
 	 * @return
 	 */
 	public ArrayList<MemberVO> notfriends(String searchWord, String userId);
+	
+	/**
+	 * 친구의 프로필 페이지 조회
+	 * @param user_id
+	 * @return
+	 */
+	public MemberVO selectFriend(String user_id);
 		
 }

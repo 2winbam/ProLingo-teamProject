@@ -133,4 +133,11 @@ public class ProfileServiceImpl implements ProfileService{
 		return unFriendList;
 	}
 	
+	// 친구의 프로필 조회
+	public MemberVO selectFriend(String user_id) {
+		
+		MemberVO friendInfo = dao.selectFriend(user_id);
+		
+		return friendInfo;
+	}
 }

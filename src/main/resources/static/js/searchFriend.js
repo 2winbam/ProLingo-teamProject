@@ -4,11 +4,11 @@
  
  $(document).ready(function() {
 		
-		$('#searchWord').keyup(friendList);
+		//$('#searchWord').keyup(friendList);
 		$('#searchWord').keyup(notFriendList);
 		
 		notFriendList();
-		friendList();
+		//friendList();
 		
 	});
 		
@@ -57,16 +57,17 @@
 		
 		let str;
 		$.each(friendList, function(index, item){
-			str+='<div class="profile card radius-15 col-3 bt-50">';
+			str+='<div class="profile card radius-15 col-2 bt-50">';
 			str+='<div class="card-body text-center">';
-			str+='<div class="searchForm p-3 border radius-15">';
+			str+='<div class=" p-3 border radius-15">';
 			str+='<img th:src="@{/img/avatars/avatar.jpg}" th:alt="@{/img/avatars/basicprofilePhoto.png}" width="110" height="110" class="rounded-circle shadow">';
 			str+='<a href="" class="profileLink">&nbsp;' + item.user_name + '</a>';
 			str+='<p>'+ item.email +'</p>';
 			str+='<div class="d-grid"> <button class="btn btn-primary radius-15" id="unFollow"><i class="bi bi-person-dash"></i> 친구취소</button>';
 			str+='</div></div></div></div>';
 			});
-
+			
+			
 		$('#output1').html(str);
 	}
 	
@@ -77,15 +78,16 @@
 		
 		let str;
 		$.each(notFriendList, function(index, item){
-			str+='<div class="profile card radius-15 col-3 bt-50">';
+			
+			str+='<div class="profile card radius-15 col-2 bt-50">';
 			str+='<div class="card-body text-center">';
-			str+='<div class="searchForm p-3 border radius-15">';
+			str+='<div class=" p-3 border radius-15">';
 			str+='<img th:src="@{/img/avatars/avatar.jpg}" th:alt="@{/img/avatars/basicprofilePhoto.png}" width="110" height="110" class="rounded-circle shadow">';
-			str+='<a th:href="@{/profile(user_id=${ + ' + item.user_id + '})}" class="profileLink">&nbsp;' + item.user_name + '</a>';
+			str+='<a th:href="|@{friendProfile}?user_id=${' + item.user_id + '}|" class="profileLink">&nbsp;' + item.user_name + '</a>';
 			str+='<p>'+ item.email +'</p>';
 			str+='<div class="d-grid"> <button class="btn btn-outline-primary radius-15" id="follow"><i class="bi bi-person-plus"></i> 친구추가</button>';
 			str+='</div></div></div></div>';
 			});
-
+			
 		$('#output2').html(str);
 	}

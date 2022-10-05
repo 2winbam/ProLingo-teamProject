@@ -23,6 +23,9 @@ public interface ProfileDAO {
 	
 	//입력된 검색어로 친구 등록되지 않은 사람 조회
 	public ArrayList<MemberVO> notFriends(HashMap<String, String> unFriendMap);
+	
+	//친구의 프로필 조회
+	public MemberVO selectFriend(String user_id);
 
 
 }

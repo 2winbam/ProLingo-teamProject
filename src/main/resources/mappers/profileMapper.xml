@@ -48,4 +48,11 @@
         u.email like '%' || #{searchWord} || '%'      
 </select>
 
+<select id="selectFriend" parameterType="String" resultType="MemberVO">
+	select *
+	from prolingo_user
+	where user_id = #{user_id}
+
+</select>
+
 </mapper>
