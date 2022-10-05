@@ -59,27 +59,28 @@ public class ProfileServiceImpl implements ProfileService{
 		return notClearList;
 	}
 	
+	/**
+	 * 입력된 이메일을 가진 친구를 조회
+	 */
 	@Override
-	public ArrayList<MemberVO> searchList(String searchWord, String userId){
+	public ArrayList<MemberVO> searchfriends(String searchWord, String userId){
 		
-		log.debug("userid : {}", userId);
+		log.debug("친구찾기의 impl userid : {}", userId);
+		log.debug("친구찾기의 impl searchWord : {}", searchWord);
 		
-		/*
 		// 아이디와 검색어로 친구목록 조회
-		HashMap<String, Object> map = new HashMap<String, Object>();
+		HashMap<String, String> map = new HashMap<String, String>();
 		
-		map.put(userId, searchWord);
+		map.put("userId", userId);
+		map.put("searchWord", searchWord);
 		
-		//log.debug("map의 usrId : {}", map.get(userId));
-		log.debug("map의 searchWord : {}", map.get(searchWord));
+		log.debug("친구찾기의 impl map의 usrId : {}", map.get(userId));
+		log.debug("친구찾기의 impl map의 searchWord : {}", map.get(searchWord));
 		
-		// 위에서 조회된 리스트에서 검색어에 해당하는 값을 출력
-		ArrayList<MemberVO> findResult = dao.selectFriends(map);
-		*/
-		// 아이디를 입력 받아 해당 아이디와 친구를 제외한 목록을 조회
-		ArrayList<MemberVO> memberList = dao.searchList(searchWord);
+		// 해당 검색어를 가진 친구 목록을 조회
+		ArrayList<MemberVO> friendList = dao.searchfriends(map);
 				
-		return memberList;
+		return friendList;
 	}
 	
 }

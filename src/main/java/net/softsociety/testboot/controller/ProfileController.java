@@ -82,15 +82,14 @@ public class ProfileController {
 	 */
 	@GetMapping("/searchFriend")
 	public String searchFriend() {
-		log.debug("called searchFriend");
 		return "profile/searchFriend";
 	}
 	
 	/**
 	 * 친구찾기 페이지 검색
 	 */
-	@PostMapping("/searchList")
-	public ArrayList<MemberVO> searchList(String searchWord, @AuthenticationPrincipal UserDetails user) {
+	@GetMapping("/friendList")
+	public ArrayList<MemberVO> friendList(String searchWord, @AuthenticationPrincipal UserDetails user) {
 		
 		log.debug("접속한 user : {}", user);
 		
@@ -98,20 +97,35 @@ public class ProfileController {
 		
 		log.debug("검색어 : {}", searchWord); 
 		
-		ArrayList<MemberVO> memberList = ps.searchList(searchWord, userId);
+		//친구로 등록된 사람을 조회
+		ArrayList<MemberVO> friendList = ps.searchfriends(searchWord, userId);
 		
-		log.debug("memberList: {}",memberList);
+		log.debug("memberList: {}",friendList);
 		
-		return memberList;
+		return friendList;
 	}
+	
 	
 	
 	/**
 	 * 저장된 코드 페이지
 	 */
+	/*
+	@GetMapping("/savedList")
+	public String savedList() {
+		log.debug("called savedList");
+		return "profile/savedList";
+	}
+	*/
+	
+	/**
+	 * 저장된 코드 페이지
+	 */
+	/*
 	@GetMapping("/savedCode")
 	public String savedCode() {
 		log.debug("called savedCode");
 		return "profile/savedCode";
 	}
+	*/
 }

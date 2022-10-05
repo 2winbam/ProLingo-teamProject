@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/head :: new_head(~{::title},~{::link},~{::script})">
+<meta charset="UTF-8">
+<title>savedList</title>
+
+<!-- 저장한 코드 리스트 -->
+<link rel="stylesheet" type="text/css" th:href="@{/css/savedList.css}">
+
+<script type="text/javascript"></script>
+
+</head>
+<body>
+	<div class="wrapper">
+		<!-- sidebar -->
+		<!-- <div th:replace="fragments/sidebar :: sidebar"></div> -->
+		
+		<div class="main">
+			<!-- header -->
+			<div th:replace="fragments/header :: new_header"></div>
+		
+		<div class="container">
+      <div class="row">
+        <!-- Main content -->
+        <div class="col-lg-9 mb-3">
+          <div class="row text-left mb-5">
+            <div class="col-lg-6 mb-3 mb-sm-0">
+              <div class="dropdown bootstrap-select form-control form-control-lg bg-white bg-op-9 text-sm w-lg-50" style="width: 100%;">
+              <select class="form-control form-control-lg bg-white bg-op-9 text-sm w-lg-50" data-toggle="select" tabindex="-98">
+                <option> Categories </option>
+                <option> Java </option>
+                <option> C </option>
+              </select>
+              </div>
+            </div>
+            <div class="col-lg-6 text-lg-right">
+              <div class="dropdown bootstrap-select form-control form-control-lg bg-white bg-op-9 ml-auto text-sm w-lg-50" style="width: 100%;">
+                  <input type="text" class="form-control form-control-lg bg-white bg-op-9 ml-auto text-sm w-lg-50" data-toggle="select" tabindex="-98">
+              </div>
+            </div>
+          </div>
+          
+          <!-- 리스트 시작 -->
+          <div class="card row-hover pos-relative py-3 px-3 mb-3 border-warning border-top-0 border-right-0 border-bottom-0 rounded-0">
+            <div class="row align-items-center">
+              <div class="col-md-8 mb-3 mb-sm-0">
+                <h5>
+                  <a href="#" class="text-primary">Drupal 8 quick starter guide</a>
+                </h5>
+                <p class="text-sm"><span class="op-6">Posted</span> <a class="text-black" href="#">20 minutes</a> <span class="op-6">ago by</span> <a class="text-black" href="#">KenyeW</a></p>
+                <div class="text-sm op-5"> <a class="text-black mr-2" href="#">#C++</a> <a class="text-black mr-2" href="#">#AppStrap Theme</a> <a class="text-black mr-2" href="#">#Wordpress</a> </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="card row-hover pos-relative py-3 px-3 mb-3 border-primary border-top-0 border-right-0 border-bottom-0 rounded-0">
+            <div class="row align-items-center">
+              <div class="col-md-8 mb-3 mb-sm-0">
+                <h5>
+                  <a href="#" class="text-primary">HELP! My Windows XP machine is down</a>
+                </h5>
+                <p class="text-sm"><span class="op-6">Posted</span> <a class="text-black" href="#">41 minutes</a> <span class="op-6">ago by</span> <a class="text-black" href="#">KylieJ</a></p>
+                <div class="text-sm op-5"> <a class="text-black mr-2" href="#">#Android</a> <a class="text-black mr-2" href="#">#Bootstrap 4</a> <a class="text-black mr-2" href="#">#Wordpress</a> </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+	</div>	
+</div>
+</body>
+</html>

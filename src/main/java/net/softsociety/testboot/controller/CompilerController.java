@@ -240,6 +240,8 @@ public class CompilerController {
 		// 현재 패스 찾는거 알 수 있는 방법이 있나?
 		//String fullpath = "/user/Documents/ProLingo-teamProject/" + path;
 		
+		//String fullpath = "Users/Won Jungyeon/Documents/ProLingo-teamProject/" + path;
+		
 		//정수 집 컴 경로
 		String fullpath = "/Users/SU/Documents/ProLingo-teamProject/" + path;
 		

@@ -19,9 +19,7 @@ public interface ProfileDAO {
 	public ArrayList<AchievementVO> selectNotClear(String userId);
 
 	//입력된 검색어로 친구 조회
-	public ArrayList<MemberVO> selectFriends(HashMap<String, Object> map);
-	
-	//입력된 검색어로 친구 조회
-	public ArrayList<MemberVO> searchList(String searchWord);
+	public ArrayList<MemberVO> searchfriends(HashMap<String, String> map);
+
 
 }

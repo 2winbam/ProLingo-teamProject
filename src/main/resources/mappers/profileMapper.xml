@@ -38,20 +38,21 @@
 		</if>
 </select>
 
-<!-- 검색어에 해당하는 사람들 조회 -->
+<!-- 검색어에 해당하는 친구들 조회 -->
 
-<select id="searchList" parameterType="String" resultType="MemberVO">
-	select distinct photo, user_name, email
-	from prolingo_user
-	<if test="#{searchWord} != null">
-		<where>
-			user_name like '%' || #{searchWord} || '%'
-			or
-			email like '%' || #{searchWord} || '%'
-			or
-			nickname like '%' || #{searchWord} || '%'
- 		</where>
- 	</if>
+<select id="searchfriends" parameterType="hashmap" resultType="MemberVO">
+	select u2.photo, u2.user_name, u2.email
+	from prolingo_user u1, prolingo_user u2, user_follow f
+	where
+        u1.user_id = #{userid}
+        and
+        f.user_id = u1.user_id
+        and
+        f.target_id = u2.user_id
+        <if test="#{searchWord} != null">
+        and
+        u2.email like '%' || #{searchWord} || '%'
+        </if>
 </select>
 
 </mapper>

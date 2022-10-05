@@ -35,11 +35,11 @@ public interface StudyCourseService {
 	public String searchTitle(int questionindex);
 	
 	/**
-	 * 로그인 업적
-	 * @param user 현재 로그인한 유저의 아이디
-	 * @return 로그인 업적 insert
+	 * 누적 로그인 일수 조회 
+	 * @param userId
+	 * @return 누적 로그인 일수
 	 */
-	public int insertLogIn(UserDetails user);
+	public int selectDate(String userId);
 	
 	
 }
