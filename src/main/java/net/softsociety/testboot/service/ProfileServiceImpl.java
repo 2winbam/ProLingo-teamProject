@@ -44,8 +44,8 @@ public class ProfileServiceImpl implements ProfileService{
 		for(AchievementVO cl : clearList) {
 			int i = 0;
 			for(AchievementVO ncl : notClearList) {
-				log.debug("cl : " + cl.getAchievement_id());
-				log.debug("ncl : " + ncl.getAchievement_id());
+				//log.debug("cl : " + cl.getAchievement_id());
+				//log.debug("ncl : " + ncl.getAchievement_id());
 				if(cl.getAchievement_id() == ncl.getAchievement_id()) {
 					//log.debug("" + i);
 					notClearList.remove(i);
@@ -118,8 +118,8 @@ public class ProfileServiceImpl implements ProfileService{
 		for(MemberVO ml : friendList) {
 			int i = 0;
 			for(MemberVO nml : unFriendList) {
-				log.debug("cl : " + ml.getUser_id());
-				log.debug("ncl : " + nml.getUser_id());
+				//log.debug("cl : " + ml.getUser_id());
+				//log.debug("ncl : " + nml.getUser_id());
 				if(ml.getUser_id() == nml.getUser_id()) {
 					//log.debug("" + i);
 					unFriendList.remove(i);
@@ -139,5 +139,30 @@ public class ProfileServiceImpl implements ProfileService{
 		MemberVO friendInfo = dao.selectFriend(user_id);
 		
 		return friendInfo;
+	}
+
+	
+	// 친구 추가
+	public int followFriend(String target, String userId) {
+		
+		HashMap<String, String> followMap = new HashMap<String, String>();
+		
+		followMap.put("target", target);
+		followMap.put("userId", userId);
+		
+		log.debug("map의 target : {}", followMap.get("target"));
+		log.debug("map의 userid : {}", followMap.get("userId"));
+		
+		int followResult = dao.followFriend(followMap);
+		
+		return followResult;
+	}
+	//내 프로필에 친구조회
+	@Override
+	public ArrayList<MemberVO> selectAllFriends(String userId) {
+
+		ArrayList<MemberVO> friendsInfo = dao.selectAllFriends(userId);
+		return friendsInfo;
+
 	}
 }
