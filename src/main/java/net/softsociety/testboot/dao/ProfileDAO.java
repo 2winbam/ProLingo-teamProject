@@ -20,6 +20,20 @@ public interface ProfileDAO {
 
 	//입력된 검색어로 친구 조회
 	public ArrayList<MemberVO> searchfriends(HashMap<String, String> friendMap);
+	
+	//입력된 검색어로 친구 등록되지 않은 사람 조회
+	public ArrayList<MemberVO> notFriends(HashMap<String, String> unFriendMap);
+	
+	//친구의 프로필 조회
+	public MemberVO selectFriend(String user_id);
+
+	
+	//친추
+	public int followFriend(HashMap<String, String> followMap);
+
+	//내 프로필에서 친구리스트 조회
+	public ArrayList<MemberVO> selectAllFriends(String userId);
+
 
 
 }

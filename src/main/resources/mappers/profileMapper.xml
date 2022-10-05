@@ -21,40 +21,58 @@
 </select>
 
 <!-- 접속한 사람과 그 사람의 친구를 제외한 사람들을 조회 -->
-<select id="selectFriends" parameterType="map" resultType="MemberVO">
-	select distinct u.user_name, u.email
+<select id="notFriends" parameterType="map" resultType="MemberVO">
+	select distinct u.user_id, u.photo, u.user_name, u.email
 	from prolingo_user u, user_follow f
 	where
-		u.user_id = #{userid}
-    	<if test="#{searchWord} != null">
-    		<where>
-    			and
-    			u.user_name like '%' || #{searchWord} || '%'
-				or
-				u.email like '%' || #{searchWord} || '%'
-				or
-				u.nickname like '%' || #{searchWord} || '%'
-			</where>
-		</if>
+        f.user_id = #{userId}
+        and
+        f.user_id != u.user_id
+        and
+        u.user_id != f.target_id	
+        and
+        u.email like '%' || #{searchWord} || '%'
+        	
 </select>
 
 <!-- 검색어에 해당하는 친구들 조회 -->
 
 <select id="searchfriends" parameterType="map" resultType="MemberVO">
-	select u2.photo, u2.user_name, u2.email
-	from prolingo_user u1, prolingo_user u2, user_follow f
+	select u.user_id, u.photo, u.user_name, u.email
+	from prolingo_user u, user_follow f
 	where
-        u1.user_id = #{userid}
+        f.user_id = #{userId}
         and
-        f.user_id = u1.user_id
+        f.target_id = u.user_id        	
         and
-        f.target_id = u2.user_id
-        <where>
-        	<if test="#{searchWord} != null">
-        	and
-        	u2.email like '%' || #{searchWord} || '%'
-        	</if>
-        </where>
+        u.email like '%' || #{searchWord} || '%'      
 </select>
+
+<select id="selectFriend" parameterType="String" resultType="MemberVO">
+	select *
+	from prolingo_user
+	where user_id = #{user_id}
+
+</select>
+
+
+<!-- 친추기능 -->
+<insert id="followFriend" parameterType="map">
+	insert into user_follow
+	(user_id, target_id)
+	values
+	(#{userId}, #{target})
+</insert>
+
+<!-- 내 프로필에서 친구리스트 조회 -->
+<select id="selectAllFriends"  parameterType="String" resultType="MemberVO">
+	select u.user_id, u.photo, u.user_name, u.email
+	from prolingo_user u, user_follow f
+	where
+        f.user_id = #{userId}
+        and
+        f.target_id = u.user_id 
+</select>
+
 
 </mapper>
