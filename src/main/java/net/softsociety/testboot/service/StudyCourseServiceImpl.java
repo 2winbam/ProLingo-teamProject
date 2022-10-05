@@ -92,7 +92,7 @@ public class StudyCourseServiceImpl implements StudyCourseService {
 		
 		// 현재 날짜
 		LocalDateTime now = LocalDateTime.now();
-		  // 포맷 정의        
+		// 포맷 정의        
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy/MM/dd");         
 		// 포맷 적용        
 		String formatedNow = now.format(formatter);

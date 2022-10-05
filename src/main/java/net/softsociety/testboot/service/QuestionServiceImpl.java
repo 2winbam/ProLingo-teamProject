@@ -21,16 +21,25 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 
 	@Override
-	public ArrayList<ProlingoKeywordVO> selectAllKeywordsName(String keywords) {
+	public ArrayList<ProlingoKeywordVO> selectAllKeywords(String keywords) {
 		
 		String[] keywordlist = keywords.split(",");
 		
 		ArrayList<ProlingoKeywordVO> result = new ArrayList<>();
 		
 		for(String key : keywordlist) {
-			Integer.parseInt(key);
+			//nteger.parseInt(key);
 			result.add(dao.selectKeywordById(Integer.parseInt(key)));
 		}
+
+		return result;
+	}
+
+	@Override
+	public ArrayList<ProlingoKeywordVO> selectSameTypeKeywords(String type) {
+		ArrayList<ProlingoKeywordVO> result = new ArrayList<>();
+		
+		result = dao.selectKeywordsByType(type);
 
 		return result;
 	}

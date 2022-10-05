@@ -14,4 +14,6 @@ public interface QuestionDAO {
 
 	ProlingoKeywordVO selectKeywordById(int keywordid);
 
+	ArrayList<ProlingoKeywordVO> selectKeywordsByType(String type);
+
 }

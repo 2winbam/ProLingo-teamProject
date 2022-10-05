@@ -1,0 +1,42 @@
+table {
+	
+	width : 1000px;
+	color: black;
+	
+}
+
+table, th, td {
+	border-collapse: collapse;
+	border: 1px solid black;
+}
+
+th {
+	width : 100px;
+	text-align: center;
+}	
+
+.box1 {
+	background-color: rgb(0, 128, 64);
+		
+}
+
+.box2 {
+	background-color: rgb(0, 128, 64);
+	height: 300px;
+}
+
+#back {
+	position: relative;
+	left: 914px;
+}
+
+#reco {
+	text-align: center;
+	position: relative;
+	left: 500px;
+}
+
+#cnt {
+	position: relative;
+	left: 520px;
+}
