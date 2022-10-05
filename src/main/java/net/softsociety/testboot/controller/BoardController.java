@@ -187,11 +187,16 @@ public class BoardController {
 	 */
 	@PostMapping("replyWrite")
 	public String replyWrite(
-			ReplyWithName reply
+			ReplyVO reply
 			, @AuthenticationPrincipal UserDetails user
 			) {
 		//본문글번호, 리플내용 전달받아 로그인한 아이디 추가
-		reply.setNickname(user.getUsername());
+		String id = user.getUsername();
+		
+		int UserID = Integer.parseInt(id);
+		
+		reply.setUser_id(UserID);
+				
 		
 		//DB에 저장
 		log.debug("replyWrite() called");

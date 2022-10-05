@@ -40,7 +40,7 @@ public interface BoardDAO {
 	public ArrayList<ReplyWithName> replyList(int board_id);
 	
 	//댓글 저장
-	public int replyWrite(ReplyWithName reply);
+	public int replyWrite(ReplyVO reply);
 	
 
 }

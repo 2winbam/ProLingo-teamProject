@@ -94,7 +94,7 @@
 						
 						<!-- 댓글 작성 폼 -->
 						<br><br>
-						<form th:action="@{/board/replyWrite}" method="post">
+						<form id="replyWrite" action="replyWrite" method="post">
 							<input type="hidden" name="board_id" th:value="${writingRead.board_id}"> <!-- 글번호 자동으로 넣어서 감 -->		
 							<input type="text" name="replytext" id="replytext"> 
 							<input type="submit" class="btn btn-secondary" value="확인">

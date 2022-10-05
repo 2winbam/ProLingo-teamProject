@@ -114,7 +114,7 @@ public class BoardServiceImple implements BoardService{
 
 	//댓글 저장
 	@Override
-	public int replyWrite(ReplyWithName reply) {
+	public int replyWrite(ReplyVO reply) {
 		
 		int result = boardDAO.replyWrite(reply);
 		

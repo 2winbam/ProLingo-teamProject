@@ -153,35 +153,33 @@ WHERE
 
 <!-- 해당 글의 댓글 목록 읽기 -->
 <select id="replyList" resultType="ReplyWithName" parameterType="int">
-SELECT
-	R.reply_id AS reply_id
-	, R.board_id AS board_id
-	, U.nickname AS nickname
-	, TO_CHAR(R.writingdate, 'YY/MM/DD') AS writingdate
-FROM
-	PROLINGO_REPLY R, PROLINGO_USER U
-WHERE
-	R.user_id = U.user_id
+	SELECT
+		R.reply_id AS reply_id
+		, R.board_id AS board_id
+		, U.nickname AS nickname
+		, TO_CHAR(R.writingdate, 'YY/MM/DD') AS writingdate
+	FROM
+		PROLINGO_REPLY R, PROLINGO_USER U
+	WHERE
+		R.user_id = U.user_id
 </select>
 
 <!-- 댓글 저장 -->
-<insert id="replyWrite" parameterType="ReplyWithName">
-INSERT INTO PROLINGO_REPLY
-	(
-	reply_id
-	, board_id
-	, nickname
-	, reply_content
-	)
-SELECT
-	R.reply_id AS reply_id
-	, R.board_id AS board_id
-	, U.nickname AS nickname
-	, R.reply_content AS reply_content
-FROM 
-	PROLINGO_REPLY R, PROLINGO_USER U
-WHERE
-	R.user_id = U.user_id
+<insert id="replyWrite" parameterType="ReplyVO">
+	INSERT INTO PROLINGO_REPLY
+		(
+			reply_id
+			, board_id
+			, user_id
+			, reply_content
+		)
+	VALUES
+		(
+			PROLINGO_REPLY_SEQ.NEXTVAL
+			, #{board_id}
+			, #{user_id}
+			, #{reply_content}		
+		)
 </insert>
 
 </mapper>
