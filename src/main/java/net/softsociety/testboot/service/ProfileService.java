@@ -43,5 +43,11 @@ public interface ProfileService {
 	 * @return
 	 */
 	public MemberVO selectFriend(String user_id);
+	/**
+	 * 내 프로필 페이지에 친구 리스트 조회
+	 * @param userId
+	 * @return
+	 */
+	public ArrayList<MemberVO> selectAllFriends(String userId);
 		
 }

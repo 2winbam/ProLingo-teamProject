@@ -42,6 +42,12 @@ public class ProfileController {
 		String userId = user.getUsername();
 				
 		log.debug("접속중인 아이디: {}" , userId);
+		//친구로 등록된 사람을 조회
+		ArrayList<MemberVO> friendList = ps.selectAllFriends(userId);
+		log.debug("불러온 친구 : {}", friendList);
+		
+		model.addAttribute("friendList", friendList);
+		
 		// 달성한 업적 조회
 		ArrayList<AchievementVO> clearList = ps.selectClear(userId);
 		//log.debug("조회한 달성 리스트 전체 : {}", clearList);
@@ -75,8 +81,6 @@ public class ProfileController {
 	 */
 	@GetMapping("/friendProfile")
 	public String friendProfile(Model model, String user_id) {
-		//log.debug("called profile");
-		// 현재 접속중인 유저의 userid를 조회
 				
 		log.debug("친구 아이디: {}" , user_id);
 		

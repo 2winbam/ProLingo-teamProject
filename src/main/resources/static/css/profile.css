@@ -2,3 +2,10 @@
 .card-header text-center {
 	background-color: grey;
 }
+#friend_btn {
+	position: relative;
+	top: 60%;
+	left: 40%;
+	width: fit-content;
+	
+}

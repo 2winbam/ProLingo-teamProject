@@ -140,4 +140,11 @@ public class ProfileServiceImpl implements ProfileService{
 		
 		return friendInfo;
 	}
+	//내 프로필에 친구조회
+	@Override
+	public ArrayList<MemberVO> selectAllFriends(String userId) {
+
+		ArrayList<MemberVO> friendsInfo = dao.selectAllFriends(userId);
+		return friendsInfo;
+	}
 }

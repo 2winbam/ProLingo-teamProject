@@ -26,6 +26,8 @@ public interface ProfileDAO {
 	
 	//친구의 프로필 조회
 	public MemberVO selectFriend(String user_id);
+	//내 프로필에서 친구리스트 조회
+	public ArrayList<MemberVO> selectAllFriends(String userId);
 
 
 }
