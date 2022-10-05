@@ -206,6 +206,33 @@ public class ProfileController {
 		return notFriendList;
 	}
 	
+	/**
+	 * 친추기능
+	 */
+	@GetMapping("followFriend")
+	public int followFriend(String user_id, @AuthenticationPrincipal UserDetails user) {
+		
+		//친추할 아이디
+		log.debug("user_id : {}" ,user_id);
+		
+		String target = user_id;
+		
+		String userId = user.getUsername();
+		
+		//현재 접속한 아이디
+		log.debug("접속한 아이디 : {}", userId);
+		
+		int followResult = ps.followFriend(target, userId);
+		
+		if(followResult == 1) {
+			log.debug("친추 완료");
+		}else if(followResult == 0){
+			log.debug("친추 실패");
+		}
+		
+		return 0;
+	}
+	
 	
 	
 	/**

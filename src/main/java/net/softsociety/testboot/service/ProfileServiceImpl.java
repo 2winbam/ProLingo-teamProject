@@ -140,11 +140,29 @@ public class ProfileServiceImpl implements ProfileService{
 		
 		return friendInfo;
 	}
+
+	
+	// 친구 추가
+	public int followFriend(String target, String userId) {
+		
+		HashMap<String, String> followMap = new HashMap<String, String>();
+		
+		followMap.put("target", target);
+		followMap.put("userId", userId);
+		
+		log.debug("map의 target : {}", followMap.get("target"));
+		log.debug("map의 userid : {}", followMap.get("userId"));
+		
+		int followResult = dao.followFriend(followMap);
+		
+		return followResult;
+	}
 	//내 프로필에 친구조회
 	@Override
 	public ArrayList<MemberVO> selectAllFriends(String userId) {
 
 		ArrayList<MemberVO> friendsInfo = dao.selectAllFriends(userId);
 		return friendsInfo;
+
 	}
 }
