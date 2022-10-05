@@ -74,5 +74,43 @@
 	set user_exp = user_exp + #{exp}
 	where user_id = #{id}
 </update>
+<!-- 유저 요일별 획득경험치 등록 -->
+<insert id="insertUserExpDay">
+	insert into user_weekly_exp
+	(user_id)
+	 values
+	(prolingo_user_seq.currval)
+</insert>
+<!-- 유저 요일별 획득 경험치 업데이트 -->
+<update id="updateUserExpDay" parameterType="int">
+	update user_weekly_exp
+	set
+	<if test="today != null and today == 1">
+	sun_exp = sun_exp + #{exp}
+	</if>
+	<if test="today != null and today == 2">
+	mon_exp = mon_exp + #{exp}
+	</if>
+	<if test="today != null and today == 3">
+	tue_exp = tue_exp + #{exp}
+	</if>
+	<if test="today != null and today == 4">
+	wed_exp = wed_exp + #{exp}
+	</if>
+	<if test="today != null and today == 5">
+	thu_exp = thu_exp + #{exp}
+	</if>
+	<if test="today != null and today == 6">
+	fri_exp = fri_exp + #{exp}
+	</if>
+	<if test="today != null and today == 7">
+	sat_exp = sat_exp + #{exp}
+	</if>
+	where user_id = #{id} 
+</update>
+<select id="getExp" parameterType="int" resultType="MemberWeeklyExpVO">
+	select * from user_weekly_exp
+	where user_id = #{id}
+</select>
 
 </mapper>

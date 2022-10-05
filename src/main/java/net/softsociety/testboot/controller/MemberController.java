@@ -86,9 +86,10 @@ public class MemberController {
 	@PostMapping("/join")
 	public String join(MemberVO member) {
 		
-		log.debug("전달된 값 : {}", member);
+		//log.debug("전달된 값 : {}", member);
 		
 		service.insertMember(member);
+		
 		
 		log.debug("가입 결과 :" + member);
 		

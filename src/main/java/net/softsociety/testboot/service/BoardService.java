@@ -3,6 +3,7 @@ package net.softsociety.testboot.service;
 import java.util.ArrayList;
 
 import net.softsociety.testboot.domain.BoardVO;
+import net.softsociety.testboot.domain.BoardWithName;
 import net.softsociety.testboot.domain.PageNavigator;
 
 public interface BoardService {
@@ -15,7 +16,15 @@ public interface BoardService {
 			String searchWord);
 	
 	//글 전체 목록
-	public ArrayList<BoardVO> boardListAll(PageNavigator navi, String type, String searchWord);
+	//public ArrayList<BoardVO> boardListAll(PageNavigator navi, String type, String searchWord);
+	public ArrayList<BoardWithName> boardListAll(PageNavigator navi, String type, String searchWord);
+	
+	//조회수 증가
+	public int updateHits(int boardnum);
+	
+	//글 읽기
+	public BoardWithName boardNum(int board_id);
+	
 	
 	
 

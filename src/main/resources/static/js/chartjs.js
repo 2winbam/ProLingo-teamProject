@@ -11,17 +11,7 @@
 						borderColor: window.theme.primary,
 						hoverBackgroundColor: window.theme.primary,
 						hoverBorderColor: window.theme.primary,
-						data: [dataA, 67, 41, 55, 62, 45, 100],
-						barPercentage: .75,
-						categoryPercentage: .5
-					},
-						{
-						label: "Last week",
-						backgroundColor: "#dee2e6",
-						borderColor: "#dee2e6",
-						hoverBackgroundColor: "#dee2e6",
-						hoverBorderColor: "#dee2e6",
-						data: [69, 66, 24, 48, 52, 51, 44],
+						data: [mon, tue, wed, thu, fri, sat, sun],
 						barPercentage: .75,
 						categoryPercentage: .5
 					}

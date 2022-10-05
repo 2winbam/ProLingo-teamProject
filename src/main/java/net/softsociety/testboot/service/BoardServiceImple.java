@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import lombok.extern.slf4j.Slf4j;
 import net.softsociety.testboot.dao.BoardDAO;
 import net.softsociety.testboot.domain.BoardVO;
+import net.softsociety.testboot.domain.BoardWithName;
 import net.softsociety.testboot.domain.PageNavigator;
 
 @Slf4j
@@ -45,17 +46,41 @@ public class BoardServiceImple implements BoardService{
 	
 	//글 전체 목록
 	@Override
-	public ArrayList<BoardVO> boardListAll(PageNavigator navi, String type, String searchWord) {
+	//public ArrayList<BoardVO> boardListAll(PageNavigator navi, String type, String searchWord) {
+	public ArrayList<BoardWithName> boardListAll(PageNavigator navi, String type, String searchWord) {
+		log.debug("ServiceImple boardListAll called()");
+		log.debug("navi : {}, type : {}, searchWord : {}", navi, type, searchWord);
 		HashMap<String, String> map = new HashMap<>();
 		map.put("type",type);
 		map.put("searchWord", searchWord); //Map에 담을 때 이름으로 꺼내서 써야 함. "type", "searchWord"
 		
 		RowBounds rb = new RowBounds(navi.getStartRecord(), navi.getCountPerPage());
 		
-		ArrayList<BoardVO> boardLsit = boardDAO.boardListAll(map, rb);
+		ArrayList<BoardWithName> boardLsit = boardDAO.boardListAll(map, rb);
+		
 		
 		return boardLsit;
+		
 	}
+			
+	//조회수 증가
+	@Override
+	public int updateHits(int boardnum) {
+	
+		return boardDAO.updateHits(boardnum);
+	}
+	
+	//글읽기
+	@Override
+	public BoardWithName boardNum(int board_id) {
+		log.debug("serviceImple boardNum() called");
+		
+		log.debug("board_id : {}", board_id);
+		
+		return boardDAO.writingRead(board_id);
+	}
+	
+	
 	
 	
 	

@@ -56,6 +56,11 @@ public class StudyCourseController {
 		//int achieveLogIn = service.insertLogIn(userId);
 		
 		
+
+		//log.debug("현재 로그인중인 유저 : {}", user);
+		
+		//int achieveLogIn = service.insertLogIn(user);
+
 		
 		return "studyCourse/selectCourse";
 	}
