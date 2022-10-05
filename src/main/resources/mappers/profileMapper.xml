@@ -55,4 +55,13 @@
 
 </select>
 
+<!-- 친추기능 -->
+<insert id="followFriend" parameterType="map">
+	insert into user_follow
+	(user_id, target_id)
+	values
+	(#{userId}, #{target})
+</insert>
+
+
 </mapper>

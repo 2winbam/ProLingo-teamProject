@@ -43,5 +43,13 @@ public interface ProfileService {
 	 * @return
 	 */
 	public MemberVO selectFriend(String user_id);
+	
+	/**
+	 * 친추 버튼을 누르면 친구추가
+	 * @param target 친추 대상의 아이디
+	 * @param userId 현재 로그인한 아이디
+	 * @return
+	 */
+	public int followFriend(String target, String userId);
 		
 }

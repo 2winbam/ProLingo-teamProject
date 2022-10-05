@@ -26,6 +26,9 @@ public interface ProfileDAO {
 	
 	//친구의 프로필 조회
 	public MemberVO selectFriend(String user_id);
+	
+	//친추
+	public int followFriend(HashMap<String, String> followMap);
 
 
 }
