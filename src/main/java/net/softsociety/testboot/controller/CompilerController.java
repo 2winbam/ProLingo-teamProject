@@ -322,7 +322,9 @@ public class CompilerController {
 			log.debug("실행 결과 : {}", result);
 			
 			try {
-				//동작하는지 확인 요망
+				//.c파일
+				Runtime.getRuntime().exec("cmd /c del " + filename);
+				//.exe파일
 				Runtime.getRuntime().exec("cmd /c del " + exename);
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -330,9 +332,12 @@ public class CompilerController {
 			
 			String[] splitedresult = result.split("forsplit");
 			
-			log.debug("result : " + splitedresult[0]);
-			log.debug("time : " + splitedresult[1]);
-			
+			//c의 경우 실행 시간이 없어서 에러남
+			if(splitedresult.length == 2) {
+				log.debug("result : " + splitedresult[0]);
+				log.debug("time : " + splitedresult[1]);
+			}
+						
 			//C는 어떻게?
 			return splitedresult;
 		}

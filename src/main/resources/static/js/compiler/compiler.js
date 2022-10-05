@@ -46,8 +46,8 @@ $(document).ready(function() {
 	});
 
 	//모달창 바로 띄우기
-	if ($('#info').attr('lessoncontents') != '[]') {
-		//alert($('#info').attr('lessoncontents'));
+	if ($('#info').attr('lessoncontents') != '[]' && $('#info').attr('lessoncontents') != null ) {
+		alert($('#info').attr('lessoncontents'));
 		$('.modal-lesson').fadeIn();
 	}
 
@@ -80,7 +80,12 @@ $(document).ready(function() {
 				console.log("compile ajax 성공" + res[0] + ", " + Number(res[1]).toFixed(6));
 				$('#resultText').html(res[0]);
 				if (isCorrect(res[0], code)) {
-					$('#timetaken').html("코드 실행에 걸린 시간 : " + Number(res[1]).toFixed(6) + "초");
+					if(Number(res[1])){
+						$('#timetaken').html("코드 실행에 걸린 시간 : " + Number(res[1]).toFixed(6) + "초");					
+					}
+					else{
+						$('#timetaken').html("");					
+					}
 					$('#resultModal').fadeIn();
 					updateExp();
 				}
@@ -170,8 +175,9 @@ $(document).ready(function() {
 
 //데이터 베이스에서 받아온 \를 출력하려고 자동으로 \가 하나씩 더 들어가는걸 다시 되돌려주는 용도
 //다른 특수문자가 추가된다면 더 추가해야함, \\를 \로 바꿔주는건 \가 동작해버려서 못함
+// \n자체를 표시하기 위해서 하나 추가
 function codechange(code) {
-	return code.replaceAll('\\n', '\n',).replaceAll('\\t', '\t').replaceAll('\\"', '\"');
+	return code.replaceAll('\\n', '\n',).replaceAll('\\t', '\t').replaceAll('\\"', '\"').replaceAll('\\_n', '\\n');
 }
 
 //정답 체크 임시
@@ -180,9 +186,9 @@ function isCorrect(result, code) {
 	let isanswer = false;
 	//문제 객체 안에 있는 정답
 	let answer = codechange($('#info').attr('result'));
-	console.log("결과 : " + result + ", 정답 : " + answer);
+	//console.log("결과 : " + result + ", 정답 : " + answer);
 	//	console.log("결과 : " + typeof answer + "\n정답 : " + typeof result);
-	//	console.log("결과 : " + answer.length + "\n정답 : " + result.length);
+	console.log("결과 : " + result.length + "\n정답 : " + answer.length);
 	//키워드들을 보내줄 필요 없이 문제만 보내줘도?
 	let kewords = $('#info').attr('keywords');
 	console.log(kewords);
@@ -233,6 +239,7 @@ function isCorrect(result, code) {
 		if (result == answer) {
 			return true;
 		}
+		//답이 결과창이 아닌 필요한 코드일때
 		else if (result != "" && code.replace(/(\s*)/g, "").includes(answer)) {
 			return true;
 		}
