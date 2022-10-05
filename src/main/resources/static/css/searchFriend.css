@@ -5,21 +5,23 @@ h3{
 	position: absolute;
 	text-align:left;
 	top: 100px;
-	left: 15%;
+	left: 10%;
 	border: 50px;
 	font-family: 'Noto Sans KR', sans-serif;
 	font-weight:bold;
 }
 
+.searchForm{
+	height: auto;
+}
+
+.profileLink{
+	text-decoration: none;
+}
+
 .inputWrap{
 	position: relative;
 	width: 1000px;
-}
-
-.profilePhoto{
-	width:30px;
-	height:30px;
-	border-radius: 70%;
 }
 
 .search{
@@ -29,18 +31,31 @@ h3{
 	top: 170px;
 }
 
-.searchResult{
-	position: absolute;
-	left: 15%;
-	top: 320px;
-	padding: 20px;
-	border: solid 1px gray;
+.profile{
+	position: relative;
+	top: 70px;
+	border: 20 20 20 20;
 }
 
+.inputWrap{
+	position: relative;
+	top: 50px;
+	padding: 20px;
+}
+
+
 #searchWord{
-	width: 600px;
+	width: 800px;
 	height: 50px;
 	background-color:#F5F5F5;
 	border: solid 3px;
 	border-radius: 10px;
+}
+
+#output1{
+	position: relative;
+}
+
+#output2{
+	position: relative;
 }

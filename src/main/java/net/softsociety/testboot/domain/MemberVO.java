@@ -35,6 +35,9 @@ public class MemberVO implements UserDetails{
 	private int goal;
 	private int notice;
 	private int autosave;
+	private int accure_date; // 누적 학습일수
+	private String last_date; // 최종 로그인 일자
+	
 	//로그인에 필수라는듯
 	//db에도 ALTER TABLE PROLINGO_USER ADD ENABLED NUMBER DEFAULT 1 NOT NULL CHECK(ENABLED IN (0, 1)); 해줘야함
 	private boolean enabled;

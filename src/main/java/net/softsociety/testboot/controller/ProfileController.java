@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.extern.slf4j.Slf4j;
 import net.softsociety.testboot.domain.AchievementVO;
@@ -67,6 +68,50 @@ public class ProfileController {
 		
 		return "profile";
 	}
+	
+	/**
+	 * 친구의 프로필 보기
+	 * @return profile page
+	 */
+	@GetMapping("/friendProfile")
+	public String friendProfile(Model model, String user_id) {
+		//log.debug("called profile");
+		// 현재 접속중인 유저의 userid를 조회
+				
+		log.debug("친구 아이디: {}" , user_id);
+		
+		MemberVO friendInfo = ps.selectFriend(user_id);
+		
+		log.debug("friendInfo : {}", friendInfo);
+		
+		model.addAttribute("friendInfo", friendInfo);
+		
+		// 달성한 업적 조회
+		ArrayList<AchievementVO> clearList = ps.selectClear(user_id);
+		//log.debug("조회한 달성 리스트 전체 : {}", clearList);
+		model.addAttribute("clearList", clearList);
+		//요일별 경험치 조회
+		//log.debug("데이터 조회 : {}",service.getExp(userId));
+		//경험치 html로 날리기
+		MemberWeeklyExpVO exp = service.getExp(user_id);
+		int mon_exp = exp.getMon_exp();
+		int tue_exp = exp.getTue_exp();
+		int wed_exp = exp.getWed_exp();
+		int thu_exp = exp.getThu_exp();
+		int fri_exp = exp.getFri_exp();
+		int sat_exp = exp.getSat_exp();
+		int sun_exp = exp.getSun_exp();
+		
+		model.addAttribute("mon", mon_exp);
+		model.addAttribute("tue", tue_exp);
+		model.addAttribute("wed", wed_exp);
+		model.addAttribute("thu", thu_exp);
+		model.addAttribute("fri", fri_exp);
+		model.addAttribute("sat", sat_exp);
+		model.addAttribute("sun", sun_exp);
+		
+		return "profile/friendProfile";
+	}
 	/**
 	 * 업적 달성 페이지 및 업적 조회
 	 * @return 업적 달성 
@@ -107,15 +152,15 @@ public class ProfileController {
 	 */
 	@GetMapping("/searchFriend")
 	public String searchFriend() {
-		log.debug("called searchFriend");
 		return "profile/searchFriend";
 	}
 	
 	/**
 	 * 친구찾기 페이지 검색
 	 */
-	@PostMapping("/searchList")
-	public ArrayList<MemberVO> searchList(String searchWord, @AuthenticationPrincipal UserDetails user) {
+	@ResponseBody
+	@GetMapping("/friendList")
+	public ArrayList<MemberVO> friendList(String searchWord, @AuthenticationPrincipal UserDetails user) {
 		
 		log.debug("접속한 user : {}", user);
 		
@@ -123,20 +168,61 @@ public class ProfileController {
 		
 		log.debug("검색어 : {}", searchWord); 
 		
-		ArrayList<MemberVO> memberList = ps.searchList(searchWord, userId);
+		//친구로 등록된 사람을 조회
+		ArrayList<MemberVO> friendList = ps.searchfriends(searchWord, userId);
 		
-		log.debug("memberList: {}",memberList);
+		log.debug("컨트롤러의 memberList: {}",friendList);
 		
-		return memberList;
+
+		
+		return friendList;
 	}
+	
+	// 친구가 아닌 사람을 조회
+	@ResponseBody
+	@GetMapping("/notFriendList")
+	public ArrayList<MemberVO> notFriendList(String searchWord, @AuthenticationPrincipal UserDetails user) {
+		
+		log.debug("접속한 user : {}", user);
+		
+		String userId = user.getUsername();
+		
+		log.debug("검색어 : {}", searchWord); 
+		
+		//친구로 등록된 사람을 조회
+		ArrayList<MemberVO> friendList = ps.searchfriends(searchWord, userId);
+		
+		log.debug("컨트롤러의 memberList: {}",friendList);
+		
+		//친구가 아닌 사람들을 조회
+		ArrayList<MemberVO> notFriendList = ps.notfriends(searchWord, userId);
+				
+		log.debug("컨트롤러의 notFriendList : {}", notFriendList);
+		
+		return notFriendList;
+	}
+	
 	
 	
 	/**
 	 * 저장된 코드 페이지
 	 */
+	/*
+	@GetMapping("/savedList")
+	public String savedList() {
+		log.debug("called savedList");
+		return "profile/savedList";
+	}
+	*/
+	
+	/**
+	 * 저장된 코드 페이지
+	 */
+	/*
 	@GetMapping("/savedCode")
 	public String savedCode() {
 		log.debug("called savedCode");
 		return "profile/savedCode";
 	}
+	*/
 }

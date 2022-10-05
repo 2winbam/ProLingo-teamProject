@@ -4,39 +4,90 @@
  
  $(document).ready(function() {
 		
-		searchList();
-		$('#searchWord').keyup(searchList);
-
+		//$('#searchWord').keyup(friendList);
+		$('#searchWord').keyup(notFriendList);
+		
+		notFriendList();
+		//friendList();
+		
 	});
+		
 	
-	function searchList(){
+	function friendList(){
 		
 		console.log('키 입력');
 		let searchWord = $('#searchWord').val();
 			
 		$.ajax({
-				url:'searchList',
-				type:'post',
+				url:'friendList',
+				type:'get',
 				data:{ searchWord : searchWord},
 				dataType:'json',
-				success: output,
+				async: false,
+				success: friend,
 				error: function(e){
+					console.log('ajax실패');
 					console.log(JSON.stringify(e));	
 				}
 		});	
 	}
+	
+	function notFriendList(){
 		
-	function output(memberList){
+		console.log('키 입력');
+		let searchWord = $('#searchWord').val();
+			
+		$.ajax({
+				url:'notFriendList',
+				type:'get',
+				data:{ searchWord : searchWord},
+				dataType:'json',
+				async: false,
+				success: notFriend,
+				error: function(e){
+					console.log('ajax실패');
+					console.log(JSON.stringify(e));	
+				}
+		});	
+	}
+	
+	function friend(friendList){
+		
+		console.log('friend 함수 내의 memberList' + friendList);
 		
 		let str;
-		$.each(memberList, function(index, item){
-			str+='<div class="col-md-8">';
-			str+='<div class="people-nearby"><div class="nearby-user"><div class="row"><div class="col-md-2 col-sm-2">';
-			//str+='<img src="' + item.photo + '" alt="user" class="profile-photo-lg">';
-			str+='</div><div class="col-md-7 col-sm-7">';
-			str+='<h5><a href="" class="profile-link">' + item.user_name + '</a></h5>';
-			str+='<p>' + item.email + '</p></div>';
-			str+='<div class="col-md-3 col-sm-3"> <button class="btn btn-primary pull-right">Add Friend</button></div></div></div></div></div>';
+		$.each(friendList, function(index, item){
+			str+='<div class="profile card radius-15 col-2 bt-50">';
+			str+='<div class="card-body text-center">';
+			str+='<div class=" p-3 border radius-15">';
+			str+='<img th:src="@{/img/avatars/avatar.jpg}" th:alt="@{/img/avatars/basicprofilePhoto.png}" width="110" height="110" class="rounded-circle shadow">';
+			str+='<a href="" class="profileLink">&nbsp;' + item.user_name + '</a>';
+			str+='<p>'+ item.email +'</p>';
+			str+='<div class="d-grid"> <button class="btn btn-primary radius-15" id="unFollow"><i class="bi bi-person-dash"></i> 친구취소</button>';
+			str+='</div></div></div></div>';
 			});
-		$('#output').html(str);
+			
+			
+		$('#output1').html(str);
+	}
+	
+	
+	function notFriend(notFriendList){
+		
+		console.log('friend 함수 내의 memberList' + notFriendList);
+		
+		let str;
+		$.each(notFriendList, function(index, item){
+			
+			str+='<div class="profile card radius-15 col-2 bt-50">';
+			str+='<div class="card-body text-center">';
+			str+='<div class=" p-3 border radius-15">';
+			str+='<img th:src="@{/img/avatars/avatar.jpg}" th:alt="@{/img/avatars/basicprofilePhoto.png}" width="110" height="110" class="rounded-circle shadow">';
+			str+='<a th:href="|@{friendProfile}?user_id=${' + item.user_id + '}|" class="profileLink">&nbsp;' + item.user_name + '</a>';
+			str+='<p>'+ item.email +'</p>';
+			str+='<div class="d-grid"> <button class="btn btn-outline-primary radius-15" id="follow"><i class="bi bi-person-plus"></i> 친구추가</button>';
+			str+='</div></div></div></div>';
+			});
+			
+		$('#output2').html(str);
 	}

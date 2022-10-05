@@ -47,8 +47,51 @@
 	from prolingo_contents
 	where lesson_slide = #{questionindex}
 	group by lesson_title
-	
-	
 </select>
+
+<!-- 누적일자 계산 -->
+
+<select id="selectDate" parameterType="String" resultType="int">
+	select accure_date
+	from prolingo_user
+	where user_id = #{user_id}
+</select>
+
+<!-- 마지막 로그인 일자 조회 -->
+<select id="selectLogDate" parameterType="String" resultType="String">
+	select to_char(last_login, 'YY/MM/DD')
+	from prolingo_user
+	where user_id = #{user_id}
+</select>
+
+<!-- 1일차 로그인 업적 insert -->
+<insert id="achieveDayOne" parameterType="String">
+	insert into user_achieve
+	(user_id, achievement_id)
+	values
+	(#{userid}, 1)
+</insert>
+
+<!-- 누적 로그인 일자 +1 -->
+<update id="plusDay" parameterType="map">
+	update prolingo_user
+	set accure_date = #{accureDate}+1
+	where user_id = #{userNum}
+</update> 
+
+<!-- 최종 로그인 일자 업데이트 -->
+<update id="updateLastDay" parameterType="map">
+	update prolingo_user
+	set last_login = #{formatedNow}
+	where user_id = #{userid}
+</update> 
+
+<!-- 2일차 로그인 업적 insert -->
+<insert id="achieveDayTwo" parameterType="String">
+	insert into user_achieve
+	(user_id, achievement_id)
+	values
+	(#{userid}, 2)
+</insert>
 
 </mapper>

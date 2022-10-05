@@ -5,7 +5,6 @@ import java.io.BufferedReader;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -245,6 +244,7 @@ public class CompilerController {
 
 		String fullpath = "/user/Documents/ProLingo-teamProject/" + path;
 		
+		//String fullpath = "Users/Won Jungyeon/Documents/ProLingo-teamProject/" + path;
 
 		//정수 집 컴 경로
 		//String fullpath = "/Users/SU/Documents/ProLingo-teamProject/" + path;
@@ -278,7 +278,7 @@ public class CompilerController {
 			
 			try {
 				//.java파일
-				//Runtime.getRuntime().exec("cmd /c del " + filename);
+				Runtime.getRuntime().exec("cmd /c del " + filename);
 				//.class파일
 				Runtime.getRuntime().exec("cmd /c del Main.class");
 				Runtime.getRuntime().exec("cmd /c del Usercode.class");

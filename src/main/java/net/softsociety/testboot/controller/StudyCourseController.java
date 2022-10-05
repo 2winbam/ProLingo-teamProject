@@ -46,9 +46,21 @@ public class StudyCourseController {
 	@GetMapping("")
 	public String selectCourse(@AuthenticationPrincipal UserDetails user) {
 		
+		String userId = user.getUsername();
+		
+		log.debug("현재 로그인중인 유저 : {}", userId);
+		
+		
+		int accureDate = service.selectDate(userId);
+		
+		//int achieveLogIn = service.insertLogIn(userId);
+		
+		
+
 		//log.debug("현재 로그인중인 유저 : {}", user);
 		
 		//int achieveLogIn = service.insertLogIn(user);
+
 		
 		return "studyCourse/selectCourse";
 	}

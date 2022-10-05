@@ -1,5 +1,11 @@
 @charset "UTF-8";
 
 .cardForm{
-	height: 400px;
+	height: 500px;
+}
+
+.CodeMirror{
+	resize: none;
+	color: white;
+	background-color: black
 }

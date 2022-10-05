@@ -1,7 +1,7 @@
 /**
  * 
  */
- 
+
  // 코드미러 실행
 $(document).ready(function() {
 	/*
@@ -11,6 +11,7 @@ $(document).ready(function() {
 	$('#contentsText').html(codechange($('#info').attr('question')));
 	*/
 	//alert('연결');
+	/*
 	const codemirrorEditor = CodeMirror.fromTextArea(
 		document.getElementById("codemirror"), {
 		//코드미러 세부설정
@@ -29,4 +30,5 @@ $(document).ready(function() {
 		autoRefresh: true,
 		autoCloseTags: true,
 	});
+*/
 })

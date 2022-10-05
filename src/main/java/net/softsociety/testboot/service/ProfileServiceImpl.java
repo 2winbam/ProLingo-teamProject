@@ -59,27 +59,85 @@ public class ProfileServiceImpl implements ProfileService{
 		return notClearList;
 	}
 	
+	/**
+	 * 입력된 이메일을 가진 친구를 조회
+	 */
 	@Override
-	public ArrayList<MemberVO> searchList(String searchWord, String userId){
+	public ArrayList<MemberVO> searchfriends(String searchWord, String userId){
 		
-		log.debug("userid : {}", userId);
+		log.debug("친구찾기의 impl userid : {}", userId);
+		log.debug("친구찾기의 impl searchWord : {}", searchWord);
 		
-		/*
 		// 아이디와 검색어로 친구목록 조회
-		HashMap<String, Object> map = new HashMap<String, Object>();
+		HashMap<String, String> friendMap = new HashMap<String, String>();
+		friendMap.put("userId", userId);
+		friendMap.put("searchWord", searchWord);
 		
-		map.put(userId, searchWord);
+		log.debug("map의 userid : {}", friendMap.get("userId"));
+		log.debug("map의 searchWord : {}", friendMap.get("searchWord"));
 		
-		//log.debug("map의 usrId : {}", map.get(userId));
-		log.debug("map의 searchWord : {}", map.get(searchWord));
+		// 해당 검색어를 가진 친구 목록을 조회
+		ArrayList<MemberVO> friendList = dao.searchfriends(friendMap);
 		
-		// 위에서 조회된 리스트에서 검색어에 해당하는 값을 출력
-		ArrayList<MemberVO> findResult = dao.selectFriends(map);
-		*/
-		// 아이디를 입력 받아 해당 아이디와 친구를 제외한 목록을 조회
-		ArrayList<MemberVO> memberList = dao.searchList(searchWord);
-				
-		return memberList;
+		log.debug("조회한 친구 리스트 : {}",friendList);
+		
+		return friendList;
 	}
 	
+	/**
+	 * 입력된 이메일을 가진 친국가 아닌 사람 조회
+	 */
+	public ArrayList<MemberVO> notfriends(String searchWord, String userId){
+		
+		log.debug("친구아닌 impl userid : {}", userId);
+		log.debug("친구아닌 impl searchWord : {}", searchWord);
+		
+		// 아이디와 검색어로 친구목록 조회
+		HashMap<String, String> friendMap = new HashMap<String, String>();
+		friendMap.put("userId", userId);
+		friendMap.put("searchWord", searchWord);
+				
+		log.debug("map의 userid : {}", friendMap.get("userId"));
+		log.debug("map의 searchWord : {}", friendMap.get("searchWord"));
+				
+		// 해당 검색어를 가진 친구 목록을 조회
+		ArrayList<MemberVO> friendList = dao.searchfriends(friendMap);
+		
+		
+		//아이디와 검색어로 친구가 아닌 사람조회
+		HashMap<String, String> unFriendMap = new HashMap<String, String>();
+		unFriendMap.put("userId", userId);
+		unFriendMap.put("searchWord", searchWord);
+		
+		log.debug("친구아닌 map userid : {}", unFriendMap.get("userId"));
+		log.debug("친구아닌 map searchWord : {}", unFriendMap.get("searchWord"));
+		
+		ArrayList<MemberVO> unFriendList = dao.notFriends(unFriendMap);
+		
+		
+		for(MemberVO ml : friendList) {
+			int i = 0;
+			for(MemberVO nml : unFriendList) {
+				log.debug("cl : " + ml.getUser_id());
+				log.debug("ncl : " + nml.getUser_id());
+				if(ml.getUser_id() == nml.getUser_id()) {
+					//log.debug("" + i);
+					unFriendList.remove(i);
+					break;
+				}
+				i++;
+			}
+		}
+		log.debug("뺀 리스트 : {}", unFriendList);
+		
+		return unFriendList;
+	}
+	
+	// 친구의 프로필 조회
+	public MemberVO selectFriend(String user_id) {
+		
+		MemberVO friendInfo = dao.selectFriend(user_id);
+		
+		return friendInfo;
+	}
 }
