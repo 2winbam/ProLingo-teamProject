@@ -11,9 +11,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.extern.slf4j.Slf4j;
+import net.softsociety.testboot.dao.BoardDAO;
 import net.softsociety.testboot.domain.BoardVO;
 import net.softsociety.testboot.domain.BoardWithName;
 import net.softsociety.testboot.domain.PageNavigator;
@@ -31,6 +34,9 @@ public class BoardController {
 	
 	@Autowired
 	MemberService memberservice;
+	
+	@Autowired
+	BoardDAO dao;
 	
 	//게시판 페이지 당 출력할 글수
 	@Value("${user.board.page}")
@@ -131,7 +137,8 @@ public class BoardController {
 		//결과를 모델에 담아서 html에 출력
 		model.addAttribute("writingRead", board);
 		//model.addAttribute("replylist", replylist);
-		
+			
 		return "boardView/read";
 	}
+	
 }
