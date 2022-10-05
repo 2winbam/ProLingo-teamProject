@@ -86,8 +86,17 @@ public class QuestionController {
 	ArrayList<ProlingoKeywordVO> getkeywords(String kewords){
 		log.debug("문제 키워드들 : {}", kewords);
 		
-		ArrayList<ProlingoKeywordVO> keywordnames = qs.selectAllKeywordsName(kewords);
+		ArrayList<ProlingoKeywordVO> keywords = qs.selectAllKeywords(kewords);
 		
-		return keywordnames;
+		return keywords;
+	}
+	
+	@PostMapping("getsametypekeywords")
+	ArrayList<ProlingoKeywordVO> getsametypekeywords(String type){
+		log.debug("문제 타입 : {}", type);
+		
+		ArrayList<ProlingoKeywordVO> keywords = qs.selectSameTypeKeywords(type);
+		
+		return keywords;
 	}
 }

@@ -16,4 +16,11 @@ select *
 from prolingo_keyword
 where keyword_id = #{id}
 </select>
+
+<select id="selectKeywordsByType" parameterType="String" resultType="ProlingoKeywordVO">
+select *
+from prolingo_keyword
+where keyword_type = #{type}
+</select>
+
 </mapper>

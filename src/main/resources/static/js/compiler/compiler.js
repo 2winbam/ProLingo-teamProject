@@ -46,7 +46,7 @@ $(document).ready(function() {
 	});
 
 	//모달창 바로 띄우기
-	if($('#info').attr('lessoncontents') != '[]'){
+	if ($('#info').attr('lessoncontents') != '[]') {
 		//alert($('#info').attr('lessoncontents'));
 		$('.modal-lesson').fadeIn();
 	}
@@ -193,22 +193,31 @@ function isCorrect(result, code) {
 		type: 'post',
 		async: false,
 		data: { kewords: kewords },
-		//키워드들의 이름을 리스트로 받아와서
+		//키워드들의 이름을 리스트로 받아와서 code 내용에 일치하는게 있는지 확인하는 작업
 		success: function(res) {
 			console.log("getkeywords ajax 성공 : " + res);
+			//모든 키워드에 대해
 			$.each(res, function(i, v) {
-				//console.log(v.keyword_name);
-				//console.log(code);
+				console.log(v.keyword_name);
+				console.log(code);
 				//console.log(code.includes(v.keyword_name));
-				//code 내용에 일치하는게 있는지 확인하는 작업
-				if (!code.includes(v.keyword_name)) {
-					console.log("키워드 없음 ");
-					$('#missingkeyword').html(v.keyword_name + "을 써보세요");
-					isanswer = false;
-					return false;
-				}
-				$('#missingkeyword').html("");
-				isanswer = true;
+				let sametypekewords = getKeywordsbytype(v.keyword_type);
+				//같은 타입의 키워드 하나라도 포함하고 있다면
+				$.each(sametypekewords, function(ii, vv) {
+					if (code.includes(vv.keyword_name)) {
+						console.log(vv.keyword_name);
+						$('#missingkeyword').html("");
+						//정답이라고 해주고 리턴
+						isanswer = true;
+						return false;
+					}
+					else{
+						//하나가 정답이 없어서 여기로 오더라도 다른게 정답이 있을 수 있으니 리턴해주면 안됨
+						console.log("키워드 없음 ");
+						$('#missingkeyword').html(v.keyword_name + "을 써보세요");
+						isanswer = false;
+					}
+				});
 			});
 		},
 		error: function(e) {
@@ -221,18 +230,18 @@ function isCorrect(result, code) {
 	console.log(isanswer);
 	if (isanswer) {
 		//alert("정답!");
-		if(result == answer ){
+		if (result == answer) {
 			return true;
 		}
-		else if(code.replace(/(\s*)/g, "").includes(answer)){
+		else if (result != "" && code.replace(/(\s*)/g, "").includes(answer)) {
 			return true;
 		}
-		else{
+		else {
 			return false;
 		}
 	}
 	else {
-		alert("오답!");
+		//alert("오답!");
 		//$('#missingkeyword').html("");
 		return false;
 	}
@@ -275,4 +284,24 @@ function updateExp() {
 			alert("lessoncomplite ajax 실패 : " + e);
 		}
 	});
+}
+
+function getKeywordsbytype(type) {
+	let sametypekeywords;
+
+	$.ajax({
+		url: '/prolingo/getsametypekeywords',
+		type: 'post',
+		async: false,
+		data: { type: type },
+		//키워드들의 이름을 리스트로 받아와서
+		success: function(res) {
+			console.log("getsametypekeywords ajax 성공 : " + res);
+			sametypekeywords = res;
+		},
+		error: function(e) {
+			alert("getsametypekeywords ajax 실패 : " + e);
+		}
+	});
+	return sametypekeywords;
 }

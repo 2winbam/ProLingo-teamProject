@@ -9,6 +9,8 @@ public interface QuestionService {
 
 	public ArrayList<ProlingoQuestionVO> selectAllQuestionsByLessonID(int lessonid);
 
-	public ArrayList<ProlingoKeywordVO> selectAllKeywordsName(String kewords);
+	public ArrayList<ProlingoKeywordVO> selectAllKeywords(String kewords);
+
+	public ArrayList<ProlingoKeywordVO> selectSameTypeKeywords(String type);
 
 }
