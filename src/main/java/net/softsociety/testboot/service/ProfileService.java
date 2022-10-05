@@ -28,5 +28,13 @@ public interface ProfileService {
 	 * @param userId 
 	 */
 	public ArrayList<MemberVO> searchfriends(String searchWord, String userId);
+	
+	/**
+	 * 입력된 검색어에 해당하지 않는 친구 조회
+	 * @param searchWord
+	 * @param userId
+	 * @return
+	 */
+	public ArrayList<MemberVO> notfriends(String searchWord, String userId);
 		
 }

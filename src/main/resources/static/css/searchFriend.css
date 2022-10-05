@@ -11,6 +11,10 @@ h3{
 	font-weight:bold;
 }
 
+.searchForm{
+	height: auto;
+}
+
 .profileLink{
 	text-decoration: none;
 }
@@ -46,4 +50,12 @@ h3{
 	background-color:#F5F5F5;
 	border: solid 3px;
 	border-radius: 10px;
+}
+
+#output1{
+	position: relative;
+}
+
+#output2{
+	position: relative;
 }

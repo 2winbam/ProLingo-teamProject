@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.extern.slf4j.Slf4j;
 import net.softsociety.testboot.domain.AchievementVO;
@@ -113,6 +114,7 @@ public class ProfileController {
 	/**
 	 * 친구찾기 페이지 검색
 	 */
+	@ResponseBody
 	@GetMapping("/friendList")
 	public ArrayList<MemberVO> friendList(String searchWord, @AuthenticationPrincipal UserDetails user) {
 		
@@ -125,9 +127,35 @@ public class ProfileController {
 		//친구로 등록된 사람을 조회
 		ArrayList<MemberVO> friendList = ps.searchfriends(searchWord, userId);
 		
-		log.debug("memberList: {}",friendList);
+		log.debug("컨트롤러의 memberList: {}",friendList);
+		
+
 		
 		return friendList;
+	}
+	
+	// 친구가 아닌 사람을 조회
+	@ResponseBody
+	@GetMapping("/notFriendList")
+	public ArrayList<MemberVO> notFriendList(String searchWord, @AuthenticationPrincipal UserDetails user) {
+		
+		log.debug("접속한 user : {}", user);
+		
+		String userId = user.getUsername();
+		
+		log.debug("검색어 : {}", searchWord); 
+		
+		//친구로 등록된 사람을 조회
+		ArrayList<MemberVO> friendList = ps.searchfriends(searchWord, userId);
+		
+		log.debug("컨트롤러의 memberList: {}",friendList);
+		
+		//친구가 아닌 사람들을 조회
+		ArrayList<MemberVO> notFriendList = ps.notfriends(searchWord, userId);
+				
+		log.debug("컨트롤러의 notFriendList : {}", notFriendList);
+		
+		return notFriendList;
 	}
 	
 	
