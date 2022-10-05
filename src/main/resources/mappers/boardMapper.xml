@@ -156,6 +156,7 @@ WHERE
 	SELECT
 		R.reply_id AS reply_id
 		, R.board_id AS board_id
+		, R.reply_content AS reply_content
 		, U.nickname AS nickname
 		, TO_CHAR(R.writingdate, 'YY/MM/DD') AS writingdate
 	FROM

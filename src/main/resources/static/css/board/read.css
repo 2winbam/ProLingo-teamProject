@@ -60,6 +60,10 @@ th {
 	left: 520px;
 }
 
-#replytext {
+#reply_content {
 	width: 900px;
+}
+
+#writingdate {
+	text-align: center;
 }

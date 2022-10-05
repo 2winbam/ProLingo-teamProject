@@ -75,6 +75,7 @@
 						
 						<!-- 댓글 목록 -->
 						<br><br>
+						<h4>댓글</h4>
 						<table>
 							<tr>
 								<th class="box3">작성자</th>
@@ -84,11 +85,7 @@
 							<tr th:each="reply : ${replylist}">
 								<th th:text="${reply.nickname}"></th>
 								<td th:text="${reply.reply_content}"></td>
-								<td th:text="${reply.writingdate}">
-									<span th:if="${#authentication.name} == ${reply.memberid}">
-										<a href="|javascript:deleteReply(${reply.replynum}, ${reply.board_id})|">[삭제]</a> <!-- 삭제하고 페이지를 돌아오는 기능 --> <!-- ${reply.boardnum} : 삭제하러 이 페이지를 떠남. 읽던 글로 돌아와야. 어떤 글을 읽고 있었는지 모르기 때문에 같이 보냄 -->
-									</span>
-								</td>
+								<td id="writingdate" th:text="${reply.writingdate}"></td>
 							</tr>
 						</table>
 						
@@ -96,7 +93,7 @@
 						<br><br>
 						<form id="replyWrite" action="replyWrite" method="post">
 							<input type="hidden" name="board_id" th:value="${writingRead.board_id}"> <!-- 글번호 자동으로 넣어서 감 -->		
-							<input type="text" name="replytext" id="replytext"> 
+							<input type="text" name="reply_content" id="reply_content" placeholder="댓글 입력"> 
 							<input type="submit" class="btn btn-secondary" value="확인">
 						</form>
 						
