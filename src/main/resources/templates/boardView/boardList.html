@@ -31,11 +31,11 @@
 					<div class="container mt-3">
 
 						<!-- 게시판 탭 -->
-						<ul class="nav nav-pills" role="tablist">
+						<ul id="tab1" class="nav nav-pills" role="tablist">
 							<li class="nav-item"><a
-								th:if="${mode != null && mode == 'all'}" class="nav-link active"
+								th:if="${mode == null || mode == 'all'}" class="nav-link active"
 								data-bs-toggle="pill" href="#menu1">전체글</a> <a
-								th:if="${mode == null || mode != 'all'}" class="nav-link"
+								th:if="${mode != null && mode != 'all'}" class="nav-link"
 								data-bs-toggle="pill" href="#menu1">전체글</a></li>
 							<li class="nav-item"><a
 								th:if="${mode != null && mode == 'hit'}" class="nav-link active"
@@ -43,12 +43,17 @@
 								th:if="${mode == null || mode != 'hit'}" class="nav-link"
 								data-bs-toggle="pill" href="#menu2">인기글</a></li>
 						</ul>
+						<p>
+							<input type="button" id="write_btn" class="btn btn-success"
+								style="float: right" value="글쓰기"
+								th:onclick="|location.href='@{/board/writeForm}'|">
+						</p>
 
 						<!-- Tab panes -->
 						<div class="tab-content">
 							<!-- 전체글 시작 -->
 							<!-- mode가 all일때 -->
-							<div th:if="${mode != null && mode == 'all'}" id="menu1"
+							<div th:if="${mode == null || mode == 'all'}" id="menu1"
 								class="container tab-pane active">
 								<br>
 								<div id="container">
@@ -75,42 +80,41 @@
 									<!-- 페이지 이동 및 검색 폼 -->
 									<form id="pagingForm" th:action="@{/board/list}" method="get">
 										<input type="hidden" name="mode" id="mode" value="all">
-										<input type="hidden" name="page" id="page"> <select
-											name="type" id="type">
+										<input type="hidden" name="page" id="page"> 
+										<select name="type" id="type">
 											<option value="all" th:selected="${type} == 'all'">전체</option>
-											<option value="hidden" th:selected="${type} == 'title'">제목</option>
+											<option value="title" th:selected="${type} == 'title'">제목</option>
 											<option value="board_content"
 												th:selected="${type} == 'board_content'">본문</option>
-											<option value="nickname" th:selected="${type} == 'nickname'">사용자ID</option>
+											<option value="nickname" th:selected="${type} == 'nickname'">닉네임</option>
 										</select> <input type="text" name="searchWord" th:value="${searchWord}">
 										<input type="button" value="검색" onclick="pagingFormSubmit(1)">
 									</form>
+									
+									
 									<!-- 페이지 이동 링크 -->
+									<a th:href="|javascript:pagingFormSubmit(${navi.currentPage - navi.pagePerGroup})|">◁◁</a>
+									
+									<a th:href="|javascript:pagingFormSubmit(${navi.currentPage - 1})|">◀</a>
 
-									<a
-										th:href="|javascript:pagingFormSubmit(${navi.currentPage - navi.pagePerGroup})|">◁◁</a>
-									<a
-										th:href="|javascript:pagingFormSubmit(${navi.currentPage - 1})|">◀</a>
-
-									<span
-										th:each="counter : ${#numbers.sequence(navi.startPageGroup, navi.endPageGroup)}">
-										<!-- 해당 페이지에 bold체를 쓰겠다. --> <th:block
-											th:if="${counter == navi.currentPage}">
+									<span th:each="counter : ${#numbers.sequence(navi.startPageGroup, navi.endPageGroup)}">
+										<!-- 해당 페이지에 bold체를 쓰겠다. --> 
+										<th:block th:if="${counter == navi.currentPage}">
 											<b>
 										</th:block> <!-- 해당 페이지를 불러 오겠다는 코드 --> <a th:text="${counter}"
 										th:href="|javascript:pagingFormSubmit(${counter})|"></a>&nbsp;
-										<!-- 해당 페이지에 bold체를 쓰겠다 마무리. --> <th:block
-											th:if="${counter == navi.currentPage}">
+										<!-- 해당 페이지에 bold체를 쓰겠다 마무리. --> 
+										<th:block th:if="${counter == navi.currentPage}">
 											</b>
 										</th:block>
-									</span> <a
-										th:href="|javascript:pagingFormSubmit(${navi.currentPage + 1})|">▶</a>
-									<a
-										th:href="|javascript:pagingFormSubmit(${navi.currentPage + navi.pagePerGroup})|">▷▷</a>
+									</span> 
+									<a th:href="|javascript:pagingFormSubmit(${navi.currentPage + 1})|">▶</a>
+									
+									<a th:href="|javascript:pagingFormSubmit(${navi.currentPage + navi.pagePerGroup})|">▷▷</a>
 								</div>
 							</div>
 							<!-- mode가 all이 아닐때 -->
-							<div th:if="${mode == null || mode != 'all'}" id="menu1"
+							<div th:if="${mode != null  && mode != 'all'}" id="menu1"
 								class="container tab-pane fade">
 								<br>
 								<div id="container">
@@ -137,8 +141,8 @@
 									<!-- 페이지 이동 및 검색 폼 -->
 									<form id="pagingForm" th:action="@{/board/list}" method="get">
 										<input type="hidden" name="mode" id="mode" value="all">
-										<input type="hidden" name="page" id="page"> <select
-											name="type" id="type">
+										<input type="hidden" name="page" id="page"> 
+										<select	name="type" id="type">
 											<option value="all" th:selected="${type} == 'all'">전체</option>
 											<option value="title" th:selected="${type} == 'title'">제목</option>
 											<option value="board_content"
@@ -148,33 +152,25 @@
 										<input type="button" value="검색" onclick="pagingFormSubmit(1)">
 									</form>
 									<!-- 페이지 이동 링크 -->
-
-									<a
-										th:href="|javascript:pagingFormSubmit(${navi.currentPage - navi.pagePerGroup})|">◁◁</a>
-									<a
-										th:href="|javascript:pagingFormSubmit(${navi.currentPage - 1})|">◀</a>
-
-									<span
-										th:each="counter : ${#numbers.sequence(navi.startPageGroup, navi.endPageGroup)}">
-										<!-- 해당 페이지에 bold체를 쓰겠다.  --> <th:block
-											th:if="${counter == navi.currentPage}">
+									<a th:href="|javascript:pagingFormSubmit(${navi.currentPage - navi.pagePerGroup})|">◁◁</a>
+									
+									<a th:href="|javascript:pagingFormSubmit(${navi.currentPage - 1})|">◀</a>
+									
+									<span th:each="counter : ${#numbers.sequence(navi.startPageGroup, navi.endPageGroup)}">
+										<!-- 해당 페이지에 bold체를 쓰겠다.  --> 
+										<th:block th:if="${counter == navi.currentPage}">
 											<b>
 										</th:block> <!-- 해당 페이지를 불러 오겠다는 코드 --> <a th:text="${counter}"
 										th:href="|javascript:pagingFormSubmit(${counter})|"></a>&nbsp;
-										<!-- 해당 페이지에 bold체를 쓰겠다 마무리. --> <th:block
-											th:if="${counter == navi.currentPage}">
+										<!-- 해당 페이지에 bold체를 쓰겠다 마무리. -->
+										 <th:block th:if="${counter == navi.currentPage}">
 											</b>
 										</th:block>
-									</span> <a
-										th:href="|javascript:pagingFormSubmit(${navi.currentPage + 1})|">▶</a>
-									<a
-										th:href="|javascript:pagingFormSubmit(${navi.currentPage + navi.pagePerGroup})|">▷▷</a>
+									</span> 
+									<a th:href="|javascript:pagingFormSubmit(${navi.currentPage + 1})|">▶</a>
+									
+									<a th:href="|javascript:pagingFormSubmit(${navi.currentPage + navi.pagePerGroup})|">▷▷</a>
 								</div>
-								<p>
-									<input type="button" class="btn btn-success"
-										style="float: right" value="글쓰기"
-										th:onclick="|location.href='@{/board/writeForm}'|">
-								</p>
 							</div>
 							<!-- 전체글 끝 -->
 
@@ -202,6 +198,40 @@
 										</tr>
 									</table>
 									<br>
+
+									<!-- 페이지 이동 및 검색 폼 -->
+									<form id="pagingForm" th:action="@{/board/list}" method="get">
+										<input type="hidden" name="mode" id="mode" value="all">
+										<input type="hidden" name="page" id="page"> 
+										<select	name="type" id="type">
+											<option value="all" th:selected="${type} == 'all'">전체</option>
+											<option value="title" th:selected="${type} == 'title'">제목</option>
+											<option value="board_content"
+												th:selected="${type} == 'board_content'">본문</option>
+											<option value="nickname" th:selected="${type} == 'nickname'">사용자ID</option>
+										</select> <input type="text" name="searchWord" th:value="${searchWord}">
+										<input type="button" value="검색" onclick="pagingFormSubmit(1)">
+									</form>
+									<!-- 페이지 이동 링크 -->
+									<a th:href="|javascript:pagingFormSubmit(${navi.currentPage - navi.pagePerGroup})|">◁◁</a>
+									
+									<a th:href="|javascript:pagingFormSubmit(${navi.currentPage - 1})|">◀</a>
+									
+									<span th:each="counter : ${#numbers.sequence(navi.startPageGroup, navi.endPageGroup)}">
+										<!-- 해당 페이지에 bold체를 쓰겠다.  --> 
+										<th:block th:if="${counter == navi.currentPage}">
+											<b>
+										</th:block> <!-- 해당 페이지를 불러 오겠다는 코드 --> <a th:text="${counter}"
+										th:href="|javascript:pagingFormSubmit(${counter})|"></a>&nbsp;
+										<!-- 해당 페이지에 bold체를 쓰겠다 마무리. -->
+										 <th:block th:if="${counter == navi.currentPage}">
+											</b>
+										</th:block>
+									</span> 
+									<a th:href="|javascript:pagingFormSubmit(${navi.currentPage + 1})|">▶</a>
+									
+									<a th:href="|javascript:pagingFormSubmit(${navi.currentPage + navi.pagePerGroup})|">▷▷</a>
+								
 								</div>
 							</div>
 							<div th:if="${mode == null || mode != 'hit'}" id="menu2"
@@ -227,11 +257,46 @@
 										</tr>
 									</table>
 									<br>
+
+									<!-- 페이지 이동 및 검색 폼 -->
+									<form id="pagingForm" th:action="@{/board/list}" method="get">
+										<input type="hidden" name="mode" id="mode" value="all">
+										<input type="hidden" name="page" id="page"> 
+										<select	name="type" id="type">
+											<option value="all" th:selected="${type} == 'all'">전체</option>
+											<option value="title" th:selected="${type} == 'title'">제목</option>
+											<option value="board_content"
+												th:selected="${type} == 'board_content'">본문</option>
+											<option value="nickname" th:selected="${type} == 'nickname'">사용자ID</option>
+										</select> <input type="text" name="searchWord" th:value="${searchWord}">
+										<input type="button" value="검색" onclick="pagingFormSubmit(1)">
+									</form>
+									<!-- 페이지 이동 링크 -->
+									<a th:href="|javascript:pagingFormSubmit(${navi.currentPage - navi.pagePerGroup})|">◁◁</a>
+									
+									<a th:href="|javascript:pagingFormSubmit(${navi.currentPage - 1})|">◀</a>
+									
+									<span th:each="counter : ${#numbers.sequence(navi.startPageGroup, navi.endPageGroup)}">
+										<!-- 해당 페이지에 bold체를 쓰겠다.  --> 
+										<th:block th:if="${counter == navi.currentPage}">
+											<b>
+										</th:block> <!-- 해당 페이지를 불러 오겠다는 코드 --> <a th:text="${counter}"
+										th:href="|javascript:pagingFormSubmit(${counter})|"></a>&nbsp;
+										<!-- 해당 페이지에 bold체를 쓰겠다 마무리. -->
+										 <th:block th:if="${counter == navi.currentPage}">
+											</b>
+										</th:block>
+									</span> 
+									<a th:href="|javascript:pagingFormSubmit(${navi.currentPage + 1})|">▶</a>
+									
+									<a th:href="|javascript:pagingFormSubmit(${navi.currentPage + navi.pagePerGroup})|">▷▷</a>
+								
 								</div>
 							</div>
 							<!-- 인기글 끝 -->
 						</div>
 					</div>
+				</div>
 			</main>
 
 			<!-- footer -->

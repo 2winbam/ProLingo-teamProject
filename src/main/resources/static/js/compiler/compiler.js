@@ -87,7 +87,8 @@ $(document).ready(function() {
 						$('#timetaken').html("");					
 					}
 					$('#resultModal').fadeIn();
-					updateExp();
+					//정답이면 실행할 함수
+					lessonComplite();
 				}
 				else {
 					$('#falseModal').fadeIn();
@@ -274,13 +275,13 @@ function nextpage() {
 	}
 }
 
-function updateExp() {
+function lessonComplite() {
 	let currlesson = $('#info').attr('lid');
 	let currquestion = $('#info').attr('qid');
 
 	//유저 경험치 주기
 	$.ajax({
-		url: '/prolingo/lessoncomplite',
+		url: '/prolingo/lessoncomplete',
 		type: 'post',
 		data: { lesson_id: currlesson, question_id: currquestion },
 		success: function(res) {

@@ -33,9 +33,14 @@ public interface MemberDAO {
 	//유저 요일별 획득 누적 경험치 조회
 	MemberWeeklyExpVO getExp(@Param("id")int userid);
 
-	
 	//전체글 유저닉네임
 	int usernickname(MemberVO member);
+	
+	//유저가 그 문제를 풀었는가
+	int isQuestionCompleted(@Param("username")String username, @Param("questionid")int question_id);
+	
+	//
+	int questionComplite(@Param("username")String username, @Param("questionid")int question_id);
 
 
 }

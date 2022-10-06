@@ -33,7 +33,7 @@ public class MemberSerivceImple implements MemberService {
 
 		int result2 = dao.insertUserExpDay();
 
-		// log.debug(result + ", " + result2);
+		log.debug(result + ", " + result2);
 
 		return result;
 	}
@@ -137,6 +137,21 @@ public class MemberSerivceImple implements MemberService {
 
 		MemberWeeklyExpVO exp = dao.getExp(Integer.parseInt(userid));
 		return exp;
+	}
+
+	@Override
+	public int isQuestionCompleted(String username, int question_id) {
+		
+		int result = dao.isQuestionCompleted(username, question_id);
+		return 0;
+	}
+
+	@Override
+	public int questionComplite(String username, int question_id) {
+		
+		int result = dao.questionComplite(username, question_id);
+
+		return result;
 	}
 
 }

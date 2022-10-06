@@ -11,6 +11,15 @@
 td {
     text-align: center;
 }
+#tab1{
+	position: relative;
+	left:124px;	
+}
+
+#write_btn{
+	position: relative;
+	right:124px;
+}
 
 #navigator {
 	text-align: center;
