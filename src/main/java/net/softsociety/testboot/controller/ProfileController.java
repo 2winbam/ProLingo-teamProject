@@ -252,9 +252,9 @@ public class ProfileController {
 		int unfollowResult = ps.unfollowFriend(target, userId);
 		
 		if(unfollowResult == 1) {
-			log.debug("친추 완료");
+			log.debug("친삭 완료");
 		}else if(unfollowResult == 0){
-			log.debug("친추 실패");
+			log.debug("친삭 실패");
 		}
 		
 		//친구로 등록된 사람을 조회

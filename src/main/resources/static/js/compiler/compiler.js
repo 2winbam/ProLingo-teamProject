@@ -47,7 +47,7 @@ $(document).ready(function() {
 
 	//모달창 바로 띄우기
 	if ($('#info').attr('lessoncontents') != '[]' && $('#info').attr('lessoncontents') != null ) {
-		alert($('#info').attr('lessoncontents'));
+		//alert($('#info').attr('lessoncontents'));
 		$('.modal-lesson').fadeIn();
 	}
 
