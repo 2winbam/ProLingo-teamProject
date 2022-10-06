@@ -15,7 +15,8 @@
 	
 	function followFriend(user_id){
 		console.log('버튼 실행');
-		loaction.href='followFriend?user_id='+user_id;
+		console.log(user_id);
+		location.href='followFriend?user_id='+user_id;
 	}
 	
 	/*	

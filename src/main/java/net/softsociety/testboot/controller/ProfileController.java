@@ -210,7 +210,7 @@ public class ProfileController {
 	 * 친추기능
 	 */
 	@GetMapping("followFriend")
-	public int followFriend(String user_id, @AuthenticationPrincipal UserDetails user) {
+	public String followFriend(String user_id, @AuthenticationPrincipal UserDetails user) {
 		
 		//친추할 아이디
 		log.debug("user_id : {}" ,user_id);
@@ -230,7 +230,7 @@ public class ProfileController {
 			log.debug("친추 실패");
 		}
 		
-		return 0;
+		return "profile/searchFriend";
 	}
 	
 	
