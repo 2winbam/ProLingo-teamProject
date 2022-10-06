@@ -12,6 +12,8 @@ import net.softsociety.testboot.dao.BoardDAO;
 import net.softsociety.testboot.domain.BoardVO;
 import net.softsociety.testboot.domain.BoardWithName;
 import net.softsociety.testboot.domain.PageNavigator;
+import net.softsociety.testboot.domain.ReplyVO;
+import net.softsociety.testboot.domain.ReplyWithName;
 
 @Slf4j
 @Service
@@ -56,10 +58,9 @@ public class BoardServiceImple implements BoardService{
 		
 		RowBounds rb = new RowBounds(navi.getStartRecord(), navi.getCountPerPage());
 		
-		ArrayList<BoardWithName> boardLsit = boardDAO.boardListAll(map, rb);
+		ArrayList<BoardWithName> boardList = boardDAO.boardListAll(map, rb);
 		
-		
-		return boardLsit;
+		return boardList;
 		
 	}
 			
@@ -80,6 +81,47 @@ public class BoardServiceImple implements BoardService{
 		return boardDAO.writingRead(board_id);
 	}
 	
+	//인기글 목록
+	@Override
+	public ArrayList<BoardWithName> hitListAll(PageNavigator navi, String type, String searchWord) {
+		log.debug("ServiceImple hitListAll called()");
+		log.debug("navi : {}, type : {}, searchWord : {}", navi, type, searchWord);
+		HashMap<String, String> map = new HashMap<>();
+		map.put("type",type);
+		map.put("searchWord", searchWord); //Map에 담을 때 이름으로 꺼내서 써야 함. "type", "searchWord"
+		
+		RowBounds rb = new RowBounds(navi.getStartRecord(), navi.getCountPerPage());
+		
+		ArrayList<BoardWithName> hitList = boardDAO.hitListAll(map, rb);
+		
+		return hitList;
+	}
+	
+	//글 삭제
+	@Override
+	public int deleteList(BoardVO board) {
+		log.debug("deleteList() called");
+		int result = boardDAO.delete(board);
+		return result;
+	}
+
+	//해당 글의 댓글 목록 읽기
+	@Override
+	public ArrayList<ReplyWithName> replyList(int board_id) {
+		
+		return boardDAO.replyList(board_id);
+	}
+
+	//댓글 저장
+	@Override
+	public int replyWrite(ReplyVO reply) {
+		
+		int result = boardDAO.replyWrite(reply);
+		
+		return result;
+	}
+	
+
 	
 	
 	

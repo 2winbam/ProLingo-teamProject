@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import net.softsociety.testboot.domain.BoardVO;
 import net.softsociety.testboot.domain.BoardWithName;
 import net.softsociety.testboot.domain.PageNavigator;
+import net.softsociety.testboot.domain.ReplyVO;
+import net.softsociety.testboot.domain.ReplyWithName;
 
 public interface BoardService {
 	
@@ -24,6 +26,18 @@ public interface BoardService {
 	
 	//글 읽기
 	public BoardWithName boardNum(int board_id);
+	
+	//인기글 목록
+	public ArrayList<BoardWithName> hitListAll(PageNavigator navi, String type, String searchWord);
+	
+	//글 삭제
+	public int deleteList(BoardVO board);
+	
+	//해당 글의 댓글 목록 읽기
+	public ArrayList<ReplyWithName> replyList(int board_id);
+	
+	//댓글 저장
+	public int replyWrite(ReplyVO reply);
 	
 	
 	
