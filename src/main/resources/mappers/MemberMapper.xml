@@ -115,4 +115,21 @@
 	where user_id = #{id}
 </select>
 
+<select id="isQuestionCompleted" resultType="int">
+	select count(*)
+	from completed_questions
+	where user_id = #{userid} and question_id = #{questionid}
+</select>
+
+<insert id="questionComplite">
+	insert into completed_questions
+	values(#{userid}, #{questionid})
+</insert>
+
+<update id="updateDate" parameterType="int">
+update prolingo_user
+set continueday = continueday + 1, accure_date = accure_date + 1
+where user_id = #{userid}
+</update>
+
 </mapper>

@@ -325,7 +325,7 @@ public class CompilerController {
 				//.c파일
 				Runtime.getRuntime().exec("cmd /c del " + filename);
 				//.exe파일
-				Runtime.getRuntime().exec("cmd /c del " + exename);
+				Runtime.getRuntime().exec("cmd /c del main.exe");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
