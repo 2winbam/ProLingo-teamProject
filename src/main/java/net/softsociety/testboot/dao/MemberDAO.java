@@ -37,10 +37,11 @@ public interface MemberDAO {
 	int usernickname(MemberVO member);
 	
 	//유저가 그 문제를 풀었는가
-	int isQuestionCompleted(@Param("username")String username, @Param("questionid")int question_id);
+	int isQuestionCompleted(@Param("userid")int userid, @Param("questionid")int question_id);
 	
-	//
-	int questionComplite(@Param("username")String username, @Param("questionid")int question_id);
-
-
+	//풀은 문제 목록 업데이트
+	int questionComplite(@Param("userid")int userid, @Param("questionid")int question_id);
+	
+	//연속, 누적 학습일수 업데이트
+	int updateDate(int id);
 }

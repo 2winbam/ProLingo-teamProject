@@ -57,7 +57,7 @@ public class BoardController {
 	public String getBoardList(@RequestParam(value = "page", defaultValue = "1")int page,
 			@RequestParam(value = "type", required = false) String type,
 			@RequestParam(value = "searchWord", required = false) String searchWord,
-			@RequestParam(value = "mode", required = false) String mode, 
+			@RequestParam(value = "mode", required = false, defaultValue = "all") String mode, 
 			Model model) {
 		log.debug("getBoardList() called");
 		log.debug("페이지당 글수:{}, 페이지이동 링크수{}, page : {}, type : {}, searchWord : {}, mode : {}"

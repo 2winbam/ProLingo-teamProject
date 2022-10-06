@@ -56,26 +56,33 @@ public class QuestionController {
 	@PostMapping("lessoncomplete")
 	public String lessoncomplete(int lesson_id, int question_id, @AuthenticationPrincipal UserDetails user, HttpSession session) {
 		log.debug("레슨 : {} 퀘스쳔 : {}", lesson_id, question_id);
+		//log.debug("user값 : {}",user.getUsername());
 		
 		//로그인 한 유저가 있으면
 		if(user != null) {
+			int getexp = 10;
 			//lesson의 question을 이미 완료했는지 확인하는 코드 필요
 			int isComplited = ms.isQuestionCompleted(user.getUsername(), question_id);
 			
 			if(isComplited == 0) {
+				//연속 학습일수, 누적 학습일수 추가, 그 날 경험치 기반으로 판단하기 때문에 요일 경험치 위로 가야함
+				int dayup = ms.updateDate(user.getUsername());
 				//완료하지 않은 문제였다면 그 유저의 누적 경험치를 10만큼 추가
-				int result = ms.updateUserExp(user.getUsername(), 10);
+				int expup = ms.updateUserExp(user.getUsername(), getexp);
 				//해당 요일 경험치도 10 추가
-				int result2 = ms.updateUserExpDay(user.getUsername(), 10);
+				int dayexpup = ms.updateUserExpDay(user.getUsername(), getexp);
 				//레슨 완료처리
 				int questionComplite = ms.questionComplite(user.getUsername(), question_id);
-				//log.debug("user값 : {}",user.getUsername());
 				//성공시
-				if(result != 0 && result2 != 0 && questionComplite != 0) {
+				if(expup != 0 && dayexpup != 0 && questionComplite != 0) {
 					//경험치를 확인하기 위해
 					//MemberVO member = ms.getMemerInfo(user.getUsername());
-					
-					return "user " + user.getUsername() + "의 경험치 추가됨";
+					int exp = (int) session.getAttribute("userexp");
+					log.debug("세션 경험치 : " + exp);
+					session.setAttribute("userexp", exp + getexp);
+					int day = (int) session.getAttribute("continueday");
+					session.setAttribute("continueday", day + 1);
+					return "user " + user.getUsername() + " complete";
 				}
 				else {
 					return "lessoncomplite fail";

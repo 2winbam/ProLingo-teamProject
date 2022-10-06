@@ -52,10 +52,10 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 		<div class="d-flex flex-wrap align-items-center">
 					
 			<div id="logo">
-				<a th:href="@{/}"><img th:src="@{/icons/swallow_icon.png}" alt="logo_icon" id="logo_icon"></a>
+				<a th:href="@{/study}"><img th:src="@{/icons/swallow_icon.png}" alt="logo_icon" id="logo_icon"></a>
 			</div>
 			<div>
-				<a th:href="@{/}" class="menu px-5 nav-link text-start" id="title" style="font-weight:bold">PROLINGO</a>
+				<a th:href="@{/study}" class="menu px-5 nav-link text-start" id="title" style="font-weight:bold">PROLINGO</a>
 			</div>
 			
 			<!-- 특정 학습 페이지로 이동하기 위한 메뉴 -->
@@ -86,7 +86,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
    				<!-- 특정 학습 페이지로 이동하기 위한 a태그 -->
    				<!-- each로 반복해야 할 부분으로 생각됨 -->
       			<div th:each="chapterList:${chapterList}" class="learningLink" id="learningLink">
-        			<a th:text="${chapterList.lesson_title}" 
+        			<a th:text="${chapterList.lesson_slide} + ' . ' + ${chapterList.lesson_title}"
         			th:href="|@{compilerForm}?lessonid=${chapterList.lesson_id}&questionindex=${chapterList.lesson_slide}|" 
         			class="learningOne" ></a>
         		</div>
@@ -232,10 +232,10 @@ class Main {
 							</div>
 							<div class="modalFooter modal-footer">
 								<!-- 문제 저장버튼, 아래의 downloadIcon과 같은 기능 -->
-								<button type="button" class=" btn btn-dark" onclick=""
-									id="saveButton">
-									<i class="bi bi-download" id="downloadIcon"></i> Save
-								</button>
+<!-- 								<button type="button" class=" btn btn-dark" onclick="" -->
+<!-- 									id="saveButton"> -->
+<!-- 									<i class="bi bi-download" id="downloadIcon"></i> Save -->
+<!-- 								</button> -->
 								<!-- 답을 보여주는 modal을 호풀하는 버튼, 위의 seeAnswer와 같은 모달을 출력한다.-->
 								<button type="button" class="btn btn-light" onclick=""
 									id="answerButton">Answer</button>
