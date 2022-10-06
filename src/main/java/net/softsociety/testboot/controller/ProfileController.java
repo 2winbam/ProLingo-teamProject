@@ -230,7 +230,40 @@ public class ProfileController {
 			log.debug("친추 실패");
 		}
 		
-		return "profile/searchFriend";
+		return "redirect:/profile/searchFriend";
+	}
+	
+	/**
+	 * 친추기능
+	 */
+	@GetMapping("unfollow")
+	public String unfollow(String user_id, @AuthenticationPrincipal UserDetails user, Model model) {
+		
+		//친추할 아이디
+		log.debug("user_id : {}" ,user_id);
+		
+		String target = user_id;
+		
+		String userId = user.getUsername();
+		
+		//현재 접속한 아이디
+		log.debug("접속한 아이디 : {}", userId);
+		
+		int unfollowResult = ps.unfollowFriend(target, userId);
+		
+		if(unfollowResult == 1) {
+			log.debug("친추 완료");
+		}else if(unfollowResult == 0){
+			log.debug("친추 실패");
+		}
+		
+		//친구로 등록된 사람을 조회
+		ArrayList<MemberVO> friendList = ps.selectAllFriends(userId);
+		log.debug("불러온 친구 : {}", friendList);
+		
+		model.addAttribute("friendList", friendList);
+		
+		return "redirect:/profile";
 	}
 	
 	

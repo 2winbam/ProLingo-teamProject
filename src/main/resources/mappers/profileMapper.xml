@@ -64,6 +64,12 @@
 	(#{userId}, #{target})
 </insert>
 
+<!-- 언팔기능 -->
+<delete id="unfollowFriend" parameterType="map">
+	delete from user_follow
+	where user_id = #{userId} and target_id = #{target}
+</delete>
+
 <!-- 내 프로필에서 친구리스트 조회 -->
 <select id="selectAllFriends"  parameterType="String" resultType="MemberVO">
 	select u.user_id, u.photo, u.user_name, u.email
