@@ -265,28 +265,4 @@ public class ProfileController {
 		
 		return "redirect:/profile";
 	}
-	
-	
-	
-	/**
-	 * 저장된 코드 페이지
-	 */
-	/*
-	@GetMapping("/savedList")
-	public String savedList() {
-		log.debug("called savedList");
-		return "profile/savedList";
-	}
-	*/
-	
-	/**
-	 * 저장된 코드 페이지
-	 */
-	/*
-	@GetMapping("/savedCode")
-	public String savedCode() {
-		log.debug("called savedCode");
-		return "profile/savedCode";
-	}
-	*/
 }
