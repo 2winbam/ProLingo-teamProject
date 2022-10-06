@@ -234,7 +234,7 @@ public class ProfileController {
 	}
 	
 	/**
-	 * 친추기능
+	 * 친삭기능
 	 */
 	@GetMapping("unfollow")
 	public String unfollow(String user_id, @AuthenticationPrincipal UserDetails user, Model model) {
