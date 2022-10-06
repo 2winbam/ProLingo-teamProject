@@ -27,24 +27,24 @@
 	SELECT 
 		count(*)
 	FROM
-		PROLINGO_BOARD
+		PROLINGO_BOARD B, PROLINGO_USER U
+	WHERE
+		B.user_id = U.user_id
 	<if test="type != null and searchWord != null">
-	<where>
 		<if test="type == 'title'">
-			UPPER(title) like '%' || UPPER(#{searchWord}) || '%'
+			AND UPPER(B.title) like '%' || UPPER(#{searchWord}) || '%'
 		</if>
 		<if test="type == 'board_content'">
-			UPPER(board_content) like '%' || UPPER(#{searchWord}) || '%'
+			AND UPPER(B.board_content) like '%' || UPPER(#{searchWord}) || '%'
 		</if>
-		<if test="type == 'user_id'">
-			UPPER(user_id) like UPPER(#{searchWord})
+		<if test="type == 'nickname'">
+			AND UPPER(U.nickname) like UPPER(#{searchWord})
 		</if>
 		<if test="type == 'all'">
-			UPPER(title) like '%' || UPPER(#{searchWord}) || '%'
-			OR UPPER(board_content) like '%' || UPPER(#{searchWord}) || '%'
-			OR UPPER(user_id) like UPPER(#{searchWord})
+			AND (UPPER(B.title) like '%' || UPPER(#{searchWord}) || '%'
+			OR UPPER(B.board_content) like '%' || UPPER(#{searchWord}) || '%'
+			OR UPPER(U.nickname) like '%' || UPPER(#{searchWord}) || '%')
 		</if>
-	</where>
 	</if>
 </select>
 
@@ -72,9 +72,9 @@
 			AND UPPER(U.nickname) like UPPER(#{searchWord})
 		</if>
 		<if test="type == 'all'">
-			AND UPPER(B.title) like '%' || UPPER(#{searchWord}) || '%'
+			AND (UPPER(B.title) like '%' || UPPER(#{searchWord}) || '%'
 			OR UPPER(B.board_content) like '%' || UPPER(#{searchWord}) || '%'
-			OR UPPER(U.nickname) like UPPER(#{searchWord})
+			OR UPPER(U.nickname) like '%' || UPPER(#{searchWord}) || '%')
 		</if>
 	</if>
 	ORDER BY
@@ -133,9 +133,9 @@ WHERE
 			AND UPPER(U.nickname) like UPPER(#{searchWord})
 		</if>
 		<if test="type == 'all'">
-			AND UPPER(B.title) like '%' || UPPER(#{searchWord}) || '%'
+			AND (UPPER(B.title) like '%' || UPPER(#{searchWord}) || '%'
 			OR UPPER(B.board_content) like '%' || UPPER(#{searchWord}) || '%'
-			OR UPPER(U.nickname) like UPPER(#{searchWord})
+			OR UPPER(U.nickname) like UPPER(#{searchWord}))
 		</if>
 	</if>
 	ORDER BY
@@ -163,6 +163,7 @@ WHERE
 		PROLINGO_REPLY R, PROLINGO_USER U
 	WHERE
 		R.user_id = U.user_id
+		AND board_id = #{board_id}
 </select>
 
 <!-- 댓글 저장 -->
