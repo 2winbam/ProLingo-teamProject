@@ -20,7 +20,17 @@
 	order by p.achievement_id
 </select>
 
-<!-- 접속한 사람과 그 사람의 친구를 제외한 사람들을 조회 -->
+<!-- 접속한 사람을 제외한 사람들을 조회 -->
+<select id="notFriends" parameterType="map" resultType="MemberVO">
+	select distinct u2.user_id, u2.photo, u2.user_name, u2.email
+	from prolingo_user u1, prolingo_user u2
+	where
+        u1.user_id != #{userId}
+        and
+        u2.email like '%' || #{searchWord} || '%'
+        	
+</select>
+<!-- 
 <select id="notFriends" parameterType="map" resultType="MemberVO">
 	select distinct u.user_id, u.photo, u.user_name, u.email
 	from prolingo_user u, user_follow f
@@ -34,7 +44,7 @@
         u.email like '%' || #{searchWord} || '%'
         	
 </select>
-
+-->
 <!-- 검색어에 해당하는 친구들 조회 -->
 
 <select id="searchfriends" parameterType="map" resultType="MemberVO">
