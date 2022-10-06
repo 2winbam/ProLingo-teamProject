@@ -33,6 +33,9 @@ public interface ProfileDAO {
 
 	//내 프로필에서 친구리스트 조회
 	public ArrayList<MemberVO> selectAllFriends(String userId);
+	
+	//언팔
+	public int unfollowFriend(HashMap<String, String> unfollowMap);
 
 
 

@@ -95,6 +95,7 @@ WHERE
 <select id="writingRead" resultType="BoardWithName" parameterType="int">
 SELECT 
 	B.board_id AS board_id
+	, B.user_id AS user_id
 	, B.title AS title
 	, B.hits AS hits
 	, B.board_content AS board_content
@@ -140,5 +141,46 @@ WHERE
 	ORDER BY
 		board_id DESC
 </select>
+
+<!-- 글삭제 -->
+<delete id="delete" parameterType="BoardVO">
+DELETE FROM
+	PROLINGO_BOARD
+WHERE
+	board_id = #{board_id}
+	and user_id = #{user_id}
+</delete>
+
+<!-- 해당 글의 댓글 목록 읽기 -->
+<select id="replyList" resultType="ReplyWithName" parameterType="int">
+	SELECT
+		R.reply_id AS reply_id
+		, R.board_id AS board_id
+		, R.reply_content AS reply_content
+		, U.nickname AS nickname
+		, TO_CHAR(R.writingdate, 'YY/MM/DD') AS writingdate
+	FROM
+		PROLINGO_REPLY R, PROLINGO_USER U
+	WHERE
+		R.user_id = U.user_id
+</select>
+
+<!-- 댓글 저장 -->
+<insert id="replyWrite" parameterType="ReplyVO">
+	INSERT INTO PROLINGO_REPLY
+		(
+			reply_id
+			, board_id
+			, user_id
+			, reply_content
+		)
+	VALUES
+		(
+			PROLINGO_REPLY_SEQ.NEXTVAL
+			, #{board_id}
+			, #{user_id}
+			, #{reply_content}		
+		)
+</insert>
 
 </mapper>

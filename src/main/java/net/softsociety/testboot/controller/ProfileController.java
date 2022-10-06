@@ -210,7 +210,7 @@ public class ProfileController {
 	 * 친추기능
 	 */
 	@GetMapping("followFriend")
-	public int followFriend(String user_id, @AuthenticationPrincipal UserDetails user) {
+	public String followFriend(String user_id, @AuthenticationPrincipal UserDetails user) {
 		
 		//친추할 아이디
 		log.debug("user_id : {}" ,user_id);
@@ -230,30 +230,39 @@ public class ProfileController {
 			log.debug("친추 실패");
 		}
 		
-		return 0;
+		return "redirect:/profile/searchFriend";
 	}
-	
-	
 	
 	/**
-	 * 저장된 코드 페이지
+	 * 친추기능
 	 */
-	/*
-	@GetMapping("/savedList")
-	public String savedList() {
-		log.debug("called savedList");
-		return "profile/savedList";
+	@GetMapping("unfollow")
+	public String unfollow(String user_id, @AuthenticationPrincipal UserDetails user, Model model) {
+		
+		//친추할 아이디
+		log.debug("user_id : {}" ,user_id);
+		
+		String target = user_id;
+		
+		String userId = user.getUsername();
+		
+		//현재 접속한 아이디
+		log.debug("접속한 아이디 : {}", userId);
+		
+		int unfollowResult = ps.unfollowFriend(target, userId);
+		
+		if(unfollowResult == 1) {
+			log.debug("친삭 완료");
+		}else if(unfollowResult == 0){
+			log.debug("친삭 실패");
+		}
+		
+		//친구로 등록된 사람을 조회
+		ArrayList<MemberVO> friendList = ps.selectAllFriends(userId);
+		log.debug("불러온 친구 : {}", friendList);
+		
+		model.addAttribute("friendList", friendList);
+		
+		return "redirect:/profile";
 	}
-	*/
-	
-	/**
-	 * 저장된 코드 페이지
-	 */
-	/*
-	@GetMapping("/savedCode")
-	public String savedCode() {
-		log.debug("called savedCode");
-		return "profile/savedCode";
-	}
-	*/
 }

@@ -142,7 +142,9 @@ public class ProfileServiceImpl implements ProfileService{
 	}
 
 	
-	// 친구 추가
+	/**
+	 * 친추 기능
+	 */
 	public int followFriend(String target, String userId) {
 		
 		HashMap<String, String> followMap = new HashMap<String, String>();
@@ -157,6 +159,7 @@ public class ProfileServiceImpl implements ProfileService{
 		
 		return followResult;
 	}
+	
 	//내 프로필에 친구조회
 	@Override
 	public ArrayList<MemberVO> selectAllFriends(String userId) {
@@ -165,4 +168,23 @@ public class ProfileServiceImpl implements ProfileService{
 		return friendsInfo;
 
 	}
+	
+	/**
+	 * 언팔 기능
+	 */
+	public int unfollowFriend(String target, String userId) {
+		
+		HashMap<String, String> unfollowMap = new HashMap<String, String>();
+		
+		unfollowMap.put("target", target);
+		unfollowMap.put("userId", userId);
+		
+		log.debug("map의 target : {}", unfollowMap.get("target"));
+		log.debug("map의 userid : {}", unfollowMap.get("userId"));
+		
+		int unfollowResult = dao.unfollowFriend(unfollowMap);
+		
+		return unfollowResult;
+	}
+	
 }

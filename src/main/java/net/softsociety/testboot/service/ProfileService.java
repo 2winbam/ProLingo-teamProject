@@ -48,7 +48,7 @@ public interface ProfileService {
 	/**
 	 * 친추 버튼을 누르면 친구추가
 	 * @param target 친추 대상의 아이디
-	 * @param userId 현재 로그인한 아이디
+	 * @param userId 현재 로그인 아이디
 	 * @return
 	 */
 	public int followFriend(String target, String userId);
@@ -59,6 +59,13 @@ public interface ProfileService {
 	 * @return
 	 */
 	public ArrayList<MemberVO> selectAllFriends(String userId);
+	
+	/**
+	 * 버튼을 누르면 친구취소
+	 * @param target 언팔할 대상의 아이디
+	 * @param userId 현재 로그인 아이디
+	 * @return
+	 */
+	public int unfollowFriend(String target, String userId);
 
-		
 }

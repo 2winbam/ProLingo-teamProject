@@ -25,9 +25,28 @@ th {
 	height: 300px;
 }
 
+.box3{
+	background-color: mistyrose;
+	width : 100px;
+}
+
+.box4{
+	background-color: mistyrose;
+	width : 500px;
+}
+
+.box5{
+	background-color: mistyrose;
+}
+
+#delete {
+	position: relative;
+	left: 850px;
+}
+
 #back {
 	position: relative;
-	left: 914px;
+	left: 855px;
 }
 
 #reco {
@@ -39,4 +58,12 @@ th {
 #cnt {
 	position: relative;
 	left: 520px;
+}
+
+#reply_content {
+	width: 900px;
+}
+
+#writingdate {
+	text-align: center;
 }

@@ -23,14 +23,13 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 			<main class="content">
 				<div class="container-fluid p-0">
 		
-					<h1 class="h3 mb-3" th:text=${session.userinfo}>Pricing</h1>
-					
-					
+<!-- 					<h1 class="h3 mb-3" th:text=${session.userinfo}>Pricing</h1>
+ -->					
 					
 		
 					<div class="row">
 						<h1 class="text-center">Prilingo <span class="text-danger">PLUS</span></h1>
-						<p class="lead text-center mb-4">광고를 모두 없애고 제한 없이 학습하세요</p>
+						<p class="lead text-center mb-4">제한 없이 학습하세요</p>
 						<div class="row justify-content-center mb-3">
 <!-- 						<div class="col-auto"> -->
 <!-- 							<div class="nav btn-group mb-3" role="group" aria-label="Default button group"> -->
@@ -59,7 +58,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 												
 											</li>
 											<li class="mb-2">
-												
+												<button type="button" class="btn btn-warning">무료회원 등록</button>
 											</li>
 										</ul>
 <!-- 										<div class="mt-auto"> -->
@@ -75,7 +74,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 										<div class="mb-4">
 											<h5 class="card-title mb-0">Plus</h5>
 											<span class="display-4">￦1,000</span>
-											<span>/mo</span>
+											<span>/month</span>
 										</div>
 									
 										<h6>Includes:</h6>
@@ -87,7 +86,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 												
 											</li>
 											<li class="mb-2">
-												
+												<button type="button" class="btn btn-success">유로회원 등록</button>
 											</li>
 										</ul>
 										<div class="mt-auto">

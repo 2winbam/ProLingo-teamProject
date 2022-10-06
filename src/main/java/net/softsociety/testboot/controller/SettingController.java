@@ -37,4 +37,13 @@ public class SettingController {
 	public String changepassword() {
 		return "settingsView/changePassword";
 	}
+	
+	/**
+	 * payment page
+	 * @return
+	 */
+	@GetMapping("/pricing")
+	public String pricing() {
+		return "settingsView/pricing";
+	}
 }
