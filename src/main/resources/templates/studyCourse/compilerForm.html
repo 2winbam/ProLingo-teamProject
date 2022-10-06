@@ -86,7 +86,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
    				<!-- 특정 학습 페이지로 이동하기 위한 a태그 -->
    				<!-- each로 반복해야 할 부분으로 생각됨 -->
       			<div th:each="chapterList:${chapterList}" class="learningLink" id="learningLink">
-        			<a th:text="${chapterList.lesson_title}" 
+        			<a th:text="${chapterList.lesson_slide} + ' . ' + ${chapterList.lesson_title}"
         			th:href="|@{compilerForm}?lessonid=${chapterList.lesson_id}&questionindex=${chapterList.lesson_slide}|" 
         			class="learningOne" ></a>
         		</div>
