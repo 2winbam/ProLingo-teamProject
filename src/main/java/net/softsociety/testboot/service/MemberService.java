@@ -1,7 +1,5 @@
 package net.softsociety.testboot.service;
 
-import org.springframework.security.core.userdetails.UserDetails;
-
 import net.softsociety.testboot.domain.MemberVO;
 import net.softsociety.testboot.domain.MemberWeeklyExpVO;
 
@@ -30,9 +28,10 @@ public interface MemberService {
 	// 유저 요일별 획득 누적 경험치 조회
 	public MemberWeeklyExpVO getExp(String userid);
 
-	public int isQuestionCompleted(String username, int question_id);
+	public int isQuestionCompleted(String userid, int question_id);
 
-	public int questionComplite(String username, int question_id);
+	public int questionComplite(String userid, int question_id);
 
+	public int updateDate(String userid);
 
 }

@@ -23,10 +23,10 @@ public class HomeController {
 		return "blankpage";
 	}
 	
-	@GetMapping("error")
-	public String errorpage() {
-		return "errorpage";
-	}
+//	@GetMapping("error")
+//	public String errorpage() {
+//		return "errorpage";
+//	}
 	
 	/**
 	 * 임시로
