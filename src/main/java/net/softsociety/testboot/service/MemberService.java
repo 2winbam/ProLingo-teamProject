@@ -30,4 +30,9 @@ public interface MemberService {
 	// 유저 요일별 획득 누적 경험치 조회
 	public MemberWeeklyExpVO getExp(String userid);
 
+	public int isQuestionCompleted(String username, int question_id);
+
+	public int questionComplite(String username, int question_id);
+
+
 }

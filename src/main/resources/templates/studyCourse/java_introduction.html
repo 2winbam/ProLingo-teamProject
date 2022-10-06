@@ -49,9 +49,10 @@
 											class="lesson-overview__category lesson-overview__category--study">학습 Lesson </p>
 										<div class="lesson-overview__tag-wrapper"></div>
 										<span class="lesson-overview__title">Java I</span> <span
-											class="lesson-icon-wrapper"> <img class="u-mr5"
-											src="https://prog-8.com/assets/icons/clock-e8d8a239a4d9ba79c3edd9acbb9497deb15a9429f8311a27b5432134f4518c1e.svg">
-											<span>학습시간	</span>
+											class="lesson-icon-wrapper"> 
+<!-- 											<img class="u-mr5" -->
+<!-- 											src="https://prog-8.com/assets/icons/clock-e8d8a239a4d9ba79c3edd9acbb9497deb15a9429f8311a27b5432134f4518c1e.svg"> -->
+<!-- 											<span>학습시간	</span> -->
 										</span>
 		
 										<div class="lesson-overview__introduction u-mt10 u-mb10">
@@ -67,13 +68,15 @@
         		
       							</div>
       						
-      							<div th:each="chapterList:${chapterList}" id="javaList">
+      							<ul>
+      							<li th:each="chapterList:${chapterList}" id="javaList">
    							
    								<!-- 특정 학습 페이지로 이동하기 위한 a태그 -->
       								<div class="learningLink d-flex flex-row" id="learningLink">
-        								<a th:text="${chapterList.lesson_title}" th:href="|@{compilerForm}?lessonid=${chapterList.lesson_id}&questionindex=${chapterList.lesson_slide}|"></a>
+        								<a th:text="${chapterList.lesson_title}" th:href="|@{/study/compilerForm}?lessonid=${chapterList.lesson_id}&questionindex=${chapterList.lesson_slide}|"></a>
         							</div>
-      							</div>
+      							</li>
+      							</ul>
 							</div>
 						</div>
 					</div>

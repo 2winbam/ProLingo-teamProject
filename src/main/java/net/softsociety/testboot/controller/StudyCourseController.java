@@ -101,7 +101,7 @@ public class StudyCourseController {
 	 * @param model
 	 * @return 컴파일 문제 풀이 페이지
 	 */
-	@GetMapping("javaCourse/compilerForm")
+	@GetMapping("compilerForm")
 	public String compilerForm(
 			@RequestParam(name="lessonid", defaultValue="0")int lessonid, 
 			@RequestParam(name="questionindex", defaultValue="0")int questionindex, 
@@ -172,35 +172,35 @@ public class StudyCourseController {
 		return "studyCourse/compilerForm3";
 	}
 	
-	@GetMapping("CCourse/compilerForm")
-	public String compilerFormC(
-			@RequestParam(name="lessonid", defaultValue="0")int lessonid, 
-			@RequestParam(name="questionindex", defaultValue="0")int questionindex, 
-			Model model) {
-		
-		log.debug("lessonid : {}", lessonid);
-		
-		//ArrayList<ContentsVO> chapterList = service.introdutionAll();
-		//String title = service.searchTitle(questionindex);
-		
-		//model.addAttribute("title", title);
-		//model.addAttribute("chapterList", chapterList);
-			
-		//ArrayList<ContentsVO> contentsList = service.selectContents(lessonid, questionindex);
-		
-		//model.addAttribute("contentsList", contentsList);
-
-		ArrayList<ProlingoQuestionVO> questionlist = qs.selectAllQuestionsByLessonID(lessonid);		
-		
-		model.addAttribute("lessonid", lessonid);
-		model.addAttribute("questionindex", questionindex);
-		model.addAttribute("questionlist", questionlist);
-		
-		String language = service.getLanguage(lessonid);
-		
-		log.debug("이 레슨의 언어 : {}", language);
-		model.addAttribute("language", language);
-		
-		return "studyCourse/compilerForm";
-	}
+//	@GetMapping("CCourse/compilerForm")
+//	public String compilerFormC(
+//			@RequestParam(name="lessonid", defaultValue="0")int lessonid, 
+//			@RequestParam(name="questionindex", defaultValue="0")int questionindex, 
+//			Model model) {
+//		
+//		log.debug("lessonid : {}", lessonid);
+//		
+//		//ArrayList<ContentsVO> chapterList = service.introdutionAll();
+//		//String title = service.searchTitle(questionindex);
+//		
+//		//model.addAttribute("title", title);
+//		//model.addAttribute("chapterList", chapterList);
+//			
+//		//ArrayList<ContentsVO> contentsList = service.selectContents(lessonid, questionindex);
+//		
+//		//model.addAttribute("contentsList", contentsList);
+//
+//		ArrayList<ProlingoQuestionVO> questionlist = qs.selectAllQuestionsByLessonID(lessonid);		
+//		
+//		model.addAttribute("lessonid", lessonid);
+//		model.addAttribute("questionindex", questionindex);
+//		model.addAttribute("questionlist", questionlist);
+//		
+//		String language = service.getLanguage(lessonid);
+//		
+//		log.debug("이 레슨의 언어 : {}", language);
+//		model.addAttribute("language", language);
+//		
+//		return "studyCourse/compilerForm";
+//	}
 }
