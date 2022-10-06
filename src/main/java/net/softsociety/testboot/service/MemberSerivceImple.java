@@ -1,5 +1,6 @@
 package net.softsociety.testboot.service;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -198,6 +199,13 @@ public class MemberSerivceImple implements MemberService {
 		}
 
 		return 1;
+	}
+
+	@Override
+	public ArrayList<MemberVO> selectAllUsers() {
+		ArrayList<MemberVO> result = dao.selectAllUsers();
+		
+		return result;
 	}
 
 }

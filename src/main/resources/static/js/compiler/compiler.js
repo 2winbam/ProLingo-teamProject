@@ -77,11 +77,11 @@ $(document).ready(function() {
 			data: { language: language, code: code },
 			dataType: 'json',
 			success: function(res) {
-				console.log("compile ajax 성공" + res[0] + ", " + Number(res[1]).toFixed(6));
+				console.log("compile ajax 성공" + res[0] + ", " + Number(res[1]).toFixed(7));
 				$('#resultText').html(res[0]);
 				if (isCorrect(res[0], code)) {
 					if(Number(res[1])){
-						$('#timetaken').html("코드 실행에 걸린 시간 : " + Number(res[1]).toFixed(6) + "초");					
+						$('#timetaken').html("코드 실행에 걸린 시간 : " + Number(res[1]).toFixed(7) + "초");					
 					}
 					else{
 						$('#timetaken').html("");					
@@ -206,25 +206,30 @@ function isCorrect(result, code) {
 			//모든 키워드에 대해
 			$.each(res, function(i, v) {
 				console.log(v.keyword_name);
-				console.log(code);
+				//console.log(code);
+				console.log('루프');
 				//console.log(code.includes(v.keyword_name));
 				let sametypekewords = getKeywordsbytype(v.keyword_type);
 				//같은 타입의 키워드 하나라도 포함하고 있다면
 				$.each(sametypekewords, function(ii, vv) {
 					if (code.includes(vv.keyword_name)) {
-						console.log(vv.keyword_name);
+						console.log(ii + " : " + vv.keyword_name);
 						$('#missingkeyword').html("");
 						//정답이라고 해주고 리턴
 						isanswer = true;
+						console.log("리턴함");
 						return false;
 					}
 					else{
 						//하나가 정답이 없어서 여기로 오더라도 다른게 정답이 있을 수 있으니 리턴해주면 안됨
-						console.log("키워드 없음 ");
+						console.log(i + " - " + ii + vv.keyword_name + "키워드 없음 ");
 						$('#missingkeyword').html(v.keyword_name + "을 써보세요");
 						isanswer = false;
 					}
 				});
+				if(isanswer == false){
+					return false;
+				}
 			});
 		},
 		error: function(e) {

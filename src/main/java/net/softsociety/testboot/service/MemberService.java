@@ -1,5 +1,7 @@
 package net.softsociety.testboot.service;
 
+import java.util.ArrayList;
+
 import net.softsociety.testboot.domain.MemberVO;
 import net.softsociety.testboot.domain.MemberWeeklyExpVO;
 
@@ -33,5 +35,7 @@ public interface MemberService {
 	public int questionComplite(String userid, int question_id);
 
 	public int updateDate(String userid);
+
+	public ArrayList<MemberVO> selectAllUsers();
 
 }
