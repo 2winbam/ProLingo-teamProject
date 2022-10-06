@@ -45,7 +45,7 @@
 			str+='<div class="profile card radius-15 col-2 bt-50">';
 			str+='<div class="card-body text-center">';
 			str+='<div class=" p-3 border radius-15">';
-			str+='<img src="/prolingo/img/avatars/avatar.jpg" alt="/img/avatars/basicprofilePhoto.png" width="110" height="110" class="rounded-circle shadow">';
+			str+='<img src="' + item.photo +'" alt="/img/avatars/basicprofilePhoto.png" width="110" height="110" class="rounded-circle shadow">';
 			str+='<a href="friendProfile?user_id=' + item.user_id + '" class="profileLink">&nbsp;' + item.user_name + '</a>';
 			str+='<p>'+ item.email +'</p>';
 			str+='<div class="d-grid"> <button class="btn btn-outline-primary radius-15" id="follow" ';
