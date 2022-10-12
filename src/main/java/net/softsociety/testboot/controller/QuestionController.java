@@ -80,8 +80,12 @@ public class QuestionController {
 					int exp = (int) session.getAttribute("userexp");
 					log.debug("세션 경험치 : " + exp);
 					session.setAttribute("userexp", exp + getexp);
-					int day = (int) session.getAttribute("continueday");
-					session.setAttribute("continueday", day + 1);
+					
+					if(dayup == 1) {
+						int day = (int) session.getAttribute("continueday");
+						session.setAttribute("continueday", day + 1);
+					}
+					
 					return "user " + user.getUsername() + " complete";
 				}
 				else {

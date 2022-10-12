@@ -77,7 +77,7 @@ $(document).ready(function() {
 			data: { language: language, code: code },
 			dataType: 'json',
 			success: function(res) {
-				console.log("compile ajax 성공" + res[0] + ", " + Number(res[1]).toFixed(7));
+				console.log("compile ajax 성공" + res[0] + ", " + res[1]);
 				$('#resultText').html(res[0]);
 				if (isCorrect(res[0], code)) {
 					if(Number(res[1])){
