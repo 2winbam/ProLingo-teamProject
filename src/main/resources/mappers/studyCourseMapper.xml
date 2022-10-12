@@ -88,4 +88,44 @@
 		(#{userid}, 2)
 	</insert>
 
+<!-- 5일차 로그인 업적 insert -->
+<insert id="achieveDayFive" parameterType="String">
+	insert into user_achieve
+	(user_id, achievement_id)
+	values
+	(#{userid}, 3)
+</insert>
+
+<!-- 10일차 로그인 업적 insert -->
+<insert id="achieveDayTen" parameterType="String">
+	insert into user_achieve
+	(user_id, achievement_id)
+	values
+	(#{userid}, 4)
+</insert>
+
+<!-- 30일차 로그인 업적 insert -->
+<insert id="achieveDayMonth" parameterType="String">
+	insert into user_achieve
+	(user_id, achievement_id)
+	values
+	(#{userid}, 5)
+</insert>
+
+<!-- 90일차 로그인 업적 insert -->
+<insert id="achieveDayNineteen" parameterType="String">
+	insert into user_achieve
+	(user_id, achievement_id)
+	values
+	(#{userid}, 6)
+</insert>
+
+<!-- 300일차 로그인 업적 insert -->
+<insert id="achieveDayThreehundred" parameterType="String">
+	insert into user_achieve
+	(user_id, achievement_id)
+	values
+	(#{userid}, 7)
+</insert>
+
 </mapper>

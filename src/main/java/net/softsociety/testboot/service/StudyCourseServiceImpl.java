@@ -151,7 +151,73 @@ public class StudyCourseServiceImpl implements StudyCourseService {
 				}
 
 			}
-		}
+
+			// 로그인 업적 insert (출석 5일차)
+			else if(accureDate == 5) {
+				
+				// 로그인 업적 insert (출석 1일차)
+				int insertAchieve = dao.achieveDayFive(userid);
+			
+				if(insertAchieve == 1) {
+					log.debug("업적 insert 성공");
+				}else if(insertAchieve == 0) {
+					log.debug("업적 insert 실패");
+				}
+			
+			}
+			// 로그인 업적 insert (출석 10일차)
+			else if(accureDate == 10) {
+				
+				// 로그인 업적 insert (출석 1일차)
+				int insertAchieve = dao.achieveDayTen(userid);
+			
+				if(insertAchieve == 1) {
+					log.debug("업적 insert 성공");
+				}else if(insertAchieve == 0) {
+					log.debug("업적 insert 실패");
+				}
+			
+			}
+			// 로그인 업적 insert (출석 30일차)
+			else if(accureDate == 30) {
+				
+				// 로그인 업적 insert (출석 1일차)
+				int insertAchieve = dao.achieveDayMonth(userid);
+			
+				if(insertAchieve == 1) {
+					log.debug("업적 insert 성공");
+				}else if(insertAchieve == 0) {
+					log.debug("업적 insert 실패");
+				}
+			
+			}
+			// 로그인 업적 insert (출석 90일차)
+			else if(accureDate == 90) {
+				
+				// 로그인 업적 insert (출석 1일차)
+				int insertAchieve = dao.achieveDayNineteen(userid);
+			
+				if(insertAchieve == 1) {
+					log.debug("업적 insert 성공");
+				}else if(insertAchieve == 0) {
+					log.debug("업적 insert 실패");
+				}
+			
+			}
+			// 로그인 업적 insert (출석 300일차)
+			else if(accureDate == 300) {
+				
+				// 로그인 업적 insert (출석 1일차)
+				int insertAchieve = dao.achieveDayThreehundred(userid);
+			
+				if(insertAchieve == 1) {
+					log.debug("업적 insert 성공");
+				}else if(insertAchieve == 0) {
+					log.debug("업적 insert 실패");
+				}
+			
+			}
+	}
 
 		return accureDate;
 	}
