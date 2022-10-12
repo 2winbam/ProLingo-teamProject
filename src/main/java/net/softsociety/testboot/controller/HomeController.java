@@ -2,9 +2,11 @@ package net.softsociety.testboot.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import net.softsociety.testboot.domain.DBTestVO;
+import net.softsociety.testboot.domain.MemberVO;
 import net.softsociety.testboot.service.DBTestService;
 
 @Controller
@@ -27,15 +29,6 @@ public class HomeController {
 //	public String errorpage() {
 //		return "errorpage";
 //	}
-	
-	/**
-	 * 임시로
-	 * @return rank page
-	 */
-	@GetMapping("rank")
-	public String rank() {
-		return "rank";
-	}
 	
 	@GetMapping("dbtest")
 	public String dbtest(int tid, String tname) {

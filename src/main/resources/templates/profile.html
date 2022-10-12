@@ -184,20 +184,26 @@
 
 
 												<!-- 친구의 이름과 닉네임 -->
-												<h6 th:text="${friendList.user_name}" class="mb-0"></h6>
+												
+												<a th:href="|@{/profile/friendProfile?user_id=}${friendList.user_id}|" th:text="${friendList.user_name}" class="mb-0"></a>
 												<p th:text="${friendList.email}" class="mb-0 opacity-75"></p>
 
-												<button class="unFollow btn btn-danger btn-sm"
+
+												<!-- <button class="unFollow btn btn-danger btn-sm"
 													th:user_id="${friendList.user_id}"
 													th:onclick="unfollow(this.getAttribute('user_id'))">
-													<i class="bi bi-person-dash"></i>
+													<i class="bi bi-person-dash"></i> -->
+
+												<button class="unFollow btn btn-danger btn-sm"  th:user_id="${friendList.user_id}" 
+														th:onclick="unfollow(this.getAttribute('user_id'))" ><i class="bi bi-person-dash"></i>
+
 												</button>
 											</div>
 										</div>
 										<br>
 
 										<div id="friendbtn">
-											<a class="btn btn-primary" th:href="@{/profile/searchFriend}">친구찾기</a>
+											<a class="btn btn-primary mb-3" th:href="@{/profile/searchFriend}">친구찾기</a>
 										</div>
 									</div>
 

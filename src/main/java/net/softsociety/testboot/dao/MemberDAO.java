@@ -1,5 +1,6 @@
 package net.softsociety.testboot.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -44,4 +45,7 @@ public interface MemberDAO {
 	
 	//연속, 누적 학습일수 업데이트
 	int updateDate(int id);
+	
+	//모든 유저 테이블 불러옴
+	ArrayList<MemberVO> selectAllUsers();
 }

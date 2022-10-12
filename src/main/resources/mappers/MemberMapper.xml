@@ -132,4 +132,10 @@ set continueday = continueday + 1, accure_date = accure_date + 1
 where user_id = #{userid}
 </update>
 
+<select id="selectAllUsers" resultType="MemberVO">
+select *
+from prolingo_user
+order by user_exp desc
+</select>
+
 </mapper>

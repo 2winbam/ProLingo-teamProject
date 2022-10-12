@@ -1,5 +1,6 @@
 package net.softsociety.testboot.service;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -190,14 +191,23 @@ public class MemberSerivceImple implements MemberService {
 		default:
 			break;
 		}
-		
+		log.debug("오늘의 획득 경험치 : " + todayexp);
 		//오늘 획득한 경험치가 0이면 == 오늘 처음 한거면
 		if(todayexp == 0) {
 			//1일 추가
 			dao.updateDate(id);
+			log.debug("학습일 업데이트");
+			
+			return 1;
 		}
+		return 0;
+	}
 
-		return 1;
+	@Override
+	public ArrayList<MemberVO> selectAllUsers() {
+		ArrayList<MemberVO> result = dao.selectAllUsers();
+		
+		return result;
 	}
 
 }
