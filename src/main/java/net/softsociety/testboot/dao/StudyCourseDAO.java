@@ -84,6 +84,41 @@ public interface StudyCourseDAO {
 	
 	public int achieveDayTwo(String userid);
 	
+	/**
+	 * 누적 5일 로그인 업적
+	 * @param userid
+	 * @return
+	 */
+	public int achieveDayFive(String userid);
+	
+	/**
+	 * 누적 10일 로그인 업적
+	 * @param userid
+	 * @return
+	 */
+	public int achieveDayTen(String userid);
+	
+	/**
+	 * 누적 30일 로그인 업적
+	 * @param userid
+	 * @return
+	 */
+	public int achieveDayMonth(String userid);
+	
+	/**
+	 * 누적 90일 로그인 업적
+	 * @param userid
+	 * @return
+	 */
+	public int achieveDayNineteen(String userid);
+	
+	/**
+	 * 누적 300일 로그인 업적
+	 * @param userid
+	 * @return
+	 */
+	public int achieveDayThreehundred(String userid);
+	
 	
 
 	
