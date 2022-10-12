@@ -4,23 +4,26 @@
 
 <mapper namespace="net.softsociety.testboot.dao.QuestionDAO">
 
-<select id="selectAllQuestionsByLessonID" parameterType="int" resultType="ProlingoQuestionVO">
-	select *
-	from prolingo_question
-	where lesson_id = #{lesson_id}
-	order by question_id
-</select>
+	<select id="selectAllQuestionsByLessonID" parameterType="int"
+		resultType="ProlingoQuestionVO">
+		select *
+		from prolingo_question
+		where lesson_id = #{lesson_id}
+		order by question_id
+	</select>
 
-<select id="selectKeywordById" parameterType="int" resultType="ProlingoKeywordVO">
-select *
-from prolingo_keyword
-where keyword_id = #{id}
-</select>
+	<select id="selectKeywordById" parameterType="int"
+		resultType="ProlingoKeywordVO">
+		select *
+		from prolingo_keyword
+		where keyword_id = #{id}
+	</select>
 
-<select id="selectKeywordsByType" parameterType="String" resultType="ProlingoKeywordVO">
-select *
-from prolingo_keyword
-where keyword_type = #{type}
-</select>
+	<select id="selectKeywordsByType" parameterType="String"
+		resultType="ProlingoKeywordVO">
+		select *
+		from prolingo_keyword
+		where keyword_type = #{type}
+	</select>
 
 </mapper>

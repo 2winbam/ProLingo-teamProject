@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BoardWithName extends BoardVO{
-	
+public class BoardWithName extends BoardVO {
+
 	private String nickname;
 
 }

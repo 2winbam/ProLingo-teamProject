@@ -1,187 +1,196 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-        
+
 <mapper namespace="net.softsociety.testboot.dao.BoardDAO">
 
-<!-- 게시글 저장 -->
-<insert id="writeBoard" parameterType="BoardVO">
-	INSERT INTO PROLINGO_BOARD
-	(
+	<!-- 게시글 저장 -->
+	<insert id="writeBoard" parameterType="BoardVO">
+		INSERT INTO PROLINGO_BOARD
+		(
 		board_id
 		, user_id
 		, title
-		, board_content	
-	) 
-	VALUES
-	(
+		, board_content
+		)
+		VALUES
+		(
 		PROLINGO_BOARD_SEQ.NEXTVAL
 		, #{user_id}
 		, #{title}
-		, #{board_content}		
-	)
-</insert>
+		, #{board_content}
+		)
+	</insert>
 
-<!-- 글 개수 -->
-<select id="count" parameterType="map" resultType="int">
-	SELECT 
+	<!-- 글 개수 -->
+	<select id="count" parameterType="map" resultType="int">
+		SELECT
 		count(*)
-	FROM
+		FROM
 		PROLINGO_BOARD B, PROLINGO_USER U
-	WHERE
+		WHERE
 		B.user_id = U.user_id
-	<if test="type != null and searchWord != null">
-		<if test="type == 'title'">
-			AND UPPER(B.title) like '%' || UPPER(#{searchWord}) || '%'
+		<if test="type != null and searchWord != null">
+			<if test="type == 'title'">
+				AND UPPER(B.title) like '%' || UPPER(#{searchWord}) || '%'
+			</if>
+			<if test="type == 'board_content'">
+				AND UPPER(B.board_content) like '%' || UPPER(#{searchWord}) || '%'
+			</if>
+			<if test="type == 'nickname'">
+				AND UPPER(U.nickname) like UPPER(#{searchWord})
+			</if>
+			<if test="type == 'all'">
+				AND (UPPER(B.title) like '%' || UPPER(#{searchWord}) || '%'
+				OR UPPER(B.board_content) like '%' || UPPER(#{searchWord}) || '%'
+				OR UPPER(U.nickname) like '%' || UPPER(#{searchWord}) || '%')
+			</if>
 		</if>
-		<if test="type == 'board_content'">
-			AND UPPER(B.board_content) like '%' || UPPER(#{searchWord}) || '%'
-		</if>
-		<if test="type == 'nickname'">
-			AND UPPER(U.nickname) like UPPER(#{searchWord})
-		</if>
-		<if test="type == 'all'">
-			AND (UPPER(B.title) like '%' || UPPER(#{searchWord}) || '%'
-			OR UPPER(B.board_content) like '%' || UPPER(#{searchWord}) || '%'
-			OR UPPER(U.nickname) like '%' || UPPER(#{searchWord}) || '%')
-		</if>
-	</if>
-</select>
+	</select>
 
-<!-- 글 전체 목록 -->
-<select id="boardListAll" parameterType="map" resultType="BoardWithName">
-	SELECT 
+	<!-- 글 전체 목록 -->
+	<select id="boardListAll" parameterType="map"
+		resultType="BoardWithName">
+		SELECT
 		B.board_id AS board_id
 		, B.title AS title
 		, B.hits AS hits
-		, TO_CHAR(B.writingdate, 'YY-MM-DD') AS writingdate
+		, TO_CHAR(B.writingdate,
+		'YY-MM-DD') AS writingdate
 		, U.nickname AS nickname
-	FROM
+		FROM
 		PROLINGO_BOARD B, PROLINGO_USER U
 		<!-- 전달된 값에 따라서 sql 변경 -> 동적 sql --> <!-- 검색어가 넘어왔는지부터 확인 -->
-	WHERE
+		WHERE
 		B.user_id = U.user_id
-	<if test="type != null and searchWord != null"> <!-- true, false가 나오는 조건식 --> <!-- vo : 변수명 map : key -->
-		<if test="type == 'title'"> <!-- 넘어왔다는 게 확인이 되면 타입에 들어있는 문자열 내용을 보면 알 수 있음 -> if문으로 확인 -->
-			AND UPPER(B.title) like '%' || UPPER(#{searchWord}) || '%'
+		<if test="type != null and searchWord != null"> <!-- true, false가 나오는 조건식 --> <!-- vo : 변수명 map : key -->
+			<if test="type == 'title'"> <!-- 넘어왔다는 게 확인이 되면 타입에 들어있는 문자열 내용을 보면 알 수 있음 -> if문으로 확인 -->
+				AND UPPER(B.title) like '%' || UPPER(#{searchWord}) || '%'
+			</if>
+			<if test="type == 'board_content'">
+				AND UPPER(B.board_content) like '%' || UPPER(#{searchWord}) || '%'
+			</if>
+			<if test="type == 'nickname'">
+				AND UPPER(U.nickname) like UPPER(#{searchWord})
+			</if>
+			<if test="type == 'all'">
+				AND (UPPER(B.title) like '%' || UPPER(#{searchWord}) || '%'
+				OR UPPER(B.board_content) like '%' || UPPER(#{searchWord}) || '%'
+				OR UPPER(U.nickname) like '%' || UPPER(#{searchWord}) || '%')
+			</if>
 		</if>
-		<if test="type == 'board_content'">
-			AND UPPER(B.board_content) like '%' || UPPER(#{searchWord}) || '%'
-		</if>
-		<if test="type == 'nickname'">
-			AND UPPER(U.nickname) like UPPER(#{searchWord})
-		</if>
-		<if test="type == 'all'">
-			AND (UPPER(B.title) like '%' || UPPER(#{searchWord}) || '%'
-			OR UPPER(B.board_content) like '%' || UPPER(#{searchWord}) || '%'
-			OR UPPER(U.nickname) like '%' || UPPER(#{searchWord}) || '%')
-		</if>
-	</if>
-	ORDER BY
+		ORDER BY
 		board_id DESC
-</select>
+	</select>
 
-<!-- 조회수 1 증가 -->
-<update id="updateHits" parameterType="int">
-UPDATE
-	PROLINGO_BOARD
-SET
-	hits = hits +1
-WHERE
-	board_id = #{board_id}
-</update>
+	<!-- 조회수 1 증가 -->
+	<update id="updateHits" parameterType="int">
+		UPDATE
+		PROLINGO_BOARD
+		SET
+		hits = hits +1
+		WHERE
+		board_id = #{board_id}
+	</update>
 
-<!-- 글읽기 -->
-<select id="writingRead" resultType="BoardWithName" parameterType="int">
-SELECT 
-	B.board_id AS board_id
-	, B.user_id AS user_id
-	, B.title AS title
-	, B.hits AS hits
-	, B.board_content AS board_content
-	, TO_CHAR(B.writingdate, 'YY-MM-DD') AS writingdate
-	, U.nickname AS nickname
-FROM
-	PROLINGO_BOARD B, PROLINGO_USER U
-WHERE
-	B.user_id = U.user_id
-	AND board_id = #{board_id}	
-</select>
+	<!-- 글읽기 -->
+	<select id="writingRead" resultType="BoardWithName"
+		parameterType="int">
+		SELECT
+		B.board_id AS board_id
+		, B.user_id AS user_id
+		, B.title AS title
+		, B.hits AS hits
+		, B.board_content AS board_content
+		, TO_CHAR(B.writingdate, 'YY-MM-DD') AS writingdate
+		, U.nickname AS nickname
+		FROM
+		PROLINGO_BOARD B, PROLINGO_USER U
+		WHERE
+		B.user_id = U.user_id
+		AND board_id = #{board_id}
+	</select>
 
-<!-- 인기글 리스트 -->
-<select id="hitListAll" parameterType="map" resultType="BoardWithName">
-	SELECT 
+	<!-- 인기글 리스트 -->
+	<select id="hitListAll" parameterType="map"
+		resultType="BoardWithName">
+		SELECT
 		B.board_id AS board_id
 		, B.title AS title
 		, B.hits AS hits
-		, TO_CHAR(B.writingdate, 'YY-MM-DD') AS writingdate
+		, TO_CHAR(B.writingdate,
+		'YY-MM-DD') AS writingdate
 		, U.nickname AS nickname
-	FROM
+		FROM
 		PROLINGO_BOARD B, PROLINGO_USER U
 		<!-- 전달된 값에 따라서 sql 변경 -> 동적 sql --> <!-- 검색어가 넘어왔는지부터 확인 -->
-	WHERE
+		WHERE
 		B.user_id = U.user_id
-		AND B.hits <![CDATA[>=]]> 5
-	<if test="type != null and searchWord != null"> <!-- true, false가 나오는 조건식 --> <!-- vo : 변수명 map : key -->
-		<if test="type == 'title'"> <!-- 넘어왔다는 게 확인이 되면 타입에 들어있는 문자열 내용을 보면 알 수 있음 -> if문으로 확인 -->
-			AND UPPER(B.title) like '%' || UPPER(#{searchWord}) || '%'
+		AND B.hits <![CDATA[>=]]>
+		5
+		<if test="type != null and searchWord != null"> <!-- true, false가 나오는 조건식 --> <!-- vo : 변수명 map : key -->
+			<if test="type == 'title'"> <!-- 넘어왔다는 게 확인이 되면 타입에 들어있는 문자열 내용을 보면 알 수 있음 -> if문으로 확인 -->
+				AND UPPER(B.title) like '%' || UPPER(#{searchWord}) || '%'
+			</if>
+			<if test="type == 'board_content'">
+				AND UPPER(B.board_content) like '%' || UPPER(#{searchWord}) || '%'
+			</if>
+			<if test="type == 'nickname'">
+				AND UPPER(U.nickname) like UPPER(#{searchWord})
+			</if>
+			<if test="type == 'all'">
+				AND (UPPER(B.title) like '%' || UPPER(#{searchWord}) || '%'
+				OR UPPER(B.board_content) like '%' || UPPER(#{searchWord}) || '%'
+				OR UPPER(U.nickname) like UPPER(#{searchWord}))
+			</if>
 		</if>
-		<if test="type == 'board_content'">
-			AND UPPER(B.board_content) like '%' || UPPER(#{searchWord}) || '%'
-		</if>
-		<if test="type == 'nickname'">
-			AND UPPER(U.nickname) like UPPER(#{searchWord})
-		</if>
-		<if test="type == 'all'">
-			AND (UPPER(B.title) like '%' || UPPER(#{searchWord}) || '%'
-			OR UPPER(B.board_content) like '%' || UPPER(#{searchWord}) || '%'
-			OR UPPER(U.nickname) like UPPER(#{searchWord}))
-		</if>
-	</if>
-	ORDER BY
+		ORDER BY
 		board_id DESC
-</select>
+	</select>
 
-<!-- 글삭제 -->
-<delete id="delete" parameterType="BoardVO">
-DELETE FROM
-	PROLINGO_BOARD
-WHERE
-	board_id = #{board_id}
-	and user_id = #{user_id}
-</delete>
+	<!-- 글삭제 -->
+	<delete id="delete" parameterType="BoardVO">
+		DELETE FROM
+		PROLINGO_BOARD
+		WHERE
+		board_id = #{board_id}
+		and user_id = #{user_id}
+	</delete>
 
-<!-- 해당 글의 댓글 목록 읽기 -->
-<select id="replyList" resultType="ReplyWithName" parameterType="int">
-	SELECT
+	<!-- 해당 글의 댓글 목록 읽기 -->
+	<select id="replyList" resultType="ReplyWithName"
+		parameterType="int">
+		SELECT
 		R.reply_id AS reply_id
 		, R.board_id AS board_id
-		, R.reply_content AS reply_content
+		, R.reply_content AS
+		reply_content
 		, U.nickname AS nickname
-		, TO_CHAR(R.writingdate, 'YY/MM/DD') AS writingdate
-	FROM
+		, TO_CHAR(R.writingdate,
+		'YY/MM/DD') AS writingdate
+		FROM
 		PROLINGO_REPLY R, PROLINGO_USER U
-	WHERE
+		WHERE
 		R.user_id = U.user_id
 		AND board_id = #{board_id}
-</select>
+	</select>
 
-<!-- 댓글 저장 -->
-<insert id="replyWrite" parameterType="ReplyVO">
-	INSERT INTO PROLINGO_REPLY
+	<!-- 댓글 저장 -->
+	<insert id="replyWrite" parameterType="ReplyVO">
+		INSERT INTO PROLINGO_REPLY
 		(
-			reply_id
-			, board_id
-			, user_id
-			, reply_content
+		reply_id
+		, board_id
+		, user_id
+		, reply_content
 		)
-	VALUES
+		VALUES
 		(
-			PROLINGO_REPLY_SEQ.NEXTVAL
-			, #{board_id}
-			, #{user_id}
-			, #{reply_content}		
+		PROLINGO_REPLY_SEQ.NEXTVAL
+		, #{board_id}
+		, #{user_id}
+		, #{reply_content}
 		)
-</insert>
+	</insert>
 
 </mapper>

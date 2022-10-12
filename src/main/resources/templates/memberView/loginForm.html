@@ -30,9 +30,6 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 								<div class="text-center mt-4">
 									<h1 class="h2">ProLingo에 오신 것을 환영합니다!</h1>
 									<p class="lead">
-<!-- 										저희 콘텐츠를 이용하기 위해서는 로그인은 필수 입니다. -->
-<!-- 										<br> -->
-<!-- 										계정이 없으시다면 회원가입을 진행해 주세요!	 -->
 									</p>
 								</div>
 		
@@ -57,18 +54,8 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 												    	<em><small id="errorPassword">비밀번호 에러 메세지</small></em>
 												    </div>
 												</div>
-<!-- 												<div> -->
-<!-- 													<label class="form-check"> -->
-<!-- 		            									<input class="form-check-input" type="checkbox" value="remember-me" name="remember-me" checked> -->
-<!-- 		            									<span class="form-check-label">Remember me next time</span> -->
-<!-- 		          									</label> -->
-<!-- 												</div> -->
 												<div class="text-center mt-3">
-													<!-- ajax에서 return false가 안되는거같아서 버튼으로 -->
-													<!-- <input type="submit" class="btn btn-lg btn-primary" value="로그인"> -->
 													<input type="button" class="btn btn-lg btn-primary" value="로그인" id="loginbtn">
-													<!-- <button type="submit" class="btn btn-lg btn-primary">Sign in</button> -->
-													<!-- <a th:href="@{/member/join}" class="btn btn-lg btn-primary">회원가입</a> -->
 													<div class="errorMesage text-center text-danger">
 														<em><small id="errorLogin">로그인 에러 메세지</small></em>
 													</div>
@@ -87,14 +74,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 	         									</small>
          									</div>	         									<!-- 인터넷에서 긁어온 것, css에 설정해놔서 절취선? 안에 텍스트 넣을 수 있음 -->
 											<div class="hr-sect">또는</div>
-											<!-- <div><button onclick="client.requestCode();">Authorize with Google</button></div> -->
 											<div id="buttonDiv"></div>
-<!-- 											<input type="button" id="logoutbtn" value="임시 구글 로그아웃"> -->
-<!-- 											<div id="g_id_onload" -->
-<!-- 										         data-client_id="969064842874-ido7rmd0p911v3mq4gi7jk2dggfesv8n.apps.googleusercontent.com" -->
-<!-- 										         data-callback="handleCredentialResponse"> -->
-<!-- 										    </div> -->
-<!-- 										    <div class="g_id_signin" data-type="standard"></div> -->
 										</div>
 									</div>
 								</div>
@@ -111,7 +91,5 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 		</div>
 	</div>
 	
-	<!-- 이거 없으면 화이트라벨 뜸...아닌가? -->
-	<!-- <script src="js/app.js"></script> -->
 </body>
 </html>

@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BoardVO {
-	
+
 	private int board_id;
 	private int user_id;
 	private String title;
@@ -20,7 +20,7 @@ public class BoardVO {
 	private int dislikes;
 	private String originalfile;
 	private String savedfile;
-	
+
 }
 
 /*--PROLINGO_BOARD							

@@ -164,8 +164,8 @@ public class MemberSerivceImple implements MemberService {
 		// 요일 출력(일~토 => 1~7 순으로 출력됨)
 		int today = cal.get(Calendar.DAY_OF_WEEK);
 		int todayexp = -1;
-		
-		//오늘 획득한 경험치 가져옴
+
+		// 오늘 획득한 경험치 가져옴
 		switch (today) {
 		case 1:
 			todayexp = we.getSun_exp();
@@ -192,12 +192,12 @@ public class MemberSerivceImple implements MemberService {
 			break;
 		}
 		log.debug("오늘의 획득 경험치 : " + todayexp);
-		//오늘 획득한 경험치가 0이면 == 오늘 처음 한거면
-		if(todayexp == 0) {
-			//1일 추가
+		// 오늘 획득한 경험치가 0이면 == 오늘 처음 한거면
+		if (todayexp == 0) {
+			// 1일 추가
 			dao.updateDate(id);
 			log.debug("학습일 업데이트");
-			
+
 			return 1;
 		}
 		return 0;
@@ -206,7 +206,7 @@ public class MemberSerivceImple implements MemberService {
 	@Override
 	public ArrayList<MemberVO> selectAllUsers() {
 		ArrayList<MemberVO> result = dao.selectAllUsers();
-		
+
 		return result;
 	}
 
