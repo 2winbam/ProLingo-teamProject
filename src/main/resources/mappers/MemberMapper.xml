@@ -3,139 +3,142 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="net.softsociety.testboot.dao.MemberDAO">
-<!-- 가입 -->
-<insert id="insertMember" parameterType="MemberVO">
-	insert into prolingo_user
-	(
-	USER_ID
-	, USER_PW
-	, USER_NAME
-	, NICKNAME
-	, DEFAULAT_EMAIL
-	, EMAIL
-	, AGE
-	, PHOTO
-	)
-	values
-	(
-	prolingo_user_seq.nextval
-	, #{user_pw}
-	, #{user_name}
-	, #{user_name}
-	, #{default_email}
-	, #{default_email}
-	, #{age}
-	, #{photo}
-	)
-</insert>
+	<!-- 가입 -->
+	<insert id="insertMember" parameterType="MemberVO">
+		insert into prolingo_user
+		(
+		USER_ID
+		, USER_PW
+		, USER_NAME
+		, NICKNAME
+		, DEFAULAT_EMAIL
+		, EMAIL
+		, AGE
+		, PHOTO
+		)
+		values
+		(
+		prolingo_user_seq.nextval
+		, #{user_pw}
+		, #{user_name}
+		, #{user_name}
+		, #{default_email}
+		, #{default_email}
+		, #{age}
+		, #{photo}
+		)
+	</insert>
 
-<!-- AJAX 로그인 체크 -->
-<select id="logincheck" parameterType="map" resultType="int">
-	SELECT 
+	<!-- AJAX 로그인 체크 -->
+	<select id="logincheck" parameterType="map" resultType="int">
+		SELECT
 		count(*)
-	FROM 
+		FROM
 		PROLINGO_USER
-	WHERE 
+		WHERE
 		EMAIL = #{email}
 		<!-- USER_PW = #{user_pw} -->
-</select>
+	</select>
 
-<!-- 이메일로 멤버 객체 하나 반환 -->
-<select id="selectMemberByEmail" parameterType="string" resultType="MemberVO">
-	select *
-	from prolingo_user
-	where email = #{email}
-</select>
+	<!-- 이메일로 멤버 객체 하나 반환 -->
+	<select id="selectMemberByEmail" parameterType="string"
+		resultType="MemberVO">
+		select *
+		from prolingo_user
+		where email = #{email}
+	</select>
 
-<!-- userid로 멤버 객체 찾기 -->
-<select id="selectMemberByUserid" parameterType="int" resultType="MemberVO">
-	select *
-	from prolingo_user
-	where USER_ID = #{id}
-</select>
+	<!-- userid로 멤버 객체 찾기 -->
+	<select id="selectMemberByUserid" parameterType="int"
+		resultType="MemberVO">
+		select *
+		from prolingo_user
+		where USER_ID = #{id}
+	</select>
 
-<!--회원정보 수정  -->
-<update id="updateMemberInfo" parameterType="MemberVO">
-	<!-- 현재 로그인 userid값을 조건비교해서 수정 -->
-	update prolingo_user
-	set
+	<!--회원정보 수정 -->
+	<update id="updateMemberInfo" parameterType="MemberVO">
+		<!-- 현재 로그인 userid값을 조건비교해서 수정 -->
+		update prolingo_user
+		set
 		NICKNAME = #{nickname}
 		, EMAIL = #{email}
 		, AGE = #{age}
-	where USER_ID = #{user_id}
-</update>
-<!-- 회원정보 삭제 -->
-<delete id="deleteMemberAccount" parameterType="int">
-	delete from prolingo_user
-	where USER_ID = #{user_id}
-</delete>
+		where USER_ID = #{user_id}
+	</update>
+	<!-- 회원정보 삭제 -->
+	<delete id="deleteMemberAccount" parameterType="int">
+		delete from prolingo_user
+		where USER_ID = #{user_id}
+	</delete>
 
-<!-- 유저 경험치 추가 -->
-<update id="updateUserExp">
-	update prolingo_user
-	set user_exp = user_exp + #{exp}
-	where user_id = #{id}
-</update>
-<!-- 유저 요일별 획득경험치 등록 -->
-<insert id="insertUserExpDay">
-	insert into user_weekly_exp
-	(user_id)
-	 values
-	(prolingo_user_seq.currval)
-</insert>
-<!-- 유저 요일별 획득 경험치 업데이트 -->
-<update id="updateUserExpDay" parameterType="int">
-	update user_weekly_exp
-	set
-	<if test="today != null and today == 1">
-	sun_exp = sun_exp + #{exp}
-	</if>
-	<if test="today != null and today == 2">
-	mon_exp = mon_exp + #{exp}
-	</if>
-	<if test="today != null and today == 3">
-	tue_exp = tue_exp + #{exp}
-	</if>
-	<if test="today != null and today == 4">
-	wed_exp = wed_exp + #{exp}
-	</if>
-	<if test="today != null and today == 5">
-	thu_exp = thu_exp + #{exp}
-	</if>
-	<if test="today != null and today == 6">
-	fri_exp = fri_exp + #{exp}
-	</if>
-	<if test="today != null and today == 7">
-	sat_exp = sat_exp + #{exp}
-	</if>
-	where user_id = #{id} 
-</update>
-<select id="getExp" parameterType="int" resultType="MemberWeeklyExpVO">
-	select * from user_weekly_exp
-	where user_id = #{id}
-</select>
+	<!-- 유저 경험치 추가 -->
+	<update id="updateUserExp">
+		update prolingo_user
+		set user_exp = user_exp + #{exp}
+		where user_id = #{id}
+	</update>
+	<!-- 유저 요일별 획득경험치 등록 -->
+	<insert id="insertUserExpDay">
+		insert into user_weekly_exp
+		(user_id)
+		values
+		(prolingo_user_seq.currval)
+	</insert>
+	<!-- 유저 요일별 획득 경험치 업데이트 -->
+	<update id="updateUserExpDay" parameterType="int">
+		update user_weekly_exp
+		set
+		<if test="today != null and today == 1">
+			sun_exp = sun_exp + #{exp}
+		</if>
+		<if test="today != null and today == 2">
+			mon_exp = mon_exp + #{exp}
+		</if>
+		<if test="today != null and today == 3">
+			tue_exp = tue_exp + #{exp}
+		</if>
+		<if test="today != null and today == 4">
+			wed_exp = wed_exp + #{exp}
+		</if>
+		<if test="today != null and today == 5">
+			thu_exp = thu_exp + #{exp}
+		</if>
+		<if test="today != null and today == 6">
+			fri_exp = fri_exp + #{exp}
+		</if>
+		<if test="today != null and today == 7">
+			sat_exp = sat_exp + #{exp}
+		</if>
+		where user_id = #{id}
+	</update>
+	<select id="getExp" parameterType="int"
+		resultType="MemberWeeklyExpVO">
+		select * from user_weekly_exp
+		where user_id = #{id}
+	</select>
 
-<select id="isQuestionCompleted" resultType="int">
-	select count(*)
-	from completed_questions
-	where user_id = #{userid} and question_id = #{questionid}
-</select>
+	<select id="isQuestionCompleted" resultType="int">
+		select count(*)
+		from completed_questions
+		where user_id = #{userid} and question_id = #{questionid}
+	</select>
 
-<insert id="questionComplite">
-	insert into completed_questions
-	values(#{userid}, #{questionid})
-</insert>
+	<insert id="questionComplite">
+		insert into completed_questions
+		values(#{userid}, #{questionid})
+	</insert>
 
-<update id="updateDate" parameterType="int">
-update prolingo_user
-set continueday = continueday + 1, accure_date = accure_date + 1
-where user_id = #{userid}
-</update>
+	<update id="updateDate" parameterType="int">
+		update prolingo_user
+		set continueday = continueday + 1, accure_date = accure_date + 1
+		where user_id = #{userid}
+	</update>
 
-<select id="selectAllUsers" resultType="MemberVO">
-select *
-from prolingo_user
-order by user_exp desc
-</select>
+	<select id="selectAllUsers" resultType="MemberVO">
+		select *
+		from prolingo_user
+		order by user_exp desc
+	</select>
 
 </mapper>

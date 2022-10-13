@@ -4,94 +4,93 @@
 
 <mapper namespace="net.softsociety.testboot.dao.ProfileDAO">
 
-<!-- 달성한 업적을 조회 -->
-<select id="selectClear" parameterType="String" resultType="AchievementVO">
-	select u.achievement_date, p.achievement_id, p.achievement_name, p.achievement_text, p.achievement_picture
-	from prolingo_achievement p, user_achieve u 
-	where p.achievement_id = u.achievement_id and u.user_id = #{userid}
-	order by p.achievement_id
-</select>
+	<!-- 달성한 업적을 조회 -->
+	<select id="selectClear" parameterType="String"
+		resultType="AchievementVO">
+		select u.achievement_date, p.achievement_id, p.achievement_name,
+		p.achievement_text, p.achievement_picture
+		from prolingo_achievement p, user_achieve u
+		where p.achievement_id = u.achievement_id and u.user_id = #{userid}
+		order by p.achievement_id
+	</select>
 
-<!-- 미달성한 업적을 조회 -->
-<select id="selectNotClear" parameterType="String" resultType="AchievementVO">
-	select distinct p.achievement_id, p.achievement_name, p.achievement_text, p.achievement_picture
-	from prolingo_achievement p, user_achieve u
-	where p.achievement_id != u.achievement_id  and u.user_id = #{userid}
-	order by p.achievement_id
-</select>
+	<!-- 미달성한 업적을 조회 -->
+	<select id="selectNotClear" parameterType="String"
+		resultType="AchievementVO">
+		select distinct p.achievement_id, p.achievement_name, p.achievement_text,
+		p.achievement_picture
+		from prolingo_achievement p, user_achieve u
+		where p.achievement_id != u.achievement_id and u.user_id = #{userid}
+		order by p.achievement_id
+	</select>
 
-<!-- 접속한 사람을 제외한 사람들을 조회 -->
-<!-- 
-<select id="notFriends" parameterType="map" resultType="MemberVO">
-	select distinct u2.user_id, u2.photo, u2.user_name, u2.email
-	from prolingo_user u1, prolingo_user u2
-	where
-        u1.user_id != #{userId}
-        and
-        u1.user_id != u2.user_id
-       	and
-        u2.email like '%' || #{searchWord} || '%'
-        	
-</select>
--->
-<select id="notFriends" parameterType="map" resultType="MemberVO">
-	select distinct u.user_id, u.photo, u.user_name, u.email
-	from prolingo_user u, user_follow f
-	where
-        f.user_id = #{userId}
-        and
-        f.user_id != u.user_id
-        and
-        u.user_id != f.target_id	
-        and
-        u.email like '%' || #{searchWord} || '%'
-        	
-</select>
+	<!-- 접속한 사람을 제외한 사람들을 조회 -->
+	<!-- <select id="notFriends" parameterType="map" resultType="MemberVO"> 
+		select distinct u2.user_id, u2.photo, u2.user_name, u2.email from prolingo_user 
+		u1, prolingo_user u2 where u1.user_id != #{userId} and u1.user_id != u2.user_id 
+		and u2.email like '%' || #{searchWord} || '%' </select> -->
+	<select id="notFriends" parameterType="map"
+		resultType="MemberVO">
+		select distinct u.user_id, u.photo, u.user_name, u.email
+		from prolingo_user u, user_follow f
+		where
+		f.user_id = #{userId}
+		and
+		f.user_id != u.user_id
+		and
+		u.user_id != f.target_id
+		and
+		u.email like '%' || #{searchWord} || '%'
 
-<!-- 검색어에 해당하는 친구들 조회 -->
+	</select>
 
-<select id="searchfriends" parameterType="map" resultType="MemberVO">
-	select u.user_id, u.photo, u.user_name, u.email
-	from prolingo_user u, user_follow f
-	where
-        f.user_id = #{userId}
-        and
-        f.target_id = u.user_id        	
-        and
-        u.email like '%' || #{searchWord} || '%'      
-</select>
+	<!-- 검색어에 해당하는 친구들 조회 -->
 
-<select id="selectFriend" parameterType="String" resultType="MemberVO">
-	select *
-	from prolingo_user
-	where user_id = #{user_id}
+	<select id="searchfriends" parameterType="map"
+		resultType="MemberVO">
+		select u.user_id, u.photo, u.user_name, u.email
+		from prolingo_user u, user_follow f
+		where
+		f.user_id = #{userId}
+		and
+		f.target_id = u.user_id
+		and
+		u.email like '%' || #{searchWord} || '%'
+	</select>
 
-</select>
+	<select id="selectFriend" parameterType="String"
+		resultType="MemberVO">
+		select *
+		from prolingo_user
+		where user_id = #{user_id}
+
+	</select>
 
 
-<!-- 친추기능 -->
-<insert id="followFriend" parameterType="map">
-	insert into user_follow
-	(user_id, target_id)
-	values
-	(#{userId}, #{target})
-</insert>
+	<!-- 친추기능 -->
+	<insert id="followFriend" parameterType="map">
+		insert into user_follow
+		(user_id, target_id)
+		values
+		(#{userId}, #{target})
+	</insert>
 
-<!-- 언팔기능 -->
-<delete id="unfollowFriend" parameterType="map">
-	delete from user_follow
-	where user_id = #{userId} and target_id = #{target}
-</delete>
+	<!-- 언팔기능 -->
+	<delete id="unfollowFriend" parameterType="map">
+		delete from user_follow
+		where user_id = #{userId} and target_id = #{target}
+	</delete>
 
-<!-- 내 프로필에서 친구리스트 조회 -->
-<select id="selectAllFriends"  parameterType="String" resultType="MemberVO">
-	select u.user_id, u.photo, u.user_name, u.email
-	from prolingo_user u, user_follow f
-	where
-        f.user_id = #{userId}
-        and
-        f.target_id = u.user_id 
-</select>
+	<!-- 내 프로필에서 친구리스트 조회 -->
+	<select id="selectAllFriends" parameterType="String"
+		resultType="MemberVO">
+		select u.user_id, u.photo, u.user_name, u.email
+		from prolingo_user u, user_follow f
+		where
+		f.user_id = #{userId}
+		and
+		f.target_id = u.user_id
+	</select>
 
 
 </mapper>

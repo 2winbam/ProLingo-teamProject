@@ -22,13 +22,13 @@ public class QuestionServiceImpl implements QuestionService {
 
 	@Override
 	public ArrayList<ProlingoKeywordVO> selectAllKeywords(String keywords) {
-		
+
 		String[] keywordlist = keywords.split(",");
-		
+
 		ArrayList<ProlingoKeywordVO> result = new ArrayList<>();
-		
-		for(String key : keywordlist) {
-			//nteger.parseInt(key);
+
+		for (String key : keywordlist) {
+			// nteger.parseInt(key);
 			result.add(dao.selectKeywordById(Integer.parseInt(key)));
 		}
 
@@ -38,7 +38,7 @@ public class QuestionServiceImpl implements QuestionService {
 	@Override
 	public ArrayList<ProlingoKeywordVO> selectSameTypeKeywords(String type) {
 		ArrayList<ProlingoKeywordVO> result = new ArrayList<>();
-		
+
 		result = dao.selectKeywordsByType(type);
 
 		return result;

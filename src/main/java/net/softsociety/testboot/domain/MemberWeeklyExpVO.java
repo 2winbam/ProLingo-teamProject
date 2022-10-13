@@ -17,8 +17,8 @@ public class MemberWeeklyExpVO {
 	private int fri_exp;
 	private int sat_exp;
 	private int sun_exp;
-	//private int today;
-	
+	// private int today;
+
 }
 
 /*--USER_WEEKLY_EXP						

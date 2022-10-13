@@ -4,13 +4,13 @@
 
 <mapper namespace="net.softsociety.testboot.dao.DBTestDAO">
 
-<insert id="insertTest" parameterType="DBTestVO">
-	insert into dbtesttable
-	values(#{tid}, #{tname})
-</insert>
+	<insert id="insertTest" parameterType="DBTestVO">
+		insert into dbtesttable
+		values(#{tid}, #{tname})
+	</insert>
 
-<insert id="insertCodeTest" parameterType="string">
-	insert into codetesttable
-	values(#{code})
-</insert>
+	<insert id="insertCodeTest" parameterType="string">
+		insert into codetesttable
+		values(#{code})
+	</insert>
 </mapper>

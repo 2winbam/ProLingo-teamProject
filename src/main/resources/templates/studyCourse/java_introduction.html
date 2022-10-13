@@ -76,11 +76,6 @@
    								
    								<!-- 특정 학습 페이지로 이동하기 위한 a태그 -->
       								<div class="learningLink d-flex flex-row" id="learningLink">
-      									<!--  
-        								<div th:each="chapterList:${chapterList}" class="learningLink" id="learningLink">
-        									<a th:text="${chapterList.lesson_title}" th:href="|@{compilerForm}?lessonid=${chapterList.lesson_id}&questionindex=${chapterList.lesson_slide}|"></a>
-        								</div>
-        								-->
         							
         								<div th:each="chapterList:${chapterList}" class="list-group" id="learningLink">
   											<a th:text="${chapterList.lesson_slide} + ' . ' + ${chapterList.lesson_title}" th:href="|@{/study/compilerForm}?lessonid=${chapterList.lesson_id}&questionindex=${chapterList.lesson_slide}|" 
