@@ -202,7 +202,7 @@ public class MemberSerivceImple implements MemberService {
 		}
 		return 0;
 	}
-
+	
 	@Override
 	public ArrayList<MemberVO> selectAllUsers() {
 		ArrayList<MemberVO> result = dao.selectAllUsers();

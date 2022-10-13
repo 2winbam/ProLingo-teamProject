@@ -68,3 +68,89 @@ DROP SEQUENCE	PROLINGO_HISTORY_SEQ	;
 CREATE SEQUENCE	PROLINGO_HISTORY_SEQ	;		
 
 COMMIT;
+
+--개념데이터
+--1
+INSERT INTO
+VALUES
+PROLINGO_CONTENTS_SEQ.nextval,
+여러분은 처음에는 어려워 보일 수 있는 많은 새로운 용어들을 보게 될 것이지만, 걱정하지 마세요!
+한 개씩 같이 배워보도록 하겠습니다.', '/prolingo/img/contents/0-0.png'
+);
+
+INSERT INTO
+VALUES
+PROLINGO_CONTENTS_SEQ.nextval,
+System.out.println()의 () 안에 문자를 기록하여 콘솔에서 인쇄할 수 있습니다.', '/prolingo/img/contents/0-1.png'
+);
+
+INSERT INTO
+VALUES
+PROLINGO_CONTENTS_SEQ.nextval,
+※ 자바는 자바스크립트와 같지 않으니 헷갈리지 마세요.', '/prolingo/img/contents/0-2.png'
+);
+
+-- 2
+INSERT INTO
+VALUES
+PROLINGO_CONTENTS_SEQ.nextval,
+문자열을 큰따옴표 "로 묶어야 합니다. 그렇지 않으면 오류가 발생합니다.', '/prolingo/img/contents/1-0.png'
+);
+
+INSERT INTO
+VALUES
+PROLINGO_CONTENTS_SEQ.nextval,
+프로그래밍에서는 컴퓨터에 이와 같은 다양한 명령을 내릴 수 있습니다. System.out.println()을 숙지하십시오. 이 과정에서는 System.out.println()을 반복해서 사용합니다.
+※ "println"의 l은 L의 소문자입니다.', '/prolingo/img/contents/1-1.png'
+);
+
+INSERT INTO
+VALUES
+PROLINGO_CONTENTS_SEQ.nextval,
+아래 예제에는 Main 클래스와 Main method가 있습니다. 현재로서는, 당신이 기억해야 할 유일한 것은 당신이 메인 메서드 안에 당신의 코드를 쓸 것이라는 것입니다.',
+/prolingo/img/contents/1-2.png'
+);
+
+INSERT INTO
+VALUES
+PROLINGO_CONTENTS_SEQ.nextval,
+그렇지 않으면 오류가 발생할 수 있으니 조심하세요!', '/prolingo/img/contents/1-3.png'
+);
+
+INSERT INTO
+VALUES
+PROLINGO_CONTENTS_SEQ.nextval,
+코드를 실행할 때 주석은 무시되므로 주석을 사용하여 메모를 남길 수 있습니다.', '/prolingo/img/contents/1-4.png'
+);
+
+--3
+
+INSERT INTO
+VALUES
+PROLINGO_CONTENTS_SEQ.nextval,
+왼쪽 그림에서 보듯이 수학에서처럼 정수를 더하고 뺄 수 있습니다. 정수 앞과 뒤에 공백을 넣을 필요는 없지만 코드를 읽기 쉽게 만듭니다.', '/prolingo/img/contents/2-0.jpg'
+);
+
+INSERT INTO
+VALUES
+PROLINGO_CONTENTS_SEQ.nextval,
+5 + 2는 7을 출력합니다. 이는 덧셈의 결과입니다. 그러나 "5 + 2"와 같이 큰 따옴표 "를 추가하여 문자열로 만들면 출력은 리터럴 문자열: 5 + 2가 됩니다.',
+/prolingo/img/contents/2-1.jpg'
+);
+
+
+--4
+INSERT INTO
+VALUES
+PROLINGO_CONTENTS_SEQ.nextval,
+* 연산자는 곱셈용이고 / 연산자는 나눗셈용입니다. % 연산자를 사용하여 분할 후 나머지를 계산할 수도 있습니다.', '/prolingo/img/contents/3-0.jpg'
+);
+
+
+--5
+INSERT INTO
+VALUES
+PROLINGO_CONTENTS_SEQ.nextval,
+문자열을 결합하는 것을 문자열 연결이라고 합니다. 아래 그림과 같이 "5" + "3"은 두 문자열을 숫자로 추가하는 대신 "53"이 되도록 연결합니다. 항상 정수와 문자열의 차이를 인식하도록 하십시오.', '/prolingo/img/contents/4-0.jpg'
+);
+commit;
