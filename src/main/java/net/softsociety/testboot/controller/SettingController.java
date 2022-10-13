@@ -6,40 +6,44 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Controller
+@Slf4j
 @RequestMapping("settings")
 public class SettingController {
 
 	/**
 	 * sign in page
+	 * 
 	 * @return
 	 */
 	@GetMapping("")
 	public String setting() {
 		return "settingsView/setting";
 	}
-	
+
 	/**
 	 * sine up page
+	 * 
 	 * @return
 	 */
 	@GetMapping("/account")
 	public String accountsetting() {
 		return "settingsView/accountSettingForm";
 	}
-	
+
 	/**
 	 * sine up page
+	 * 
 	 * @return
 	 */
 	@GetMapping("/changepassword")
 	public String changepassword() {
 		return "settingsView/changePassword";
 	}
-	
+
 	/**
 	 * payment page
+	 * 
 	 * @return
 	 */
 	@GetMapping("/pricing")

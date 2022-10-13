@@ -14,29 +14,9 @@ public class HomeController {
 
 	@Autowired
 	DBTestService service;
-	
-	@GetMapping({"","/"})
+
+	@GetMapping({ "", "/" })
 	public String home() {
 		return "home";
 	}
-	
-	@GetMapping("blankpage")
-	public String blankpage() {
-		return "blankpage";
-	}
-	
-//	@GetMapping("error")
-//	public String errorpage() {
-//		return "errorpage";
-//	}
-	
-	@GetMapping("dbtest")
-	public String dbtest(int tid, String tname) {
-		
-		DBTestVO vo = new DBTestVO(tid, tname);
-		
-		int result = service.insertTest(vo);
-		
-		return "redirect:blankpage";
-	}  
 }

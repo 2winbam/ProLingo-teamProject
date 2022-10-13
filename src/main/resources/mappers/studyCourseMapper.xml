@@ -4,95 +4,89 @@
 
 <mapper namespace="net.softsociety.testboot.dao.StudyCourseDAO">
 
-<!-- 학습페이지에서 입문편 리스트 조회-->
-<select id="introdutionAll" resultType="ContentsVO">
-	select lesson_slide, lesson_title 
-	from prolingo_contents
-	group by lesson_slide, lesson_title
-	order by lesson_slide
-</select>
+	<!-- 학습페이지에서 입문편 리스트 조회 -->
+	<select id="introdutionAll" resultType="ContentsVO">
+		select lesson_slide, lesson_title
+		from prolingo_contents
+		group by lesson_slide, lesson_title
+		order by lesson_slide
+	</select>
 
-<!-- 학습페이지에서 특정 슬라이드 목록을 조회 -->
-<select id="selectContents" parameterType="int" resultType="ContentsVO">
-	select * 
-	from prolingo_contents
-	where lesson_id = #{lessonid}
-	order by lesson_slide
-</select>
+	<!-- 학습페이지에서 특정 슬라이드 목록을 조회 -->
+	<select id="selectContents" parameterType="int"
+		resultType="ContentsVO">
+		select *
+		from prolingo_contents
+		where lesson_id = #{lessonid}
+		order by lesson_slide
+	</select>
 
-<select id="selectContents2" resultType="ContentsVO">
-	select * 
-	from prolingo_contents
-	where lesson_id = #{lessonid} and lesson_slide = #{questionindex}
-	order by CONTENT_ID
-</select>
+	<select id="selectContents2" resultType="ContentsVO">
+		select *
+		from prolingo_contents
+		where lesson_id = #{lessonid} and lesson_slide = #{questionindex}
+		order by CONTENT_ID
+	</select>
 
-<!-- <select id="getLanguage" parameterType="int" resultType="string"> -->
-<!-- 	select subject_name -->
-<!-- 	from prolingo_subject -->
-<!-- 	where subject_id = ( -->
-<!-- 		select subject_id -->
-<!-- 		from prolingo_lesson -->
-<!-- 		where lesson_id = #{lessonid}) -->
-<!-- </select> -->
-<select id="getLanguage" parameterType="int" resultType="string">
-	select s.subject_name
-	from prolingo_subject s, prolingo_lesson l
-	where l.lesson_id = #{lessonid} and s.subject_id = l.subject_id
-</select>
+	<select id="getLanguage" parameterType="int" resultType="string">
+		select s.subject_name
+		from prolingo_subject s, prolingo_lesson l
+		where l.lesson_id = #{lessonid} and s.subject_id = l.subject_id
+	</select>
 
-<select id="searchTitle" parameterType="int" resultType="String">
-	
-	select lesson_title
-	from prolingo_contents
-	where lesson_slide = #{questionindex}
-	group by lesson_title
-</select>
+	<select id="searchTitle" parameterType="int" resultType="String">
 
-<!-- 누적일자 계산 -->
+		select lesson_title
+		from prolingo_contents
+		where lesson_slide = #{questionindex}
+		group by lesson_title
+	</select>
 
-<select id="selectDate" parameterType="String" resultType="int">
-	select accure_date
-	from prolingo_user
-	where user_id = #{user_id}
-</select>
+	<!-- 누적일자 계산 -->
 
-<!-- 마지막 로그인 일자 조회 -->
-<select id="selectLogDate" parameterType="String" resultType="String">
-	select to_char(last_login, 'YY/MM/DD')
-	from prolingo_user
-	where user_id = #{user_id}
-</select>
+	<select id="selectDate" parameterType="String" resultType="int">
+		select accure_date
+		from prolingo_user
+		where user_id = #{user_id}
+	</select>
 
-<!-- 1일차 로그인 업적 insert -->
-<insert id="achieveDayOne" parameterType="String">
-	insert into user_achieve
-	(user_id, achievement_id)
-	values
-	(#{userid}, 1)
-</insert>
+	<!-- 마지막 로그인 일자 조회 -->
+	<select id="selectLogDate" parameterType="String"
+		resultType="String">
+		select to_char(last_login, 'YY/MM/DD')
+		from prolingo_user
+		where user_id = #{user_id}
+	</select>
 
-<!-- 누적 로그인 일자 +1 -->
-<update id="plusDay" parameterType="map">
-	update prolingo_user
-	set accure_date = #{accureDate}+1
-	where user_id = #{userNum}
-</update> 
+	<!-- 1일차 로그인 업적 insert -->
+	<insert id="achieveDayOne" parameterType="String">
+		insert into user_achieve
+		(user_id, achievement_id)
+		values
+		(#{userid}, 1)
+	</insert>
 
-<!-- 최종 로그인 일자 업데이트 -->
-<update id="updateLastDay" parameterType="map">
-	update prolingo_user
-	set last_login = #{formatedNow}
-	where user_id = #{userid}
-</update> 
+	<!-- 누적 로그인 일자 +1 -->
+	<update id="plusDay" parameterType="map">
+		update prolingo_user
+		set accure_date = #{accureDate}+1
+		where user_id = #{userNum}
+	</update>
 
-<!-- 2일차 로그인 업적 insert -->
-<insert id="achieveDayTwo" parameterType="String">
-	insert into user_achieve
-	(user_id, achievement_id)
-	values
-	(#{userid}, 2)
-</insert>
+	<!-- 최종 로그인 일자 업데이트 -->
+	<update id="updateLastDay" parameterType="map">
+		update prolingo_user
+		set last_login = #{formatedNow}
+		where user_id = #{userid}
+	</update>
+
+	<!-- 2일차 로그인 업적 insert -->
+	<insert id="achieveDayTwo" parameterType="String">
+		insert into user_achieve
+		(user_id, achievement_id)
+		values
+		(#{userid}, 2)
+	</insert>
 
 <!-- 5일차 로그인 업적 insert -->
 <insert id="achieveDayFive" parameterType="String">

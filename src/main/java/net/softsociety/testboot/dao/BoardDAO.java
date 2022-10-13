@@ -13,34 +13,34 @@ import net.softsociety.testboot.domain.ReplyWithName;
 
 @Mapper
 public interface BoardDAO {
-	
-	//글저장
+
+	// 글저장
 	public int writeBoard(BoardVO board);
-	
-	//글 개수
+
+	// 글 개수
 	public int count(HashMap<String, String> map);
 
-	//글 전체 목록
-	//public ArrayList<BoardVO> boardListAll(HashMap<String, String> map, RowBounds rb);
+	// 글 전체 목록
+	// public ArrayList<BoardVO> boardListAll(HashMap<String, String> map, RowBounds
+	// rb);
 	public ArrayList<BoardWithName> boardListAll(HashMap<String, String> map, RowBounds rb);
-	
-	//글 읽기
+
+	// 글 읽기
 	public BoardWithName writingRead(int boardnum);
-	
-	//조회수 증가
+
+	// 조회수 증가
 	public int updateHits(int boardnum);
-	
-	//인기글 목록
+
+	// 인기글 목록
 	public ArrayList<BoardWithName> hitListAll(HashMap<String, String> map, RowBounds rb);
-	
-	//글 삭제
+
+	// 글 삭제
 	public int delete(BoardVO board);
-	
-	//해당 글의 댓글 목록 읽기
+
+	// 해당 글의 댓글 목록 읽기
 	public ArrayList<ReplyWithName> replyList(int board_id);
-	
-	//댓글 저장
+
+	// 댓글 저장
 	public int replyWrite(ReplyVO reply);
-	
 
 }

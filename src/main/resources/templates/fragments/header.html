@@ -3,98 +3,6 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <body>
-	<div th:fragment="topmenu_test">
-		<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-			<div class="container-fluid ">
-				<img th:src="@{/images/logo1.png}" alt="logotest1" id="logoTest1">
-				<a class="navbar-brand" th:href="@{/}">&nbsp;&nbsp;Prolingo</a>
-				<button class="navbar-toggler" type="button"
-					data-bs-toggle="collapse" data-bs-target="#mynavbar">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="mynavbar">
-					<ul class="navbar-nav me-auto">
-						<li class="nav-item"><a class="nav-link"
-							th:href="@{/courseTest}">코스</a></li>
-						<li class="nav-item"><a class="nav-link" href="">소셜</a></li>
-						<li class="nav-item"><a class="nav-link" href="">커뮤니티</a></li>
-					</ul>
-					<form class="d-flex">
-						<input class="form-control me-2" type="text" placeholder="Search">
-						<button class="btn btn-primary" type="button">Search</button>
-					</form>
-				</div>
-			</div>
-		</nav>
-	</div>
-
-	<div th:fragment="topmenu">
-		<header class="p-3">
-			<div class="container">
-				<div
-					class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-					<!-- a태그의 이동페이지 주소는 해당 페이지의 제작자가 입력 요망 -->
-
-					<ul
-						class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-
-						<!-- 현 시점에서는 홈으로 이동하도록 되어있으나 변경여지있음 -->
-						<li><a th:href="@{/}" class="px-5 nav-link"
-							style="font-weight: bold">PROLINGO</a></li>
-						<!-- 학습코스 페이지와 연결 -->
-						<li><a href="#" class="nav-link">학습코스</a></li>
-						<!-- 랭킹 페이지와 연결 -->
-						<li><a href="#" class="nav-link">랭킹</a></li>
-						<!-- 게시판 페이지와 연결 -->
-						<li><a href="#" class="nav-link">게시판</a></li>
-					</ul>
-
-					<!-- 다국어 지원 기능 구현시 사용 (미구현시에는 삭제)-->
-
-					<div class="dropdown text-end">
-
-						<a href="#"
-							class="d-block link-light text-decoration-none text-light dropdown-toggle"
-							data-bs-toggle="dropdown" aria-expanded="false">언어 설정 </a>
-						<ul class="dropdown-menu text-small text-light">
-							<!-- 프로필 페이지와 연결 -->
-							<li><a class="dropdown-item" href="#"> <img
-									th:src="@{/icons/korea_icon.png}" alt="korea_icon" class="icon">&nbsp;한국어
-							</a></li>
-							<!-- 결제 페이지로 이동 -->
-							<li><a class="dropdown-item" href="#"> <img
-									th:src="@{/icons/japan_icon.png}" alt="korea_icon" class="icon">&nbsp;日本語
-							</a></li>
-						</ul>
-					</div>
-
-					<!-- 로그인한 계정페이지로의 연결과 프로필 사진 출력 필요 (개인페이지 구현 및 사진 저장경로 구현 후 상세히 작성예정) -->
-
-					<div class="px-5 dropdown text-end">
-
-						<a href="#"
-							class="d-block link-light text-decoration-none dropdown-toggle"
-							data-bs-toggle="dropdown" aria-expanded="false"> <img
-							src="https://github.com/mdo.png" alt="profile" width="32"
-							height="32" class="rounded-circle">
-						</a>
-						<ul class="dropdown-menu text-small text-light">
-							<!-- 프로필 페이지와 연결 -->
-							<li><a class="dropdown-item" href="#">프로필</a></li>
-							<!-- 결제 페이지로 이동 -->
-							<li><a class="dropdown-item" href="#">결제</a></li>
-							<!-- 설정 페이지로 이동 -->
-							<li><a class="dropdown-item" href="#">설정</a></li>
-							<li><hr class="dropdown-divider"></li>
-							<!-- 로그아웃 하면서 시작페이지로 이동 -->
-							<li><a class="dropdown-item" href="#">로그아웃</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</header>
-	</div>
-
 	<div th:fragment="new_header">
 		<nav class="navbar navbar-expand navbar-light navbar-bg">
 
@@ -142,149 +50,6 @@
 						<i class="align-middle me-2" data-feather="calendar"></i>
 						<span th:text="${session.continueday}">연속 학습 일수</span>
 					</li>
-					
-<!-- 					<li class="nav-item d-none d-md-inline-flex m-2 text-success  class"> -->
-<!-- 						<i class="align-middle me-2" data-feather="circle"></i> -->
-<!-- 						<span th:text="${session.usermoney}">재화</span> -->
-<!-- 					</li> -->
-					
-<!-- 					<li class="nav-item dropdown"><a -->
-<!-- 						class="nav-icon dropdown-toggle" href="#" id="alertsDropdown" -->
-<!-- 						data-bs-toggle="dropdown"> -->
-<!-- 							<div class="position-relative"> -->
-<!-- 								<i class="align-middle" data-feather="bell"></i> <span -->
-<!-- 									class="indicator" th:text="${session.noticecount}">noticecount</span> -->
-<!-- 							</div> -->
-<!-- 					</a> -->
-<!-- 						<div class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0" -->
-<!-- 							aria-labelledby="alertsDropdown"> -->
-<!-- 							<div class="dropdown-menu-header">4 New Notifications</div> -->
-<!-- 							<div class="list-group"> -->
-<!-- 								<a href="#" class="list-group-item"> -->
-<!-- 									<div class="row g-0 align-items-center"> -->
-<!-- 										<div class="col-2"> -->
-<!-- 											<i class="text-danger" data-feather="alert-circle"></i> -->
-<!-- 										</div> -->
-<!-- 										<div class="col-10"> -->
-<!-- 											<div class="text-dark">Update completed</div> -->
-<!-- 											<div class="text-muted small mt-1">Restart server 12 to -->
-<!-- 												complete the update.</div> -->
-<!-- 											<div class="text-muted small mt-1">30m ago</div> -->
-<!-- 										</div> -->
-<!-- 									</div> -->
-<!-- 								</a> <a href="#" class="list-group-item"> -->
-<!-- 									<div class="row g-0 align-items-center"> -->
-<!-- 										<div class="col-2"> -->
-<!-- 											<i class="text-warning" data-feather="bell"></i> -->
-<!-- 										</div> -->
-<!-- 										<div class="col-10"> -->
-<!-- 											<div class="text-dark">Lorem ipsum</div> -->
-<!-- 											<div class="text-muted small mt-1">Aliquam ex eros, -->
-<!-- 												imperdiet vulputate hendrerit et.</div> -->
-<!-- 											<div class="text-muted small mt-1">2h ago</div> -->
-<!-- 										</div> -->
-<!-- 									</div> -->
-<!-- 								</a> <a href="#" class="list-group-item"> -->
-<!-- 									<div class="row g-0 align-items-center"> -->
-<!-- 										<div class="col-2"> -->
-<!-- 											<i class="text-primary" data-feather="home"></i> -->
-<!-- 										</div> -->
-<!-- 										<div class="col-10"> -->
-<!-- 											<div class="text-dark">Login from 192.186.1.8</div> -->
-<!-- 											<div class="text-muted small mt-1">5h ago</div> -->
-<!-- 										</div> -->
-<!-- 									</div> -->
-<!-- 								</a> <a href="#" class="list-group-item"> -->
-<!-- 									<div class="row g-0 align-items-center"> -->
-<!-- 										<div class="col-2"> -->
-<!-- 											<i class="text-success" data-feather="user-plus"></i> -->
-<!-- 										</div> -->
-<!-- 										<div class="col-10"> -->
-<!-- 											<div class="text-dark">New connection</div> -->
-<!-- 											<div class="text-muted small mt-1">Christina accepted -->
-<!-- 												your request.</div> -->
-<!-- 											<div class="text-muted small mt-1">14h ago</div> -->
-<!-- 										</div> -->
-<!-- 									</div> -->
-<!-- 								</a> -->
-<!-- 							</div> -->
-<!-- 							<div class="dropdown-menu-footer"> -->
-<!-- 								<a href="#" class="text-muted">Show all notifications</a> -->
-<!-- 							</div> -->
-<!-- 						</div></li> -->
-<!-- 					<li class="nav-item dropdown"><a -->
-<!-- 						class="nav-icon dropdown-toggle" href="#" id="messagesDropdown" -->
-<!-- 						data-bs-toggle="dropdown"> -->
-<!-- 							<div class="position-relative"> -->
-<!-- 								<i class="align-middle" data-feather="message-square"></i> -->
-<!-- 							</div> -->
-<!-- 					</a> -->
-<!-- 						<div class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0" -->
-<!-- 							aria-labelledby="messagesDropdown"> -->
-<!-- 							<div class="dropdown-menu-header"> -->
-<!-- 								<div class="position-relative">4 New Messages</div> -->
-<!-- 							</div> -->
-<!-- 							<div class="list-group"> -->
-<!-- 								<a href="#" class="list-group-item"> -->
-<!-- 									<div class="row g-0 align-items-center"> -->
-<!-- 										<div class="col-2"> -->
-<!-- 											여기 th 추가해서 수정함 -->
-<!-- 											<img th:src="@{/img/avatars/avatar-5.jpg}" -->
-<!-- 												class="avatar img-fluid rounded-circle" alt="Vanessa Tucker"> -->
-<!-- 										</div> -->
-<!-- 										<div class="col-10 ps-2"> -->
-<!-- 											<div class="text-dark">Vanessa Tucker</div> -->
-<!-- 											<div class="text-muted small mt-1">Nam pretium turpis -->
-<!-- 												et arcu. Duis arcu tortor.</div> -->
-<!-- 											<div class="text-muted small mt-1">15m ago</div> -->
-<!-- 										</div> -->
-<!-- 									</div> -->
-<!-- 								</a> <a href="#" class="list-group-item"> -->
-<!-- 									<div class="row g-0 align-items-center"> -->
-<!-- 										<div class="col-2"> -->
-<!-- 											<img th:src="@{/img/avatars/avatar-2.jpg}" -->
-<!-- 												class="avatar img-fluid rounded-circle" alt="William Harris"> -->
-<!-- 										</div> -->
-<!-- 										<div class="col-10 ps-2"> -->
-<!-- 											<div class="text-dark">William Harris</div> -->
-<!-- 											<div class="text-muted small mt-1">Curabitur ligula -->
-<!-- 												sapien euismod vitae.</div> -->
-<!-- 											<div class="text-muted small mt-1">2h ago</div> -->
-<!-- 										</div> -->
-<!-- 									</div> -->
-<!-- 								</a> <a href="#" class="list-group-item"> -->
-<!-- 									<div class="row g-0 align-items-center"> -->
-<!-- 										<div class="col-2"> -->
-<!-- 											<img th:src="@{/img/avatars/avatar-4.jpg}" -->
-<!-- 												class="avatar img-fluid rounded-circle" -->
-<!-- 												alt="Christina Mason"> -->
-<!-- 										</div> -->
-<!-- 										<div class="col-10 ps-2"> -->
-<!-- 											<div class="text-dark">Christina Mason</div> -->
-<!-- 											<div class="text-muted small mt-1">Pellentesque auctor -->
-<!-- 												neque nec urna.</div> -->
-<!-- 											<div class="text-muted small mt-1">4h ago</div> -->
-<!-- 										</div> -->
-<!-- 									</div> -->
-<!-- 								</a> <a href="#" class="list-group-item"> -->
-<!-- 									<div class="row g-0 align-items-center"> -->
-<!-- 										<div class="col-2"> -->
-<!-- 											<img th:src="@{/img/avatars/avatar-3.jpg}" -->
-<!-- 												class="avatar img-fluid rounded-circle" alt="Sharon Lessman"> -->
-<!-- 										</div> -->
-<!-- 										<div class="col-10 ps-2"> -->
-<!-- 											<div class="text-dark">Sharon Lessman</div> -->
-<!-- 											<div class="text-muted small mt-1">Aenean tellus metus, -->
-<!-- 												bibendum sed, posuere ac, mattis non.</div> -->
-<!-- 											<div class="text-muted small mt-1">5h ago</div> -->
-<!-- 										</div> -->
-<!-- 									</div> -->
-<!-- 								</a> -->
-<!-- 							</div> -->
-<!-- 							<div class="dropdown-menu-footer"> -->
-<!-- 								<a href="#" class="text-muted">Show all messages</a> -->
-<!-- 							</div> -->
-<!-- 						</div></li> -->
 					<li class="nav-item dropdown"><a
 						class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#"
 						data-bs-toggle="dropdown"> <i class="align-middle"
@@ -299,14 +64,12 @@
 
 							<a class="dropdown-item" th:href="@{/profile}"><i
 								class="align-middle me-1" data-feather="user"></i> Profile</a>
-							<!-- 								<a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1" data-feather="user"></i> Profile</a> -->
 
 							<a class="dropdown-item" th:href="@{/settings/pricing}"><i
 								class="align-middle me-1" data-feather="shopping-cart"></i> Payment</a>
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" th:href="@{/settings}"><i
 								class="align-middle me-1" data-feather="settings"></i> Settings & Privacy</a>
-							<!-- 								<a class="dropdown-item" href="index.html"><i class="align-middle me-1" data-feather="settings"></i> Settings & Privacy</a> -->
 
 							<a class="dropdown-item" href="https://github.com/tmdqja92/ProLingo-teamProject"><i
 								class="align-middle me-1" data-feather="help-circle"></i> Help Center</a>

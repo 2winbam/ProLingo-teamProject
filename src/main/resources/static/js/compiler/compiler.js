@@ -3,18 +3,8 @@
  */
 // 코드미러 실행
 $(document).ready(function() {
-	//컴파일러 호출을 위한 현재 학습중인 언어 설정
-	//setDefaultCode($('#language').attr(rang));
-	//console.log($('#defaultcode').attr('dcode'));
-	//var defaultcode1 = $('#defaultcode').attr('dcode');
-	//var defaultcode2 = 'class Main{\n\tpublic static void main(String[] args) {\n\t\tSystem.out.println(\"Hello World!\");\n\t}\n}';
-	//$('#codemirror').val($('#defaultcode').attr('dcode'));
-	//console.log(defaultcode1.length);
-	//console.log(defaultcode1.replaceAll('\\n', '\n').replaceAll('\\t', '\t').replaceAll('\\"', '\"').length);
-	//console.log(defaultcode2.length);
 
 	var defaultcode = codechange($('#info').attr('dcode'));
-	//$('#codemirror').val(defaultcode1.replaceAll('\\n', '\n').replaceAll('\\t', '\t').replaceAll('\\"', '\"'));
 	$('#codemirror').val(defaultcode);
 	$('#codeAnswer').html(codechange($('#info').attr('acode')));
 	$('#contentsText').html(codechange($('#info').attr('question')));
@@ -71,8 +61,7 @@ $(document).ready(function() {
 
 		//컴파일용 ajax
 		$.ajax({
-			//url: '/prolingo/compile',
-			url: '/prolingo/compile2', //신버전
+			url: '/prolingo/compile',
 			type: 'post',
 			data: { language: language, code: code },
 			dataType: 'json',
